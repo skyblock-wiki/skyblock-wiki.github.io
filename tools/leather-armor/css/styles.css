@@ -1,0 +1,630 @@
+@import './toast.css';
+/* font-awesome */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css");
+/* fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&display=swap');
+
+/* create variables */
+:root {
+    --col-bg: #1e1e1e;
+    --col-bg2: #252525;
+    --col-bg3: #323232;
+    --col-acc: #444;
+    --col-acc2: #4a4a4a;
+    --orange: #ED5F00;
+    --curcol: red;
+    --state-shadow: 0 0 3px 2px var(--curcol);
+    --dot-border: #999;
+    --box-border: #666;
+    --imports-selected: white;
+}
+
+/* normalize margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*  
+========================
+        Main CSS
+========================
+*/
+html {
+    scroll-behavior: smooth;
+    width: 100%;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--col-bg);
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.hidden {
+    opacity: 0%;
+    display: none;
+}
+
+.soft-hidden {
+    visibility: hidden;
+    cursor: default;
+}
+
+.disallow-focusing {
+    display: none !important;
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.code {
+    font-family: 'Fira Mono', monospace;
+    padding: 0px 0.3rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--col-acc);
+    border-radius: 4px;
+}
+
+/* hover and focus effect for buttons and inputs */
+input:focus,
+textarea:focus {
+    outline: none;
+    box-shadow: var(--state-shadow);
+}
+
+button {
+    cursor: pointer;
+}
+
+/*  
+======================
+        Header
+======================
+*/
+header {
+    position: static;
+    width: 100%;
+    height: 4.6rem;
+    display: flex;
+    background: var(--col-bg3);
+    align-items: center;
+    padding: .3rem 4rem;
+}
+
+header img {
+    width: 4rem;
+    margin-right: 1.5rem;
+}
+
+header > span {
+    display: flex;
+}
+
+header .name {
+    font-size: 1.5rem;
+    font-weight: 500;
+    white-space: nowrap;
+    color: white;
+}
+
+header .version {
+    font-size: 1rem;
+    font-weight: 300;
+    align-self: flex-end;
+    margin-left: .5rem;
+    color: #FFFFFFa0;
+}
+
+/*  
+=======================
+        Imports
+=======================
+*/
+.imports {
+    position: absolute;
+    left: 1rem;
+    display: flex;
+    flex-direction: column-reverse;
+}
+#show-imports {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    width: 3rem;
+    padding: 0.4rem 0;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+#show-imports:hover {
+    background: #fff1;
+}
+#show-imports i {
+    transition: transform 0.2s ease;
+}
+.imports-list:not(.hidden) + #show-imports i {
+    transform: scale(-1, 1);
+}
+.imports-list {
+    background: var(--col-bg);
+    padding: 0.5rem;
+    border: 1px solid var(--col-acc);
+    margin: 0.5rem 1rem 0.5rem 0;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+    z-index: 2;
+}
+.imports-list.hidden {
+    transform: translateX(-100%);
+    opacity: 0%;
+    display: block;
+}
+.imports h1 {
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 1rem;
+}
+.imports h2 {
+    font-size: 1rem;
+    color: white;
+    font-weight: 300;
+    margin-bottom: 0.6rem;
+}
+.imports h2 .tip {
+    font-size: 0.6rem;
+    border-radius: 999px;
+    border: 1px solid var(--col-acc);
+    padding: 0 0.2rem;
+    cursor: help;
+}
+.imports .input-form {
+    margin: 0.6rem 0 0 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.imports .input-form input {
+    padding: 0.2rem 0.4rem;
+    background: var(--col-bg2);
+    border: 1px solid var(--col-acc);
+    border-radius: 3px;
+    color: white;
+    box-shadow: none;
+    height: 100%;
+}
+.imports .input-form #color-import-submit {
+    height: 100%;
+    margin-left: 0.6rem;
+    padding: 0.2rem 0.3rem;
+    background: var(--col-bg2);
+    border: 1px solid var(--col-acc);
+    border-radius: 3px;
+    color: var(--orange);
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+.imports .input-form #color-import-submit:hover {
+    background: var(--col-bg3);
+}
+.imports .color-model {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.imports .color-model .btn-option {
+    background: none;
+    border: none;
+    width: min-content;
+    margin: 0 0.5rem;
+}
+.imports .color-model .option {
+    background: var(--col-bg3);
+    height: 2rem;
+    width: 6rem;
+    border-radius: 4px;
+    border: 1px solid var(--col-acc);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    transition: all 0.3s ease;
+}
+.imports .color-model .option span {
+    color: var(--box-border);
+}
+.imports .color-model .option .dot {
+    height: 1rem;
+    width: 1rem;
+    border-radius: 999px;
+    border: 2px solid var(--dot-border);
+    transition: all 0.3s ease;
+}
+.imports .color-model .option .dot::before {
+    content: "";
+    position: absolute;
+    height: 0.5rem;
+    width: 0.5rem;
+    margin-left: -0.25rem;
+    margin-top: 0.125rem;
+    border-radius: 999px;
+    background: var(--orange);
+    opacity: 0;
+}
+.imports .color-model #option1:checked ~ .btn-option1 .option,
+.imports .color-model #option2:checked ~ .btn-option2 .option {
+    background: var(--orange);
+}
+.imports .color-model #option1:checked ~ .btn-option1 .option .dot,
+.imports .color-model #option2:checked ~ .btn-option2 .option .dot {
+    background: var(--imports-selected);
+    border-color: var(--imports-selected);
+}
+.imports .color-model #option1:checked ~ .btn-option1 .option .dot::before,
+.imports .color-model #option2:checked ~ .btn-option2 .option .dot::before {
+    opacity: 1;
+}
+.imports .color-model #option1:checked ~ .btn-option1 .option span,
+.imports .color-model #option2:checked ~ .btn-option2 .option span {
+    color: var(--imports-selected);
+}
+.imports .color-model input {
+    display: none;
+}
+
+/*  
+====================
+        Main
+====================
+*/
+main {
+    flex-grow: 1;
+    display: flex;
+    height: 100%;
+    margin: 1rem 0;
+}
+main > section {
+    width: 50%;
+    display: flex;
+    padding: 2rem 1rem 0;
+}
+/* inputs */
+#inputs {
+    flex-direction: column;
+    align-items: center;
+    border-right: 1px solid var(--col-acc);
+}
+.text-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.text-input span {
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+}
+.text-input input {
+    padding: 8px;
+    display: block;
+    width: 5em;
+    border: 2px dotted black;
+    font-size: 2em;
+    box-shadow: var(--state-shadow);
+    font-family: Consolas, "Times New Roman", Times, serif;
+    text-align: center;
+}
+.text-input .suggestions {
+    margin-top: 0.5rem;
+    height: 50px;
+}
+.text-input .suggestions-label {
+    font-size: 0.9rem;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+}
+.text-input .suggestions li {
+    margin-left: 1.4rem;
+}
+.text-input .suggestions li a {
+    position: relative;
+    left: -6px;
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: darkgray;
+    border-bottom: 1px dotted currentColor;
+}
+.text-input .suggestions ::marker {
+    color: darkgray;
+    font-size: smaller;
+}
+#picker {
+    margin: 1em 0;
+}
+/* color wheel fixes */
+.IroWheel, .IroSlider {
+    border: 1px solid black;
+    border-radius: 999px;
+}
+.IroWheel {
+    cursor: move;
+}
+.IroSlider {
+    cursor: ew-resize;
+}
+.IroWheelLightness {
+    width: 101% !important;
+    height: 101% !important;
+    top: -1px !important;
+    left: -1px !important
+}
+.IroSlider {
+    background: black !important;
+}
+/* color values */
+.other-values {
+    margin-bottom: 1rem;
+}
+.other-values * {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+}
+.other-values th {
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+.other-values tr td:first-of-type span {
+    margin-right: 1rem;
+}
+.other-values tr td:nth-of-type(2) {
+    width: 220px;
+}
+.other-values tr td:nth-of-type(2) * {
+    font-family: 'Fira Code', monospace;
+}
+.other-values tr td:nth-of-type(2) span:not([class]) {
+    color: gray;
+}
+.other-values .red {
+    color: red;
+}
+.other-values .green {
+    color: #0f0;
+}
+.other-values .blue {
+    color: blue;
+}
+.other-values .gray {
+    color: darkgray;
+}
+.other-values .white {
+    color: #eee;
+}
+/* outputs */
+#outputs {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#outputs a {
+    height: max-content;
+    width: max-content;
+}
+canvas {
+    display: none;
+}
+/* contributors */
+.contributors {
+    margin: 0 0 0.8rem 1.1rem;
+    display: flex;
+    flex-direction: column-reverse;
+    margin-top: auto;
+    align-self: flex-start;
+}
+.contributors button {
+    background: none;
+    border: none;
+    transition: none;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    color: white;
+}
+.contributors button i {
+    transition: transform 0.4s ease;
+    transform: rotate(-90deg);
+}
+
+.contributors .list:not(.hidden-height)~h3 i {
+    transform: rotate(0deg);
+}
+
+.contributors .list.hidden-height {
+    overflow: hidden;
+}
+
+.contributors #contrib-list {
+    list-style: none;
+    margin-left: 1rem;
+}
+
+.contributors #contrib-list>li {
+    margin: 0.5rem 0;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    border-bottom: 1px dotted white;
+}
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: max-content;
+    max-width: 300px;
+    background-color: var(--col-bg3);
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    border: 1px solid var(--col-acc2);
+    padding: 5px 5px 5px 25px;
+    position: absolute;
+    z-index: 1;
+    bottom: -5px;
+    left: 110%;
+    /* fade animation */
+    transition: all 0.2s ease;
+    opacity: 0;
+}
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 10px;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent var(--col-acc2) transparent transparent;
+}
+.tooltip:hover .tooltiptext,
+.tooltip:active .tooltiptext {
+    opacity: 1;
+    visibility: visible;
+}
+.tooltip .tooltiptext ul {
+    list-style-type: disc;
+}
+.tooltip .tooltiptext li span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    position: relative;
+    left: -7px;
+}
+
+/*  
+======================
+        Footer
+======================
+*/
+footer {
+    background: var(--col-bg3);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0.4rem 2rem;
+    justify-self: flex-end;
+}
+
+/* social media buttons styling */
+.github-button-wrapper a {
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    margin: 0 5px;
+    background: var(--col-bg);
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 3px 5px black;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    outline: none;
+}
+
+.github-button-wrapper a:hover,
+.github-button-wrapper a:focus,
+.github-button-wrapper a:active {
+    width: 200px;
+    background: var(--col-bg2);
+    color: white;
+}
+
+.github-button-wrapper a .icon {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 50px;
+    line-height: 40px;
+    transition: all 0.2s ease;
+}
+
+.github-button-wrapper a .icon i {
+    font-size: 20px;
+    line-height: 40px;
+}
+
+.github-button-wrapper a span {
+    font-weight: 500;
+    line-height: 40px;
+}
+/*  
+=============================
+        Responsivenes
+=============================
+*/
+@media screen and (max-width: 630px) {
+    header {
+        padding-left: 1rem;
+        height: 3.4rem;
+    }
+    header img {
+        margin-right: 0.5rem;
+        width: 3rem;
+    }
+    header .name {
+        font-size: 1.25rem;
+    }
+    header .version {
+        font-size: 0.8rem;
+    }
+    main {
+        flex-direction: column;
+    }
+    main > section {
+        width: 100%;
+    }
+    #inputs {
+        border: none;
+        border-bottom: 1px solid var(--col-acc);
+    }
+    #outputs a, #outputs a img {
+        width: 80px;
+        height: 80px;
+    }
+    .text-input, .text-input input {
+        width: 120px !important;
+    }
+    .text-input span {
+        font-size: 1rem;
+        text-align: center;
+    }
+    .text-input input {
+        font-size: 1.4rem;
+    }
+}
+@media screen and (max-width: 380px) {
+    header .name {
+        font-size: 1rem;
+    }
+    header .version {
+        font-size: 0.6rem;
+    }
+}
