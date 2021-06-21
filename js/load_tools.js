@@ -21,20 +21,6 @@ const tools = [
         description: 'Allows to render NPC sprites.',
     },
     {
-        link: 'https://sky.shiiyu.moe/',
-        thumbnail: '../tools/thumbnails/shiiyu.svg',
-        name: 'Sky Shiiyu Moe',
-        version: null,
-        description: 'Allows to get texture IDs for heads normally not obtainable.',
-    },
-    {
-        link: 'https://github.com/Moulberry/NotEnoughUpdates-REPO/find/master',
-        thumbnail: '../tools/thumbnails/neu.png',
-        name: '<abbr title="Not Enough Updates">NEU</abbr> Repository',
-        version: null,
-        description: 'Allows to get information about various items from a big data collective source.',
-    },
-    {
         link: 'https://jsfiddle.net/MonkeysHK/nb2csh1a/',
         thumbnail: '../tools/thumbnails/ui-parser.png',
         name: 'UI Generator',
@@ -47,6 +33,20 @@ const tools = [
         name: '1.8 Command Generator',
         version: null,
         description: 'Allows to generate any 1.8 command effortlessly.',
+    },
+    {
+        link: 'https://sky.shiiyu.moe/',
+        thumbnail: '../tools/thumbnails/shiiyu.svg',
+        name: 'Sky Shiiyu Moe',
+        version: null,
+        description: 'Allows to get texture IDs for heads normally not obtainable.',
+    },
+    {
+        link: 'https://github.com/Moulberry/NotEnoughUpdates-REPO/find/master',
+        thumbnail: '../tools/thumbnails/neu.png',
+        name: '<abbr title="Not Enough Updates">NEU</abbr> Repository',
+        version: null,
+        description: 'Allows to get information about various items from a big data collective source.',
     },
 ];
 
