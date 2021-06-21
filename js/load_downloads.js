@@ -104,6 +104,10 @@ const downloads = [
                 type: 'curseforge',
                 link: 'https://www.curseforge.com/minecraft/mc-mods/blockrenderer',
             },
+            {
+                type: 'github',
+                link: 'https://github.com/unascribed/BlockRenderer',
+            },
         ]
     },
 ];
