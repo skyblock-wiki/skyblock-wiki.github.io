@@ -90,6 +90,9 @@ textarea:focus {
 button {
     cursor: pointer;
 }
+abbr {
+    cursor: help;
+}
 
 /*  
 ======================

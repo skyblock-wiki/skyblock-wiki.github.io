@@ -116,7 +116,8 @@ downloads.forEach(el => {
         if (link.type == 'text') {
             text = link.text;
         }
-        links.push(`<a href="../downloads/${link.link}"${link.type == "download" ? ' download' : ''}>${text}</a>`);
+        console.log(link.type, link.type == "download");
+        links.push(`<a href="${link.type == "download" ? "../downloads/" : ''}${link.link}"${link.type == "download" ? ' download' : ''}>${text}</a>`);
         if (link.border) {
             links.push('<span class="line"></span>');
         }
