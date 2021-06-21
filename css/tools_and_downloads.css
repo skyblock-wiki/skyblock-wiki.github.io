@@ -13,7 +13,11 @@ section.downloads {
     font-size: 2rem;
     color: white;
     font-weight: 400;
-    margin-bottom: 2rem;
+    margin-bottom: calc(2rem + 200px);
+    margin-top: -200px;
+    position: relative;
+    top: 200px;
+
 }
 .tools ul,
 .downloads ul {
