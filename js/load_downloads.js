@@ -35,7 +35,11 @@ const downloads = [
             },
             {
                 type: 'website',
-                link: 'http://www.9minecraft.net/mineshot-mod/',
+                link: 'http://www.9minecraft.net/mineshot-mod',
+            },
+            {
+                type: 'github',
+                link: 'https://github.com/ata4/mineshot',
             },
         ]
     },
@@ -120,7 +124,6 @@ downloads.forEach(el => {
         if (link.type == 'text') {
             text = link.text;
         }
-        console.log(link.type, link.type == "download");
         links.push(`<a href="${link.type == "download" ? "../downloads/" : ''}${link.link}"${link.type == "download" ? ' download' : ''}>${text}</a>`);
         if (link.border) {
             links.push('<span class="line"></span>');
