@@ -96,6 +96,7 @@ function _allLoadingFinished() {
             if (tColor.length === 4) {
                 let sugg2 = '#' + tColor[1].repeat(2) + tColor[2].repeat(2) + tColor[3].repeat(2);
                 if (sugg1 != sugg2) {
+                    $(suggestElem[1]).attr("value", sugg2);
                     $(suggestElem[1]).html(sugg2);
                     $('.text-input .suggestions li:nth-of-type(2)').removeClass('hidden');
                 }

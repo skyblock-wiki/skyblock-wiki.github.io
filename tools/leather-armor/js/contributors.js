@@ -39,7 +39,6 @@ function constructSingleContributor(name, list) {
 $('#show-contribs').click(() => {
     $('#contrib-list-div').toggleClass('hidden-height');
     if ($('#contrib-list-div').hasClass('hidden-height')) {
-        console.log(0);
         $('#contrib-list-div').animate({height: 0}, 500);
     }
     else {

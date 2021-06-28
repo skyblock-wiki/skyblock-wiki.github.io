@@ -345,6 +345,7 @@ main > section {
     font-size: 0.9rem;
     color: darkgray;
     border-bottom: 1px dotted currentColor;
+    cursor: pointer;
 }
 .text-input .suggestions ::marker {
     color: darkgray;

@@ -1,9 +1,9 @@
 const linkTypes = {
     text: '%s',
     download: 'Download',
-    website: '<img src="../img/website-icon.png">',
-    github: '<img src="../img/github-icon.png">',
-    curseforge: '<img src="../img/curseforge-icon.png">',
+    website: '<img src="./img/website-icon.png">',
+    github: '<img src="./img/github-icon.png">',
+    curseforge: '<img src="./img/curseforge-icon.png">',
 }
 const downloads = [
     {
@@ -124,14 +124,14 @@ downloads.forEach(el => {
         if (link.type == 'text') {
             text = link.text;
         }
-        links.push(`<a href="${link.type == "download" ? "../downloads/" : ''}${link.link}"${link.type == "download" ? ' download' : ''}>${text}</a>`);
+        links.push(`<a href="${link.type == "download" ? "./downloads/" : ''}${link.link}"${link.type == "download" ? ' download' : ''}>${text}</a>`);
         if (link.border) {
             links.push('<span class="line"></span>');
         }
     })
     let element = [
         '<li>',
-            `<img src="../downloads/thumbnails/${el.thumbnail}"${el.largeThumbnail ? ' style="width: 100%"' : ''} alt="tool logo">`,
+            `<img src="./downloads/thumbnails/${el.thumbnail}"${el.largeThumbnail ? ' style="width: 100%"' : ''} alt="tool logo">`,
             '<hr>',
             `<h4>${el.name}</h4>`,
             `<p>${el.description}</p>`,
