@@ -5,14 +5,28 @@ export function loadColorFromModel() {
     let input = $('#color-import');
     let isRGB = $('.color-model #option1').is(':checked');
     if (isRGB) {
-        let rgbRegex = /([0-2]\d{0,2}),\s*([0-2]\d{0,2}),\s*([0-2]\d{0,2})/
-        if (input.val().match(rgbRegex)) {
+        let rgbRegex = /(\d{0,3}),\s*(\d{0,3}),\s*(\d{0,3})/
+        if (input.val().trim() == '') {
+            new Toast({
+                message: 'Input box empty.',
+                type: 'error',
+            }).show(4000);
+        }
+        else if (input.val().match(rgbRegex)) {
             let [,r,g,b] = input.val().match(rgbRegex);
-            $('#color').val(RgbToHex(r,g,b));
-            showHideMenu($('.imports-list'));
-            colorPicker.color.hexString = RgbToHex(r,g,b);
-            input.val('');
-            console.log(colorPicker.color.hexString);
+            if (Number(r) < 256 && Number(g) < 256 && Number(b) < 256) {
+                $('#color').val(RgbToHex(r,g,b));
+                showHideMenu($('.imports-list'));
+                colorPicker.color.hexString = RgbToHex(r,g,b);
+                input.val('');
+                console.log(colorPicker.color.hexString);
+            }
+            else {
+                new Toast({
+                    message: 'Invalid RGB color format.',
+                    type: 'error',
+                }).show(4000);
+            }
         }
         else {
             new Toast({
@@ -22,7 +36,13 @@ export function loadColorFromModel() {
         }
     }
     else {
-        if (!isNaN(Number(input.val())) && Number(input.val()) <= 16777215 && Number(input.val()) >= 0) {
+        if (input.val().trim() == '') {
+            new Toast({
+                message: 'Input box empty.',
+                type: 'error',
+            }).show(4000);
+        }
+        else if (!isNaN(Number(input.val())) && Number(input.val()) <= 16777215 && Number(input.val()) >= 0) {
             $('#color').val(IntToHex(input.val()));
             showHideMenu($('.imports-list'));
             colorPicker.color.hexString = IntToHex(input.val());

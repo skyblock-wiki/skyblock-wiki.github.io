@@ -4,12 +4,10 @@ import { loadColorFromModel } from './color_import.js';
 import { saveToLocalStorage, loadFromLocalStorage } from './local_storage.js';
 
 let canvasH = document.querySelector("#helmet");
-
 let canvasC = document.querySelector("#chestplate");
-
 let canvasL = document.querySelector("#leggings");
-
 let canvasB = document.querySelector("#boots");
+
 export let allCanvas = {
     h: document.querySelector("#helmet"),
     c: document.querySelector("#chestplate"),
@@ -141,11 +139,24 @@ $('#show-imports').on('click', () => {
     showHideMenu($('.imports-list'));
 });
 
-window.onscroll = () => {
+$(window).scroll(function() {
     if (!$('.imports-list').hasClass('hidden') && !$('.imports-list').isInViewport()) {
-        showHideMenu($('.imports-list'))
+        showHideMenu($('.imports-list'));
     }
-};
+});
+// hide import menu when clicked outside
+$(document).click(function() {
+    if (!$('.imports-list').hasClass('hidden')) {
+        showHideMenu($('.imports-list'));
+    }
+});
+$('.imports-list').click(function(e) {
+    e.stopPropagation();
+});
+$(".menuWraper").click(function(event) {
+    alert('clicked inside');
+    event.stopPropagation();
+});
 export function showHideMenu(el) {
     el.removeClass('disallow-focusing');
     setTimeout(() => {
@@ -174,7 +185,7 @@ $('.color-model #option2').change(() => {
     saveToLocalStorage('cur-color-model', 1);
 })
 
-window.onload = function () {
+$(function () {
     assets = new AssetManager();
 
     state = "loading";
@@ -197,7 +208,8 @@ window.onload = function () {
         if (index == selectedColorModel) el.checked = true;
         else el.checked = false;
     });
-}
+    updatePH();
+})
 
 var AssetManager = (function () {
     function AssetManager() {
@@ -230,3 +242,12 @@ var AssetManager = (function () {
     }
     return AssetManager;
 })();
+
+$('#button-model-rgb, #button-model-int').click(updatePH);
+
+function updatePH() {
+    let isRGB
+    if (this) isRGB = $(this).attr('id') === 'button-model-rgb';
+    else isRGB = $('.color-model #option1').is(':checked');
+    $('#color-import').attr('placeholder', `e.g. ${isRGB? '255,255,255': '16777215'}`);
+}

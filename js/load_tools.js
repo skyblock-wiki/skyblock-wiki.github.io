@@ -10,7 +10,7 @@ const tools = [
         link: './tools/leather-armor/index.html',
         thumbnail: './tools/leather-armor/favicon.png',
         name: 'Leather Armor Generator',
-        version: 'v2.0',
+        version: 'v3.0',
         description: 'Allows to render colored leather armor images. Requires no assets.',
     },
     {

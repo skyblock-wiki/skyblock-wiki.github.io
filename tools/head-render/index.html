@@ -13,11 +13,17 @@
     <script type="module" src="./js/contributors.js"></script>
 
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="icon" href="../../ReturnIcon.png" />
     <link rel="icon" href="./favicon.png" />
 </head>
 
 <body>
     <header>
+        <a href="../../index.html" id="return-main">
+            <span>
+                    <img src="../../ReturnIcon.png" alt="back">
+            </span>
+        </a>
         <img src="./favicon.png" alt="logo">
         <span>
             <span class="name">Head Render Thingy</span>
@@ -36,24 +42,56 @@
                 <div class="sec-err" id="nbtError"></div>
                 <textarea id="nbt" placeholder="Use the NBT data from the SBA or WikiTools mods"></textarea>
                 <br />
-                <button class="sec-subm" id="nbtSubmit">Render</button>
-                <button class="sec-clr" id="nbtClear">Clear</button>
+                <span class="unselectable">
+                    <button class="sec-subm" id="nbtSubmit">Render</button>
+                    <button class="sec-clr" id="nbtClear">Clear</button>
+                </span>
             </section>
             <section>
                 <h3>Render from NameMC</h3>
                 <div class="sec-err" id="valError"></div>
                 <textarea id="val" placeholder="Use any head command from a NameMC *skin* page"></textarea>
                 <br />
-                <button class="sec-subm" id="valSubmit">Render</button>
-                <button class="sec-clr" id="valClear">Clear</button>
+                <span class="unselectable">
+                    <button class="sec-subm" id="valSubmit">Render</button>
+                    <button class="sec-clr" id="valClear">Clear</button>
+                </span>
             </section>
             <section>
                 <h3>Render from texture ID</h3>
                 <div class="sec-err" id="tidError"></div>
                 <textarea id="tid" placeholder="Use a Texture ID"></textarea>
                 <br />
-                <button class="sec-subm" id="tidSubmit">Render</button>
-                <button class="sec-clr" id="tidClear">Clear</button>
+                <span class="unselectable">
+                    <button class="sec-subm" id="tidSubmit">Render</button>
+                    <button class="sec-clr" id="tidClear">Clear</button>
+                </span>
+            </section>
+            <section class="contributors">
+                <div id="contrib-list-div" class="list hidden-height" style="height: 0">
+                    <ul id="contrib-list">
+                        <!-- example layout 
+                            <li>
+                                <div class="tooltip">
+                                    <span>joker876</span>
+                                    <span class="tooltiptext">
+                                        <ul>
+                                            <li><span>Did some thing</span></li>
+                                            <li><span>Did some thing 2</span></li>
+                                            <li><span>Did some thing 3</span></li>
+                                        </ul>
+                                    </span>
+                                </div>
+                            </li>
+                        -->
+                    </ul>
+                </div>
+                <h3>
+                    <button id="show-contribs">
+                        <span>Contributors</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </h3>
             </section>
         </main>
         <aside>
@@ -93,32 +131,6 @@
                 <img id="loading" />
                 <a id="drawnLink" class="hidden"><img id="drawn" /></a>
             </section>
-            <div class="contributors">
-                <div id="contrib-list-div" class="list hidden-height" style="height: 0">
-                    <ul id="contrib-list">
-                        <!-- example layout 
-                            <li>
-                                <div class="tooltip">
-                                    <span>joker876</span>
-                                    <span class="tooltiptext">
-                                        <ul>
-                                            <li><span>Did some thing</span></li>
-                                            <li><span>Did some thing 2</span></li>
-                                            <li><span>Did some thing 3</span></li>
-                                        </ul>
-                                    </span>
-                                </div>
-                            </li>
-                        -->
-                    </ul>
-                </div>
-                <h3>
-                    <button id="show-contribs">
-                        <span>Contributors</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                </h3>
-            </div>
         </aside>
     </div>
     <footer>

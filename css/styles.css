@@ -102,7 +102,7 @@ abbr {
 header {
     position: static;
     width: 100%;
-    height: 4.6rem;
+    height: 5.5rem;
     background: var(--col-bg3);
     display: flex;
     align-items: center;
