@@ -86,6 +86,7 @@ textarea:focus {
 
 button {
     cursor: pointer;
+    padding: 0.2rem 0.3rem;
 }
 
 /*  
@@ -444,11 +445,12 @@ canvas {
 }
 /* contributors */
 .contributors {
-    margin: 0 0 0.8rem 1.1rem;
+    margin: 0.8rem 1.1rem;
     display: flex;
-    flex-direction: column-reverse;
-    margin-top: auto;
-    align-self: flex-start;
+    flex-direction: column;
+    position: fixed;
+    right: 0;
+    bottom: 0;
 }
 .contributors button {
     background: none;
@@ -458,26 +460,24 @@ canvas {
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
     color: white;
-    margin-top: 1em;
+}
+.contributors .list {
+    background: rgba(80, 80, 80, 0.3) none repeat scroll 0% 0%;
 }
 .contributors button i {
     transition: transform 0.4s ease;
     transform: rotate(-90deg);
 }
-
 .contributors .list:not(.hidden-height)~h3 i {
-    transform: rotate(0deg);
+    transform: rotate(-180deg);
 }
-
 .contributors .list.hidden-height {
     overflow: hidden;
 }
-
 .contributors #contrib-list {
     list-style: none;
-    margin-left: 1rem;
+    margin: 0 1rem;
 }
-
 .contributors #contrib-list>li {
     margin: 0.5rem 0;
 }
@@ -503,7 +503,7 @@ canvas {
     position: absolute;
     z-index: 1;
     bottom: -5px;
-    left: 110%;
+    right: 110%;
     /* fade animation */
     transition: all 0.2s ease;
     opacity: 0;
@@ -512,11 +512,11 @@ canvas {
     content: "";
     position: absolute;
     bottom: 10px;
-    right: 100%;
+    left: 100%;
     margin-top: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: transparent var(--col-acc2) transparent transparent;
+    border-color: transparent transparent transparent var(--col-acc2);
 }
 .tooltip:hover .tooltiptext,
 .tooltip:active .tooltiptext {

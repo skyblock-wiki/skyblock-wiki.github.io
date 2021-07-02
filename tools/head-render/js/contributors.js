@@ -41,16 +41,8 @@ function constructSingleContributor(name, list) {
 </li>`
 }
 
+$('#contrib-list-div').hide();
 $('#show-contribs').click(() => {
     $('#contrib-list-div').toggleClass('hidden-height');
-    if ($('#contrib-list-div').hasClass('hidden-height')) {
-        $('#contrib-list-div').animate({height: 0}, 500);
-    }
-    else {
-        var el = $('#contrib-list-div'),
-        curHeight = el.height(),
-        autoHeight = el.css('height', 'auto').height();
-        console.log(autoHeight);
-        el.height(curHeight).animate({height: autoHeight}, 500);
-    }
-})
+    $('#contrib-list-div').toggle('slow');
+});

@@ -190,7 +190,7 @@ main section:not(:last-child) {
 main section:nth-of-type(1) {
     height: 7.5rem;
 }
-h3 {
+h3:not(.contributors h3) {
     font-family: 'Montserrat', sans-serif;
     color: white;
     font-size: 1.25rem;
@@ -303,9 +303,12 @@ aside img#drawn {
 }
 /* contributors */
 .contributors {
-    margin: 0 0 0.8rem 1.1rem;
+    margin: 0.8rem 1.1rem;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
+    position: fixed;
+    right: 0;
+    bottom: 0;
 }
 .contributors button {
     background: none;
@@ -315,19 +318,22 @@ aside img#drawn {
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
 }
+.contributors .list {
+    background: rgba(80, 80, 80, 0.3) none repeat scroll 0% 0%;
+}
 .contributors button i {
     transition: transform 0.4s ease;
     transform: rotate(-90deg);
 }
-.contributors .list:not(.hidden-height) ~ h3 i {
-    transform: rotate(0deg);
+.contributors .list:not(.hidden-height)~h3 i {
+    transform: rotate(-180deg);
 }
 .contributors .list.hidden-height {
     overflow: hidden;
 }
 .contributors #contrib-list {
     list-style: none;
-    margin-left: 1rem;
+    margin: 0 1rem;
 }
 .contributors #contrib-list > li {
     margin: 0.5rem 0;
@@ -354,7 +360,7 @@ aside img#drawn {
     position: absolute;
     z-index: 1;
     bottom: -5px;
-    left: 110%;
+    right: 110%;
     /* fade animation */
     transition: all 0.2s ease;
     opacity: 0;
@@ -363,11 +369,11 @@ aside img#drawn {
     content: "";
     position: absolute;
     bottom: 10px;
-    right: 100%;
+    left: 100%;
     margin-top: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: transparent var(--col-acc2) transparent transparent;
+    border-color: transparent transparent transparent var(--col-acc2);
 }
 .tooltip:hover .tooltiptext,
 .tooltip:active .tooltiptext {
@@ -457,9 +463,6 @@ footer {
     }
     aside {
         border-top: 2px solid var(--col-acc2)
-    }
-    .contributors {
-        margin-top: 2rem;
     }
 }
 @media screen and (max-width: 450px) {
