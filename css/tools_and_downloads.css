@@ -92,6 +92,7 @@ section.downloads {
     transition: background-color 0.2s ease;
     display: flex;
     align-content: center;
+    align-self: center;
 }
 .tools li .links a img,
 .downloads li .links a img {

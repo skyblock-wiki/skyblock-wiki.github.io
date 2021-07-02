@@ -291,15 +291,17 @@ aside #warning {
     font-size: .7rem;
     text-align: justify;
 }
-aside #drawnLink {
+aside #drawnLink, aside #spriteLink {
     align-self: center;
 }
-aside img#drawn {
+aside img#drawn, aside img#sprite {
     margin: 0.5rem 0 0;
     cursor: pointer;
     border-radius: 4px;
     border: 1px solid var(--col-acc);
     background-color: var(--col-bg2);
+    width: 300px;
+    height: 300px;
 }
 /* contributors */
 .contributors {
@@ -325,7 +327,7 @@ aside img#drawn {
     transition: transform 0.4s ease;
     transform: rotate(-90deg);
 }
-.contributors .list:not(.hidden-height)~h3 i {
+.contributors .list:not(.hidden-height) ~ h3 i {
     transform: rotate(-180deg);
 }
 .contributors .list.hidden-height {
@@ -345,7 +347,6 @@ aside img#drawn {
     font-family: 'Montserrat', sans-serif;
     font-weight: 200;
     border-bottom: 1px dotted white;
-    cursor: help;
 }
 .tooltip .tooltiptext {
     visibility: hidden;
@@ -364,6 +365,9 @@ aside img#drawn {
     /* fade animation */
     transition: all 0.2s ease;
     opacity: 0;
+}
+.tooltip > span:nth-child(1) {
+    cursor: help;
 }
 .tooltip .tooltiptext::after {
     content: "";
@@ -449,7 +453,7 @@ footer {
         Responsivenes
 =============================
 */
-@media screen and (max-width: 1225px) {
+@media screen and (max-width: 830px) {
     body {
         overflow-x: hidden;
     }
@@ -465,7 +469,7 @@ footer {
         border-top: 2px solid var(--col-acc2)
     }
 }
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 380px) {
     aside .nbtInfo input {
         width: 100%;
     }

@@ -66,6 +66,7 @@ const IMAGE = {
     leggings_overlay: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAOUlEQVQ4jWNgGAXDEZgoiv43URT9T6w4hqKpcdb/izz0/iuK8v4nJI7VgCIPPawGYBOnvhdGAXkAAA+nJbnHlRzjAAAAAElFTkSuQmCC",
     boots_overlay: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAASElEQVQ4jWNgGAWjgJrARFH0PzJbUZQXhY8uj6F5apz1f5jCIg89DAOKPPRwysMVwDCKJBQoivLiVgNzMgzj8iayGnzqhhgAAAgFNfwN37/qAAAAAElFTkSuQmCC",
 };
+
 function _allLoadingFinished() {
     state = "active";
 
@@ -91,13 +92,21 @@ function _allLoadingFinished() {
             $('.text-input .suggestions-label').removeClass('hidden');
             $('.text-input .suggestions li:nth-of-type(1)').removeClass('hidden');
 
-            if (tColor.length === 4) {
-                let sugg2 = '#' + tColor[1].repeat(2) + tColor[2].repeat(2) + tColor[3].repeat(2);
-                if (sugg1 != sugg2) {
-                    $(suggestElem[1]).attr("value", sugg2);
-                    $(suggestElem[1]).html(sugg2);
+            var addSecondSugg = (_sugg2) => {
+                if (sugg1 != _sugg2) {
+                    $(suggestElem[1]).attr("value", _sugg2);
+                    $(suggestElem[1]).html(_sugg2);
                     $('.text-input .suggestions li:nth-of-type(2)').removeClass('hidden');
                 }
+            }
+
+            if (tColor.length === 4) {
+                let sugg2 = '#' + tColor[1].repeat(2) + tColor[2].repeat(2) + tColor[3].repeat(2);
+                addSecondSugg(sugg2)
+            }
+            else if (tColor.length === 3) {
+                let sugg2 = '#' + (tColor[1] + tColor[2]).repeat(3);
+                addSecondSugg(sugg2)
             }
         } else {
             colorElem.classList.add('invalid');
@@ -127,6 +136,8 @@ function _allLoadingFinished() {
         setTimeout(function () {
             state = "active";
         }, 50);
+        $('.text-input .suggestions-label').addClass('hidden');
+        $('.text-input .suggestions li').addClass('hidden');
     });
     colorPicker.on('input:end', function (color) {
         state = "active";
@@ -135,7 +146,8 @@ function _allLoadingFinished() {
     updateColor("FF0000");
 }
 
-$('#show-imports').on('click', () => {
+$('#show-imports').on('click', (e) => {
+    e.stopPropagation();
     showHideMenu($('.imports-list'));
 });
 

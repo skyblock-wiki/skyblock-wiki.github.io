@@ -11,7 +11,8 @@ const contributors = {
         "Made the output images update automatically",
     ],
     Fewfre: [
-        "Created the original script"
+        "Created armor base and overlay images",
+        "Created the original script for drawing armor pieces with specific color"
     ]
 }
 

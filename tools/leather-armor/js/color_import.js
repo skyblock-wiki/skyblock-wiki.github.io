@@ -1,4 +1,4 @@
-import { Toast } from './toast.js';
+import { Toast } from '../../../js/toast.js';
 import { showHideMenu, colorPicker } from './index.js';
 
 export function loadColorFromModel() {

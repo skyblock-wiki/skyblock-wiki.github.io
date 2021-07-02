@@ -16,7 +16,8 @@ const contributors = {
         "Created the renderer from uploaded file"
     ],
     MonkeysHK: [
-        "Created the renderer from NameMC and texture ID"
+        "Created the renderer from NameMC and texture ID",
+        "Integrated the sprite renderer into this tool"
     ]
 }
 

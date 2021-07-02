@@ -1,15 +1,17 @@
 import {
     Toast
-} from './toast.js';
+} from '../../../js/toast.js';
 
 function el(id) {
     return document.getElementById(id);
 }
 
-var canvas = document.getElementById("canvas");
-canvas.width = 64;
-canvas.height = 16;
-var context = canvas.getContext("2d");
+var context = document.getElementById("canvas").getContext("2d");
+context.canvas.width = 64;
+context.canvas.height = 16;
+var spriteCanvas = document.getElementById("spriteCanvas").getContext("2d");
+spriteCanvas.canvas.width = 64;
+spriteCanvas.canvas.height = 64;
 
 const textureCanvas = document.createElement('canvas').getContext('2d');
 textureCanvas.canvas.width = 64;
@@ -17,12 +19,17 @@ textureCanvas.canvas.height = 16;
 
 let img = document.querySelector("#drawn");
 let imgLink = document.querySelector("#drawnLink");
+let sprite = document.querySelector("#sprite");
+let spriteLink = document.querySelector("#spriteLink");
 
 function clear() {
     $("#nbtInfo").html("");
     imgLink.href = "";
     imgLink.download = "";
     imgLink.classList.add('hidden');
+    spriteLink.href = "";
+    spriteLink.download = "";
+    spriteLink.classList.add('hidden');
     img.src = "";
     $("#warning").html("");
     $(".sec-err").html("");
@@ -43,9 +50,11 @@ function readImage() {
         FR.readAsDataURL(this.files[0]);
     }
     // var timestamp = new Date().toLocaleString("en-UK",{ hour12: false }).replace(/[\/:]/g, "-").replace(/,/g,"");
-    var name = "Head Render of " + this.files[0].name;
-    imgLink.download = name;
-    imgLink.classList.remove('hidden');
+    let filename = this.files[0].name.replace(/\.[a-z]{2,4}$/,'').trim();
+    imgLink.download = `${filename} Head Render.png`.trim();
+    spriteLink.download = `${filename} Sprite Render.png`.trim();
+    // imgLink.classList.remove('hidden');
+    // spriteLink.classList.remove('hidden');
     showImageLoader();
 }
 
@@ -119,6 +128,10 @@ function updateNBTInfo(ID) {
     });
 }
 function _onTidChanged(url, elm, filename = null) {
+    imgLink.download = `${filename? filename.trim(): ''} Head Render.png`.trim();
+    spriteLink.download = `${filename? filename.trim(): ''} Sprite Render.png`.trim();
+    // imgLink.classList.remove('hidden');
+    // spriteLink.classList.remove('hidden');
     updateNBTInfo(url.split('/texture/')[1]);
     $("#warning").html("If it keeps loading without showing a render, the " + toStr[elm] + " is most likely invalid.");
     
@@ -154,7 +167,8 @@ function _onValChanged(textureData, elm, filename = null) {
         return nbtError("Texture data doesn't contain head url", elm);
     }
 
-    imgLink.download = `Render.png`;
+    imgLink.download = `Head Render.png`;
+    spriteLink.download = `Sprite Render.png`;
     _onTidChanged(url, elm, filename);
 }
 
@@ -168,8 +182,6 @@ function onTidChanged(event) {
         return nbtError("Not a valid texture ID", "tid");
     }
     let url = "http://textures.minecraft.net/texture/" + tidText;
-    imgLink.download = "Render.png";
-    imgLink.classList.remove('hidden');
     _onTidChanged(url, "tid");
 }
 
@@ -224,9 +236,17 @@ $("#tidClear").on("click", function () {
 });
 
 async function readImageUrl(url) {
-    // Since canvas drawing requires CORS, we get arround this by passing it to a third party tool
-    const blob = await fetch(`https://hsw-cors.herokuapp.com/${url.split("//")[1]}`).then(b => b.blob());
-    createImageThenRender(URL.createObjectURL(blob));
+    // Since canvas drawing requires CORS, we can get around this by passing it to a third party tool
+    await fetch(`https://hsw-cors.herokuapp.com/${url.split("//")[1]}`).then((response) => {
+        if (response.status >= 400 && response.status < 600) {
+            throw new Error();
+        }
+        return response;
+    }).then(b => b.blob()).then((blob) => {
+        createImageThenRender(URL.createObjectURL(blob));
+    }).catch((err) => {
+        new Toast({message: `Render Unsuccessful: Unknown Texture ID`, type: "error", time: 3500}).show();
+    });
 }
 
 function nbtError(error, elm) {
@@ -269,16 +289,19 @@ function showImageLoader() {
 
 function createImageThenRender(imageSrc) {
     var textureImage = new Image();
+    textureImage.src = imageSrc;
+
     textureImage.addEventListener("load", function () {
-        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.clearRect(0, 0, context.canvas.width, context.canvas.height);
         context.drawImage(textureImage, 0, 0);
         
-        textureCanvas.clearRect(0, 0, canvas.width, canvas.height);
+        textureCanvas.clearRect(0, 0, context.canvas.width, context.canvas.height);
         textureCanvas.drawImage(textureImage, 0, 0);
         
         render();
+        makeSprite();
+        new Toast({message: `Rendering...`, type: "info", time: 1000}).show();
     });
-    textureImage.src = imageSrc;
 }
 
 //////////////////////////////
@@ -612,11 +635,28 @@ function render() {
     };
 
     animate();
-    renderImageUrl(renderer.domElement.toDataURL("image/png"));
+    renderImageUrl(renderer.domElement.toDataURL());
+}
+
+function makeSprite() {
+    const scale = 8;
+    spriteCanvas.clearRect(0, 0, spriteCanvas.canvas.width, spriteCanvas.canvas.height);
+    let cnv = textureCanvas.canvas
+    spriteCanvas.imageSmoothingEnabled = false;
+    spriteCanvas.drawImage(cnv, -8*scale, -8*scale, cnv.width*scale, cnv.height*scale);
+    spriteCanvas.drawImage(cnv, -40*scale, -8*scale, cnv.width*scale, cnv.height*scale);
+
+    renderSpriteUrl(spriteCanvas.canvas.toDataURL("image/png"));
 }
 
 function renderImageUrl(uri) {
     img.src = uri;
     imgLink.href = uri;
     imgLink.classList.remove('hidden');
+}
+
+function renderSpriteUrl(uri) {
+    sprite.src = uri;
+    spriteLink.href = uri.replace("image/png", "image/octet-stream");
+    spriteLink.classList.remove('hidden');
 }

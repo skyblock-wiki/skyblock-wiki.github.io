@@ -60,7 +60,7 @@ tools.forEach(el => {
             `<span class="version${!el.version ? ' soft-hidden' : ''}">${el.version}</span>`,
             `<p>${el.description}</p>`,
             '<div class="links">',
-                `<a href="${el.link}">Open</a>`,
+                `<a href="${el.link}"${el.link.match(/^https?:\/\//)?' target=_blank':''}>Open</a>`,
             '</div>',
         '</li>',
     ].join('')

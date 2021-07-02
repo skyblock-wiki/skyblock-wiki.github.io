@@ -152,6 +152,7 @@ header .version {
     left: 1rem;
     display: flex;
     flex-direction: column-reverse;
+    transition: all 0.2s ease;
 }
 #show-imports {
     background: none;
@@ -161,7 +162,7 @@ header .version {
     width: 3rem;
     padding: 0.4rem 0;
     border-radius: 4px;
-    transition: background-color 0.2s ease;
+    transition: all 0.2s ease;
 }
 #show-imports:hover {
     background: #fff1;
@@ -349,6 +350,10 @@ main > section {
     color: white;
     font-family: 'Montserrat', sans-serif;
     font-weight: 200;
+    text-align: center;
+}
+.text-input .suggestions ul {
+    display: flex;
 }
 .text-input .suggestions li {
     margin-left: 1.4rem;
@@ -367,7 +372,7 @@ main > section {
     font-size: smaller;
 }
 #picker {
-    margin: 1em 0;
+    margin: 0;
 }
 /* color wheel fixes */
 .IroWheel, .IroSlider {
@@ -391,7 +396,7 @@ main > section {
 }
 /* color values */
 .other-values {
-    margin-bottom: 1rem;
+    margin: 3.5rem 0 1rem 0;
 }
 .other-values * {
     color: white;
@@ -431,10 +436,11 @@ main > section {
 }
 /* outputs */
 #outputs {
-    margin-top: 1em;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    top: -1.5rem;
 }
 #outputs a {
     height: max-content;
@@ -468,7 +474,7 @@ canvas {
     transition: transform 0.4s ease;
     transform: rotate(-90deg);
 }
-.contributors .list:not(.hidden-height)~h3 i {
+.contributors .list:not(.hidden-height) ~ h3 i {
     transform: rotate(-180deg);
 }
 .contributors .list.hidden-height {
@@ -488,7 +494,6 @@ canvas {
     font-family: 'Montserrat', sans-serif;
     font-weight: 200;
     border-bottom: 1px dotted white;
-    cursor: help;
 }
 .tooltip .tooltiptext {
     visibility: hidden;
@@ -507,6 +512,9 @@ canvas {
     /* fade animation */
     transition: all 0.2s ease;
     opacity: 0;
+}
+.tooltip > span:nth-child(1) {
+    cursor: help;
 }
 .tooltip .tooltiptext::after {
     content: "";
@@ -612,28 +620,49 @@ footer {
         font-size: 0.8rem;
     }
     main {
-        flex-direction: column;
+        margin-top: 2rem;
+    }
+    .imports {
+        top: 4.5rem;
     }
     main > section {
         width: 100%;
+        padding: 3rem 1rem;
     }
     #inputs {
         border: none;
-        border-bottom: 1px solid var(--col-acc);
     }
     #outputs a, #outputs a img {
-        width: 80px;
-        height: 80px;
+        width: 130px;
+        height: 130px;
+    }
+    .text-input .suggestions-label {
+        font-size: 0.8rem;
+        line-height: 0.4rem;
+    }
+    .text-input .suggestions li a {
+        font-size: 0.8rem;
     }
     .text-input, .text-input input {
-        width: 120px !important;
+        width: 130px !important;
     }
     .text-input span {
         font-size: 1rem;
         text-align: center;
     }
     .text-input input {
-        font-size: 1.4rem;
+        font-size: 1.7rem;
+    }
+    .text-input .suggestions {
+        margin-top: 0.5rem;
+        height: 30px;
+    }
+    .other-values {
+        font-size: 0.9rem;
+        margin: 2.5rem 0 1rem 0;
+    }
+    .other-values tr td:nth-of-type(2) {
+        width: 160px;
     }
     #return-main {
         padding: 0.6rem 1.5rem;
