@@ -13,3 +13,7 @@ A site to provide tools for [Hypixel SkyBlock Wiki](https://hypixel-skyblock.fan
 - [Joker876](https://hypixel-skyblock.fandom.com/wiki/User:Joker876) - Updated Head Render Thingy, and created the site
 - [Thundercraft5](https://hypixel-skyblock.fandom.com/wiki/User:Thundercraft5) - Maintains the wiki discord's bot
 - [MonkeysHK](https://hypixel-skyblock.fandom.com/wiki/User:MonkeysHK) - Updated Head Render Thingy, and created/updated a number of other tools
+
+## Contributing
+All contributions are welcome to this repository, suggestions/feature requests are *wanted*! 
+If you want to help develop this site, you can clone this repository locally, then make your change(s) on a localhost server. When you're ready to submit your changes, open a pull request.
