@@ -71,7 +71,7 @@ function _drawPiece(canvas, ctx, name, color) {
     } = file2;
     ctx.drawImage(asset2, x2, y2, width2 * scale2, height2 * scale2);
 
-    document.querySelector("#" + name + "_img").src = canvas.toDataURL("image/png");
-    document.querySelector("#" + name + "_lnk").href = canvas.toDataURL("image/png");
-    document.querySelector("#" + name + "_lnk").download = "Dyed " + name + " " + color + ".png";
+    $(`#${name}_img`).attr(`src`, canvas.toDataURL("image/png"));
+    $(`#${name}_lnk`).attr(`href`, canvas.toDataURL("image/png"));
+    $(`#${name}_lnk`).attr(`download`, `Dyed ${name} ${color}.png`);
 }

@@ -4,9 +4,7 @@ $('header .hamburger').click(() => {
         setTimeout(() => {
             $('header .hamburger').toggleClass('active');
         }, 100);
-    }
-    else {
+    } else {
         $('header .hamburger').toggleClass('active');
     }
 })
-

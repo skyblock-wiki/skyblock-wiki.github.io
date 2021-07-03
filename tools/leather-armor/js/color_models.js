@@ -37,22 +37,22 @@ function RGBToHSL(r, g, b) {
     // Blue is max
     else
         h = (r - g) / delta + 4;
-    
+
     h = Math.round(h * 60);
-    
+
     // Make negative hues positive behind 360°
     if (h < 0)
         h += 360;
     // Calculate lightness
     l = (cmax + cmin) / 2;
-    
+
     // Calculate saturation
     s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
-    
+
     // Multiply l and s by 100
     s = +(s * 100).toFixed(1);
     l = +(l * 100).toFixed(1);
-    
+
     return [h, s, l];
     //return "hsl(" + h + "," + s + "%," + l + "%)";
 }
@@ -60,15 +60,15 @@ function RGBToHSL(r, g, b) {
 $('#color').on('input', updateColorsList);
 export function updateColorsList() {
     if (!$('#color').val().match(/^#([0-9A-F]{2}){3}/)) return;
-    let hexValue  = $('#color').val();
-    
-    let [,rr, gg, bb] = hexValue.match(/^#(..)(..)(..)$/);
-    let [r,g,b] = hexToRGB(hexValue);
-    let [h,s,l] = RGBToHSL(r,g,b);
+    let hexValue = $('#color').val();
+
+    let [, rr, gg, bb] = hexValue.match(/^#(..)(..)(..)$/);
+    let [r, g, b] = hexToRGB(hexValue);
+    let [h, s, l] = RGBToHSL(r, g, b);
     $('#color-hex').html(`<span>#</span><span class="red">${rr}</span><span class="green">${gg}</span><span class="blue">${bb}</span>`)
     $('#color-rgb').html(`<span>rgb(</span><span class="red">${r}</span><span>, </span><span class="green">${g}</span><span>, </span><span class="blue">${b}</span><span>)</span>`)
     $('#color-hsl').html(`<span>hsl(</span><span class="red">${h}</span><span>, </span><span class="gray">${s}%</span><span>, </span><span class="white">${l}%</span><span>)</span>`)
-    
+
     //update input state shadow
     $(':root').css("--curcol", $('#color').val());
 }

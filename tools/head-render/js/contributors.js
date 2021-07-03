@@ -29,6 +29,7 @@ for (const key in contributors) {
     }
 }
 $('#contrib-list').html(contribsList);
+
 function constructSingleContributor(name, list) {
     return `<li>
     <div class="tooltip">

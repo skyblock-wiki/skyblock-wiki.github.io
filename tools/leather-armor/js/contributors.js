@@ -24,17 +24,18 @@ for (const key in contributors) {
     }
 }
 $('#contrib-list').html(contribsList);
+
 function constructSingleContributor(name, list) {
     return `<li>
-    <div class="tooltip">
-        <span>${name}</span>
-        <span class="tooltiptext">
-            <ul>
-                ${list.map(text => `<li><span>${text}</span></li>`).join("")}
-            </ul>
-        </span>
-    </div>
-</li>`
+        <div class="tooltip">
+            <span>${name}</span>
+            <span class="tooltiptext">
+                <ul>
+                    ${list.map(text => `<li><span>${text}</span></li>`).join("")}
+                </ul>
+            </span>
+        </div>
+    </li>`;
 }
 
 $('#contrib-list-div').hide();

@@ -1,36 +1,31 @@
-import {
-    Toast
-} from '../../../js/toast.js';
+import { Toast } from '../../../js/toast.js';
 
-function el(id) {
-    return document.getElementById(id);
-}
-
-var context = document.getElementById("canvas").getContext("2d");
+var context = $("#canvas").get(0).getContext("2d");
 context.canvas.width = 64;
 context.canvas.height = 16;
-var spriteCanvas = document.getElementById("spriteCanvas").getContext("2d");
+var spriteCanvas = $("#spriteCanvas").get(0).getContext("2d");
 spriteCanvas.canvas.width = 64;
 spriteCanvas.canvas.height = 64;
 
-const textureCanvas = document.createElement('canvas').getContext('2d');
+const textureCanvas = $("canvas").get(0).getContext('2d');
 textureCanvas.canvas.width = 64;
 textureCanvas.canvas.height = 16;
 
-let img = document.querySelector("#drawn");
-let imgLink = document.querySelector("#drawnLink");
-let sprite = document.querySelector("#sprite");
-let spriteLink = document.querySelector("#spriteLink");
+let $img = $("#drawn");
+let $imgLink = $("#drawnLink");
+let $sprite = $("#sprite");
+let $spriteLink = $("#spriteLink");
 
 function clear() {
     $("#nbtInfo").html("");
-    imgLink.href = "";
-    imgLink.download = "";
-    imgLink.classList.add('hidden');
-    spriteLink.href = "";
-    spriteLink.download = "";
-    spriteLink.classList.add('hidden');
-    img.src = "";
+    $imgLink.attr("href", "");
+    $imgLink.attr("download", "");
+    $imgLink.addClass('hidden');
+    $spriteLink.attr("href", "");
+    $spriteLink.attr("download", "");
+    $spriteLink.addClass('hidden');
+    $img.attr("src", "");
+    $sprite.attr("src", "");
     $("#warning").html("");
     $(".sec-err").html("");
 }
@@ -38,7 +33,7 @@ function clear() {
 //////////////////////////////
 // Obtain texture from upload
 //////////////////////////////
-el("fileUpload").addEventListener("change", readImage, false);
+$("#fileUpload").on("change", readImage, false);
 
 function readImage() {
     clear();
@@ -50,11 +45,9 @@ function readImage() {
         FR.readAsDataURL(this.files[0]);
     }
     // var timestamp = new Date().toLocaleString("en-UK",{ hour12: false }).replace(/[\/:]/g, "-").replace(/,/g,"");
-    let filename = this.files[0].name.replace(/\.[a-z]{2,4}$/,'').trim();
-    imgLink.download = `${filename} Head Render.png`.trim();
-    spriteLink.download = `${filename} Sprite Render.png`.trim();
-    // imgLink.classList.remove('hidden');
-    // spriteLink.classList.remove('hidden');
+    let filename = this.files[0].name.replace(/\.[a-z]{2,4}$/, '').trim();
+    $imgLink.attr("download" ,`${filename} Head Render.png`.trim());
+    $spriteLink.attr("download" ,`${filename} Sprite Render.png`.trim());
     showImageLoader();
 }
 
@@ -62,19 +55,19 @@ function readImage() {
 // Obtain texture from nbt data
 //////////////////////////////
 const mainElem = {
-    nbt: el("nbt"),
-    val: el("val"),
-    tid: el("tid"),
+    nbt: $("#nbt"),
+    val: $("#val"),
+    tid: $("#tid"),
 }
 const subElem = {
-    nbt: el("nbtSubmit"),
-    val: el("valSubmit"),
-    tid: el("tidSubmit"),
+    nbt: $("#nbtSubmit"),
+    val: $("#valSubmit"),
+    tid: $("#tidSubmit"),
 }
 const errElem = {
-    nbt: el("nbtError"),
-    val: el("valError"),
-    tid: el("tidError"),
+    nbt: $("#nbtError"),
+    val: $("#valError"),
+    tid: $("#tidError"),
 }
 
 const toStr = {
@@ -83,19 +76,25 @@ const toStr = {
     tid: "texture ID",
 }
 
-mainElem.nbt.addEventListener("paste", onNbtChanged, false);
-mainElem.nbt.addEventListener("input", onNbtChanged, false);
-subElem.nbt.addEventListener("click", onNbtChanged, false);
-mainElem.val.addEventListener("paste", onValChanged, false);
-mainElem.val.addEventListener("input", onValChanged, false);
-subElem.val.addEventListener("click", onValChanged, false);
-mainElem.tid.addEventListener("paste", onTidChanged, false);
-mainElem.tid.addEventListener("input", onTidChanged, false);
-subElem.tid.addEventListener("click", onTidChanged, false);
+mainElem.nbt.on("paste", onNbtChanged);
+mainElem.nbt.on("input", onNbtChanged);
+subElem.nbt.on("click", onNbtChanged);
+mainElem.val.on("paste", onValChanged);
+mainElem.val.on("input", onValChanged);
+subElem.val.on("click", onValChanged);
+mainElem.tid.on("paste", onTidChanged);
+mainElem.tid.on("input", onTidChanged);
+subElem.tid.on("click", onTidChanged);
 
-$('#copy-id').on('click', () => {copyText('#textureID')});
-$('#copy-template').on('click', () => {copyText('#textureTemplate')});
-$('#open-id').on('click', () => {openTexture('#textureID')});
+$('#copy-id').on('click', () => {
+    copyText('#textureID')
+});
+$('#copy-template').on('click', () => {
+    copyText('#textureTemplate')
+});
+$('#open-id').on('click', () => {
+    openTexture('#textureID')
+});
 
 function copyText(selector) {
     let el = $(selector);
@@ -103,12 +102,18 @@ function copyText(selector) {
     document.execCommand('copy');
     el.blur();
     document.getSelection().removeAllRanges();
-    new Toast({message: "Copied!", type: "success", time: 2000}).show();
+    new Toast({
+        message: "Copied!",
+        type: "success",
+        time: 2000
+    }).show();
 }
+
 function openTexture(selector) {
     let ID = $(selector).val();
     openLink(`http://textures.minecraft.net/texture/${ID}`);
 }
+
 function openLink(url) {
     //source: https://stackoverflow.com/questions/19851782/how-to-open-a-url-in-a-new-tab-using-javascript-or-jquery
     var tab = window.open(url, '_blank');
@@ -117,29 +122,31 @@ function openLink(url) {
         tab.focus();
     } else {
         //Browser has blocked it
-        new Toast({message: "Could not copy. Please allow popups for this website!", type: "disallow", time: 4000}).show();
+        new Toast({
+            message: "Could not copy. Please allow popups for this website!",
+            type: "disallow",
+            time: 4000
+        }).show();
     }
 }
+
 function updateNBTInfo(ID) {
     $('#textureID').val(ID);
     $('#textureTemplate').val(`{{HeadRender|${ID}}}`);
-    document.querySelectorAll('.nbtInfo button').forEach(el => {
-        el.disabled = false;
-    });
+    $('.nbtInfo button').prop("disabled", false);
 }
+
 function _onTidChanged(url, elm, filename = null) {
-    imgLink.download = `${filename? filename.trim(): ''} Head Render.png`.trim();
-    spriteLink.download = `${filename? filename.trim(): ''} Sprite Render.png`.trim();
-    // imgLink.classList.remove('hidden');
-    // spriteLink.classList.remove('hidden');
+    $imgLink.attr("download", `${filename? filename.trim(): ''} Head Render.png`.trim());
+    $spriteLink.attr("download", `${filename? filename.trim(): ''} Sprite Render.png`.trim());
     updateNBTInfo(url.split('/texture/')[1]);
     $("#warning").html("If it keeps loading without showing a render, the " + toStr[elm] + " is most likely invalid.");
-    
+
     // Now fetch image data and then load/render it!
     clrError();
     setTimeout(function () {
         // Clear it so it's easier to paste next data if there is any
-        mainElem[elm].value = "";
+        mainElem[elm].val("");
     }, 100);
     showImageLoader();
     readImageUrl(url);
@@ -167,16 +174,15 @@ function _onValChanged(textureData, elm, filename = null) {
         return nbtError("Texture data doesn't contain head url", elm);
     }
 
-    imgLink.download = `Head Render.png`;
-    spriteLink.download = `Sprite Render.png`;
+    $imgLink.attr("download" ,`Head Render.png`);
+    $spriteLink.attr("download" ,`Sprite Render.png`);
     _onTidChanged(url, elm, filename);
 }
 
 function onTidChanged(event) {
     clear();
-    if(!mainElem.tid.value) return;
-    console.log(mainElem.tid, mainElem.tid.value);
-    let tidText = (event.clipboardData || window.clipboardData)?.getData('text') || mainElem.tid.value;
+    if (!mainElem.tid.val()) return;
+    let tidText = (event.clipboardData || window.clipboardData)?.getData('text') || mainElem.tid.val();
     tidText = tidText.replace(/\W/g, '').toLowerCase();
     if (!/^[a-f0-9]{59,64}$/i.test(tidText)) {
         return nbtError("Not a valid texture ID", "tid");
@@ -187,8 +193,8 @@ function onTidChanged(event) {
 
 function onValChanged(event) {
     clear();
-    if(!mainElem.val.value) return;
-    let textureData = (event.clipboardData || window.clipboardData)?.getData('text') || mainElem["val"].value;
+    if (!mainElem.val.val()) return;
+    let textureData = (event.clipboardData || window.clipboardData)?.getData('text') || mainElem["val"].val();
     if (textureData.match(/Value\s*:\s*"\s*([A-Za-z0-9]*)=*\s*"/g)) {
         textureData = textureData.match(/(?<=Value\s*:\s*"\s*)([A-Za-z0-9]*)(?==*\s*")/g);
     } else {
@@ -203,7 +209,7 @@ function onValChanged(event) {
 function onNbtChanged(event) {
     clear();
     // Parse as json - if paste event copy from clipboard, otherwise grab from textarea itself
-    let nbt = (event.clipboardData || window.clipboardData)?.getData('text') || mainElem.nbt.value;
+    let nbt = (event.clipboardData || window.clipboardData)?.getData('text') || mainElem.nbt.val();
     if (!nbt) {
         return clrError();
     }
@@ -223,15 +229,15 @@ function onNbtChanged(event) {
 }
 
 $("#nbtClear").on("click", function () {
-    mainElem.nbt.value = "";
+    mainElem.nbt.val("");
     clrError();
 });
 $("#valClear").on("click", function () {
-    mainElem.val.value = "";
+    mainElem.val.val("");
     clrError();
 });
 $("#tidClear").on("click", function () {
-    mainElem.tid.value = "";
+    mainElem.tid.val("");
     clrError();
 });
 
@@ -245,17 +251,21 @@ async function readImageUrl(url) {
     }).then(b => b.blob()).then((blob) => {
         createImageThenRender(URL.createObjectURL(blob));
     }).catch((err) => {
-        new Toast({message: `Render Unsuccessful: Unknown Texture ID`, type: "error", time: 3500}).show();
+        new Toast({
+            message: `Render Unsuccessful: Unknown Texture ID`,
+            type: "error",
+            time: 3500
+        }).show();
     });
 }
 
 function nbtError(error, elm) {
-    errElem[elm].innerHTML = error;
+    errElem[elm].html(error);
 }
 
 function clrError() {
-    Object.values(errElem).forEach(element => {
-        element.innerHTML = "";
+    Object.values(errElem).forEach(el => {
+        el.html("");
     });
 }
 
@@ -284,23 +294,28 @@ function parseNBT(nbt) {
 // Pre-Render
 //////////////////////////////
 function showImageLoader() {
-    img.src = "https://vignette.wikia.nocookie.net/dev/images/4/42/Loading.gif";
+    $img.attr("src", "https://vignette.wikia.nocookie.net/dev/images/4/42/Loading.gif");
 }
 
 function createImageThenRender(imageSrc) {
-    var textureImage = new Image();
-    textureImage.src = imageSrc;
+    var $textureImage = $('<img>');
+    $textureImage.attr("src", imageSrc);
 
-    textureImage.addEventListener("load", function () {
+    $textureImage.on("load", function () {
+        let _img = $textureImage.get(0);
         context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-        context.drawImage(textureImage, 0, 0);
-        
+        context.drawImage(_img, 0, 0);
+
         textureCanvas.clearRect(0, 0, context.canvas.width, context.canvas.height);
-        textureCanvas.drawImage(textureImage, 0, 0);
-        
+        textureCanvas.drawImage(_img, 0, 0);
+
         render();
         makeSprite();
-        new Toast({message: `Rendering...`, type: "info", time: 1000}).show();
+        new Toast({
+            message: `Rendering...`,
+            type: "info",
+            time: 1000
+        }).show();
     });
 }
 
@@ -433,7 +448,7 @@ function render() {
 
     //Initialize renderer
     var renderer = new THREE.WebGLRenderer({
-        canvas: document.querySelector("#render"),
+        canvas: $("#render").get(0),
         antialias: false,
         alpha: true,
         preserveDrawingBuffer: true
@@ -443,7 +458,7 @@ function render() {
     renderer.shadowMap.enabled = true;
     renderer.setSize(width, height);
     renderer.autoClear = false; // important!
-    document.body.appendChild(renderer.domElement);
+    $('body').append(renderer.domElement);
 
     /* var headAspectRatio = 15.9; // MC WIKI */
     var headAspectRatio = 14.67; // Ingame Item
@@ -643,20 +658,20 @@ function makeSprite() {
     spriteCanvas.clearRect(0, 0, spriteCanvas.canvas.width, spriteCanvas.canvas.height);
     let cnv = textureCanvas.canvas
     spriteCanvas.imageSmoothingEnabled = false;
-    spriteCanvas.drawImage(cnv, -8*scale, -8*scale, cnv.width*scale, cnv.height*scale);
-    spriteCanvas.drawImage(cnv, -40*scale, -8*scale, cnv.width*scale, cnv.height*scale);
+    spriteCanvas.drawImage(cnv, -8 * scale, -8 * scale, cnv.width * scale, cnv.height * scale);
+    spriteCanvas.drawImage(cnv, -40 * scale, -8 * scale, cnv.width * scale, cnv.height * scale);
 
     renderSpriteUrl(spriteCanvas.canvas.toDataURL("image/png"));
 }
 
 function renderImageUrl(uri) {
-    img.src = uri;
-    imgLink.href = uri;
-    imgLink.classList.remove('hidden');
+    $img.attr("src", uri);
+    $imgLink.attr("href", uri);
+    $imgLink.removeClass('hidden');
 }
 
 function renderSpriteUrl(uri) {
-    sprite.src = uri;
-    spriteLink.href = uri.replace("image/png", "image/octet-stream");
-    spriteLink.classList.remove('hidden');
+    $sprite.attr("src", uri);
+    $spriteLink.attr("href", uri.replace("image/png", "image/octet-stream"));
+    $spriteLink.removeClass('hidden');
 }
