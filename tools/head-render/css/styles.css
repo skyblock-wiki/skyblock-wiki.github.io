@@ -142,9 +142,12 @@ header .version {
 }
 #return-main {
     cursor: pointer;
-    padding: 1.4rem 1.5rem;
-    height: 100%;
+    padding: 0.6rem 1rem;
+    margin: auto 0.5rem;
     transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    border-right: 3px solid #666;
 }
 #return-main img {
     vertical-align: middle;
@@ -321,7 +324,9 @@ aside img#drawn, aside img#sprite {
     font-weight: 300;
 }
 .contributors .list {
-    background: rgba(80, 80, 80, 0.3) none repeat scroll 0% 0%;
+    background: var(--col-bg2) none repeat scroll 0% 0%;
+    border-radius: 4px;
+    border: 1px solid var(--col-acc2);
 }
 .contributors button i {
     transition: transform 0.4s ease;
@@ -467,6 +472,11 @@ footer {
     }
     aside {
         border-top: 2px solid var(--col-acc2)
+    }
+}
+@media screen and (max-width: 630px) {
+    #return-main {
+        padding: 0.3rem 0.8rem;
     }
 }
 @media screen and (max-width: 380px) {
