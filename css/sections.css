@@ -304,9 +304,9 @@ body.hasHover .contributors .discord:active > .discordtip {
         margin: 0.5rem 0 0.5rem;
         font-size: 0.75rem;
     }
-    .tools li .links a,
-    .downloads li .links a,
-    .contributors li .links a {
+    .tools li .links .link,
+    .downloads li .links .link,
+    .contributors li .links .link {
         font-size: 0.82rem;
         padding: 0.135rem 0.27rem;
     }
@@ -348,9 +348,9 @@ body.hasHover .contributors .discord:active > .discordtip {
         margin: 0.5rem 0 0.5rem;
         font-size: 0.7rem;
     }
-    .tools li .links a,
-    .downloads li .links a,
-    .contributors li .links a {
+    .tools li .links .link,
+    .downloads li .links .link,
+    .contributors li .links .link {
         font-size: 0.8rem;
         padding: 0.125rem 0.25rem;
     }
@@ -392,9 +392,9 @@ body.hasHover .contributors .discord:active > .discordtip {
         margin: 0.5rem 0 0.5rem;
         font-size: 0.65rem;
     }
-    .tools li .links a,
-    .downloads li .links a,
-    .contributors li .links a {
+    .tools li .links .link,
+    .downloads li .links .link,
+    .contributors li .links .link {
         font-size: 0.75rem;
         padding: 0.1rem 0.2rem;
     }
