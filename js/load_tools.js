@@ -57,10 +57,10 @@ tools.forEach(el => {
             `<img src="${el.thumbnail}" alt="tool logo">`,
             '<hr>',
             `<h4>${el.name}</h4>`,
-            `<span class="version${!el.version ? ' soft-hidden' : ''}">${el.version}</span>`,
+            `<span class="version">${el.version ? el.version : '&nbsp;'}</span>`,
             `<p>${el.description}</p>`,
             '<div class="links">',
-                `<a href="${el.link}"${el.link.match(/^https?:\/\//)?' target=_blank':''}>Open</a>`,
+                `<a class="link" href="${el.link}"${el.link.match(/^https?:\/\//)?' target=_blank':''}>Open</a>`,
             '</div>',
         '</li>',
     ].join('')
