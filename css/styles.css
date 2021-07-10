@@ -200,8 +200,8 @@ source file: ROOT/css/sections.css
         height: 3.6rem;
     }
     header .logo img {
-        margin-right: 0.5rem;
-        width: 2.8rem;
+        margin: 0.5rem;
+        width: 2.4rem;
     }
     header .logo .name {
         font-size: 1.15rem;

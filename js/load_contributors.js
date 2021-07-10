@@ -75,6 +75,7 @@ const contributors = [
         aka: [],
         tasks: [
             "Helped create the Head Render Thingy",
+            "Helped create the Leather Armor Renderer",
             "Helped with many other issues",
         ],
         links: [
@@ -134,10 +135,6 @@ const contributors = [
                 type: "wiki",
                 value: "https://hypixel-skyblock.fandom.com/wiki/User:MonkeysHK",
                 border: true,
-            },
-            {
-                type: "discord",
-                value: "mhk#8753",
             },
             {
                 type: "github",
