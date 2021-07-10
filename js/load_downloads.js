@@ -124,7 +124,7 @@ downloads.forEach(el => {
         if (link.type == 'text') {
             text = link.text;
         }
-        links.push(`<a href="${link.type == "download" ? "./downloads/" : ''}${link.link}"${link.link.match(/^https?:\/\//)?' target=_blank':''}${link.type == "download" ? ' download' : ''}>${text}</a>`);
+        links.push(`<a class="link" href="${link.type == "download" ? "./downloads/" : ''}${link.link}"${link.link.match(/^https?:\/\//)?' target=_blank':''}${link.type == "download" ? ' download' : ''}>${text}</a>`);
         if (link.border) {
             links.push('<span class="line"></span>');
         }

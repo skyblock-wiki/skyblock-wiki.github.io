@@ -1,4 +1,4 @@
-@import url('./tools_and_downloads.css');
+@import url('./sections.css');
 @import url('./footer.css');
 /* font-awesome */
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css");
@@ -182,7 +182,9 @@ main {
 }
 
 /* 
-CSS for "tools" and "downloads" section is loaded on top
+CSS for "tools", "downloads", and "contributors" sections is loaded on top
+
+source file: ROOT/css/sections.css
 */
 
 
