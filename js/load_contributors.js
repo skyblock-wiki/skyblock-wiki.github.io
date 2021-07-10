@@ -24,7 +24,7 @@ String.prototype.copyToClipboard = function() {
 
 const linkImages = {
     text: '%s',
-    wiki: '<img src="/WikiIcon.png">',
+    wiki: '<img src="./WikiIcon.png">',
     discord: '<img src="./img/curseforge-icon.png">',
     website: '<img src="./img/website-icon.png">',
     github: '<img src="./img/github-icon.png">',
@@ -113,7 +113,7 @@ const contributors = [
             },
             {
                 type: "discord",
-                value: "Ruby#3280",
+                value: "💻Ruby#3280",
             },
             {
                 type: "github",
@@ -172,7 +172,7 @@ function makeDiscordElement(usertag) {
     let hasHover = $('body').hasClass("hasHover");
     return [
         '<button class="discord link">',
-            '<img src="/img/discord-icon.png">',
+            '<img src="./img/discord-icon.png">',
             `<div class="discordtip" copy-value="${usertag}">`,
                 `<span>${usertag}</span>`,
                 '<small class="copy-text">click to copy</small>',
@@ -195,7 +195,7 @@ contributors.forEach(el => {
     let element = [
         '<li>',
             `<a href="${el.links[0].value}">`,
-                `<img src="/img/usericons/${el.thumbnail}" alt="user logo">`,
+                `<img src="./img/usericons/${el.thumbnail}" alt="user logo">`,
             '</a>',
             '<hr>',
             `<h4>${el.name}</h4>`,
