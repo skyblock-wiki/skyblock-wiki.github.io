@@ -46,8 +46,8 @@ function readImage() {
     }
     // var timestamp = new Date().toLocaleString("en-UK",{ hour12: false }).replace(/[\/:]/g, "-").replace(/,/g,"");
     let filename = this.files[0].name.replace(/\.[a-z]{2,4}$/, '').trim();
-    $imgLink.attr("download" ,`${filename} Head Render.png`.trim());
-    $spriteLink.attr("download" ,`${filename} Sprite Render.png`.trim());
+    $imgLink.attr("download", `${filename} Head Render.png`.trim());
+    $spriteLink.attr("download", `${filename} Sprite Render.png`.trim());
     showImageLoader();
 }
 
@@ -174,8 +174,8 @@ function _onValChanged(textureData, elm, filename = null) {
         return nbtError("Texture data doesn't contain head url", elm);
     }
 
-    $imgLink.attr("download" ,`Head Render.png`);
-    $spriteLink.attr("download" ,`Sprite Render.png`);
+    $imgLink.attr("download", `Head Render.png`);
+    $spriteLink.attr("download", `Sprite Render.png`);
     _onTidChanged(url, elm, filename);
 }
 
