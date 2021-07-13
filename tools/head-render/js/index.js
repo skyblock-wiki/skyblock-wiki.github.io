@@ -15,6 +15,8 @@ let $img = $("#drawn");
 let $imgLink = $("#drawnLink");
 let $sprite = $("#sprite");
 let $spriteLink = $("#spriteLink");
+let $loading = $("#loading");
+let $warning = $("#warning")
 
 function clear() {
     $("#nbtInfo").html("");
@@ -37,6 +39,7 @@ $("#fileUpload").on("change", readImage, false);
 
 function readImage() {
     clear();
+    toggleImageLoader();
     if (this.files && this.files[0]) {
         var FR = new FileReader();
         FR.onload = function (e) {
@@ -48,7 +51,6 @@ function readImage() {
     let filename = this.files[0].name.replace(/\.[a-z]{2,4}$/, '').trim();
     $imgLink.attr("download", `${filename} Head Render.png`.trim());
     $spriteLink.attr("download", `${filename} Sprite Render.png`.trim());
-    showImageLoader();
 }
 
 //////////////////////////////
@@ -148,7 +150,7 @@ function _onTidChanged(url, elm, filename = null) {
         // Clear it so it's easier to paste next data if there is any
         mainElem[elm].val("");
     }, 100);
-    showImageLoader();
+    toggleImageLoader();
     readImageUrl(url);
 }
 
@@ -256,6 +258,7 @@ async function readImageUrl(url) {
             type: "error",
             time: 3500
         }).show();
+        toggleImageLoader();
     });
 }
 
@@ -293,8 +296,9 @@ function parseNBT(nbt) {
 //////////////////////////////
 // Pre-Render
 //////////////////////////////
-function showImageLoader() {
-    $img.attr("src", "https://vignette.wikia.nocookie.net/dev/images/4/42/Loading.gif");
+function toggleImageLoader() {
+    $loading.toggle();
+    $warning.toggle();
 }
 
 function createImageThenRender(imageSrc) {
@@ -421,8 +425,8 @@ function render() {
     const main_object = new THREE.Object3D();
     const back_layer = new THREE.Object3D();
 
-    var width = 300;
-    var height = 300;
+    var width = 512;
+    var height = 512;
 
     // Initilalize camera
     var viewSize = 253;
@@ -668,6 +672,7 @@ function renderImageUrl(uri) {
     $img.attr("src", uri);
     $imgLink.attr("href", uri);
     $imgLink.removeClass('hidden');
+    toggleImageLoader();
 }
 
 function renderSpriteUrl(uri) {
