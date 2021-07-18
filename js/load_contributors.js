@@ -103,7 +103,7 @@ const contributors = [
         tasks: [
             "Owner of the GitHub repository and organization",
             "Maintains the Hypixel SkyBlock Wiki Bot",
-            "Added the LICENSE and README to the repository",
+            "Added various enhancements to the site",
         ],
         links: [
             {

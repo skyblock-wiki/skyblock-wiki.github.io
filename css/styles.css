@@ -19,6 +19,9 @@
     --dot-border: #999;
     --box-border: #666;
     --imports-selected: white;
+    
+    --link-shadow: 0 0 10px 0 #fff1;
+    --link-bgcolor: #fff1;
 }
 
 /* normalize margins and paddings */
@@ -72,7 +75,7 @@ body {
     user-select: none;
 }
 
-.code {
+.code, code {
     font-family: 'Fira Mono', monospace;
     padding: 0px 0.3rem;
     background: rgba(0, 0, 0, 0.2);
@@ -92,6 +95,27 @@ button {
 }
 abbr {
     cursor: help;
+}
+
+/* logo link styles */
+.logo a {
+    transition: all 0.3s ease;
+	text-decoration: none;
+}
+
+a:not(.link):hover {
+	filter: brightness(80%);
+}
+
+a:not(.link):active {
+	border-radius: 3px;
+	box-shadow: var(--link-shadow);
+	background: var(--link-bgcolor);
+}
+
+.logo > a {
+	padding: 0.5rem;
+	margin: 0.25rem;
 }
 
 /*  

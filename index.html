@@ -7,6 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hypixel SkyBlock Wiki Tools</title>
 
+    <!-- Preloads -->
+    <link rel="preload" href="./css/styles.css" as="style" />
+    <link rel="preload" href="./WikiIcon.png" as="image" />
+    <link rel="preload" href="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" as="script" />
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js" as="script" />
+    <link rel="modulepreload" href="./js/index.js" as="script" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="icon" href="./WikiIcon.png" />
+    
+    <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
     <script type="module" src="./js/index.js"></script>
@@ -14,18 +26,15 @@
     <script src="./js/load_downloads.js" defer></script>
     <script src="./js/load_contributors.js" defer></script>
     <script src="./js/check_for_hover.js" defer></script>
-
-    <link rel="stylesheet" href="./css/styles.css">
-    <link rel="icon" href="./WikiIcon.png" />
 </head>
 
 <body>
     <header>
         <div class="logo">
-            <img src="./WikiIcon.png" alt="logo">
+            <a href="https://hypixel-skyblock.fandom.com/wiki/"><img src="./WikiIcon.png" alt="logo" /></a>
             <span>
-                <span class="name">Hypixel SkyBlock Wiki Tools</span>
-                <span class="name-short">HSW Tools</span>
+                <a href="https://hypixel-skyblock.fandom.com/wiki/" class="name">Hypixel SkyBlock Wiki Tools</a>
+                <a href="https://hypixel-skyblock.fandom.com/wiki/" class="name-short">HSW Tools</a>
                 <span class="version">v1.1</span>
             </span>
         </div>
