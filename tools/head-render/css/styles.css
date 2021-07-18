@@ -314,12 +314,12 @@ aside img#drawn, aside img#sprite {
     background-color: var(--col-bg2);
 }
 aside img#drawn {
-    width: 300px;
-    height: 300px;
+    width: 350px;
+    height: 350px;
 }
 aside img#sprite {
-    width: auto;
-    height: auto;
+    width: 150px;
+    height: 150px;
 }
 /* contributors */
 .contributors {
