@@ -71,7 +71,8 @@ const errElem = {
 	nbt: $("#nbtError"),
 	val: $("#valError"),
 	tid: $("#tidError"),
-};const toStr = {
+};
+const toStr = {
 	nbt: "NBT Data",
 	val: "command",
 	tid: "texture ID",

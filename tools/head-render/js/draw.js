@@ -38,57 +38,68 @@ const frontface = [
 	new THREE.Vector2(0.25, 0),
 	new THREE.Vector2(0.25, 0.5),
 	new THREE.Vector2(0.125, 0.5),
-];const leftface = [
+];
+const leftface = [
 	new THREE.Vector2(0.25, 0),
 	new THREE.Vector2(0.375, 0),
 	new THREE.Vector2(0.375, 0.5),
 	new THREE.Vector2(0.25, 0.5),
-];const backface = [
+];
+const backface = [
 	new THREE.Vector2(0.375, 0),
 	new THREE.Vector2(0.5, 0),
 	new THREE.Vector2(0.5, 0.5),
 	new THREE.Vector2(0.375, 0.5),
-];const bottomface = [
+];
+const bottomface = [
 	new THREE.Vector2(0.25, 0.5),
 	new THREE.Vector2(0.375, 0.5),
 	new THREE.Vector2(0.375, 1),
 	new THREE.Vector2(0.25, 1),
-];const rightface = [
+];
+const rightface = [
 	new THREE.Vector2(0, 0),
 	new THREE.Vector2(0.125, 0),
 	new THREE.Vector2(0.125, 0.5),
 	new THREE.Vector2(0, 0.5),
-];const topface = [
+];
+const topface = [
 	new THREE.Vector2(0.125, 0.5),
 	new THREE.Vector2(0.25, 0.5),
 	new THREE.Vector2(0.25, 1),
 	new THREE.Vector2(0.125, 1),
-];const fronthat = [
+];
+const fronthat = [
 	new THREE.Vector2(0.625, 0),
 	new THREE.Vector2(0.75, 0),
 	new THREE.Vector2(0.75, 0.5),
 	new THREE.Vector2(0.625, 0.5),
-];const backhat = [
+];
+const backhat = [
 	new THREE.Vector2(0.875, 0),
 	new THREE.Vector2(1, 0),
 	new THREE.Vector2(1, 0.5),
 	new THREE.Vector2(0.875, 0.5),
-];const lefthat = [
+];
+const lefthat = [
 	new THREE.Vector2(0.75, 0),
 	new THREE.Vector2(0.875, 0),
 	new THREE.Vector2(0.875, 0.5),
 	new THREE.Vector2(0.75, 0.5),
-];const bottomhat = [
+];
+const bottomhat = [
 	new THREE.Vector2(0.75, 0.5),
 	new THREE.Vector2(0.875, 0.5),
 	new THREE.Vector2(0.875, 1),
 	new THREE.Vector2(0.75, 1),
-];const tophat = [
+];
+const tophat = [
 	new THREE.Vector2(0.625, 0.5),
 	new THREE.Vector2(0.75, 0.5),
 	new THREE.Vector2(0.75, 1),
 	new THREE.Vector2(0.625, 1),
-];const righthat = [
+];
+const righthat = [
 	new THREE.Vector2(0.5, 0),
 	new THREE.Vector2(0.625, 0),
 	new THREE.Vector2(0.625, 0.5),
@@ -107,9 +118,12 @@ function render() {
 	const scene = new THREE.Scene();
 	const scene2 = new THREE.Scene();
 	const main_object = new THREE.Object3D();
-	const back_layer = new THREE.Object3D();	const width = 512;
-	const height = 512;	// Initilalize camera
-	const viewSize = 253;	const aspectRatio = width / height;
+	const back_layer = new THREE.Object3D();
+	const width = 512;
+	const height = 512;
+	// Initilalize camera
+	const viewSize = 253;
+	const aspectRatio = width / height;
 	const camera = new THREE.OrthographicCamera(
 		-aspectRatio * viewSize / 2,
 		aspectRatio * viewSize / 2,
@@ -164,7 +178,7 @@ function render() {
 	dirLight.position.set(-4, 3, 1);
 	dirLight.shadow.mapSize.width = 2048;
 	dirLight.shadow.mapSize.height = 2048;
-	let d = 50;
+	const d = 50;
 
 	dirLight.shadow.camera.left = -d;
 	dirLight.shadow.camera.right = d;
@@ -195,7 +209,6 @@ function render() {
 	backLight.position.set(2, 0, 2);
 	backLight.shadow.mapSize.width = 2048;
 	backLight.shadow.mapSize.height = 2048;
-	let d = 50;
 
 	backLight.shadow.camera.left = -d;
 	backLight.shadow.camera.right = d;
@@ -208,7 +221,8 @@ function render() {
 	// Back Hat
 
 	function renderBackHat() {
-		const backHatOverlay = new THREE.BoxGeometry(8.5, 8.5, 8.5);		// Material
+		const backHatOverlay = new THREE.BoxGeometry(8.5, 8.5, 8.5);
+		// Material
 		const backHatMaterial = new THREE.MeshLambertMaterial({
 			map: texture,
 			alphaTest: 0.1,
@@ -242,7 +256,8 @@ function render() {
 
 	// Head
 	function renderHead() {
-		const headCube = new THREE.BoxGeometry(8, 8, 8);		// Material
+		const headCube = new THREE.BoxGeometry(8, 8, 8);
+		// Material
 		const headMaterial = new THREE.MeshLambertMaterial({
 			map: texture,
 			alphaTest: 0.5,
@@ -276,7 +291,8 @@ function render() {
 
 	// Front Hat
 	function renderFrontHat() {
-		const frontHatOverlay = new THREE.BoxGeometry(8.5, 8.5, 8.5);		// Material
+		const frontHatOverlay = new THREE.BoxGeometry(8.5, 8.5, 8.5);
+		// Material
 		const frontHatMaterial = new THREE.MeshLambertMaterial({
 			map: texture,
 			alphaTest: 0.1,
