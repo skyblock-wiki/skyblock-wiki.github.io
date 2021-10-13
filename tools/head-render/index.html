@@ -2,163 +2,163 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Head Render</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Head Render</title>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
-    <script type="module" src="./js/index.js"></script>
-    <script type="module" src="./js/contributors.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+	<script type="module" src="./js/index.js"></script>
+	<script type="module" src="./js/contributors.js"></script>
 
-    <link rel="stylesheet" href="./css/styles.css">
-    <link rel="icon" href="../../ReturnIcon.png" />
-    <link rel="icon" href="./favicon.png" />
+	<link rel="stylesheet" href="./css/styles.css">
+	<link rel="icon" href="../../ReturnIcon.png" />
+	<link rel="icon" href="./favicon.png" />
 </head>
 
 <body>
-    <header>
-        <a href="../../index.html" id="return-main">
-            <span>
-                <img src="../../ReturnIcon.png" alt="back">
-            </span>
-        </a>
-        <img src="./favicon.png" alt="logo">
-        <span>
-            <span class="name">Head Render Thingy</span>
-            <span class="version">v4.0</span>
-        </span>
-    </header>
-    <div id="wrapper">
-        <main>
-            <section>
-                <h3>Render from upload</h3>
-                <p>Upload a skin/head texture</p>
-                <input type='file' id="fileUpload" />
-            </section>
-            <section>
-                <h3>Render from NBT Data</h3>
-                <div class="sec-err" id="nbtError"></div>
-                <textarea id="nbt" placeholder="Use the NBT data from the SBA or WikiTools mods"></textarea>
-                <br />
-                <span class="unselectable">
-                    <button class="sec-subm" id="nbtSubmit">Render</button>
-                    <button class="sec-clr" id="nbtClear">Clear</button>
-                </span>
-            </section>
-            <section>
-                <h3>Render from NameMC</h3>
-                <div class="sec-err" id="valError"></div>
-                <textarea id="val" placeholder="Use any head command from a NameMC *skin* page"></textarea>
-                <br />
-                <span class="unselectable">
-                    <button class="sec-subm" id="valSubmit">Render</button>
-                    <button class="sec-clr" id="valClear">Clear</button>
-                </span>
-            </section>
-            <section>
-                <h3>Render from texture ID</h3>
-                <div class="sec-err" id="tidError"></div>
-                <textarea id="tid" placeholder="Use a Texture ID"></textarea>
-                <br />
-                <span class="unselectable">
-                    <button class="sec-subm" id="tidSubmit">Render</button>
-                    <button class="sec-clr" id="tidClear">Clear</button>
-                </span>
-            </section>
-        </main>
-        <aside>
-            <section>
-                <canvas id="canvas" width="64" height="64"></canvas>
-                <canvas id="spriteCanvas" width="64" height="64"></canvas>
-                <canvas id="render"></canvas>
-                <div class="headbox">
-                    <table class="nbtInfo">
-                        <tbody>
-                            <tr>
-                                <th>Texture ID</th>
-                                <td class="unselectable">
-                                    <input type="text" id="textureID" readonly>
-                                    <div>
-                                        <button id="copy-id" class="copy" disabled>Copy</button>
-                                        <button id="open-id" class="link" disabled>Open as link</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Texture Template</th>
-                                <td class="unselectable">
-                                    <input type="text" id="textureTemplate" readonly>
-                                    <div>
-                                        <button id="copy-template" class="copy" disabled>Copy</button>
-                                        <button id="open-template" class="link soft-hidden" disabled>Open as
-                                            link</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="titlebox">
-                    <h3>Render:</h3>
-                    <div id="warning"></div>
-                </div>
-                <img id="loading" src="https://vignette.wikia.nocookie.net/dev/images/4/42/Loading.gif" />
-                <a id="drawnLink" class="hidden"><img id="drawn" /></a>
-                <a id="spriteLink" class="hidden"><img id="sprite" /></a>
-            </section>
-        </aside>
-    </div>
-    <div class="contributors">
-        <div id="contrib-list-div" class="list hidden-height" style="height: auto">
-            <ul id="contrib-list">
-                <!-- example layout 
-                    <li>
-                        <div class="tooltip">
-                            <span>joker876</span>
-                            <span class="tooltiptext">
-                                <ul>
-                                    <li><span>Did some thing</span></li>
-                                    <li><span>Did some thing 2</span></li>
-                                    <li><span>Did some thing 3</span></li>
-                                </ul>
-                            </span>
-                        </div>
-                    </li>
-                -->
-            </ul>
-        </div>
-        <h3>
-            <button id="show-contribs">
-                <span>Contributors</span>
-                <i class="fas fa-chevron-down"></i>
-            </button>
-        </h3>
-    </div>
-    <footer>
-        <div class="github-button-wrapper unselectable">
-            <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/tree/main/tools/head-render"
-                target="_blank">
-                <div class="icon">
-                    <i class="fas fa-code"></i>
-                </div>
-                <span>View Code</span>
-            </a>
-            <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/issues" target="_blank">
-                <div class="icon">
-                    <i class="fas fa-bug"></i>
-                </div>
-                <span>Report Bug</span>
-            </a>
-            <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/pulls" target="_blank">
-                <div class="icon">
-                    <i class="fas fa-code-branch"></i>
-                </div>
-                <span>Contribute</span>
-            </a>
-        </div>
-    </footer>
+	<header>
+		<a href="../../index.html" id="return-main">
+			<span>
+				<img src="../../ReturnIcon.png" alt="back">
+			</span>
+		</a>
+		<img src="./favicon.png" alt="logo">
+		<span>
+			<span class="name">Head Render Thingy</span>
+			<span class="version">v4.0</span>
+		</span>
+	</header>
+	<div id="wrapper">
+		<main>
+			<section>
+				<h3>Render from upload</h3>
+				<p>Upload a skin/head texture</p>
+				<input type='file' id="fileUpload" />
+			</section>
+			<section>
+				<h3>Render from NBT Data</h3>
+				<div class="sec-err" id="nbtError"></div>
+				<textarea id="nbt" placeholder="Use the NBT data from the SBA or WikiTools mods"></textarea>
+				<br />
+				<span class="unselectable">
+					<button class="sec-subm" id="nbtSubmit">Render</button>
+					<button class="sec-clr" id="nbtClear">Clear</button>
+				</span>
+			</section>
+			<section>
+				<h3>Render from NameMC</h3>
+				<div class="sec-err" id="valError"></div>
+				<textarea id="val" placeholder="Use any head command from a NameMC *skin* page"></textarea>
+				<br />
+				<span class="unselectable">
+					<button class="sec-subm" id="valSubmit">Render</button>
+					<button class="sec-clr" id="valClear">Clear</button>
+				</span>
+			</section>
+			<section>
+				<h3>Render from texture ID</h3>
+				<div class="sec-err" id="tidError"></div>
+				<textarea id="tid" placeholder="Use a Texture ID"></textarea>
+				<br />
+				<span class="unselectable">
+					<button class="sec-subm" id="tidSubmit">Render</button>
+					<button class="sec-clr" id="tidClear">Clear</button>
+				</span>
+			</section>
+		</main>
+		<aside>
+			<section>
+				<canvas id="canvas" width="64" height="64"></canvas>
+				<canvas id="spriteCanvas" width="64" height="64"></canvas>
+				<canvas id="render"></canvas>
+				<div class="headbox">
+					<table class="nbtInfo">
+						<tbody>
+							<tr>
+								<th>Texture ID</th>
+								<td class="unselectable">
+									<input type="text" id="textureID" readonly>
+									<div>
+										<button id="copy-id" class="copy" disabled>Copy</button>
+										<button id="open-id" class="link" disabled>Open as link</button>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th>Texture Template</th>
+								<td class="unselectable">
+									<input type="text" id="textureTemplate" readonly>
+									<div>
+										<button id="copy-template" class="copy" disabled>Copy</button>
+										<button id="open-template" class="link soft-hidden" disabled>Open as
+											link</button>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="titlebox">
+					<h3>Render:</h3>
+					<div id="warning"></div>
+				</div>
+				<img id="loading" src="https://vignette.wikia.nocookie.net/dev/images/4/42/Loading.gif" />
+				<a id="drawnLink" class="hidden"><img id="drawn" /></a>
+				<a id="spriteLink" class="hidden"><img id="sprite" /></a>
+			</section>
+		</aside>
+	</div>
+	<div class="contributors">
+		<div id="contrib-list-div" class="list hidden-height" style="height: auto">
+			<ul id="contrib-list">
+				<!-- example layout 
+					<li>
+						<div class="tooltip">
+							<span>joker876</span>
+							<span class="tooltiptext">
+								<ul>
+									<li><span>Did some thing</span></li>
+									<li><span>Did some thing 2</span></li>
+									<li><span>Did some thing 3</span></li>
+								</ul>
+							</span>
+						</div>
+					</li>
+				-->
+			</ul>
+		</div>
+		<h3>
+			<button id="show-contribs">
+				<span>Contributors</span>
+				<i class="fas fa-chevron-down"></i>
+			</button>
+		</h3>
+	</div>
+	<footer>
+		<div class="github-button-wrapper unselectable">
+			<a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/tree/main/tools/head-render"
+				target="_blank">
+				<div class="icon">
+					<i class="fas fa-code"></i>
+				</div>
+				<span>View Code</span>
+			</a>
+			<a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/issues" target="_blank">
+				<div class="icon">
+					<i class="fas fa-bug"></i>
+				</div>
+				<span>Report Bug</span>
+			</a>
+			<a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/pulls" target="_blank">
+				<div class="icon">
+					<i class="fas fa-code-branch"></i>
+				</div>
+				<span>Contribute</span>
+			</a>
+		</div>
+	</footer>
 </body>
 
 </html>
