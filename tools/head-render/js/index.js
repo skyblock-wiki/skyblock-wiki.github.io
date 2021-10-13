@@ -49,7 +49,6 @@ function readImage() {
     let filename = this.files[0].name.replace(/\.[a-z]{2,4}$/, '').trim();
     $imgLink.attr("download", `${filename} Head Render.png`.trim());
     $spriteLink.attr("download", `${filename} Sprite Render.png`.trim());
-    showImageLoader();
 }
 
 //////////////////////////////
