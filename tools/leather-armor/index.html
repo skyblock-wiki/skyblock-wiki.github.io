@@ -2,173 +2,173 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Colored Armor Generator</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colored Armor Generator</title>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
 
-	<script type="module" src="./js/index.js"></script>
-	<script type="module" src="./js/contributors.js"></script>
-	<script type="module" src="./js/color_models.js"></script>
+    <script type="module" src="./js/index.js"></script>
+    <script type="module" src="./js/contributors.js"></script>
+    <script type="module" src="./js/color_models.js"></script>
 
-	<link rel="stylesheet" href="./css/styles.css">
-	<link rel="icon" href="../../ReturnIcon.png" />
-	<link rel="icon" href="./favicon.png" />
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="icon" href="../../ReturnIcon.png" />
+    <link rel="icon" href="./favicon.png" />
 </head>
 
 <body>
-	<header>
-		<a href="../../index.html" id="return-main">
-			<span>
-				<img src="../../ReturnIcon.png" alt="back">
-			</span>
-		</a>
-		<img src="favicon.png" alt="logo">
-		<span>
-			<span class="name">Colored Armor Generator</span>
-			<span class="version">v3.0</span>
-		</span>
-	</header>
-	<main>
-		<div class="imports">
-			<div class="imports-list hidden disallow-focusing">
-				<h1>Import Color</h1>
-				<h2>
-					Choose input color model
-					<span class="tip" title="The color that should be converted to HEX.">?</span>
-				</h2>
-				<div class="color-model">
-					<input type="radio" name="select" id="option1">
-					<input type="radio" name="select" id="option2" checked>
-					<button id="button-model-rgb" class="btn-option btn-option1">
-						<label for="option1" class="option">
-							<div class="dot"></div>
-							<span class="unselectable">RGB</span>
-						</label>
-					</button>
-					<button id="button-model-int" class="btn-option btn-option2">
-						<label for="option2" class="option">
-							<div class="dot"></div>
-							<span class="unselectable">Integer</span>
-						</label>
-					</button>
-				</div>
-				<div class="input-form">
-					<input type="text" name="color-import" id="color-import">
-					<button type="submit" id="color-import-submit">Load</button>
-				</div>
-			</div>
-			<button id="show-imports"><i class="fas fa-exchange-alt"></i></button>
-		</div>
-		<section id="inputs">
-			<div class="text-input">
-				<span>HEX Color</span>
-				<input id="color" type="text" value="#FF0000" maxlength="7">
-				<div class="suggestions">
-					<h4 class="suggestions-label hidden">Suggestions:</h4>
-					<ul>
-						<li class="hidden"><a class="suggestion"></a></li>
-						<li class="hidden"><a class="suggestion"></a></li>
-					</ul>
-				</div>
-			</div>
-			<div id="picker"></div>
-			<table class="other-values">
-				<thead>
-					<tr>
-						<th colspan="2">Other color values</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><span>HEX</span></td>
-						<td id="color-hex" class="code"></td>
-					</tr>
-					<tr>
-						<td><span>RGB</span></td>
-						<td id="color-rgb" class="code"></td>
-					</tr>
-					<tr>
-						<td><span>HSL</span></td>
-						<td id="color-hsl" class="code"></td>
-					</tr>
-				</tbody>
-			</table>
-		</section>
+    <header>
+        <a href="../../index.html" id="return-main">
+            <span>
+                <img src="../../ReturnIcon.png" alt="back">
+            </span>
+        </a>
+        <img src="favicon.png" alt="logo">
+        <span>
+            <span class="name">Colored Armor Generator</span>
+            <span class="version">v3.0</span>
+        </span>
+    </header>
+    <main>
+        <div class="imports">
+            <div class="imports-list hidden disallow-focusing">
+                <h1>Import Color</h1>
+                <h2>
+                    Choose input color model
+                    <span class="tip" title="The color that should be converted to HEX.">?</span>
+                </h2>
+                <div class="color-model">
+                    <input type="radio" name="select" id="option1">
+                    <input type="radio" name="select" id="option2" checked>
+                    <button id="button-model-rgb" class="btn-option btn-option1">
+                        <label for="option1" class="option">
+                            <div class="dot"></div>
+                            <span class="unselectable">RGB</span>
+                        </label>
+                    </button>
+                    <button id="button-model-int" class="btn-option btn-option2">
+                        <label for="option2" class="option">
+                            <div class="dot"></div>
+                            <span class="unselectable">Integer</span>
+                        </label>
+                    </button>
+                </div>
+                <div class="input-form">
+                    <input type="text" name="color-import" id="color-import">
+                    <button type="submit" id="color-import-submit">Load</button>
+                </div>
+            </div>
+            <button id="show-imports"><i class="fas fa-exchange-alt"></i></button>
+        </div>
+        <section id="inputs">
+            <div class="text-input">
+                <span>HEX Color</span>
+                <input id="color" type="text" value="#FF0000" maxlength="7">
+                <div class="suggestions">
+                    <h4 class="suggestions-label hidden">Suggestions:</h4>
+                    <ul>
+                        <li class="hidden"><a class="suggestion"></a></li>
+                        <li class="hidden"><a class="suggestion"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="picker"></div>
+            <table class="other-values">
+                <thead>
+                    <tr>
+                        <th colspan="2">Other color values</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span>HEX</span></td>
+                        <td id="color-hex" class="code"></td>
+                    </tr>
+                    <tr>
+                        <td><span>RGB</span></td>
+                        <td id="color-rgb" class="code"></td>
+                    </tr>
+                    <tr>
+                        <td><span>HSL</span></td>
+                        <td id="color-hsl" class="code"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-		<section id="outputs">
-			<canvas id="helmet" width="160" height="160"></canvas>
-			<canvas id="chestplate" width="160" height="160"></canvas>
-			<canvas id="leggings" width="160" height="160"></canvas>
-			<canvas id="boots" width="160" height="160"></canvas>
+        <section id="outputs">
+            <canvas id="helmet" width="160" height="160"></canvas>
+            <canvas id="chestplate" width="160" height="160"></canvas>
+            <canvas id="leggings" width="160" height="160"></canvas>
+            <canvas id="boots" width="160" height="160"></canvas>
 
-			<a id="helmet_lnk">
-				<img id="helmet_img" width="160" height="160" />
-			</a>
-			<a id="chestplate_lnk">
-				<img id="chestplate_img" width="160" height="160" />
-			</a>
-			<a id="leggings_lnk">
-				<img id="leggings_img" width="160" height="160" />
-			</a>
-			<a id="boots_lnk">
-				<img id="boots_img" width="160" height="160" />
-			</a>
-		</section>
-	</main>
-	<div class="contributors">
-		<div id="contrib-list-div" class="list hidden-height" style="height: auto">
-			<ul id="contrib-list">
-				<!-- example layout 
-					<li>
-						<div class="tooltip">
-							<span>joker876</span>
-							<span class="tooltiptext">
-								<ul>
-									<li><span>Did some thing</span></li>
-									<li><span>Did some thing 2</span></li>
-									<li><span>Did some thing 3</span></li>
-								</ul>
-							</span>
-						</div>
-					</li>
-				-->
-			</ul>
-		</div>
-		<h3>
-			<button id="show-contribs">
-				<span>Contributors</span>
-				<i class="fas fa-chevron-down"></i>
-			</button>
-		</h3>
-	</div>
-	<footer>
-		<div class="github-button-wrapper unselectable">
-			<a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/tree/main/tools/head-render"
-				target="_blank">
-				<div class="icon">
-					<i class="fas fa-code"></i>
-				</div>
-				<span>View Code</span>
-			</a>
-			<a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/issues" target="_blank">
-				<div class="icon">
-					<i class="fas fa-bug"></i>
-				</div>
-				<span>Report Bug</span>
-			</a>
-			<a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/pulls" target="_blank">
-				<div class="icon">
-					<i class="fas fa-code-branch"></i>
-				</div>
-				<span>Contribute</span>
-			</a>
-		</div>
-	</footer>
+            <a id="helmet_lnk">
+                <img id="helmet_img" width="160" height="160" />
+            </a>
+            <a id="chestplate_lnk">
+                <img id="chestplate_img" width="160" height="160" />
+            </a>
+            <a id="leggings_lnk">
+                <img id="leggings_img" width="160" height="160" />
+            </a>
+            <a id="boots_lnk">
+                <img id="boots_img" width="160" height="160" />
+            </a>
+        </section>
+    </main>
+    <div class="contributors">
+        <div id="contrib-list-div" class="list hidden-height" style="height: auto">
+            <ul id="contrib-list">
+                <!-- example layout 
+                    <li>
+                        <div class="tooltip">
+                            <span>joker876</span>
+                            <span class="tooltiptext">
+                                <ul>
+                                    <li><span>Did some thing</span></li>
+                                    <li><span>Did some thing 2</span></li>
+                                    <li><span>Did some thing 3</span></li>
+                                </ul>
+                            </span>
+                        </div>
+                    </li>
+                -->
+            </ul>
+        </div>
+        <h3>
+            <button id="show-contribs">
+                <span>Contributors</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </h3>
+    </div>
+    <footer>
+        <div class="github-button-wrapper unselectable">
+            <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/tree/main/tools/head-render"
+                target="_blank">
+                <div class="icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <span>View Code</span>
+            </a>
+            <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/issues" target="_blank">
+                <div class="icon">
+                    <i class="fas fa-bug"></i>
+                </div>
+                <span>Report Bug</span>
+            </a>
+            <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/pulls" target="_blank">
+                <div class="icon">
+                    <i class="fas fa-code-branch"></i>
+                </div>
+                <span>Contribute</span>
+            </a>
+        </div>
+    </footer>
 </body>
 
 </html>

@@ -7,498 +7,498 @@
 
 /* create variables */
 :root {
-	--col-bg: #1e1e1e;
-	--col-bg2: #252525;
-	--col-bg3: #323232;
-	--col-acc: #444;
-	--col-acc2: #4a4a4a;
-	--orange: #cc9933;
-	--state-shadow: 0 0 3px 2px var(--orange);
+    --col-bg: #1e1e1e;
+    --col-bg2: #252525;
+    --col-bg3: #323232;
+    --col-acc: #444;
+    --col-acc2: #4a4a4a;
+    --orange: #cc9933;
+    --state-shadow: 0 0 3px 2px var(--orange);
 }
 /* normalize margins and paddings */
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 /*  
 ========================
-		Main CSS
+        Main CSS
 ========================
 */
 html {
-	scroll-behavior: smooth;
-	width: 100%;
+    scroll-behavior: smooth;
+    width: 100%;
 }
 body {
-	font-family: 'Montserrat', sans-serif;
-	background: var(--col-bg);
-	min-height: 100vh;
-	width: 100%;
-	display: flex;
-	flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    background: var(--col-bg);
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 .hidden {
-	display: none;
+    display: none;
 }
 .soft-hidden {
-	visibility: hidden;
-	cursor: default;
+    visibility: hidden;
+    cursor: default;
 }
 .unselectable {
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .code {
-	font-family: 'Fira Mono', monospace;
-	padding: 0px 0.3rem;
-	background: rgba(0,0,0,0.2);
-	border: 1px solid var(--col-acc);
-	border-radius: 4px;
+    font-family: 'Fira Mono', monospace;
+    padding: 0px 0.3rem;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid var(--col-acc);
+    border-radius: 4px;
 }
 /* checkboxes */
 .checkbox-custom {
-	position: absolute;
-	opacity: 0;
+    position: absolute;
+    opacity: 0;
 }
 .checkbox-label {
-	display: flex;
-	gap: 4px;
-	align-items: center;
+    display: flex;
+    gap: 4px;
+    align-items: center;
 }
 .checkbox-label .checkbox i {
-	display: none;
-	opacity: 0;
-	transition: opacity 0.2s ease;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
 }
 .checkbox-custom:checked ~ label .checkbox i:nth-of-type(1) {
-	display: initial;
-	opacity: 1;
+    display: initial;
+    opacity: 1;
 }
 .checkbox-custom:not(:checked) ~ label .checkbox i:nth-of-type(2) {
-	display: initial;
-	opacity: 1
+    display: initial;
+    opacity: 1
 }
 /* hover and focus effect for buttons and inputs */
 input:focus, textarea:focus {
-	outline: none;
-	box-shadow: var(--state-shadow);
+    outline: none;
+    box-shadow: var(--state-shadow);
 }
 /* buttons */
 button {
-	width: max-content;
-	height: max-content;
-	padding: 0.2rem 0.3rem;
-	border-radius: 4px;
-	border: 1px solid var(--col-acc);
-	background-color: var(--col-bg2);
-	color: white;
-	cursor: pointer;
-	transition: all 0.2s ease;
+    width: max-content;
+    height: max-content;
+    padding: 0.2rem 0.3rem;
+    border-radius: 4px;
+    border: 1px solid var(--col-acc);
+    background-color: var(--col-bg2);
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 button:disabled {
-	opacity: 50%;
-	color: #AAA;
-	cursor: default;
+    opacity: 50%;
+    color: #AAA;
+    cursor: default;
 }
 /*  
 ======================
-		Header
+        Header
 ======================
 */
 header {
-	position: static;
-	width: 100%;
-	height: 5.5rem;
-	display: flex;
-	background: var(--col-bg3);
-	align-items: center;
-	padding: .3rem 0;
+    position: static;
+    width: 100%;
+    height: 5.5rem;
+    display: flex;
+    background: var(--col-bg3);
+    align-items: center;
+    padding: .3rem 0;
 }
 header img {
-	width: 4rem;
-	margin-right: 1.5rem;
+    width: 4rem;
+    margin-right: 1.5rem;
 }
 header > span:nth-child(2) {
-	display: flex;
+    display: flex;
 }
 header .name {
-	font-size: 1.5rem;
-	font-weight: 500;
-	white-space: nowrap;
-	color: white;
+    font-size: 1.5rem;
+    font-weight: 500;
+    white-space: nowrap;
+    color: white;
 }
 header .version {
-	font-size: 1rem;
-	font-weight: 300;
-	align-self: flex-end;
-	margin-left: .5rem;
-	color: #FFFFFFa0;
+    font-size: 1rem;
+    font-weight: 300;
+    align-self: flex-end;
+    margin-left: .5rem;
+    color: #FFFFFFa0;
 }
 #return-main {
-	cursor: pointer;
-	padding: 0.6rem 1rem;
-	margin: auto 0.5rem;
-	transition: all 0.2s ease;
-	display: flex;
-	align-items: center;
-	border-right: 3px solid #666;
+    cursor: pointer;
+    padding: 0.6rem 1rem;
+    margin: auto 0.5rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    border-right: 3px solid #666;
 }
 #return-main img {
-	vertical-align: middle;
-	margin-right: 0;
+    vertical-align: middle;
+    margin-right: 0;
 }
 #return-main:hover {
-	box-shadow: 0 0 10px 0 #fff1;
-	background: #fff1;
+    box-shadow: 0 0 10px 0 #fff1;
+    background: #fff1;
 }
 
 /*  
 =======================
-		Columns
+        Columns
 =======================
 */
 #wrapper {
-	margin-top: 1rem;
-	display: flex;
-	clear: both;
-	width: 100%;
-	flex-grow: 1;
+    margin-top: 1rem;
+    display: flex;
+    clear: both;
+    width: 100%;
+    flex-grow: 1;
 }
 main, aside {
-	width: 50%;
-	padding: 2rem;
+    width: 50%;
+    padding: 2rem;
 }
 /*  
 =======================
-		Main Col
+        Main Col
 =======================
 */
 main {
-	border-right: 1px solid var(--col-bg3);
-	display: flex;
-	flex-direction: column;
+    border-right: 1px solid var(--col-bg3);
+    display: flex;
+    flex-direction: column;
 }
 main section {
-	padding: 1rem .5rem;
+    padding: 1rem .5rem;
 }
 main section:not(:last-child) {
-	border-bottom: 1px solid var(--col-bg3);
+    border-bottom: 1px solid var(--col-bg3);
 }
 main section:nth-of-type(1) {
-	height: 7.5rem;
+    height: 7.5rem;
 }
 h3:not(.contributors h3) {
-	font-family: 'Montserrat', sans-serif;
-	color: white;
-	font-size: 1.25rem;
-	font-weight: 300;
-	margin-bottom: .5rem;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 300;
+    margin-bottom: .5rem;
 }
 main p {
-	font-family: 'Montserrat', sans-serif;
-	color: white;
-	font-size: 0.9rem;
-	font-weight: 200;
-	margin-bottom: .8rem;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 200;
+    margin-bottom: .8rem;
 }
 main input[type="file"] {
-	color: white;
+    color: white;
 }
 main textarea {
-	width: 100%;
-	min-height: 4rem;
-	height: 6rem;
-	max-height: 16rem;
-	margin: .5rem 0;
-	padding: 0.2rem;
-	border: 1px solid var(--col-acc);
-	border-radius: 4px;
-	background-color: var(--col-bg2);
-	color: white;
-	font-family: 'Fira Mono', monospace;
-	transition: box-shadow 0.1s ease;
-	resize: vertical;
+    width: 100%;
+    min-height: 4rem;
+    height: 6rem;
+    max-height: 16rem;
+    margin: .5rem 0;
+    padding: 0.2rem;
+    border: 1px solid var(--col-acc);
+    border-radius: 4px;
+    background-color: var(--col-bg2);
+    color: white;
+    font-family: 'Fira Mono', monospace;
+    transition: box-shadow 0.1s ease;
+    resize: vertical;
 }
 .sec-err {
-	font-size: 0.8rem;
-	color: red;
-	font-weight: 200;
+    font-size: 0.8rem;
+    color: red;
+    font-weight: 200;
 }
 /* */
 /*  
 ========================
-		Aside Col
+        Aside Col
 ========================
 */
 canvas {
-	display: none;
+    display: none;
 }
 aside {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	padding-bottom: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
 }
 aside section {
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 aside .nbtInfo th {
-	padding-right: 1rem;
-	text-align: right;
-	color: white;
-	font-weight: 200;
-	font-size: 0.9rem;
+    padding-right: 1rem;
+    text-align: right;
+    color: white;
+    font-weight: 200;
+    font-size: 0.9rem;
 }
 aside .nbtInfo td div {
-	display: inline-block;
-	margin: 0.2rem 0;
+    display: inline-block;
+    margin: 0.2rem 0;
 }
 aside .nbtInfo input {
-	padding: 0.2rem 0.3rem;
-	border-radius: 4px;
-	border: 1px solid var(--col-acc);
-	background-color: var(--col-bg2);
-	color: #AAA;
-	cursor: pointer;
-	transition: all 0.2s ease;
-	font-family: 'Fira Code', monospace;
-	font-size: 0.75rem;
-	width: 15rem;
+    padding: 0.2rem 0.3rem;
+    border-radius: 4px;
+    border: 1px solid var(--col-acc);
+    background-color: var(--col-bg2);
+    color: #AAA;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.75rem;
+    width: 15rem;
 }
 aside section > *:not(a) {
-	padding: 0 .5rem;
+    padding: 0 .5rem;
 }
 aside .headbox {
-	height: 7.5rem;
-	border-bottom: 1px solid var(--col-bg3);
-	margin-bottom: 1rem;
+    height: 7.5rem;
+    border-bottom: 1px solid var(--col-bg3);
+    margin-bottom: 1rem;
 }
 aside .titlebox {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 aside .titlebox h3 {
-	margin-right: 2rem;
+    margin-right: 2rem;
 }
 aside #warning {
-	color: red;
-	font-weight: 200;
-	font-size: .7rem;
-	text-align: justify;
-	display: none;
+    color: red;
+    font-weight: 200;
+    font-size: .7rem;
+    text-align: justify;
+    display: none;
 }
 aside #loading {
-	height: 20px;
-	width: 95px;
-	border: none;
-	display: none;
-	align-self: center;
-	margin: 3rem;
+    height: 20px;
+    width: 95px;
+    border: none;
+    display: none;
+    align-self: center;
+    margin: 3rem;
 }
 aside #drawnLink, aside #spriteLink {
-	align-self: center;
+    align-self: center;
 }
 aside img#drawn, aside img#sprite {
-	margin: 0.5rem 0 0;
-	cursor: pointer;
-	border-radius: 4px;
-	border: 1px solid var(--col-acc);
-	background-color: var(--col-bg2);
+    margin: 0.5rem 0 0;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid var(--col-acc);
+    background-color: var(--col-bg2);
 }
 aside img#drawn {
-	width: 350px;
-	height: 350px;
+    width: 350px;
+    height: 350px;
 }
 aside img#sprite {
-	width: 150px;
-	height: 150px;
+    width: 150px;
+    height: 150px;
 }
 /* contributors */
 .contributors {
-	margin: 0.8rem 1.1rem;
-	display: flex;
-	flex-direction: column;
-	position: fixed;
-	right: 0;
-	bottom: 0;
+    margin: 0.8rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    right: 0;
+    bottom: 0;
 }
 .contributors button {
-	background: none;
-	border: none;
-	transition: none;
-	font-size: 20px;
-	font-family: 'Montserrat', sans-serif;
-	font-weight: 300;
+    background: none;
+    border: none;
+    transition: none;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
 }
 .contributors .list {
-	background: var(--col-bg2) none repeat scroll 0% 0%;
-	border-radius: 4px;
-	border: 1px solid var(--col-acc2);
+    background: var(--col-bg2) none repeat scroll 0% 0%;
+    border-radius: 4px;
+    border: 1px solid var(--col-acc2);
 }
 .contributors button i {
-	transition: transform 0.4s ease;
-	transform: rotate(-90deg);
+    transition: transform 0.4s ease;
+    transform: rotate(-90deg);
 }
 .contributors .list:not(.hidden-height) ~ h3 i {
-	transform: rotate(-180deg);
+    transform: rotate(-180deg);
 }
 .contributors .list.hidden-height {
-	overflow: hidden;
+    overflow: hidden;
 }
 .contributors #contrib-list {
-	list-style: none;
-	margin: 0 1rem;
+    list-style: none;
+    margin: 0 1rem;
 }
 .contributors #contrib-list > li {
-	margin: 0.5rem 0;
+    margin: 0.5rem 0;
 }
 .tooltip {
-	position: relative;
-	display: inline-block;
-	color: white;
-	font-family: 'Montserrat', sans-serif;
-	font-weight: 200;
-	border-bottom: 1px dotted white;
+    position: relative;
+    display: inline-block;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    border-bottom: 1px dotted white;
 }
 .tooltip .tooltiptext {
-	visibility: hidden;
-	width: max-content;
-	max-width: 300px;
-	background-color: var(--col-bg3);
-	color: #fff;
-	text-align: left;
-	border-radius: 6px;
-	border: 1px solid var(--col-acc2);
-	padding: 5px 5px 5px 25px;
-	position: absolute;
-	z-index: 1;
-	bottom: -5px;
-	right: 110%;
-	/* fade animation */
-	transition: all 0.2s ease;
-	opacity: 0;
+    visibility: hidden;
+    width: max-content;
+    max-width: 300px;
+    background-color: var(--col-bg3);
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    border: 1px solid var(--col-acc2);
+    padding: 5px 5px 5px 25px;
+    position: absolute;
+    z-index: 1;
+    bottom: -5px;
+    right: 110%;
+    /* fade animation */
+    transition: all 0.2s ease;
+    opacity: 0;
 }
 .tooltip > span:nth-child(1) {
-	cursor: help;
+    cursor: help;
 }
 .tooltip .tooltiptext::after {
-	content: "";
-	position: absolute;
-	bottom: 10px;
-	left: 100%;
-	margin-top: -5px;
-	border-width: 5px;
-	border-style: solid;
-	border-color: transparent transparent transparent var(--col-acc2);
+    content: "";
+    position: absolute;
+    bottom: 10px;
+    left: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent var(--col-acc2);
 }
 .tooltip:hover .tooltiptext,
 .tooltip:active .tooltiptext {
-	opacity: 1;
-	visibility: visible;
+    opacity: 1;
+    visibility: visible;
 }
 .tooltip .tooltiptext ul {
-	list-style-type: disc;
+    list-style-type: disc;
 }
 .tooltip .tooltiptext li span {
-	font-family: 'Montserrat', sans-serif;
-	font-size: 0.8rem;
-	position: relative;
-	left: -7px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    position: relative;
+    left: -7px;
 }
 /*  
 ======================
-		Footer
+        Footer
 ======================
 */
 footer {
-	background: var(--col-bg3);
-	margin-top: 1rem;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	padding: 0.4rem 2rem;
-	justify-self: flex-end;
+    background: var(--col-bg3);
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0.4rem 2rem;
+    justify-self: flex-end;
 }
 /* social media buttons styling */
 .github-button-wrapper a {
-	color: white;
-	text-decoration: none;
-	display: inline-block;
-	height: 40px;
-	width: 40px;
-	margin: 0 5px;
-	background: var(--col-bg);
-	border-radius: 50px;
-	cursor: pointer;
-	box-shadow: 0 3px 5px black;
-	transition: all 0.3s ease;
-	overflow: hidden;
-	outline: none;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    margin: 0 5px;
+    background: var(--col-bg);
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 3px 5px black;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    outline: none;
 }
 .github-button-wrapper a:hover,
 .github-button-wrapper a:focus,
 .github-button-wrapper a:active {
-	width: 200px;
-	background: var(--col-bg3);
-	color: white;
+    width: 200px;
+    background: var(--col-bg3);
+    color: white;
 }
 .github-button-wrapper a .icon {
-	display: inline-block;
-	height: 40px;
-	width: 40px;
-	text-align: center;
-	box-sizing: border-box;
-	border-radius: 50px;
-	line-height: 40px;
-	transition: all 0.2s ease;
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 50px;
+    line-height: 40px;
+    transition: all 0.2s ease;
 }
 .github-button-wrapper a .icon i {
-	font-size: 20px;
-	line-height: 40px;
+    font-size: 20px;
+    line-height: 40px;
 }
 .github-button-wrapper a span {
-	font-weight: 500;
-	line-height: 40px;
+    font-weight: 500;
+    line-height: 40px;
 }
 /*  
 =============================
-		Responsivenes
+        Responsivenes
 =============================
 */
 @media screen and (max-width: 830px) {
-	body {
-		overflow-x: hidden;
-	}
-	#wrapper {
-		flex-direction: column;
-		align-items: flex-end;
-	}
-	main, aside {
-		width: 100%;
-		border: none;
-	}
-	aside {
-		border-top: 2px solid var(--col-acc2)
-	}
+    body {
+        overflow-x: hidden;
+    }
+    #wrapper {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    main, aside {
+        width: 100%;
+        border: none;
+    }
+    aside {
+        border-top: 2px solid var(--col-acc2)
+    }
 }
 @media screen and (max-width: 630px) {
-	#return-main {
-		padding: 0.3rem 0.8rem;
-	}
+    #return-main {
+        padding: 0.3rem 0.8rem;
+    }
 }
 @media screen and (max-width: 380px) {
-	aside .nbtInfo input {
-		width: 100%;
-	}
-	/* aside img#drawn {
-		width: 80%;
-	} */
+    aside .nbtInfo input {
+        width: 100%;
+    }
+    /* aside img#drawn {
+        width: 80%;
+    } */
 }
