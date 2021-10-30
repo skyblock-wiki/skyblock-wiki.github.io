@@ -13,7 +13,7 @@ const downloads = [
 		links: [
 			{
 				type: "download",
-				link: "wikitools-2.6.2.jar",
+				link: "wikitools-2.6.jar",
 				border: true,
 			},
 			{
@@ -114,8 +114,7 @@ const downloads = [
 			},
 		],
 	},
-];
-const allDownloadElements = [];
+];const allDownloadElements = [];
 
 downloads.forEach(el => {
 	const links = [];
