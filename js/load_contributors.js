@@ -1,4 +1,4 @@
-function processToDiscordTolltips() {
+function processToDiscordTooltips() {
 	$(".discordtip").each((index, el) => {
 		$(el).css({
 			// $(el).parent().outerWidth()/2
@@ -21,6 +21,11 @@ String.prototype.copyToClipboard = function() {
 	el.setSelectionRange(0, 9999999);
 	document.execCommand("copy");
 	document.body.removeChild(el);
+	new Toast({
+		message: "Copied!",
+		type: "success",
+		time: 2000,
+	}).show();
 };
 
 const linkImages = {
@@ -218,4 +223,4 @@ contributors.forEach(el => {
 	allCOntributorElements.push(element);
 });
 $("section.contributors > ul").html(allCOntributorElements);
-processToDiscordTolltips();
+processToDiscordTooltips();
