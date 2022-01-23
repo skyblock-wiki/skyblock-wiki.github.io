@@ -1,3 +1,5 @@
+import { Toast } from "./toast.js";
+
 function processToDiscordTooltips() {
 	$(".discordtip").each((index, el) => {
 		$(el).css({
