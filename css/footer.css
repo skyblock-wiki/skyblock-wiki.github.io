@@ -1,56 +1,55 @@
-
 /*  
 ======================
 		Footer
 ======================
 */
 footer {
-	background: var(--col-bg3);
-	margin-top: 1rem;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	padding: 0.4rem 2rem;
-	justify-self: flex-end;
+    background: var(--col-bg3);
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0.4rem 2rem;
+    justify-self: flex-end;
 }
 /* social media buttons styling */
 .github-button-wrapper a {
-	color: white;
-	text-decoration: none;
-	display: inline-block;
-	height: 40px;
-	width: 40px;
-	margin: 0 5px;
-	background: var(--col-bg);
-	border-radius: 50px;
-	cursor: pointer;
-	box-shadow: 0 3px 5px black;
-	transition: all 0.3s ease;
-	overflow: hidden;
-	outline: none;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    margin: 0 5px;
+    background: var(--col-bg);
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 3px 5px black;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    outline: none;
 }
 .github-button-wrapper a:hover,
 .github-button-wrapper a:focus,
 .github-button-wrapper a:active {
-	width: 200px;
-	background: var(--col-bg3);
-	color: white;
+    width: 200px;
+    background: var(--col-bg3);
+    color: white;
 }
 .github-button-wrapper a .icon {
-	display: inline-block;
-	height: 40px;
-	width: 40px;
-	text-align: center;
-	box-sizing: border-box;
-	border-radius: 50px;
-	line-height: 40px;
-	transition: all 0.2s ease;
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 50px;
+    line-height: 40px;
+    transition: all 0.2s ease;
 }
 .github-button-wrapper a .icon i {
-	font-size: 20px;
-	line-height: 40px;
+    font-size: 20px;
+    line-height: 40px;
 }
 .github-button-wrapper a span {
-	font-weight: 500;
-	line-height: 40px;
+    font-weight: 500;
+    line-height: 40px;
 }

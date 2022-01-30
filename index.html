@@ -1,143 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Hypixel SkyBlock Wiki Tools</title>
 
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Hypixel SkyBlock Wiki Tools</title>
+        <!-- Preloads -->
+        <link rel="preload" href="./css/styles.css" as="style" />
+        <link rel="preload" href="./css/toast.css" as="style" />
+        <link rel="preload" href="./WikiIcon.png" as="image" />
+        <link rel="preload" href="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" as="script" />
+        <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js" as="script" />
+        <link rel="modulepreload" href="./js/index.js" as="script" />
+        <link rel="modulepreload" href="./js/load_contributors.js" as="script" />
 
-	<!-- Preloads -->
-	<link rel="preload" href="./css/styles.css" as="style" />
-	<link rel="preload" href="./css/toast.css" as="style" />
-	<link rel="preload" href="./WikiIcon.png" as="image" />
-	<link rel="preload" href="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" as="script" />
-	<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js" as="script" />
-	<link rel="modulepreload" href="./js/index.js" as="script" />
-	<link rel="modulepreload" href="./js/load_contributors.js" as="script" />
+        <!-- Styles -->
+        <link rel="stylesheet" href="./css/styles.css" />
+        <link rel="stylesheet" href="./css/toast.css" />
+        <link rel="icon" href="./WikiIcon.png" />
 
-	<!-- Styles -->
-	<link rel="stylesheet" href="./css/styles.css" />
-	<link rel="stylesheet" href="./css/toast.css" />
-	<link rel="icon" href="./WikiIcon.png" />
-	
-	<!-- Scripts -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
-	<script type="module" src="./js/index.js"></script>
-	<script type="module" src="./js/load_contributors.js"></script>
-	<script src="./js/load_tools.js" defer></script>
-	<script src="./js/load_downloads.js" defer></script>
-	<script src="./js/check_for_hover.js" defer></script>
-</head>
+        <!-- Scripts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+        <script type="module" src="./js/index.js"></script>
+        <script type="module" src="./js/load_contributors.js"></script>
+        <script src="./js/load_tools.js" defer></script>
+        <script src="./js/load_downloads.js" defer></script>
+        <script src="./js/check_for_hover.js" defer></script>
+    </head>
 
-<body>
-	<header>
-		<div class="logo">
-			<a href="https://hypixel-skyblock.fandom.com/wiki/"><img src="./WikiIcon.png" alt="logo" /></a>
-			<span>
-				<a href="https://hypixel-skyblock.fandom.com/wiki/" class="name">Hypixel SkyBlock Wiki Tools</a>
-				<a href="https://hypixel-skyblock.fandom.com/wiki/" class="name-short">HSW Tools</a>
-				<span class="version">v1.1</span>
-			</span>
-		</div>
-		<nav>
-			<a href="#home" class="link">Home</a>
-			<a href="#tools" class="link">Tools</a>
-			<a href="#downloads" class="link">Downloads</a>
-			<a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io" class="link" target="_blank">GitHub</a>
-		</nav>
-		<div class="hamburger">
-			<span></span>
-			<span></span>
-			<span></span>
-		</div>
-	</header>
-	<main>
-		<section class="home">
-
-		</section>
-		<section class="tools">
-			<h1 id="tools">Tools</h1>
-			<ul>
-
-			</ul>
-		</section>
-		<section class="downloads">
-			<h1 id="downloads">Downloads</h1>
-			<ul>
-
-			</ul>
-		</section>
-		<section class="contributors">
-			<h1 id="contributors">Contributors</h1>
-			<ul>
-				<li>
-					<img src="/img/usericons/joker876.png" alt="joker876's logo">
-					<hr>
-					<h4>joker876</h4>
-					<div class="akabox">
-						<span class="aka">AKA</span>
-						<div class="akalist">
-							<span>Test</span>
-							<span>Project</span>
-						</div>
-					</div>
-					<ul class="tasklist">
-						<li><span>thing one</span></li>
-						<li><span>thing two</span></li>
-						<li><span>thing three</span></li>
-						<li><span>thing four</span></li>
-						<li><span>thing five</span></li>
-						<li><span>thing six</span></li>
-						<li><span>thing seven</span></li>
-					</ul>
-					<div class="links">
-						<a href="https://hypixel-skyblock.fandom.com/wiki/User:Joker876">
-							<img src="/WikiIcon.png">
-						</a>
-						<span class="line"></span>
-						<a class="discord">
-							<img src="/img/discord-icon.png">
-							<div class="discordtip">
-								<span>joker876#8914</span>
-								<small class="copy-text">click to copy</small>
-								<small class="copy-popup">copied!</small>
-							</div>
-						</a>
-						<a href="https://github.com/joker876">
-							<img src="/img/github-icon.png">
-						</a>
-						<a href="https://www.curseforge.com/members/joker876xd8">
-							<img src="/img/curseforge-icon.png">
-						</a>
-					</div>
-				</li>
-			</ul>
-		</section>
-	</main>
-	<footer>
-		<div class="github-button-wrapper">
-			<a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io" target="_blank">
-				<div class="icon">
-					<i class="fas fa-code"></i>
-				</div>
-				<span>View Code</span>
-			</a>
-			<a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/issues" target="_blank">
-				<div class="icon">
-					<i class="fas fa-bug"></i>
-				</div>
-				<span>Report Bug</span>
-			</a>
-			<a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/pulls" target="_blank">
-				<div class="icon">
-					<i class="fas fa-code-branch"></i>
-				</div>
-				<span>Contribute</span>
-			</a>
-		</div>
-	</footer>
-</body>
-
+    <body>
+        <header>
+            <div class="logo">
+                <a href="https://hypixel-skyblock.fandom.com/wiki/"><img src="./WikiIcon.png" alt="logo" /></a>
+                <span>
+                    <a href="https://hypixel-skyblock.fandom.com/wiki/" class="name">Hypixel SkyBlock Wiki Tools</a>
+                    <a href="https://hypixel-skyblock.fandom.com/wiki/" class="name-short">HSW Tools</a>
+                    <span class="version">v1.1</span>
+                </span>
+            </div>
+            <nav>
+                <a href="#home" class="link">Home</a>
+                <a href="#tools" class="link">Tools</a>
+                <a href="#downloads" class="link">Downloads</a>
+                <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io" class="link" target="_blank">GitHub</a>
+            </nav>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </header>
+        <main>
+            <section class="home"></section>
+            <section class="tools">
+                <h1 id="tools">Tools</h1>
+                <ul></ul>
+            </section>
+            <section class="downloads">
+                <h1 id="downloads">Downloads</h1>
+                <ul></ul>
+            </section>
+            <section class="contributors">
+                <h1 id="contributors">Contributors</h1>
+                <ul>
+                    <li>
+                        <img src="/img/usericons/joker876.png" alt="joker876's logo" />
+                        <hr />
+                        <h4>joker876</h4>
+                        <div class="akabox">
+                            <span class="aka">AKA</span>
+                            <div class="akalist">
+                                <span>Test</span>
+                                <span>Project</span>
+                            </div>
+                        </div>
+                        <ul class="tasklist">
+                            <li><span>thing one</span></li>
+                            <li><span>thing two</span></li>
+                            <li><span>thing three</span></li>
+                            <li><span>thing four</span></li>
+                            <li><span>thing five</span></li>
+                            <li><span>thing six</span></li>
+                            <li><span>thing seven</span></li>
+                        </ul>
+                        <div class="links">
+                            <a href="https://hypixel-skyblock.fandom.com/wiki/User:Joker876">
+                                <img src="/WikiIcon.png" />
+                            </a>
+                            <span class="line"></span>
+                            <a class="discord">
+                                <img src="/img/discord-icon.png" />
+                                <div class="discordtip">
+                                    <span>joker876#8914</span>
+                                    <small class="copy-text">click to copy</small>
+                                    <small class="copy-popup">copied!</small>
+                                </div>
+                            </a>
+                            <a href="https://github.com/joker876">
+                                <img src="/img/github-icon.png" />
+                            </a>
+                            <a href="https://www.curseforge.com/members/joker876xd8">
+                                <img src="/img/curseforge-icon.png" />
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <div class="github-button-wrapper">
+                <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io" target="_blank">
+                    <div class="icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <span>View Code</span>
+                </a>
+                <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/issues" target="_blank">
+                    <div class="icon">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <span>Report Bug</span>
+                </a>
+                <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/pulls" target="_blank">
+                    <div class="icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <span>Contribute</span>
+                </a>
+            </div>
+        </footer>
+    </body>
 </html>

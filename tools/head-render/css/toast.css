@@ -4,68 +4,68 @@
 ======================
 */
 .toast {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	margin: auto;
-	max-width: 400px;
-	min-height: 1.5rem;
-	padding: 6px;
-	color: black;
-	font-family: sans-serif;
-	text-align: center;
-	border-radius: 4px;
-	border-left: 6px solid currentColor;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.75);
-	visibility: hidden;
-	opacity: 0;
-	transition: opacity 0.2s, top 0.2s, visibility 0.2s;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    max-width: 400px;
+    min-height: 1.5rem;
+    padding: 6px;
+    color: black;
+    font-family: sans-serif;
+    text-align: center;
+    border-radius: 4px;
+    border-left: 6px solid currentColor;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.75);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s, top 0.2s, visibility 0.2s;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 .toast-message {
-	flex-grow: 1;
-	padding: 0 1rem;
-	text-align: justify;
+    flex-grow: 1;
+    padding: 0 1rem;
+    text-align: justify;
 }
 .toast-icon {
-	color: currentColor;
-	margin-left: .3rem;
+    color: currentColor;
+    margin-left: 0.3rem;
 }
 .toast-close {
-	color: currentColor;
-	opacity: 50%;
-	cursor: pointer;
-	height: 100%;
-	min-width: 16px;
-	align-self: flex-start;
+    color: currentColor;
+    opacity: 50%;
+    cursor: pointer;
+    height: 100%;
+    min-width: 16px;
+    align-self: flex-start;
 }
 .toast--visible {
-	top: 20px;
-	opacity: 1;
-	visibility: visible;
+    top: 20px;
+    opacity: 1;
+    visibility: visible;
 }
 .toast--success {
-	background: #bdeca8;
-	border-color: #54a330;
-	color: #42742b;
+    background: #bdeca8;
+    border-color: #54a330;
+    color: #42742b;
 }
 .toast--info {
-	background: #CCE8F4;
-	border-color: #4D7FA3;
-	color: #4D7FA3;
+    background: #cce8f4;
+    border-color: #4d7fa3;
+    color: #4d7fa3;
 }
 .toast--disallow,
 .toast--error {
-	background: #EBC8C2;
-	border-color: #AA3132;
-	color: #AA3132;
+    background: #ebc8c2;
+    border-color: #aa3132;
+    color: #aa3132;
 }
 .toast--warn {
-	background: #F8F3D6;
-	border-color: #927947;
-	color: #927947;
+    background: #f8f3d6;
+    border-color: #927947;
+    color: #927947;
 }
