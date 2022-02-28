@@ -56,7 +56,7 @@ function RGBToHSL(r, g, b) {
     return [h, s, l];
     // return "hsl(" + h + "," + s + "%," + l + "%)";
 }
-// console.log('test');
+
 $('#color').on('input', updateColorsList);
 export function updateColorsList() {
     if (
@@ -73,6 +73,7 @@ export function updateColorsList() {
     $('#color-hex').html(`<span>#</span><span class="red">${rr}</span><span class="green">${gg}</span><span class="blue">${bb}</span>`);
     $('#color-rgb').html(`<span>rgb(</span><span class="red">${r}</span><span>, </span><span class="green">${g}</span><span>, </span><span class="blue">${b}</span><span>)</span>`);
     $('#color-hsl').html(`<span>hsl(</span><span class="red">${h}</span><span>, </span><span class="gray">${s}%</span><span>, </span><span class="white">${l}%</span><span>)</span>`);
+    $('#color-int').html(`<span class="gray">${parseInt(rr.concat(gg,bb), 16)}</span>`);
 
     // update input state shadow
     $(':root').css('--curcol', $('#color').val());

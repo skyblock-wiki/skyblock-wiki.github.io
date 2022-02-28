@@ -43,23 +43,23 @@
                     <div class="color-model">
                         <input type="radio" name="select" id="option1" />
                         <input type="radio" name="select" id="option2" checked />
-                        <button id="button-model-rgb" class="btn-option btn-option1">
-                            <label for="option1" class="option">
+                        <label for="option1" id="button-model-rgb" class="btn-option btn-option1">
+                            <div class="option">
                                 <div class="dot"></div>
                                 <span class="unselectable">RGB</span>
-                            </label>
-                        </button>
-                        <button id="button-model-int" class="btn-option btn-option2">
-                            <label for="option2" class="option">
+                            </div>
+                        </label>
+                        <label for="option2" id="button-model-int" class="btn-option btn-option2">
+                            <div class="option">
                                 <div class="dot"></div>
                                 <span class="unselectable">Integer</span>
-                            </label>
-                        </button>
+                            </div>
+                        </label>
                     </div>
-                    <div class="input-form">
+                    <form class="input-form">
                         <input type="text" name="color-import" id="color-import" />
                         <button type="submit" id="color-import-submit">Load</button>
-                    </div>
+                    </form>
                 </div>
                 <button id="show-imports"><i class="fas fa-exchange-alt"></i></button>
             </div>
@@ -94,6 +94,10 @@
                         <tr>
                             <td><span>HSL</span></td>
                             <td id="color-hsl" class="code"></td>
+                        </tr>
+                        <tr>
+                            <td><span>Int</span></td>
+                            <td id="color-int" class="code"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -167,5 +171,6 @@
                 </a>
             </div>
         </footer>
+        <div class="dimmer disallow-focusing"></div>
     </body>
 </html>

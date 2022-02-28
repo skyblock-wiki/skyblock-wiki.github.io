@@ -25,6 +25,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    z-index: 99;
 }
 .toast-message {
     flex-grow: 1;

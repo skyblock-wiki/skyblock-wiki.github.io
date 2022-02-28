@@ -1,7 +1,10 @@
 import { Toast } from '../../../js/toast.js';
 import { colorPicker, showHideMenu } from './index.js';
 
-export function loadColorFromModel() {
+export function loadColorFromModel(e) {
+    if (e)
+        e.preventDefault();
+
     const input = $('#color-import');
     const isRGB = $('.color-model #option1').is(':checked');
 
@@ -21,7 +24,6 @@ export function loadColorFromModel() {
                 showHideMenu($('.imports-list'));
                 colorPicker.color.hexString = RgbToHex(r, g, b);
                 input.val('');
-                console.log(colorPicker.color.hexString);
             } else
                 new Toast({
                     message: 'Invalid RGB color format.',
@@ -66,7 +68,6 @@ function IntToHex(int) {
 
     while (ret.length < 6) ret = `0${ret}`;
     ret = `#${ret.toUpperCase()}`;
-    console.log(ret);
 
     return ret;
 }
