@@ -192,14 +192,20 @@ header .version {
     display: block;
 }
 .dimmer {
-	background-color: #0e191a;
+	background-color: #000;
 	left: 0;
-	opacity: 0.8;
+	opacity: 0.6;
 	position: fixed;
 	top: 0;
 	width: 100%;
 	height: 100%;
     z-index: 1;
+    transition: opacity 0.2s;
+}
+.dimmer.disallow-focusing {
+	opacity: 0;
+	z-index: -99;
+	display: block !important;
 }
 .imports h1 {
     font-size: 1.2rem;
