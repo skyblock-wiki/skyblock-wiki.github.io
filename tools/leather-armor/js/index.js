@@ -84,26 +84,25 @@ $('#show-imports').on('click', (e) => {
     e.stopPropagation();
     showHideMenu($('.imports-list'));
 });
+$('.dimmer').on('click', (e) => {
+    e.stopPropagation();
+    showHideMenu($('.imports-list'), "hide");
+})
+// $('.imports-list').on('click', (e) => {
+//     e.stopPropagation();
+// });
 
 $(window).scroll(() => {
     if (!$('.imports-list').hasClass('hidden') && !$('.imports-list').isInViewport()) showHideMenu($('.imports-list'));
 });
 
-// hide import menu when clicked outside
-$(document).click(() => {
-    if (!$('.imports-list').hasClass('hidden')) showHideMenu($('.imports-list'));
-});
-$('.imports-list').click((e) => {
-    e.stopPropagation();
-});
-
-export function showHideMenu(el) {
-    el.removeClass('disallow-focusing');
+export function showHideMenu(el, action) {
+    el.add('.dimmer').removeClass('disallow-focusing');
     setTimeout(() => {
-        el.toggleClass('hidden');
+        el[action === 'hide' ? 'addClass' : action === 'show' ? 'removeClass' : 'toggleClass']('hidden');
         if (el.hasClass('hidden'))
             setTimeout(() => {
-                el.addClass('disallow-focusing');
+                el.add('.dimmer').addClass('disallow-focusing');
             }, 200);
     }, 50);
 }
@@ -116,7 +115,7 @@ $.fn.isInViewport = function () {
     return elementBottom > viewportTop && elementTop < viewportBottom;
 };
 
-$('#color-import-submit').click(loadColorFromModel);
+$('.input-form').on('submit', loadColorFromModel);
 
 $('.color-model #option1').change(() => {
     saveToLocalStorage('cur-color-model', 0);
