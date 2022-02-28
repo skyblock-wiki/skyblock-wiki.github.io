@@ -129,6 +129,10 @@ const contributors = [
                 type: 'github',
                 value: 'https://github.com/MonkeysHK',
             },
+            {
+                type: 'curseforge',
+                value: 'https://www.curseforge.com/members/MonkeysHK',
+            },
         ],
     },
     {

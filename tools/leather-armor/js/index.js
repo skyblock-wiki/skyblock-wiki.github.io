@@ -88,9 +88,6 @@ $('.dimmer').on('click', (e) => {
     e.stopPropagation();
     showHideMenu($('.imports-list'), "hide");
 })
-// $('.imports-list').on('click', (e) => {
-//     e.stopPropagation();
-// });
 
 $(window).scroll(() => {
     if (!$('.imports-list').hasClass('hidden') && !$('.imports-list').isInViewport()) showHideMenu($('.imports-list'));
