@@ -51,7 +51,6 @@ function readImage() {
 
     $imgLink.attr('download', `${filename} Head Render.png`.trim());
     $spriteLink.attr('download', `${filename} Sprite Render.png`.trim());
-    showImageLoader();
 }
 
 // ////////////////////////////
