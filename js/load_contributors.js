@@ -97,7 +97,7 @@ const contributors = [
         name: 'Thundercraft5',
         thumbnail: 'ruby.png',
         aka: ['Ruby'],
-        tasks: ['Owner of the GitHub repository and organization', 'Maintains the Hypixel SkyBlock Wiki Bot', 'Added various enhancements to the site'],
+        tasks: ['Owner of the GitHub repository and organization', 'Maintains the Hypixel SkyBlock Wiki Bot', 'Added various enhancements to the site', "<span style='color: #f33; margin-left: 4px;'>No longer active!</span>"],
         links: [
             {
                 type: 'wiki',
