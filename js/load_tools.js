@@ -17,7 +17,7 @@ const tools = [
         link: './tools/head-render/index.html',
         thumbnail: './tools/thumbnails/sprite-maker.png',
         name: 'NPC Sprite Maker',
-        version: 'Merged w/Head Renderer',
+        version: null,
         description: 'Render NPC sprites.',
     },
     {
