@@ -14,10 +14,10 @@ const tools = [
         description: 'Render colored leather armor images. Requires no assets.',
     },
     {
-        link: 'https://jsfiddle.net/Fewfre/sg5bqo2j/',
+        link: './tools/head-render/index.html',
         thumbnail: './tools/thumbnails/sprite-maker.png',
         name: 'NPC Sprite Maker',
-        version: 'v1.1',
+        version: 'Merged w/Head Renderer',
         description: 'Render NPC sprites.',
     },
     {
