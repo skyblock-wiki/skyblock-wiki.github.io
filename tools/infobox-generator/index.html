@@ -32,38 +32,23 @@
         <div id="wrapper">
             <main>
                 <section>
-                    <h3>Render from upload</h3>
-                    <p>Upload a skin/head texture</p>
-                    <input type="file" id="fileUpload" />
-                </section>
-                <section>
-                    <h3>Render from NBT Data</h3>
-                    <div class="sec-err" id="nbtError"></div>
-                    <textarea id="nbt" placeholder="Use the NBT data from the SBA or WikiTools mods"></textarea>
+                    <h3>Create from item name</h3>
+                    <div class="sec-err" id="nameError"></div>
+                    <textarea id="name" placeholder="Use the item name"></textarea>
                     <br />
                     <span class="unselectable">
-                        <button class="sec-subm" id="nbtSubmit">Render</button>
-                        <button class="sec-clr" id="nbtClear">Clear</button>
+                        <button class="sec-subm" id="nameSubmit">Create</button>
+                        <button class="sec-clr" id="nameClear">Clear</button>
                     </span>
                 </section>
                 <section>
-                    <h3>Render from NameMC</h3>
-                    <div class="sec-err" id="valError"></div>
-                    <textarea id="val" placeholder="Use any head command from a NameMC *skin* page, or use a base64 encoded string"></textarea>
+                    <h3>Create from item ID</h3>
+                    <div class="sec-err" id="idError"></div>
+                    <textarea id="id" placeholder="Use the item ID"></textarea>
                     <br />
                     <span class="unselectable">
-                        <button class="sec-subm" id="valSubmit">Render</button>
-                        <button class="sec-clr" id="valClear">Clear</button>
-                    </span>
-                </section>
-                <section>
-                    <h3>Render from texture ID</h3>
-                    <div class="sec-err" id="tidError"></div>
-                    <textarea id="tid" placeholder="Use a Texture ID"></textarea>
-                    <br />
-                    <span class="unselectable">
-                        <button class="sec-subm" id="tidSubmit">Render</button>
-                        <button class="sec-clr" id="tidClear">Clear</button>
+                        <button class="sec-subm" id="idSubmit">Create</button>
+                        <button class="sec-clr" id="idClear">Clear</button>
                     </span>
                 </section>
             </main>
