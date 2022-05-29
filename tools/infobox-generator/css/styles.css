@@ -192,9 +192,7 @@ main section {
 main section:not(:last-child) {
     border-bottom: 1px solid var(--col-bg3);
 }
-main section:nth-of-type(1) {
-    height: 7.5rem;
-}
+
 h3:not(.contributors h3) {
     font-family: 'Montserrat', sans-serif;
     color: white;
