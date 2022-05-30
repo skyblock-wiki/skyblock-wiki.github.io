@@ -76,7 +76,7 @@ function onChanged(input_type) {
 function create_infobox(itemData) {
     console.log(itemData);
     let infobox = '{{Infobox ';
-    if itemData['category'] {
+    if (itemData['category']) {
         let categories = {'SWORD': 'weapon',
                           'WAND': 'weapon',
                           'BOW': 'weapon',
