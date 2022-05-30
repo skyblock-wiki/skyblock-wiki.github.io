@@ -1,12 +1,34 @@
 async function fetchItems() {
     window.itemList = await fetch('https://api.hypixel.net/resources/skyblock/items');   
-    console.log('Hello');
+    console.log('Hi');
+    const $loading = $('#loading');
+    const $warning = $('#warning');
+    const mainElem = {
+        name: $('#name'),
+        id: $('#id'),
+    };
+    const subElem = {
+        name: $('#nameSubmit'),
+        id: $('#idSubmit'),
+    };
+    const errElem = {
+        name: $('#nameError'),
+        id: $('#idError'),
+    };
+    const toStr = {
+        name: 'name',
+        id: 'item ID',
+    };
+
+    mainElem.name.on('paste', onChanged('name'));
+    mainElem.name.on('input', onChanged('name'));
+    subElem.name.on('click', onChanged('name'));
+    mainElem.id.on('paste', onChanged('id'));
+    mainElem.id.on('input', onChanged('id'));
+    subElem.id.on('click', onChanged('id'));
 }
 
 fetchItems();
-
-const $loading = $('#loading');
-const $warning = $('#warning');
 
 function clear() {
     $('#nbtInfo').html('');
@@ -21,30 +43,6 @@ function clear() {
     $warning.html('');
     $('.sec-err').html('');
 }
-
-const mainElem = {
-    name: $('#name'),
-    id: $('#id'),
-};
-const subElem = {
-    name: $('#nameSubmit'),
-    id: $('#idSubmit'),
-};
-const errElem = {
-    name: $('#nameError'),
-    id: $('#idError'),
-};
-const toStr = {
-    name: 'name',
-    id: 'item ID',
-};
-
-mainElem.name.on('paste', onChanged('name'));
-mainElem.name.on('input', onChanged('name'));
-subElem.name.on('click', onChanged('name'));
-mainElem.id.on('paste', onChanged('id'));
-mainElem.id.on('input', onChanged('id'));
-subElem.id.on('click', onChanged('id'));
 
 async function onChanged(input_type) {
     if (!window.itemList) {
