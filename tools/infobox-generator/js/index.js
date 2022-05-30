@@ -1,6 +1,7 @@
 async function fetchItems() {
     const itemData = await fetch('https://api.hypixel.net/resources/skyblock/items');   
     window.itemList = await itemData.json();
+    window.itemList = window.itemList['items'];
     console.log(window.itemList);
 }
 
@@ -51,5 +52,18 @@ function onChanged(input_type) {
     if (!window.itemList) {
         console.log('Hello');
         //Send an issue here saying data not yet loaded.
+    } else {
+        const thing = document.getElementById(input_type).innerHTML.toLowerCase();
+        for (let i = 0; i < window.itemList.length; i++) {
+            if (window.itemList[i][input_type].toLowerCase() == thing) {
+                create_infobox(window.itemList[i]);
+                break; 
+            }
+        }
     }
+}
+
+function create_infobox(itemData) {
+    console.log(itemData);
+    //Nothing yet.
 }
