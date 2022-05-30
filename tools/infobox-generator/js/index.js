@@ -41,12 +41,20 @@ const toStr = {
     id: 'item ID',
 };
 
-mainElem.name.on('paste', onChanged('name'));
-mainElem.name.on('input', onChanged('name'));
-subElem.name.on('click', onChanged('name'));
-mainElem.id.on('paste', onChanged('id'));
-mainElem.id.on('input', onChanged('id'));
-subElem.id.on('click', onChanged('id'));
+mainElem.name.on('paste', onNameChanged);
+mainElem.name.on('input', onNameChanged);
+subElem.name.on('click', onNameChanged);
+mainElem.id.on('paste', onIdChanged);
+mainElem.id.on('input', onIdChanged);
+subElem.id.on('click', onIdChanged);
+
+function onNameChanged(event) {
+    onChanged('name');
+}
+
+function onIdChanged(event) {
+    onChanged('id');
+}
 
 function onChanged(input_type) {
     console.log('This is being called');
