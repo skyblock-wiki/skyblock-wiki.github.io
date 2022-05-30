@@ -1,3 +1,10 @@
+async function fetchItems() {
+    window.itemList = await fetch('https://api.hypixel.net/resources/skyblock/items');   
+    console.log('Hello');
+}
+
+fetchItems();
+
 const $loading = $('#loading');
 const $warning = $('#warning');
 
@@ -41,7 +48,6 @@ subElem.id.on('click', onChanged('id'));
 
 async function onChanged(input_type) {
     if (!window.itemList) {
-        window.itemList = await fetch('https://api.hypixel.net/resources/skyblock/items');
         console.log('Hello');
     }
     //I'll finish this some other time...
