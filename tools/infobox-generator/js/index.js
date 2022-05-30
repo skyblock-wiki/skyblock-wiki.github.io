@@ -75,5 +75,40 @@ function onChanged(input_type) {
 
 function create_infobox(itemData) {
     console.log(itemData);
-    //Nothing yet.
+    let infobox = '{{Infobox ';
+    if itemData['category'] {
+        let categories = {'SWORD': 'weapon',
+                          'WAND': 'weapon',
+                          'BOW': 'weapon',
+                          'DEPLOYABLE': 'item',
+                          'COSMETIC': 'item',
+                          'TRAVEL_SCROLL': 'item',
+                          'ACCESSORY': 'accessory',
+                          'HELMET': 'armor',
+                          'CHESTPLATE': 'armor',
+                          'LEGGINGS': 'armor',
+                          'BOOTS': 'boots',
+                          'PET_ITEM': 'item',
+                          'ARROW_POISON': 'item',
+                          'GAUNTLET': 'item',
+                          'BELT': 'item',
+                          'BRACELET': 'item',
+                          'CLOAK': 'item',
+                          'GLOVES': 'item',
+                          'NECKLACE': 'item',
+                          'DUNGEON_PASS': 'item',
+                          'REFORGE_STONE': 'reforge stone'
+                          'BAIT': 'item',
+                          'AXE': 'item',
+                          'HOE': 'item',
+                          'SPADE': 'item',
+                          'PICKAXE': 'item',
+                          'FISHING_ROD': 'fishing rod',
+                         }
+        infobox += categories[itemData['category']];
+    } else {
+        infobox += 'item';
+    }
+    console.log(infobox);
+    //Not done yet. I will finish some time in the future.
 }
