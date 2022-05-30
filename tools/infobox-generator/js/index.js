@@ -97,7 +97,7 @@ function create_infobox(itemData) {
                           'GLOVES': 'item',
                           'NECKLACE': 'item',
                           'DUNGEON_PASS': 'item',
-                          'REFORGE_STONE': 'reforge stone'
+                          'REFORGE_STONE': 'reforge stone',
                           'BAIT': 'item',
                           'AXE': 'item',
                           'HOE': 'item',
