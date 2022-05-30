@@ -1,5 +1,5 @@
 async function fetchItems() {
-    itemData = await fetch('https://api.hypixel.net/resources/skyblock/items');   
+    const itemData = await fetch('https://api.hypixel.net/resources/skyblock/items');   
     window.itemList = await itemData.json();
     console.log(window.itemList);
 }
