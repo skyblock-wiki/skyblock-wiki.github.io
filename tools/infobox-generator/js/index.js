@@ -1,7 +1,7 @@
-
 async function fetchItems() {
-    window.itemList = await fetch('https://api.hypixel.net/resources/skyblock/items');   
-    console.log('Hi');
+    itemData = await fetch('https://api.hypixel.net/resources/skyblock/items');   
+    window.itemList = await itemData.json();
+    console.log(window.itemList);
 }
 
 fetchItems();
@@ -52,5 +52,4 @@ function onChanged(input_type) {
         console.log('Hello');
         //Send an issue here saying data not yet loaded.
     }
-    //I'll finish this some other time...
 }
