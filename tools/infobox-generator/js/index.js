@@ -49,6 +49,7 @@ mainElem.id.on('input', onChanged('id'));
 subElem.id.on('click', onChanged('id'));
 
 function onChanged(input_type) {
+    console.log('This is being called');
     if (!window.itemList) {
         console.log('Hello');
         //Send an issue here saying data not yet loaded.
