@@ -66,7 +66,6 @@ function onChanged(input_type) {
         console.log(thing);
         for (let i = 0; i < window.itemList.length; i++) {
             if (window.itemList[i][input_type].toLowerCase() == thing) {
-                console.log('hi');
                 create_infobox(window.itemList[i]);
                 break; 
             }
