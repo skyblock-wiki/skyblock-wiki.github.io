@@ -54,8 +54,10 @@ function onChanged(input_type) {
         //Send an issue here saying data not yet loaded.
     } else {
         const thing = document.getElementById(input_type).innerHTML.toLowerCase();
+        console.log(thing);
         for (let i = 0; i < window.itemList.length; i++) {
             if (window.itemList[i][input_type].toLowerCase() == thing) {
+                console.log('hi');
                 create_infobox(window.itemList[i]);
                 break; 
             }
