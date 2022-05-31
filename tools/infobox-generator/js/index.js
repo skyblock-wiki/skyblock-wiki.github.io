@@ -80,6 +80,7 @@ function create_infobox(itemData) {
         let categories = {'SWORD': 'weapon',
                           'WAND': 'weapon',
                           'BOW': 'weapon',
+                          'LONGSWORD': 'weapon',
                           'DEPLOYABLE': 'item',
                           'COSMETIC': 'item',
                           'TRAVEL_SCROLL': 'item',
