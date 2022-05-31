@@ -73,6 +73,21 @@ function onChanged(input_type) {
     }
 }
 
+function toTitleCase(str) {
+    str = str.toLowerCase().split(' ');
+    for (var i = 0; i < str.length; i++) {
+        str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+    }
+    return str.join(' ');
+}
+
+function gemstoneHelper(gemstone) {
+    gemstone = gemstone.toLowerCase();
+    gemstone.replace("_gem", "");
+    gemstone.replace("_", " ");
+    return toTitleCase(gemstone);
+}
+
 function create_infobox(itemData) {
     console.log(itemData);
     let infobox = '{{Infobox ';
@@ -116,6 +131,30 @@ function create_infobox(itemData) {
         const stat_keys = Object.keys(itemData['stats']);
         for (let i = 0; i < stat_keys.length; i++) {
             infobox += '|' + stat_keys[i].toLowerCase() + ' = ' + itemData['stats'][stat_keys[i]] + '\n';
+        }
+    }
+    if (itemData['gemstone_slots']) {
+        infobox += '|gemstone_slots = \n';
+        for (let a = 0; a < itemData['gemstone_slots'].length; a++) {
+            infobox += '1* ' + toTitleCase(itemData['gemstone_slots'][a]['slot_type']);
+            if (itemData['gemstone_slots'][a]['costs']) {
+                infobox += ' &'
+                let len = itemData['gemstone_slots'][a]['costs'].length;
+                for (let b = 0; b < len; b++) {
+                    let cost =  itemData['gemstone_slots'][a]['costs'][b];
+                    let keys = Object.keys(cost);
+                    if (keys == 'coins') {
+                        infobox += cost['coins'].toString();
+                    } else {
+                        infobox += cost['amount'].toString() + ' ' + gemstoneHelper(cost['item_id']);
+                    }
+                    if (!(b == len - 1)) {
+                        infobox += ', ';
+                    }
+                }
+                infobox += '&';
+            }
+            infobox += '\n';
         }
     }
     console.log(infobox);
