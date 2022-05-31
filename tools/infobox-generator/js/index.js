@@ -109,6 +109,14 @@ function create_infobox(itemData) {
     } else {
         infobox += 'item';
     }
+    infobox += '\n|rarity = ';
+    infobox += itemData['tier'].toLowerCase() + '\n';
+    if (itemData['stats']) {
+        const stat_keys = Object.keys(itemData['stats']);
+        for (let i = 0; i < stat_keys.length; i++) {
+            infobox += '|' + stat_keys[i].toLowerCase() + ' = ' + itemData['stats'][stat_keys[i]];
+        }
+    }
     console.log(infobox);
     //Not done yet. I will finish some time in the future.
 }
