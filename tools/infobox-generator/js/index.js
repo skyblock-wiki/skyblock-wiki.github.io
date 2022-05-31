@@ -87,6 +87,21 @@ function gemstoneHelper(gemstone) {
     return toTitleCase(gemstone);
 }
 
+//Stolen from: https://stackoverflow.com/questions/9083037/convert-a-number-into-a-roman-numeral-in-javascript
+function romanize (num) {
+    if (isNaN(num))
+        return NaN;
+    var digits = String(+num).split(""),
+        key = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM",
+               "","X","XX","XXX","XL","L","LX","LXX","LXXX","XC",
+               "","I","II","III","IV","V","VI","VII","VIII","IX"],
+        roman = "",
+        i = 3;
+    while (i--)
+        roman = (key[+digits.pop() + (i * 10)] || "") + roman;
+    return Array(+digits.join("") + 1).join("M") + roman;
+}
+
 function createInfobox(itemData) {
     console.log(itemData);
     let infobox = '{{Infobox ';
@@ -154,6 +169,31 @@ function createInfobox(itemData) {
                 infobox += '&';
             }
             infobox += '\n';
+        }
+    }
+    if (itemData['requirements']) {
+        if ('skill' in itemData['requirements']) {
+            if (itemData['requirements']['skill'].toLowerCase() == 'combat') {
+                infobox += '|combat_level_requirement = {{Skl|combat|' + itemData['requirements']['skill']['level'] + '}}';
+            } else {
+                infobox += '|other_level_requirement = {{Skl|' + itemData['requirements']['skill']['type'].toLowerCase() + '|' + itemData['requirements']['skill']['level'] + '}}';
+            }
+        }
+        if ('slayer' in itemData['requirements']) {
+            infobox += '|slayer_level_requirement = ' + toTitleCase(itemData['requirements']['slayer']['slayer_boss_type']) + ' Slayer ' + itemData['requirements']['slayer']['level'].toString();
+        }
+        if ('dungeon' in itemData['requirements']) {
+            infobox += '|dungeon_level_requirement = {{Skl|' + itemData['requirements']['dungeon']['type'].toLowerCase() + '|' + itemData['requirements']['dungeon']['level'] + '}}';
+            if (itemData['dungeon_item_conversion_cost']) {
+                infobox += ' (when dungeonized)';
+            }
+        }
+        if ('dungeon_completion' in itemData['requirements']) {
+            let d_c = itemData['requirements']['dungeon_completion'];
+            infobox += '|dungeon_floor_clearing_requirement = ' + toTitleCase(d_c['type'].replace('_', ' ')) + ' Floor ' + romanize(d_c['tier']);
+            if (itemData['dungeon_item_conversion_cost']) {
+                infobox += ' (when dungeonized)';
+            }
         }
     }
     console.log(infobox);
