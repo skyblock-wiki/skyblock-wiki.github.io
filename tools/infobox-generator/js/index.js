@@ -65,7 +65,7 @@ function onChanged(input_type) {
         console.log(thing);
         for (let i = 0; i < window.itemList.length; i++) {
             if (window.itemList[i][input_type].toLowerCase() == thing) {
-                create_infobox(window.itemList[i]);
+                createInfobox(window.itemList[i]);
                 break; 
             }
         }
@@ -87,7 +87,7 @@ function gemstoneHelper(gemstone) {
     return toTitleCase(gemstone);
 }
 
-function create_infobox(itemData) {
+function createInfobox(itemData) {
     console.log(itemData);
     let infobox = '{{Infobox ';
     if (itemData['category']) {
@@ -158,4 +158,11 @@ function create_infobox(itemData) {
     }
     console.log(infobox);
     //Not done yet. I will finish some time in the future.
+    if (itemData['upgrade_costs']) {
+        createEssenceTable(itemData);
+    }
+}
+
+function createEssenceTable {
+    //Create essence table here
 }
