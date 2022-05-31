@@ -163,6 +163,6 @@ function createInfobox(itemData) {
     }
 }
 
-function createEssenceTable {
+function createEssenceTable(itemData) {
     //Create essence table here
 }
