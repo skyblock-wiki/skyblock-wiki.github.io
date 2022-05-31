@@ -173,7 +173,7 @@ function createInfobox(itemData) {
     }
     if (itemData['requirements']) {
         if ('skill' in itemData['requirements']) {
-            if (itemData['requirements']['skill'].toLowerCase() == 'combat') {
+            if (itemData['requirements']['skill']['type'].toLowerCase() == 'combat') {
                 infobox += '|combat_level_requirement = {{Skl|combat|' + itemData['requirements']['skill']['level'] + '}}';
             } else {
                 infobox += '|other_level_requirement = {{Skl|' + itemData['requirements']['skill']['type'].toLowerCase() + '|' + itemData['requirements']['skill']['level'] + '}}';
