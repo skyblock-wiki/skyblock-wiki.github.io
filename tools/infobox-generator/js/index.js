@@ -57,7 +57,6 @@ function onIdChanged(event) {
 }
 
 function onChanged(input_type) {
-    console.log('This is being called');
     if (!window.itemList) {
         console.log('Hello');
         //Send an issue here saying data not yet loaded.
@@ -83,8 +82,8 @@ function toTitleCase(str) {
 
 function gemstoneHelper(gemstone) {
     gemstone = gemstone.toLowerCase();
-    gemstone.replace("_gem", "");
-    gemstone.replace("_", " ");
+    gemstone = gemstone.replace("_gem", "");
+    gemstone = gemstone.replace("_", " ");
     return toTitleCase(gemstone);
 }
 
