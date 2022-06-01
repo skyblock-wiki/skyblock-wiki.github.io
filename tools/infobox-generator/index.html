@@ -58,31 +58,32 @@
                     <canvas id="spriteCanvas" width="64" height="64"></canvas>
                     <canvas id="render"></canvas>
                     <div class="headbox">
-                        <table class="nbtInfo">
+                        <table class="templates">
                             <tbody>
                                 <tr>
                                     <th>Texture ID</th>
                                     <td class="unselectable">
-                                        <input type="text" id="textureID" readonly />
+                                        <!-- This should and will be a div, not an input -->
+                                        <input type="text" id="infobox" readonly />
                                         <div>
-                                            <button id="copy-id" class="copy" disabled>Copy</button>
-                                            <button id="open-id" class="link" disabled>Open as link</button>
+                                            <button id="copy-infobox" class="copy" disabled>Copy</button>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Texture Template</th>
                                     <td class="unselectable">
-                                        <input type="text" id="textureTemplate" readonly />
+                                        <!-- This too should and will be a div, not an input -->
+                                        <input type="text" id="essenceTable" readonly />
                                         <div>
-                                            <button id="copy-template" class="copy" disabled>Copy</button>
-                                            <button id="open-template" class="link soft-hidden" disabled>Open as link</button>
+                                            <button id="copy-essenceTable" class="copy" disabled>Copy</button>
                                         </div>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
+                    <!-- The div and img below this should probably be deleted later on -->
                     <div class="titlebox">
                         <h3>Render:</h3>
                         <div id="warning"></div>
