@@ -182,25 +182,26 @@ function createInfobox(itemData) {
             infobox += '\n';
         }
     }
-    if (itemData['requirements']) {
-        if ('skill' in itemData['requirements']) {
-            if (itemData['requirements']['skill']['type'].toLowerCase() == 'combat') {
-                infobox += '|combat_level_requirement = {{Skl|combat|' + itemData['requirements']['skill']['level'] + '}}\n';
+    if (itemData['requirements'] || itemData['catacombs_requirements']) {
+        let requirements = itemData['requirements'].concat(itemData['catacombs_requirements']);
+        if ('skill' in requirements) {
+            if (requirements['skill']['type'].toLowerCase() == 'combat') {
+                infobox += '|combat_level_requirement = {{Skl|combat|' + requirements['skill']['level'] + '}}\n';
             } else {
-                infobox += '|other_level_requirement = {{Skl|' + itemData['requirements']['skill']['type'].toLowerCase() + '|' + itemData['requirements']['skill']['level'] + '}}\n';
+                infobox += '|other_level_requirement = {{Skl|' + requirements['skill']['type'].toLowerCase() + '|' + requirements['skill']['level'] + '}}\n';
             }
         }
-        if ('slayer' in itemData['requirements']) {
-            infobox += '|slayer_level_requirement = ' + toTitleCase(itemData['requirements']['slayer']['slayer_boss_type']) + ' Slayer ' + itemData['requirements']['slayer']['level'].toString() + '\n';
+        if ('slayer' in requirements) {
+            infobox += '|slayer_level_requirement = ' + toTitleCase(requirements['slayer']['slayer_boss_type']) + ' Slayer ' + requirements['slayer']['level'].toString() + '\n';
         }
-        if ('dungeon' in itemData['requirements']) {
-            infobox += '|dungeon_level_requirement = {{Skl|' + itemData['requirements']['dungeon']['type'].toLowerCase() + '|' + itemData['requirements']['dungeon']['level'] + '}}\n';
+        if ('dungeon' in requirements) {
+            infobox += '|dungeon_level_requirement = {{Skl|' + requirements['dungeon']['type'].toLowerCase() + '|' + requirements['dungeon']['level'] + '}}\n';
             if (itemData['dungeon_item_conversion_cost']) {
                 infobox += ' (when dungeonized)';
             }
         }
-        if ('dungeon_completion' in itemData['requirements']) {
-            let d_c = itemData['requirements']['dungeon_completion'];
+        if ('dungeon_completion' in requirements) {
+            let d_c = requirements['dungeon_completion'];
             infobox += '|dungeon_floor_clearing_requirement = ' + toTitleCase(d_c['type'].replace('_', ' ')) + ' Floor ' + romanize(d_c['tier']) + '\n';
             if (itemData['dungeon_item_conversion_cost']) {
                 infobox += ' (when dungeonized)';
