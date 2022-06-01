@@ -148,6 +148,7 @@ function createInfobox(itemData) {
         infobox += '|rarity = ' + itemData['tier'].toLowerCase() + '\n';
     }
     infobox += '|id = ' + itemData['id'] + '\n';
+    //Future me implement tiered stats.
     if (itemData['stats']) {
         const stat_keys = Object.keys(itemData['stats']);
         for (let i = 0; i < stat_keys.length; i++) {
@@ -183,7 +184,7 @@ function createInfobox(itemData) {
         }
     }
     if (itemData['requirements'] || itemData['catacombs_requirements']) {
-        let requirements = itemData['requirements'].concat(itemData['catacombs_requirements']);
+        let requirements = Object.assign(itemData['requirements'], itemData['catacombs_requirements']);
         if ('skill' in requirements) {
             if (requirements['skill']['type'].toLowerCase() == 'combat') {
                 infobox += '|combat_level_requirement = {{Skl|combat|' + requirements['skill']['level'] + '}}\n';
