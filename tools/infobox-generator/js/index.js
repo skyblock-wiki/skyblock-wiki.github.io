@@ -230,9 +230,21 @@ function createInfobox(itemData) {
     if (window.bazaarList[itemData['id']]) {
         infobox += '|auctionable = No\n';
     } else {
-        infobox += '|auctionable = u\n';
+        if (itemData['soulbound']) {
+            infobox += '|auctionable = No\n';
+        } else {
+            infobox += '|auctionable = u\n';
+        }
     }
-    infobox += '|tradeable = u\n';
+    if (itemData['soulbound']) {
+        if (itemData['soulbound'].toLowerCase() == 'coop') {
+            infobox += '|tradeable = No\n';
+        } else {
+            infobox += '|tradeable = {{No|text=y}}<br>(Except to Co-op members)';
+        }
+    } else {
+        infobox += '|tradeable = u\n';
+    }
     if ('museum' in itemData) {
         if (itemData['museum'] == true) {
             infobox += '|museum = Yes\n';
