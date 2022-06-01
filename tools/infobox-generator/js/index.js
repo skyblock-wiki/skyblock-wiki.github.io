@@ -247,9 +247,7 @@ function createInfobox(itemData) {
         let color = itemData['color'].split(',');
         let hex = '';
         for (let i = 0; i < 3; i++) {
-            hex += color[i].toString(16);
-            console.log(color[i]);
-            console.log(color[i].toString(16));
+            hex += Number(color[i]).toString(16);
         }
         infobox += '|color = ' + hex + '\n';
     }
