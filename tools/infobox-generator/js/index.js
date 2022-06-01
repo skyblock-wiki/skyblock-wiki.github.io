@@ -174,7 +174,7 @@ function createInfobox(itemData) {
         const stat_keys = Object.keys(itemData['tiered_stats']);
         for (let i = 0; i < stat_keys.length; i++) {
             let a = itemData['tiered_stats'][stat_keys[i]][0];
-            let b = itemData['tiered_stats'][stat_keys[i]][itemData['tiered_stats'][stat_keys[i]].length];
+            let b = itemData['tiered_stats'][stat_keys[i]][itemData['tiered_stats'][stat_keys[i]].length - 1];
             let stat;
             if (a == b) {
                 stat = a.toString();
