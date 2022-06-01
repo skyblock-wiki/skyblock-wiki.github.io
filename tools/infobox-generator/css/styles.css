@@ -249,18 +249,18 @@ aside section {
     display: flex;
     flex-direction: column;
 }
-aside .nbtInfo th {
+aside .templates th {
     padding-right: 1rem;
     text-align: right;
     color: white;
     font-weight: 200;
     font-size: 0.9rem;
 }
-aside .nbtInfo td div {
+aside .templates td div {
     display: inline-block;
     margin: 0.2rem 0;
 }
-aside .nbtInfo input {
+aside .templates input {
     padding: 0.2rem 0.3rem;
     border-radius: 4px;
     border: 1px solid var(--col-acc);
@@ -303,26 +303,7 @@ aside #loading {
     align-self: center;
     margin: 3rem;
 }
-aside #drawnLink,
-aside #spriteLink {
-    align-self: center;
-}
-aside img#drawn,
-aside img#sprite {
-    margin: 0.5rem 0 0;
-    cursor: pointer;
-    border-radius: 4px;
-    border: 1px solid var(--col-acc);
-    background-color: var(--col-bg2);
-}
-aside img#drawn {
-    width: 350px;
-    height: 350px;
-}
-aside img#sprite {
-    width: 150px;
-    height: 150px;
-}
+
 /* contributors */
 .contributors {
     margin: 0.8rem 1.1rem;
