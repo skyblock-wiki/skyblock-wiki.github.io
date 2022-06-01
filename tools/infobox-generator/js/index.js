@@ -136,6 +136,7 @@ function createInfobox(itemData) {
                           'AXE': 'item',
                           'HOE': 'item',
                           'SPADE': 'item',
+                          'SHEARS': 'item',
                           'PICKAXE': 'item',
                           'FISHING_ROD': 'fishing rod',
                          };
