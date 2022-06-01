@@ -196,17 +196,19 @@ function createInfobox(itemData) {
             infobox += '|slayer_level_requirement = ' + toTitleCase(requirements['slayer']['slayer_boss_type']) + ' Slayer ' + requirements['slayer']['level'].toString() + '\n';
         }
         if ('dungeon' in requirements) {
-            infobox += '|dungeon_level_requirement = {{Skl|' + requirements['dungeon']['type'].toLowerCase() + '|' + requirements['dungeon']['level'] + '}}\n';
+            infobox += '|dungeon_level_requirement = {{Skl|' + requirements['dungeon']['type'].toLowerCase() + '|' + requirements['dungeon']['level'] + '}}';
             if (itemData['dungeon_item_conversion_cost']) {
                 infobox += ' (when dungeonized)';
             }
+            infobox += '\n';
         }
         if ('dungeon_completion' in requirements) {
             let d_c = requirements['dungeon_completion'];
-            infobox += '|dungeon_floor_clearing_requirement = ' + toTitleCase(d_c['type'].replace('_', ' ')) + ' Floor ' + romanize(d_c['tier']) + '\n';
+            infobox += '|dungeon_floor_clearing_requirement = ' + toTitleCase(d_c['type'].replace('_', ' ')) + ' Floor ' + romanize(d_c['tier']);
             if (itemData['dungeon_item_conversion_cost']) {
                 infobox += ' (when dungeonized)';
             }
+            infobox += '\n';
         }
     }
     if (itemData['npc_sell_price']) {
