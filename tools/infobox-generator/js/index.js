@@ -1,8 +1,11 @@
 async function fetchItems() {
-    const itemData = await fetch('https://api.hypixel.net/resources/skyblock/items');   
-    window.itemList = await itemData.json();
+    const itemsData = await fetch('https://api.hypixel.net/resources/skyblock/items');   
+    window.itemList = await itemsData.json();
     window.itemList = window.itemList['items'];
     console.log(window.itemList);
+    const bazaarData = await fetch('https://api.hypixel.net/skyblock/bazaar');   
+    window.bazaarList = await bazaarData.json();
+    console.log(window.bazaarList);
 }
 
 fetchItems();
@@ -201,6 +204,9 @@ function createInfobox(itemData) {
                 infobox += ' (when dungeonized)';
             }
         }
+    }
+    if (itemData['npc_sell_price']) {
+        infobox += '|sell = ' + itemData['npc_sell_price'].toString() + '\n';
     }
     console.log(infobox);
     //Not done yet. I will finish some time in the future.
