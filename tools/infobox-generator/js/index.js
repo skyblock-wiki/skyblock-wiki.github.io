@@ -148,8 +148,9 @@ function createInfobox(itemData) {
         infobox += '|rarity = ' + itemData['tier'].toLowerCase() + '\n';
     }
     infobox += '|id = ' + itemData['id'] + '\n';
-    //Future me implement tiered stats.
+    //To do: implement tiered stats.
     if (itemData['stats']) {
+        //To do: add percentages to the end of certain stats like cc and scc.
         const stat_keys = Object.keys(itemData['stats']);
         for (let i = 0; i < stat_keys.length; i++) {
             if (stat_keys[i] == 'WALK_SPEED') {
@@ -211,12 +212,14 @@ function createInfobox(itemData) {
             infobox += '\n';
         }
     }
+    //To do: Implement enchant, reforge, salable, auctionable, tradeable, and donatable tags.
     if (itemData['npc_sell_price']) {
         infobox += '|sell = ' + itemData['npc_sell_price'].toString() + '\n';
     }
     if (window.bazaarList[itemData['id']]) {
         infobox += '|bazaar = ' + toTitleCase(itemData['id']) + '\n';
     }
+    //To do: Implement color tag.
     console.log(infobox);
     //Not done yet. I will finish some time in the future.
     if (itemData['upgrade_costs']) {
