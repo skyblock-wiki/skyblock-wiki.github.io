@@ -72,6 +72,10 @@ $('#copy-infobox').on('click', () => {
     copyText('#infobox');
 });
 
+$('#copy-essenceTable').on('click', () => {
+    copyText('#essenceTable');
+});
+
 function toTitleCase(str) {
     str = str.toLowerCase().split(' ');
     for (var i = 0; i < str.length; i++) {
