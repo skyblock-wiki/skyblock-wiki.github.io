@@ -217,10 +217,16 @@ function createInfobox(itemData) {
             infobox += '\n';
         }
     }
-    //To do: Implement auctionable, tradeable, and donatable tags.
-    if (itemData['category'] != 'REFORGE_STONE' || itemData['category'] != 'ACCESSORY') {
-        infobox += '|enchant = u\n| reforge = u\n';
+    //To do: Implement donatable tag.
+    if (itemData['category'] != 'REFORGE_STONE' && itemData['category'] != 'ACCESSORY') {
+        infobox += '|enchant = u\n|reforge = u\n';
     }
+    if (window.bazaarList[itemData['id']]) {
+        infobox += '|auctionable = No\n';
+    } else {
+        infobox += '|auctionable = u\n';
+    }
+    infobox += '|tradeable = u\n';
     if (itemData['npc_sell_price']) {
         infobox += '|salable = Yes\n';
         infobox += '|sell = ' + itemData['npc_sell_price'].toString() + '\n';
