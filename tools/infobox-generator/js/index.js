@@ -5,6 +5,7 @@ async function fetchItems() {
     console.log(window.itemList);
     const bazaarData = await fetch('https://api.hypixel.net/skyblock/bazaar');   
     window.bazaarList = await bazaarData.json();
+    window.bazaarList = window.bazaarList['products'];
     console.log(window.bazaarList);
 }
 
@@ -184,23 +185,23 @@ function createInfobox(itemData) {
     if (itemData['requirements']) {
         if ('skill' in itemData['requirements']) {
             if (itemData['requirements']['skill']['type'].toLowerCase() == 'combat') {
-                infobox += '|combat_level_requirement = {{Skl|combat|' + itemData['requirements']['skill']['level'] + '}}';
+                infobox += '|combat_level_requirement = {{Skl|combat|' + itemData['requirements']['skill']['level'] + '}}\n';
             } else {
-                infobox += '|other_level_requirement = {{Skl|' + itemData['requirements']['skill']['type'].toLowerCase() + '|' + itemData['requirements']['skill']['level'] + '}}';
+                infobox += '|other_level_requirement = {{Skl|' + itemData['requirements']['skill']['type'].toLowerCase() + '|' + itemData['requirements']['skill']['level'] + '}}\n';
             }
         }
         if ('slayer' in itemData['requirements']) {
-            infobox += '|slayer_level_requirement = ' + toTitleCase(itemData['requirements']['slayer']['slayer_boss_type']) + ' Slayer ' + itemData['requirements']['slayer']['level'].toString();
+            infobox += '|slayer_level_requirement = ' + toTitleCase(itemData['requirements']['slayer']['slayer_boss_type']) + ' Slayer ' + itemData['requirements']['slayer']['level'].toString() + '\n';
         }
         if ('dungeon' in itemData['requirements']) {
-            infobox += '|dungeon_level_requirement = {{Skl|' + itemData['requirements']['dungeon']['type'].toLowerCase() + '|' + itemData['requirements']['dungeon']['level'] + '}}';
+            infobox += '|dungeon_level_requirement = {{Skl|' + itemData['requirements']['dungeon']['type'].toLowerCase() + '|' + itemData['requirements']['dungeon']['level'] + '}}\n';
             if (itemData['dungeon_item_conversion_cost']) {
                 infobox += ' (when dungeonized)';
             }
         }
         if ('dungeon_completion' in itemData['requirements']) {
             let d_c = itemData['requirements']['dungeon_completion'];
-            infobox += '|dungeon_floor_clearing_requirement = ' + toTitleCase(d_c['type'].replace('_', ' ')) + ' Floor ' + romanize(d_c['tier']);
+            infobox += '|dungeon_floor_clearing_requirement = ' + toTitleCase(d_c['type'].replace('_', ' ')) + ' Floor ' + romanize(d_c['tier']) + '\n';
             if (itemData['dungeon_item_conversion_cost']) {
                 infobox += ' (when dungeonized)';
             }
@@ -208,6 +209,9 @@ function createInfobox(itemData) {
     }
     if (itemData['npc_sell_price']) {
         infobox += '|sell = ' + itemData['npc_sell_price'].toString() + '\n';
+    }
+    if (window.bazaarList[itemData['id']]) {
+        infobox += '|bazaar = ' + toTitleCase(itemData['id']) + '\n';
     }
     console.log(infobox);
     //Not done yet. I will finish some time in the future.
