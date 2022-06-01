@@ -185,7 +185,12 @@ function createInfobox(itemData) {
         }
     }
     if (itemData['requirements'] || itemData['catacombs_requirements']) {
-        let requirements = Object.assign(itemData['requirements'], itemData['catacombs_requirements']);
+        let requirements;
+        if (itemData['requirements']) {
+            requirements = Object.assign(itemData['requirements'], itemData['catacombs_requirements']);
+        } else {
+            requirements = itemData['catacombs_requirements'];
+        }
         if ('skill' in requirements) {
             if (requirements['skill']['type'].toLowerCase() == 'combat') {
                 infobox += '|combat_level_requirement = {{Skl|combat|' + requirements['skill']['level'] + '}}\n';
@@ -212,16 +217,22 @@ function createInfobox(itemData) {
             infobox += '\n';
         }
     }
-    //To do: Implement enchant, reforge, salable, auctionable, tradeable, and donatable tags.
+    //To do: Implement auctionable, tradeable, and donatable tags.
+    if (itemData['category'] != 'REFORGE_STONE' || itemData['category'] != 'ACCESSORY') {
+        infobox += '|enchant = u\n| reforge = u\n';
+    }
     if (itemData['npc_sell_price']) {
+        infobox += '|salable = Yes\n';
         infobox += '|sell = ' + itemData['npc_sell_price'].toString() + '\n';
+    } else {
+        infobox += '|salable = No\n';
     }
     if (window.bazaarList[itemData['id']]) {
         infobox += '|bazaar = ' + toTitleCase(itemData['id']) + '\n';
     }
     //To do: Implement color tag.
     console.log(infobox);
-    //Not done yet. I will finish some time in the future.
+    //To do: Output somewhere other than console.
     if (itemData['upgrade_costs']) {
         createEssenceTable(itemData);
     }
