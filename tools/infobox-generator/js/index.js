@@ -138,7 +138,7 @@ function createInfobox(itemData) {
                           'SPADE': 'item',
                           'PICKAXE': 'item',
                           'FISHING_ROD': 'fishing rod',
-                         }
+                         };
         infobox += categories[itemData['category']];
     } else {
         infobox += 'item';
@@ -150,13 +150,21 @@ function createInfobox(itemData) {
     infobox += '|id = ' + itemData['id'] + '\n';
     //To do: implement tiered stats.
     if (itemData['stats']) {
-        //To do: add percentages to the end of certain stats like cc and scc.
         const stat_keys = Object.keys(itemData['stats']);
+        let percentages = {'attack_speed': true,
+                           'critical_chance': true,
+                           'critical_damage': true
+                           'sea_creature_chance': true
+                          };
         for (let i = 0; i < stat_keys.length; i++) {
             if (stat_keys[i] == 'WALK_SPEED') {
                 infobox += '|speed = ' + itemData['stats'][stat_keys[i]] + '\n';
             } else {
-                infobox += '|' + stat_keys[i].toLowerCase() + ' = ' + itemData['stats'][stat_keys[i]] + '\n';
+                let percent = '';
+                if (percentages[stat_keys[i].toLowerCase()]) {
+                    percent = '%';
+                }
+                infobox += '|' + stat_keys[i].toLowerCase() + ' = ' + itemData['stats'][stat_keys[i]] + percent + '\n';
             }
         }
     }
