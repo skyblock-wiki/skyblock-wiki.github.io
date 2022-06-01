@@ -16,14 +16,6 @@ const $warning = $('#warning');
 
 function clear() {
     $('#nbtInfo').html('');
-    $imgLink.attr('href', '');
-    $imgLink.attr('download', '');
-    $imgLink.addClass('hidden');
-    $spriteLink.attr('href', '');
-    $spriteLink.attr('download', '');
-    $spriteLink.addClass('hidden');
-    $img.attr('src', '');
-    $sprite.attr('src', '');
     $warning.html('');
     $('.sec-err').html('');
 }
