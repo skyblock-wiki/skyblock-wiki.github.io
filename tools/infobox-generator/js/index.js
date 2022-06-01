@@ -142,8 +142,9 @@ function createInfobox(itemData) {
     } else {
         infobox += 'item';
     }
+    infobox += '\n';
     if (itemData['tier']) {
-        infobox += '\n|rarity = ' + itemData['tier'].toLowerCase() + '\n';
+        infobox += '|rarity = ' + itemData['tier'].toLowerCase() + '\n';
     }
     infobox += '|id = ' + itemData['id'] + '\n';
     if (itemData['stats']) {
