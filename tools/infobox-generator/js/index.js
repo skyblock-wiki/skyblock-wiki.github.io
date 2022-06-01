@@ -143,7 +143,9 @@ function createInfobox(itemData) {
     } else {
         infobox += 'item';
     }
-    infobox += '\n';
+    infobox += '\n|title = ' + itemData['name'] + '\n';
+    infobox += '|image = ' + itemData['name'] + '.png\n';
+    infobox += '|slot_item = ' + itemData['name'] + '\n';
     if (itemData['tier']) {
         infobox += '|rarity = ' + itemData['tier'].toLowerCase() + '\n';
     }
