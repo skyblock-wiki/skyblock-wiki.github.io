@@ -251,6 +251,7 @@ function createInfobox(itemData) {
         }
         infobox += '|color = ' + hex + '\n';
     }
+    infobox += '}}';
     console.log(infobox);
     //To do: Output somewhere other than console.
     if (itemData['upgrade_costs']) {
