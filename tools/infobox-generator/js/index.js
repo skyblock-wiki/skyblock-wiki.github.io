@@ -169,8 +169,7 @@ function createInfobox(itemData) {
                 let len = itemData['gemstone_slots'][a]['costs'].length;
                 for (let b = 0; b < len; b++) {
                     let cost =  itemData['gemstone_slots'][a]['costs'][b];
-                    let keys = Object.keys(cost);
-                    if (keys == 'coins') {
+                    if ('coins' in cost) {
                         infobox += cost['coins'].toString();
                     } else {
                         infobox += cost['amount'].toString() + ' ' + gemstoneHelper(cost['item_id']);
@@ -217,7 +216,6 @@ function createInfobox(itemData) {
             infobox += '\n';
         }
     }
-    //To do: Implement donatable tag.
     if (itemData['category'] != 'REFORGE_STONE' && itemData['category'] != 'ACCESSORY') {
         infobox += '|enchant = u\n|reforge = u\n';
     }
@@ -227,6 +225,15 @@ function createInfobox(itemData) {
         infobox += '|auctionable = u\n';
     }
     infobox += '|tradeable = u\n';
+    if ('museum' in itemData) {
+        if (itemData['museum'] == true) {
+            infobox += '|museum = Yes\n';
+        } else {
+            infobox += '|museum = No\n';
+        }
+    } else {
+        infobox += '|museum = u\n';
+    }
     if (itemData['npc_sell_price']) {
         infobox += '|salable = Yes\n';
         infobox += '|sell = ' + itemData['npc_sell_price'].toString() + '\n';
@@ -234,7 +241,7 @@ function createInfobox(itemData) {
         infobox += '|salable = No\n';
     }
     if (window.bazaarList[itemData['id']]) {
-        infobox += '|bazaar = ' + toTitleCase(itemData['id']) + '\n';
+        infobox += '|bazaar = ' + itemData['id'] + '\n';
     }
     //To do: Implement color tag.
     console.log(infobox);
