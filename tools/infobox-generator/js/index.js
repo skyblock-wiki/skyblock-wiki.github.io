@@ -243,7 +243,14 @@ function createInfobox(itemData) {
     if (window.bazaarList[itemData['id']]) {
         infobox += '|bazaar = ' + itemData['id'] + '\n';
     }
-    //To do: Implement color tag.
+    if ('color' in itemData) {
+        let color = itemData['color'].split(',');
+        let hex;
+        for (let i = 0; i < 3; i++) {
+            hex += color[i].toString(16);
+        }
+        infobox += '|color = ' + hex + '\n';
+    }
     console.log(infobox);
     //To do: Output somewhere other than console.
     if (itemData['upgrade_costs']) {
