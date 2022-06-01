@@ -153,8 +153,8 @@ function createInfobox(itemData) {
         const stat_keys = Object.keys(itemData['stats']);
         let percentages = {'attack_speed': true,
                            'critical_chance': true,
-                           'critical_damage': true
-                           'sea_creature_chance': true
+                           'critical_damage': true,
+                           'sea_creature_chance': true,
                           };
         for (let i = 0; i < stat_keys.length; i++) {
             if (stat_keys[i] == 'WALK_SPEED') {
