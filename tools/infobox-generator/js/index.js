@@ -151,14 +151,13 @@ function createInfobox(itemData) {
         infobox += '|rarity = ' + itemData['tier'].toLowerCase() + '\n';
     }
     infobox += '|id = ' + itemData['id'] + '\n';
-    //To do: implement tiered stats.
-    if (itemData['stats']) {
-        const stat_keys = Object.keys(itemData['stats']);
-        let percentages = {'attack_speed': true,
+    let percentages = {'attack_speed': true,
                            'critical_chance': true,
                            'critical_damage': true,
                            'sea_creature_chance': true,
                           };
+    if (itemData['stats']) {
+        const stat_keys = Object.keys(itemData['stats']);
         for (let i = 0; i < stat_keys.length; i++) {
             if (stat_keys[i] == 'WALK_SPEED') {
                 infobox += '|speed = ' + itemData['stats'][stat_keys[i]] + '\n';
@@ -168,6 +167,32 @@ function createInfobox(itemData) {
                     percent = '%';
                 }
                 infobox += '|' + stat_keys[i].toLowerCase() + ' = ' + itemData['stats'][stat_keys[i]] + percent + '\n';
+            }
+        }
+    }
+    if (itemData['tiered_stats']) {
+        const stat_keys = Object.keys(itemData['tiered_stats']);
+        for (let i = 0; i < stat_keys.length; i++) {
+            let a = itemData['tiered_stats'][stat_keys[i]][0];
+            let b = itemData['tiered_stats'][stat_keys[i]][itemData['tiered_stats'][stat_keys[i]].length];
+            let stat;
+            if (a == b) {
+                stat = a.toString();
+            } else {
+                if (a < b) {
+                    stat = a.toString() + '-' + b.toString();
+                } else {
+                    stat = b.toString() + '-' + a.toString();
+                }
+            }
+            if (stat_keys[i] == 'WALK_SPEED') {
+                infobox += '|speed = ' + stat + '\n';
+            } else {
+                let percent = '';
+                if (percentages[stat_keys[i].toLowerCase()]) {
+                    percent = '%';
+                }
+                infobox += '|' + stat_keys[i].toLowerCase() + ' = ' + stat + percent + '\n';
             }
         }
     }
