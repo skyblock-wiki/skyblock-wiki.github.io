@@ -15,7 +15,7 @@ const $loading = $('#loading');
 const $warning = $('#warning');
 
 function clear() {
-    $('#nbtInfo').html('');
+    $('#templates').html('');
     $warning.html('');
     $('.sec-err').html('');
 }
@@ -67,6 +67,10 @@ function onChanged(input_type) {
         }
     }
 }
+
+$('#copy-infobox').on('click', () => {
+    copyText('#infobox');
+});
 
 function toTitleCase(str) {
     str = str.toLowerCase().split(' ');
