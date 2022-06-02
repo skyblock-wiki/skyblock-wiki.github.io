@@ -1,3 +1,5 @@
+import { Toast } from '../../../js/toast.js';
+
 async function fetchItems() {
     const itemsData = await fetch('https://api.hypixel.net/resources/skyblock/items');   
     window.itemList = await itemsData.json();
@@ -61,6 +63,28 @@ function onChanged(input_type) {
             }
         }
     }
+}
+
+$('#copy-infobox').on('click', () => {
+    copyText('#infobox');
+});
+
+$('#copy-essenceTable').on('click', () => {
+    copyText('#essenceTable');
+});
+
+function copyText(selector) {
+    const el = $(selector);
+
+    el.select();
+    document.execCommand('copy');
+    el.blur();
+    document.getSelection().removeAllRanges();
+    new Toast({
+        message: 'Copied!',
+        type: 'success',
+        time: 2000,
+    }).show();
 }
 
 function toTitleCase(str) {
