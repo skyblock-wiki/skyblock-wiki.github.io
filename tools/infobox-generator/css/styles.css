@@ -236,9 +236,6 @@ main textarea {
 		Aside Col
 ========================
 */
-canvas {
-    display: none;
-}
 aside {
     display: flex;
     flex-direction: column;
