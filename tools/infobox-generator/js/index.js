@@ -68,14 +68,6 @@ function onChanged(input_type) {
     }
 }
 
-$('#copy-infobox').on('click', () => {
-    copyText('#infobox');
-});
-
-$('#copy-essenceTable').on('click', () => {
-    copyText('#essenceTable');
-});
-
 // Set height when divs are empty
 $('#infobox').style.height = $('#copy-infobox').style.height;
 $('#essenceTable').style.height = $('#copy-essenceTable').style.height;
