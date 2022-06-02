@@ -253,7 +253,7 @@ aside .templates th {
     font-weight: 200;
     font-size: 0.9rem;
 }
-aside .templates td div {
+aside .templates td .copy-div {
     display: inline-block;
     margin: 0.2rem 0;
 }
