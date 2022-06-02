@@ -68,10 +68,6 @@ function onChanged(input_type) {
     }
 }
 
-// Set height when divs are empty
-$('#infobox').style.height = $('#copy-infobox').style.height;
-$('#essenceTable').style.height = $('#copy-essenceTable').style.height;
-
 function toTitleCase(str) {
     str = str.toLowerCase().split(' ');
     for (var i = 0; i < str.length; i++) {
