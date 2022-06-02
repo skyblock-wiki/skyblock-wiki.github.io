@@ -11,12 +11,8 @@ async function fetchItems() {
 
 fetchItems();
 
-const $loading = $('#loading');
-const $warning = $('#warning');
-
 function clear() {
     $('#templates').html('');
-    $warning.html('');
     $('.sec-err').html('');
 }
 
