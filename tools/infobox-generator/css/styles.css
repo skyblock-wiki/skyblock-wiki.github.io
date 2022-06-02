@@ -257,7 +257,7 @@ aside .templates td .copy-div {
     display: inline-block;
     margin: 0.2rem 0;
 }
-aside .templates input {
+aside .templates div {
     padding: 0.2rem 0.3rem;
     border-radius: 4px;
     border: 1px solid var(--col-acc);
