@@ -54,9 +54,6 @@
             </main>
             <aside>
                 <section>
-                    <canvas id="canvas" width="64" height="64"></canvas>
-                    <canvas id="spriteCanvas" width="64" height="64"></canvas>
-                    <canvas id="render"></canvas>
                     <div class="headbox">
                         <table class="templates">
                             <tbody>
@@ -65,7 +62,7 @@
                                     <td class="unselectable">
                                         <!-- This should and will be a div, not an input -->
                                         <input type="text" id="infobox" readonly />
-                                        <div>
+                                        <div class="copy-div">
                                             <button id="copy-infobox" class="copy" disabled>Copy</button>
                                         </div>
                                     </td>
@@ -75,7 +72,7 @@
                                     <td class="unselectable">
                                         <!-- This too should and will be a div, not an input -->
                                         <input type="text" id="essenceTable" readonly />
-                                        <div>
+                                        <div class="copy-div">
                                             <button id="copy-essenceTable" class="copy" disabled>Copy</button>
                                         </div>
                                     </td>
