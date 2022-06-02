@@ -293,7 +293,7 @@ function createInfobox(itemData) {
     }
     infobox += '}}';
     console.log(infobox);
-    //To do: Output somewhere other than console.
+    $('#infobox').innerHTML = infobox;
     if (itemData['upgrade_costs']) {
         createEssenceTable(itemData);
     }
