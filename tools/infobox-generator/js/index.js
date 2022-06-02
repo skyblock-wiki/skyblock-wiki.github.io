@@ -12,7 +12,6 @@ async function fetchItems() {
 fetchItems();
 
 function clear() {
-    $('#templates').html('');
     $('.sec-err').html('');
 }
 
