@@ -188,8 +188,6 @@ main {
 }
 main section {
     padding: 1rem 0.5rem;
-}
-main section:not(:last-child) {
     border-bottom: 1px solid var(--col-bg3);
 }
 
