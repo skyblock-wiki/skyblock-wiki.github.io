@@ -74,16 +74,22 @@ $('#copy-essenceTable').on('click', () => {
 
 function copyText(selector) {
     const el = $(selector);
-
-    el.select();
-    document.execCommand('copy');
-    el.blur();
-    document.getSelection().removeAllRanges();
-    new Toast({
-        message: 'Copied!',
-        type: 'success',
-        time: 2000,
-    }).show();
+    try {
+        window.navigator.clipboard.writeText(el.innerHTML);
+        new Toast({
+            message: 'Copied!',
+            type: 'success',
+            time: 2000,
+        }).show();
+    } catch (error) {
+        console.error(error);
+        // There may be more potential errors than document not in focus, but I don't know of them.
+        new Toast({
+            message: 'Could not copy. Please put the document in focus!',
+            type: 'disallow',
+            time: 4000,
+        }).show();
+    }
 }
 
 function toTitleCase(str) {
