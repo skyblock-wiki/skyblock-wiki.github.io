@@ -179,7 +179,9 @@ function createInfobox(itemData) {
     if (itemData['stats']) {
         const stat_keys = Object.keys(itemData['stats']);
         for (let i = 0; i < stat_keys.length; i++) {
-            if (stat_keys[i] == 'WALK_SPEED') {
+            if (stat_keys[i] == 'WEAPON_ABILITY_DAMAGE') {
+                continue;
+            } else if (stat_keys[i] == 'WALK_SPEED') {
                 infobox += '|speed = ' + itemData['stats'][stat_keys[i]] + '<br>';
             } else {
                 let percent = '';
@@ -332,5 +334,5 @@ function createInfobox(itemData) {
 }
 
 function createEssenceTable(itemData) {
-    //Create essence table here
+    let essenceTable = '{{Essence Crafting<br>|type = weapon<br>';
 }
