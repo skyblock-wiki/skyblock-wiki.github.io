@@ -83,9 +83,8 @@ function copyText(selector) {
         }).show();
     } catch (error) {
         console.error(error);
-        // There may be more potential errors than document not in focus, but I don't know of them.
         new Toast({
-            message: 'Could not copy. Please put the document in focus!',
+            message: 'Could not copy. Please try again!',
             type: 'disallow',
             time: 4000,
         }).show();
