@@ -13,6 +13,8 @@ async function fetchItems() {
 
 fetchItems();
 
+window.settings = {'title': false};
+
 function clear() {
     $('.sec-err').html('');
 }
@@ -159,9 +161,12 @@ function createInfobox(itemData) {
     } else {
         infobox += 'item';
     }
-    infobox += '<br>|title = ' + itemData['name'] + '<br>';
-    infobox += '|image = ' + itemData['name'] + '.png<br>';
-    infobox += '|slot_item = ' + itemData['name'] + '<br>';
+    infobox += '<br>';
+    if window.settings['title'] {
+        infobox += '|title = ' + itemData['name'] + '<br>';
+        infobox += '|image = ' + itemData['name'] + '.png<br>';
+        infobox += '|slot_item = ' + itemData['name'] + '<br>';
+    }
     if (itemData['tier']) {
         infobox += '|rarity = ' + itemData['tier'].toLowerCase() + '<br>';
     }
