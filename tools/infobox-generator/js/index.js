@@ -83,7 +83,6 @@ function copyText(selector) {
             type: 'success',
             time: 2000,
         }).show();
-        console.log(el.innerHTML);
     } catch (error) {
         console.error(error);
         new Toast({
