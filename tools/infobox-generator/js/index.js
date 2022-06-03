@@ -154,13 +154,13 @@ function createInfobox(itemData) {
     } else {
         infobox += 'item';
     }
-    infobox += '\n|title = ' + itemData['name'] + '\n';
-    infobox += '|image = ' + itemData['name'] + '.png\n';
-    infobox += '|slot_item = ' + itemData['name'] + '\n';
+    infobox += '<br>|title = ' + itemData['name'] + '<br>';
+    infobox += '|image = ' + itemData['name'] + '.png<br>';
+    infobox += '|slot_item = ' + itemData['name'] + '<br>';
     if (itemData['tier']) {
-        infobox += '|rarity = ' + itemData['tier'].toLowerCase() + '\n';
+        infobox += '|rarity = ' + itemData['tier'].toLowerCase() + '<br>';
     }
-    infobox += '|id = ' + itemData['id'] + '\n';
+    infobox += '|id = ' + itemData['id'] + '<br>';
     let percentages = {'attack_speed': true,
                            'critical_chance': true,
                            'critical_damage': true,
@@ -170,13 +170,13 @@ function createInfobox(itemData) {
         const stat_keys = Object.keys(itemData['stats']);
         for (let i = 0; i < stat_keys.length; i++) {
             if (stat_keys[i] == 'WALK_SPEED') {
-                infobox += '|speed = ' + itemData['stats'][stat_keys[i]] + '\n';
+                infobox += '|speed = ' + itemData['stats'][stat_keys[i]] + '<br>';
             } else {
                 let percent = '';
                 if (percentages[stat_keys[i].toLowerCase()]) {
                     percent = '%';
                 }
-                infobox += '|' + stat_keys[i].toLowerCase() + ' = ' + itemData['stats'][stat_keys[i]] + percent + '\n';
+                infobox += '|' + stat_keys[i].toLowerCase() + ' = ' + itemData['stats'][stat_keys[i]] + percent + '<br>';
             }
         }
     }
@@ -196,18 +196,18 @@ function createInfobox(itemData) {
                 }
             }
             if (stat_keys[i] == 'WALK_SPEED') {
-                infobox += '|speed = ' + stat + '\n';
+                infobox += '|speed = ' + stat + '<br>';
             } else {
                 let percent = '';
                 if (percentages[stat_keys[i].toLowerCase()]) {
                     percent = '%';
                 }
-                infobox += '|' + stat_keys[i].toLowerCase() + ' = ' + stat + percent + '\n';
+                infobox += '|' + stat_keys[i].toLowerCase() + ' = ' + stat + percent + '<br>';
             }
         }
     }
     if (itemData['gemstone_slots']) {
-        infobox += '|gemstone_slots = \n';
+        infobox += '|gemstone_slots = <br>';
         for (let a = 0; a < itemData['gemstone_slots'].length; a++) {
             infobox += '1* ' + toTitleCase(itemData['gemstone_slots'][a]['slot_type']);
             if (itemData['gemstone_slots'][a]['costs']) {
@@ -226,7 +226,7 @@ function createInfobox(itemData) {
                 }
                 infobox += '&';
             }
-            infobox += '\n';
+            infobox += '<br>';
         }
     }
     if (itemData['requirements'] || itemData['catacombs_requirements']) {
@@ -237,21 +237,24 @@ function createInfobox(itemData) {
             requirements = itemData['catacombs_requirements'];
         }
         if ('skill' in requirements) {
-            if (requirements['skill']['type'].toLowerCase() == 'combat') {
-                infobox += '|combat_level_requirement = {{Skl|combat|' + requirements['skill']['level'] + '}}\n';
+            let s_l = requirements['skill'];
+            if (s_l['type'].toLowerCase() == 'combat') {
+                infobox += '|combat_level_requirement = {{Skl|combat|' + s_l['level'] + '}}<br>';
             } else {
-                infobox += '|other_level_requirement = {{Skl|' + requirements['skill']['type'].toLowerCase() + '|' + requirements['skill']['level'] + '}}\n';
+                infobox += '|other_level_requirement = {{Skl|' + s_l['type'].toLowerCase() + '|' + s_l['level'] + '}}<br>';
             }
         }
         if ('slayer' in requirements) {
-            infobox += '|slayer_level_requirement = ' + toTitleCase(requirements['slayer']['slayer_boss_type']) + ' Slayer ' + requirements['slayer']['level'].toString() + '\n';
+            let s_l = requirements['slayer'];
+            infobox += '|slayer_level_requirement = ' + toTitleCase(s_l['slayer_boss_type']) + ' Slayer ' + s_l['level'].toString() + '<br>';
         }
         if ('dungeon' in requirements) {
-            infobox += '|dungeon_level_requirement = {{Skl|' + requirements['dungeon']['type'].toLowerCase() + '|' + requirements['dungeon']['level'] + '}}';
+            let d_l = requirements['dungeon'];
+            infobox += '|dungeon_level_requirement = {{Skl|' + d_l['type'].toLowerCase() + '|' + d_l['level'] + '}}';
             if (itemData['dungeon_item_conversion_cost']) {
                 infobox += ' (when dungeonized)';
             }
-            infobox += '\n';
+            infobox += '<br>';
         }
         if ('dungeon_completion' in requirements) {
             let d_c = requirements['dungeon_completion'];
@@ -259,47 +262,47 @@ function createInfobox(itemData) {
             if (itemData['dungeon_item_conversion_cost']) {
                 infobox += ' (when dungeonized)';
             }
-            infobox += '\n';
+            infobox += '<br>';
         }
     }
     if (itemData['category'] != 'REFORGE_STONE' && itemData['category'] != 'ACCESSORY') {
-        infobox += '|enchant = u\n|reforge = u\n';
+        infobox += '|enchant = u<br>|reforge = u<br>';
     }
     if (window.bazaarList[itemData['id']]) {
-        infobox += '|auctionable = No\n';
+        infobox += '|auctionable = No<br>';
     } else {
         if (itemData['soulbound']) {
-            infobox += '|auctionable = No\n';
+            infobox += '|auctionable = No<br>';
         } else {
-            infobox += '|auctionable = u\n';
+            infobox += '|auctionable = u<br>';
         }
     }
     if (itemData['soulbound']) {
         if (itemData['soulbound'].toLowerCase() == 'coop') {
-            infobox += '|tradeable = {{No|text=y}}<br>(Except to Co-op members)\n';
+            infobox += '|tradeable = {{No|text=y}}<br>(Except to Co-op members)<br>';
         } else {
-            infobox += '|tradeable = No\n';
+            infobox += '|tradeable = No<br>';
         }
     } else {
-        infobox += '|tradeable = u\n';
+        infobox += '|tradeable = u<br>';
     }
     if ('museum' in itemData) {
         if (itemData['museum'] == true) {
-            infobox += '|museum = Yes\n';
+            infobox += '|museum = Yes<br>';
         } else {
-            infobox += '|museum = No\n';
+            infobox += '|museum = No<br>';
         }
     } else {
-        infobox += '|museum = u\n';
+        infobox += '|museum = u<br>';
     }
     if (itemData['npc_sell_price']) {
-        infobox += '|salable = Yes\n';
-        infobox += '|sell = ' + itemData['npc_sell_price'].toString() + '\n';
+        infobox += '|salable = Yes<br>';
+        infobox += '|sell = ' + itemData['npc_sell_price'].toString() + '<br>';
     } else {
-        infobox += '|salable = No\n';
+        infobox += '|salable = No<br>';
     }
     if (window.bazaarList[itemData['id']]) {
-        infobox += '|bazaar = ' + itemData['id'] + '\n';
+        infobox += '|bazaar = ' + itemData['id'] + '<br>';
     }
     if ('color' in itemData) {
         let color = itemData['color'].split(',');
@@ -307,7 +310,7 @@ function createInfobox(itemData) {
         for (let i = 0; i < 3; i++) {
             hex += Number(color[i]).toString(16);
         }
-        infobox += '|color = ' + hex + '\n';
+        infobox += '|color = ' + hex + '<br>';
     }
     infobox += '}}';
     $('#copy-infobox').prop('disabled', false);
