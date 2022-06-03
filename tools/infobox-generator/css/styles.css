@@ -227,7 +227,7 @@ main textarea {
     color: white;
     font-family: 'Fira Mono', monospace;
     transition: box-shadow 0.1s ease;
-    resize: vertical;
+    resize: none;
 }
 .sec-err {
     font-size: 0.8rem;
@@ -270,7 +270,7 @@ aside .templates div:not(aside .templates td .copy-div) {
     transition: all 0.2s ease;
     font-family: 'Fira Code', monospace;
     font-size: 0.75rem;
-    width: 16rem;
+    width: 25rem;
     max-height: 15rem;
     overflow: scroll;
 }
