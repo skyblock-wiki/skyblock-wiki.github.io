@@ -266,7 +266,9 @@ aside .templates div:not(aside .templates td .copy-div) {
     transition: all 0.2s ease;
     font-family: 'Fira Code', monospace;
     font-size: 0.75rem;
-    width: 15rem;
+    width: 16rem;
+    max-height: 15rem;
+    overflow: scroll;
 }
 aside section > *:not(a) {
     padding: 0 0.5rem;
