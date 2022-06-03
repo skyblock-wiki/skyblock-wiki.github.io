@@ -53,7 +53,7 @@ function onIdChanged(event) {
 
 function onChanged(input_type) {
     if (!window.itemList) {
-        console.log('Hello');
+        console.error('window.itemList not loaded.');
         //Send an issue here saying data not yet loaded.
     } else {
         const thing = document.getElementById(input_type).value.toLowerCase();
@@ -325,7 +325,6 @@ function createInfobox(itemData) {
     infobox += '}}';
     $('#copy-infobox').prop('disabled', false);
     $('#infobox').parent().removeClass('unselectable');
-    console.log(infobox);
     document.getElementById('infobox').innerHTML = infobox;
     if (itemData['upgrade_costs']) {
         createEssenceTable(itemData);
