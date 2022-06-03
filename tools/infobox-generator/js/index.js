@@ -83,6 +83,7 @@ function copyText(selector) {
             type: 'success',
             time: 2000,
         }).show();
+        console.log(el.innerHTML);
     } catch (error) {
         console.error(error);
         new Toast({
@@ -162,7 +163,7 @@ function createInfobox(itemData) {
         infobox += 'item';
     }
     infobox += '<br>';
-    if window.settings['title'] {
+    if (window.settings['title']) {
         infobox += '|title = ' + itemData['name'] + '<br>';
         infobox += '|image = ' + itemData['name'] + '.png<br>';
         infobox += '|slot_item = ' + itemData['name'] + '<br>';
