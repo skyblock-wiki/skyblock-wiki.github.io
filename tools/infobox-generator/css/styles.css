@@ -263,11 +263,13 @@ aside .templates div:not(aside .templates td .copy-div) {
     border: 1px solid var(--col-acc);
     background-color: var(--col-bg2);
     color: #aaa;
-    cursor: pointer;
     transition: all 0.2s ease;
     font-family: 'Fira Code', monospace;
     font-size: 0.75rem;
     width: 15rem;
+}
+aside .templates div:not(aside .templates td .copy-div):is(.unselectable) {
+    cursor: pointer;
 }
 aside section > *:not(a) {
     padding: 0 0.5rem;
