@@ -259,7 +259,8 @@ aside .templates th {
 }
 aside .templates td .copy-div {
     display: inline-block;
-    margin: 0.2rem 0;
+    margin-top: 0.2rem;
+    margin-bottom: 1.5rem;
 }
 aside .templates div:not(aside .templates td .copy-div) {
     padding: 0.2rem 0.3rem;
