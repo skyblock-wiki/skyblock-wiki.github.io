@@ -207,8 +207,12 @@ main p {
     font-weight: 200;
     margin-bottom: 0.8rem;
 }
-main input[type='file'] {
+main label {
+    padding-left: 0.25rem;
+    text-align: right;
     color: white;
+    font-weight: 200;
+    font-size: 0.9rem;
 }
 main textarea {
     width: 100%;
