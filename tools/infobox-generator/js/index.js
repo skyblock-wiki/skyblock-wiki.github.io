@@ -77,7 +77,7 @@ $('#copy-essenceTable').on('click', () => {
 function copyText(selector) {
     const el = $(selector);
     try {
-        window.navigator.clipboard.writeText(el.innerHTML);
+        window.navigator.clipboard.writeText(el.html());
         new Toast({
             message: 'Copied!',
             type: 'success',
