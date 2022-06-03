@@ -55,7 +55,6 @@ function onChanged(input_type) {
         //Send an issue here saying data not yet loaded.
     } else {
         const thing = document.getElementById(input_type).value.toLowerCase();
-        console.log(thing);
         for (let i = 0; i < window.itemList.length; i++) {
             if (window.itemList[i][input_type].toLowerCase() == thing) {
                 createInfobox(window.itemList[i]);
@@ -311,6 +310,8 @@ function createInfobox(itemData) {
         infobox += '|color = ' + hex + '\n';
     }
     infobox += '}}';
+    $('#copy-infobox').prop('disabled', false);
+    $('#infobox').parent().removeClass('unselectable');
     console.log(infobox);
     document.getElementById('infobox').innerHTML = infobox;
     if (itemData['upgrade_costs']) {
