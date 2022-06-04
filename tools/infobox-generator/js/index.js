@@ -343,5 +343,5 @@ function createEssenceTable(itemData) {
             essenceTable += '|essence = none<br>';
         }
     }
-    console.log(essenceTable)l
+    console.log(essenceTable);
 }
