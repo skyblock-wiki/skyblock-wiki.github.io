@@ -52,7 +52,7 @@ const tools = [
         link: './tools/infobox-generator/index.html',
         thumbnail: './tools/infobox-generator/favicon.png',
         name: 'Infobox Generator',
-        version: 'v0.0',
+        version: 'v1.0',
         description: 'Uses data from the items API and spits out basic infoboxes and essence crafting tables with the corresponding item data, for editor\'s modification.',
     },
 ];
