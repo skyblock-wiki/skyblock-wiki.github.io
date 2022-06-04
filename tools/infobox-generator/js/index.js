@@ -352,7 +352,7 @@ function createEssenceTable(itemData) {
                 essenceTable += 'Essence';
             } else if ('item_id' in itemData['upgrade_costs'][a][b]) {
                 let item_name;
-                for (i = 0; i < window.itemList.length; i++) {
+                for (let i = 0; i < window.itemList.length; i++) {
                     if (window.itemList[i]['id'] == itemData['upgrade_costs'][a][b]['item_id']) {
                         item_name = window.itemList[i]['name'];
                         break; 
@@ -366,6 +366,7 @@ function createEssenceTable(itemData) {
                 essenceTable += '; '
             }
         }
+        //To do: Add conversion and prestige.
     }
     console.log(essenceTable);
 }
