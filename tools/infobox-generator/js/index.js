@@ -20,28 +20,26 @@ function clear() {
 }
 
 const mainElem = {
-    name: $('#name'),
-    id: $('#id'),
+    name: document.getElementById('name'),
+    id: document.getElementById('id'),
 };
 const subElem = {
-    name: $('#nameSubmit'),
-    id: $('#idSubmit'),
+    name: document.getElementById('nameSubmit'),
+    id: document.getElementById('idSubmit'),
 };
 const errElem = {
-    name: $('#nameError'),
-    id: $('#idError'),
+    name: document.getElementById('nameError'),
+    id: document.getElementById('idError'),
 };
 const toStr = {
     name: 'name',
     id: 'item ID',
 };
 
-mainElem.name.on('paste', onNameChanged);
-mainElem.name.on('input', onNameChanged);
-subElem.name.on('click', onNameChanged);
-mainElem.id.on('paste', onIdChanged);
-mainElem.id.on('input', onIdChanged);
-subElem.id.on('click', onIdChanged);
+mainElem.name.addEventListener('input', onNameChanged);
+subElem.name.addEventListener('click', onNameChanged);
+mainElem.id.addEventListener('input', onIdChanged);
+subElem.id.addEventListener('click', onIdChanged);
 
 function onNameChanged(event) {
     onChanged('name');
@@ -326,7 +324,7 @@ function createInfobox(itemData) {
     }
     infobox += '}}';
     document.getElementById('copy-infobox').disabled = false;
-    document.getElementById('infobox').classList.remove('unselectable');
+    document.getElementById('infobox').parentElement.classList.remove('unselectable');
     document.getElementById('infobox').innerHTML = infobox;
     if (itemData['upgrade_costs']) {
         createEssenceTable(itemData);
