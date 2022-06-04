@@ -273,7 +273,7 @@ aside .templates div:not(aside .templates td .copy-div) {
     font-size: 0.75rem;
     width: 25rem;
     max-height: 15rem;
-    overflow: scroll;
+    overflow: auto;
 }
 aside section > *:not(a) {
     padding: 0 0.5rem;
