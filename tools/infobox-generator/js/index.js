@@ -16,7 +16,7 @@ fetchItems();
 window.settings = {'title': false};
 
 function clear() {
-    for (let i = 0; i < document.getElementsByClassName('sec-err').length; i++ {
+    for (let i = 0; i < document.getElementsByClassName('sec-err').length; i++) {
         document.getElementsByClassName('sec-err')[i].innerHTML = '';
     }
 }
