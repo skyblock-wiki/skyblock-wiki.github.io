@@ -335,4 +335,13 @@ function createInfobox(itemData) {
 
 function createEssenceTable(itemData) {
     let essenceTable = '{{Essence Crafting<br>|type = weapon<br>';
+    for (let i = 0; i < itemData['upgrade_costs'][0].length; i++) {
+        if ('essence_type' in itemData['upgrade_costs'][0][i]) {
+            essenceTable += '|essence = ' + toTitleCase(itemData['upgrade_costs'][0][i]['essence_type']) + '<br>';
+            break;
+        } else if (i = itemData['upgrade_costs'][0].length - 1) {
+            essenceTable += '|essence = none<br>';
+        }
+    }
+    console.log(essenceTable)l
 }
