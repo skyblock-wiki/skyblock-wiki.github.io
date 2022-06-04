@@ -52,13 +52,17 @@ function onIdChanged(event) {
 function onChanged(input_type) {
     if (!window.itemList) {
         console.error('window.itemList not loaded.');
-        //Send an issue here saying data not yet loaded.
+        new Toast({
+            message: 'The item list has not yet loaded. Please wait or try refreshing the page!',
+            type: 'disallow',
+            time: 4000,
+        }).show();
     } else {
         const thing = document.getElementById(input_type).value.toLowerCase();
         for (let i = 0; i < window.itemList.length; i++) {
             if (window.itemList[i][input_type].toLowerCase() == thing) {
                 createInfobox(window.itemList[i]);
-                break; 
+                break;
             }
         }
     }
@@ -337,7 +341,7 @@ function createEssenceTable(itemData) {
         }
     }
     if ('dungeon_item_conversion_cost' in itemData) {
-        essenceTable += '|convert = ' + itemData['dungeon_item_conversion_cost']['amount'].toString() + ' Essence<br>';
+        essenceTable += '|convert = ' + itemData['dungeon_item_conversion_cost']['amount'].toString() + '<br>';
     }
     for (let a = 0; a < itemData['upgrade_costs'].length; a++) {
         itemData['upgrade_costs'][a].reverse();
