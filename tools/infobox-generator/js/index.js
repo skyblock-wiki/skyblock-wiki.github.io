@@ -341,7 +341,7 @@ function createEssenceTable(itemData) {
         }
     }
     if ('dungeon_item_conversion_cost' in itemData) {
-        essenceTable += '|convert = ' + itemData['dungeon_item_conversion_cost']['amount'].toString() + '<br>';
+        essenceTable += '|convert = ' + itemData['dungeon_item_conversion_cost']['amount'].toString() + ' Essence<br>';
     }
     for (let a = 0; a < itemData['upgrade_costs'].length; a++) {
         itemData['upgrade_costs'][a].reverse();
@@ -390,5 +390,9 @@ function createEssenceTable(itemData) {
             }
         }
     }
+    essenceTable += '}}';
+    document.getElementById('copy-essenceTable').disabled = false;
+    document.getElementById('essenceTable').parentElement.classList.remove('unselectable');
+    document.getElementById('essenceTable').innerHTML = essenceTable;
     console.log(essenceTable);
 }
