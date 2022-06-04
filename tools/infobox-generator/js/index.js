@@ -67,17 +67,17 @@ function onChanged(input_type) {
 }
 
 $('#copy-infobox').on('click', () => {
-    copyText('#infobox');
+    copyText('infobox');
 });
 
 $('#copy-essenceTable').on('click', () => {
-    copyText('#essenceTable');
+    copyText('essenceTable');
 });
 
 function copyText(selector) {
-    const el = $(selector);
+    let el = document.getElementById(selector).innerHTML;
     try {
-        window.navigator.clipboard.writeText(el.html());
+        window.navigator.clipboard.writeText(el);
         new Toast({
             message: 'Copied!',
             type: 'success',
@@ -325,8 +325,8 @@ function createInfobox(itemData) {
         infobox += '|color = ' + hex + '<br>';
     }
     infobox += '}}';
-    $('#copy-infobox').prop('disabled', false);
-    $('#infobox').parent().removeClass('unselectable');
+    document.getElementById('copy-infobox').disabled = false;
+    document.getElementById('infobox').classList.remove('unselectable');
     document.getElementById('infobox').innerHTML = infobox;
     if (itemData['upgrade_costs']) {
         createEssenceTable(itemData);
