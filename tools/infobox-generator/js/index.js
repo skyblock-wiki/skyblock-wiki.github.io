@@ -16,7 +16,9 @@ fetchItems();
 window.settings = {'title': false};
 
 function clear() {
-    $('.sec-err').html('');
+    for (let i = 0; i < document.getElementsByClassName('sec-err').length; i++ {
+        document.getElementsByClassName('sec-err')[i].innerHTML = '';
+    }
 }
 
 const mainElem = {
@@ -339,6 +341,30 @@ function createEssenceTable(itemData) {
             break;
         } else if (i == itemData['upgrade_costs'][0].length - 1) {
             essenceTable += '|essence = none<br>';
+        }
+    }
+    for (let a = 0; a < itemData['upgrade_costs'].length; a++) {
+        itemData['upgrade_costs'][a].reverse();
+        essenceTable += '|'
+        for (let b = 0; b < itemData['upgrade_costs'][a].length; b++) {
+            essenceTable += itemData['upgrade_costs'][a][b]['amount'].toString() + ' ';
+            if ('essence_type' in itemData['upgrade_costs'][a][b]) {
+                essenceTable += 'Essence';
+            } else if ('item_id' in itemData['upgrade_costs'][a][b]) {
+                let item_name;
+                for (i = 0; i < window.itemList.length; i++) {
+                    if (window.itemList[i]['id'] == itemData['upgrade_costs'][a][b]['item_id']) {
+                        item_name = window.itemList[i]['name'];
+                        break; 
+                    }
+                }
+                essenceTable += item_name;
+            }
+            if (b == itemData['upgrade_costs'][a].length - 1) {
+                essenceTable += '<br>'
+            } else {
+                essenceTable += '; '
+            }
         }
     }
     console.log(essenceTable);
