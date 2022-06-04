@@ -66,8 +66,8 @@ function onChanged(input_type) {
     }
 }
 
-document.getElementById('copy-infobox').addEventListener('click', copyText('infobox'));
-document.getElementById('copy-essenceTable').addEventListener('click', copyText('essenceTable'));
+document.getElementById('copy-infobox').addEventListener('click', function() { copyText('infobox'); });
+document.getElementById('copy-essenceTable').addEventListener('click', function() { copyText('essenceTable'); });
 
 function copyText(selector) {
     let el = document.getElementById(selector).innerHTML;
