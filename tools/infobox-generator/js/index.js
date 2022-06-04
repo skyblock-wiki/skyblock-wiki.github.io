@@ -339,27 +339,7 @@ function createEssenceTable(itemData) {
         }
     }
     if ('dungeon_item_conversion_cost' in itemData) {
-        essenceTable += '|convert = '
-        for (let a = 0; a < itemData['dungeon_item_conversion_cost'].length; a++) {
-            essenceTable += itemData['dungeon_item_conversion_cost'][a]['amount'].toString() + ' ';
-            if ('essence_type' in itemData['dungeon_item_conversion_cost'][a]) {
-                essenceTable += 'Essence';
-            } else if ('item_id' in itemData['dungeon_item_conversion_cost'][a]) {
-                let item_name;
-                for (let i = 0; i < window.itemList.length; i++) {
-                    if (window.itemList[i]['id'] == itemData['dungeon_item_conversion_cost'][a]['item_id']) {
-                        item_name = window.itemList[i]['name'];
-                        break; 
-                    }
-                }
-                essenceTable += item_name;
-            }
-            if (a == itemData['dungeon_item_conversion_cost'].length - 1) {
-                essenceTable += '<br>'
-            } else {
-                essenceTable += '; '
-            }
-        }
+        essenceTable += '|convert = 'itemData['dungeon_item_conversion_cost']['amount'].toString() + ' Essence<br>';
     }
     for (let a = 0; a < itemData['upgrade_costs'].length; a++) {
         itemData['upgrade_costs'][a].reverse();
@@ -379,12 +359,34 @@ function createEssenceTable(itemData) {
                 essenceTable += item_name;
             }
             if (b == itemData['upgrade_costs'][a].length - 1) {
+                essenceTable += '<br>';
+            } else {
+                essenceTable += '; ';
+            }
+        }
+    }
+    if ('prestige' in itemData) {
+        essenceTable += '|prestige = ';
+        for (let a = 0; a < itemData['prestige']['costs'].length; a++) {
+            essenceTable += itemData['prestige']['costs'][a]['amount'].toString() + ' ';
+            if ('essence_type' in itemData['prestige']['costs'][a]) {
+                essenceTable += 'Essence';
+            } else if ('item_id' in itemData['prestige']['costs'][a]) {
+                let item_name;
+                for (let i = 0; i < window.itemList.length; i++) {
+                    if (window.itemList[i]['id'] == itemData['prestige']['costs'][a]['item_id']) {
+                        item_name = window.itemList[i]['name'];
+                        break; 
+                    }
+                }
+                essenceTable += item_name;
+            }
+            if (a == itemData['prestige']['costs'].length - 1) {
                 essenceTable += '<br>'
             } else {
                 essenceTable += '; '
             }
         }
-        //To do: Add prestige.
     }
     console.log(essenceTable);
 }
