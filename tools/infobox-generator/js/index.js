@@ -66,13 +66,8 @@ function onChanged(input_type) {
     }
 }
 
-$('#copy-infobox').on('click', () => {
-    copyText('infobox');
-});
-
-$('#copy-essenceTable').on('click', () => {
-    copyText('essenceTable');
-});
+document.getElementById('copy-infobox').addEventListener('click', copyText('infobox'));
+document.getElementById('copy-essenceTable').addEventListener('click', copyText('essenceTable'));
 
 function copyText(selector) {
     let el = document.getElementById(selector).innerHTML;
@@ -343,6 +338,29 @@ function createEssenceTable(itemData) {
             essenceTable += '|essence = none<br>';
         }
     }
+    if ('dungeon_item_conversion_cost' in itemData) {
+        essenceTable += '|convert = '
+        for (let a = 0; a < itemData['dungeon_item_conversion_cost'].length; a++) {
+            essenceTable += itemData['dungeon_item_conversion_cost'][a]['amount'].toString() + ' ';
+            if ('essence_type' in itemData['dungeon_item_conversion_cost'][a]) {
+                essenceTable += 'Essence';
+            } else if ('item_id' in itemData['dungeon_item_conversion_cost'][a]) {
+                let item_name;
+                for (let i = 0; i < window.itemList.length; i++) {
+                    if (window.itemList[i]['id'] == itemData['dungeon_item_conversion_cost'][a]['item_id']) {
+                        item_name = window.itemList[i]['name'];
+                        break; 
+                    }
+                }
+                essenceTable += item_name;
+            }
+            if (a == itemData['dungeon_item_conversion_cost'].length - 1) {
+                essenceTable += '<br>'
+            } else {
+                essenceTable += '; '
+            }
+        }
+    }
     for (let a = 0; a < itemData['upgrade_costs'].length; a++) {
         itemData['upgrade_costs'][a].reverse();
         essenceTable += '|'
@@ -366,7 +384,7 @@ function createEssenceTable(itemData) {
                 essenceTable += '; '
             }
         }
-        //To do: Add conversion and prestige.
+        //To do: Add prestige.
     }
     console.log(essenceTable);
 }
