@@ -2,11 +2,11 @@ import { Toast } from '../../../js/toast.js';
 
 async function fetchItems() {
     const itemsData = await fetch('https://api.hypixel.net/resources/skyblock/items');
-    window.itemList = await itemsData.json().items;
-    console.log(window.itemList);
+    window.itemList = await itemsData.json();
+    window.itemList = window.itemList.items;
     const bazaarData = await fetch('https://api.hypixel.net/skyblock/bazaar');
-    window.bazaarList = await bazaarData.json().products;
-    console.log(window.bazaarList);
+    window.bazaarList = await bazaarData.json();
+    window.bazaarList = window.bazaarList.products;
 }
 
 fetchItems();
