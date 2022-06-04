@@ -1,13 +1,11 @@
 import { Toast } from '../../../js/toast.js';
 
 async function fetchItems() {
-    const itemsData = await fetch('https://api.hypixel.net/resources/skyblock/items');   
-    window.itemList = await itemsData.json();
-    window.itemList = window.itemList['items'];
+    const itemsData = await fetch('https://api.hypixel.net/resources/skyblock/items');
+    window.itemList = await itemsData.json().items;
     console.log(window.itemList);
-    const bazaarData = await fetch('https://api.hypixel.net/skyblock/bazaar');   
-    window.bazaarList = await bazaarData.json();
-    window.bazaarList = window.bazaarList['products'];
+    const bazaarData = await fetch('https://api.hypixel.net/skyblock/bazaar');
+    window.bazaarList = await bazaarData.json().products;
     console.log(window.bazaarList);
 }
 
@@ -339,7 +337,7 @@ function createEssenceTable(itemData) {
         }
     }
     if ('dungeon_item_conversion_cost' in itemData) {
-        essenceTable += '|convert = 'itemData['dungeon_item_conversion_cost']['amount'].toString() + ' Essence<br>';
+        essenceTable += '|convert = ' + itemData['dungeon_item_conversion_cost']['amount'].toString() + ' Essence<br>';
     }
     for (let a = 0; a < itemData['upgrade_costs'].length; a++) {
         itemData['upgrade_costs'][a].reverse();
@@ -353,7 +351,7 @@ function createEssenceTable(itemData) {
                 for (let i = 0; i < window.itemList.length; i++) {
                     if (window.itemList[i]['id'] == itemData['upgrade_costs'][a][b]['item_id']) {
                         item_name = window.itemList[i]['name'];
-                        break; 
+                        break;
                     }
                 }
                 essenceTable += item_name;
@@ -376,7 +374,7 @@ function createEssenceTable(itemData) {
                 for (let i = 0; i < window.itemList.length; i++) {
                     if (window.itemList[i]['id'] == itemData['prestige']['costs'][a]['item_id']) {
                         item_name = window.itemList[i]['name'];
-                        break; 
+                        break;
                     }
                 }
                 essenceTable += item_name;
