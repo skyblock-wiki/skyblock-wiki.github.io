@@ -339,7 +339,7 @@ function createEssenceTable(itemData) {
         if ('essence_type' in itemData['upgrade_costs'][0][i]) {
             essenceTable += '|essence = ' + toTitleCase(itemData['upgrade_costs'][0][i]['essence_type']) + '<br>';
             break;
-        } else if (i = itemData['upgrade_costs'][0].length - 1) {
+        } else if (i == itemData['upgrade_costs'][0].length - 1) {
             essenceTable += '|essence = none<br>';
         }
     }
