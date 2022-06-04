@@ -1,5 +1,5 @@
 const contributors = {
-    TheTrueShaman: ['Is attempting to create this.'],
+    TheTrueShaman: ['Created this tool.'],
 };
 let contribsList = '';
 
