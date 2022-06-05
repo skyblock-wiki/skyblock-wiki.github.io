@@ -1,10 +1,10 @@
 const linkTypes = {
-    text: '%s',
     download: 'Download',
-    website: '<img src="./img/website-icon.png">',
-    github: '<img src="./img/github-icon.png">',
-    curseforge: '<img src="./img/curseforge-icon.png">',
+    website: '<img src="/files/images/link-icons/website-icon.png">',
+    github: '<img src="/files/images/link-icons/github-icon.png">',
+    curseForge: '<img src="/files/images/link-icons/curseforge-icon.png">',
 };
+
 const downloads = [
     {
         name: 'Wikitools Mod',
@@ -105,7 +105,7 @@ const downloads = [
                 border: true,
             },
             {
-                type: 'curseforge',
+                type: 'curseForge',
                 link: 'https://www.curseforge.com/minecraft/mc-mods/blockrenderer',
             },
             {
@@ -125,16 +125,12 @@ downloads.forEach((el) => {
 
         if (link.type == 'text') text = link.text;
 
-        links.push(
-            `<a class="link" href="${link.type == 'download' ? './downloads/' : ''}${link.link}"${link.link.match(/^https?:\/\//) ? ' target=_blank' : ''}${
-                link.type == 'download' ? ' download' : ''
-            }>${text}</a>`
-        );
+        links.push(`<a class="link" href="${link.type == 'download' ? './downloads/' : ''}${link.link}"${link.link.match(/^https?:\/\//) ? ' target=_blank' : ''}${link.type == 'download' ? ' download' : ''}>${text}</a>`);
         if (link.border) links.push('<span class="line"></span>');
     });
     const element = [
-        '<li>',
-        `<img src="./downloads/thumbnails/${el.thumbnail}"${el.largeThumbnail ? ' style="width: 100%"' : ''} alt="tool logo">`,
+        '<li>', //
+        `<img src="/files/images/downloads/${el.thumbnail}"${el.largeThumbnail ? ' style="width: 100%"' : ''} alt="tool logo">`,
         '<hr>',
         `<h4>${el.name}</h4>`,
         `<p>${el.description}</p>`,

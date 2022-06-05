@@ -1,4 +1,5 @@
-<svg width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+<svg width="120" height="120"
+	xmlns="http://www.w3.org/2000/svg">
 	<title>SkyCrypt Logo</title>
 	<rect rx="16" height="120" width="120" y="0" x="0" fill="#0bda51"/>
 	<g fill="#ffffff">

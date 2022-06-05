@@ -20,11 +20,11 @@ function processToDiscordTooltips() {
 }
 
 const linkImages = {
-    wiki: '<img src="./wiki-icon.png">',
-    discord: '<img src="./img/curseforge-icon.png">',
-    website: '<img src="./img/website-icon.png">',
-    github: '<img src="./img/github-icon.png">',
-    curseForge: '<img src="./img/curseforge-icon.png">',
+    wiki: '<img src="/files/images/wiki-icon.png">',
+    discord: '<img src="/files/images/link-icons/discord-icon.png">',
+    website: '<img src="/files/images/link-icons/website-icon.png">',
+    github: '<img src="/files/images/link-icons/github-icon.png">',
+    curseForge: '<img src="/files/images/link-icons/curseforge-icon.png">',
 };
 
 const linkTitles = {
@@ -152,7 +152,7 @@ function makeLink(link) {
 function makeDiscordElement(usertag) {
     return [
         '<button class="discord link">', //
-        '<img src="./img/discord-icon.png">',
+        `${linkImages.discord}`,
         `<div class="discordtip" copy-value="${usertag}">`,
         `<span>${usertag}</span>`,
         '<small class="copy-text">click to copy</small>',
@@ -172,7 +172,7 @@ contributors.forEach((el) => {
     const element = [
         '<li>', //
         `<a href="${el.links[0].value}">`,
-        `<img src="./img/usericons/${el.thumbnail}" alt="user logo">`,
+        `<img src="/files/images/user-icons/${el.thumbnail}" alt="user logo">`,
         '</a>',
         '<hr>',
         `<h4>${el.name}</h4>`,

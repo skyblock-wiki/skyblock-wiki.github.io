@@ -1,4 +1,4 @@
-import { Toast } from '../../../js/toast.js';
+import { Toast } from '../../../scripts/toast.js';
 
 async function fetchItems() {
     const itemsData = await fetch('https://api.hypixel.net/resources/skyblock/items');
@@ -11,7 +11,7 @@ async function fetchItems() {
 
 fetchItems();
 
-window.settings = {'title': false};
+window.settings = { title: false };
 
 function clear() {
     for (let i = 0; i < document.getElementsByClassName('sec-err').length; i++) {
@@ -68,8 +68,12 @@ function onChanged(input_type) {
     }
 }
 
-document.getElementById('copy-infobox').addEventListener('click', function() { copyText('infobox'); });
-document.getElementById('copy-essenceTable').addEventListener('click', function() { copyText('essenceTable'); });
+document.getElementById('copy-infobox').addEventListener('click', function () {
+    copyText('infobox');
+});
+document.getElementById('copy-essenceTable').addEventListener('click', function () {
+    copyText('essenceTable');
+});
 
 function copyText(selector) {
     let el = document.getElementById(selector).innerHTML;
@@ -100,60 +104,27 @@ function toTitleCase(str) {
 
 function gemstoneHelper(gemstone) {
     gemstone = gemstone.toLowerCase();
-    gemstone = gemstone.replace("_gem", "");
-    gemstone = gemstone.replace("_", " ");
+    gemstone = gemstone.replace('_gem', '');
+    gemstone = gemstone.replace('_', ' ');
     return toTitleCase(gemstone);
 }
 
 //Stolen from: https://stackoverflow.com/questions/9083037/convert-a-number-into-a-roman-numeral-in-javascript
-function romanize (num) {
-    if (isNaN(num))
-        return NaN;
-    var digits = String(+num).split(""),
-        key = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM",
-               "","X","XX","XXX","XL","L","LX","LXX","LXXX","XC",
-               "","I","II","III","IV","V","VI","VII","VIII","IX"],
-        roman = "",
+function romanize(num) {
+    if (isNaN(num)) return NaN;
+    var digits = String(+num).split(''),
+        key = ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM', '', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC', '', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'],
+        roman = '',
         i = 3;
-    while (i--)
-        roman = (key[+digits.pop() + (i * 10)] || "") + roman;
-    return Array(+digits.join("") + 1).join("M") + roman;
+    while (i--) roman = (key[+digits.pop() + i * 10] || '') + roman;
+    return Array(+digits.join('') + 1).join('M') + roman;
 }
 
 function createInfobox(itemData) {
     console.log(itemData);
     let infobox = '{{Infobox ';
     if (itemData['category']) {
-        let categories = {'SWORD': 'weapon',
-                          'WAND': 'weapon',
-                          'BOW': 'weapon',
-                          'LONGSWORD': 'weapon',
-                          'DEPLOYABLE': 'item',
-                          'COSMETIC': 'item',
-                          'TRAVEL_SCROLL': 'item',
-                          'ACCESSORY': 'accessory',
-                          'HELMET': 'armor',
-                          'CHESTPLATE': 'armor',
-                          'LEGGINGS': 'armor',
-                          'BOOTS': 'boots',
-                          'PET_ITEM': 'item',
-                          'ARROW_POISON': 'item',
-                          'GAUNTLET': 'item',
-                          'BELT': 'item',
-                          'BRACELET': 'item',
-                          'CLOAK': 'item',
-                          'GLOVES': 'item',
-                          'NECKLACE': 'item',
-                          'DUNGEON_PASS': 'item',
-                          'REFORGE_STONE': 'reforge stone',
-                          'BAIT': 'item',
-                          'AXE': 'item',
-                          'HOE': 'item',
-                          'SPADE': 'item',
-                          'SHEARS': 'item',
-                          'PICKAXE': 'item',
-                          'FISHING_ROD': 'fishing rod',
-                         };
+        let categories = { SWORD: 'weapon', WAND: 'weapon', BOW: 'weapon', LONGSWORD: 'weapon', DEPLOYABLE: 'item', COSMETIC: 'item', TRAVEL_SCROLL: 'item', ACCESSORY: 'accessory', HELMET: 'armor', CHESTPLATE: 'armor', LEGGINGS: 'armor', BOOTS: 'boots', PET_ITEM: 'item', ARROW_POISON: 'item', GAUNTLET: 'item', BELT: 'item', BRACELET: 'item', CLOAK: 'item', GLOVES: 'item', NECKLACE: 'item', DUNGEON_PASS: 'item', REFORGE_STONE: 'reforge stone', BAIT: 'item', AXE: 'item', HOE: 'item', SPADE: 'item', SHEARS: 'item', PICKAXE: 'item', FISHING_ROD: 'fishing rod' };
         infobox += categories[itemData['category']];
     } else {
         infobox += 'item';
@@ -168,11 +139,7 @@ function createInfobox(itemData) {
         infobox += '|rarity = ' + itemData['tier'].toLowerCase() + '<br>';
     }
     infobox += '|id = ' + itemData['id'] + '<br>';
-    let percentages = {'attack_speed': true,
-                           'critical_chance': true,
-                           'critical_damage': true,
-                           'sea_creature_chance': true,
-                          };
+    let percentages = { attack_speed: true, critical_chance: true, critical_damage: true, sea_creature_chance: true };
     if (itemData['stats']) {
         const stat_keys = Object.keys(itemData['stats']);
         for (let i = 0; i < stat_keys.length; i++) {
@@ -220,10 +187,10 @@ function createInfobox(itemData) {
         for (let a = 0; a < itemData['gemstone_slots'].length; a++) {
             infobox += '1* ' + toTitleCase(itemData['gemstone_slots'][a]['slot_type']);
             if (itemData['gemstone_slots'][a]['costs']) {
-                infobox += ' &'
+                infobox += ' &';
                 let len = itemData['gemstone_slots'][a]['costs'].length;
                 for (let b = 0; b < len; b++) {
-                    let cost =  itemData['gemstone_slots'][a]['costs'][b];
+                    let cost = itemData['gemstone_slots'][a]['costs'][b];
                     if ('coins' in cost) {
                         infobox += cost['coins'].toString();
                     } else {
@@ -347,7 +314,7 @@ function createEssenceTable(itemData) {
     }
     for (let a = 0; a < itemData['upgrade_costs'].length; a++) {
         itemData['upgrade_costs'][a].reverse();
-        essenceTable += '|'
+        essenceTable += '|';
         for (let b = 0; b < itemData['upgrade_costs'][a].length; b++) {
             essenceTable += itemData['upgrade_costs'][a][b]['amount'].toString() + ' ';
             if ('essence_type' in itemData['upgrade_costs'][a][b]) {
@@ -386,9 +353,9 @@ function createEssenceTable(itemData) {
                 essenceTable += item_name;
             }
             if (a == itemData['prestige']['costs'].length - 1) {
-                essenceTable += '<br>'
+                essenceTable += '<br>';
             } else {
-                essenceTable += '; '
+                essenceTable += '; ';
             }
         }
     }
