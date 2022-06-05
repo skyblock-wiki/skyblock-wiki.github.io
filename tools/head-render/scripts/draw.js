@@ -1,4 +1,4 @@
-import { Toast } from '../../../js/toast.js';
+import { Toast } from '../../../scripts/toast.js';
 import { context, spriteCanvas, toggleImageLoader } from './index.js';
 import { $img, $imgLink, $sprite, $spriteLink } from './index.js';
 

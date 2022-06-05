@@ -1,4 +1,4 @@
-import { Toast } from '../../../js/toast.js';
+import { Toast } from '../../../scripts/toast.js';
 import { createImageThenRender } from './draw.js';
 
 export var context = $('#canvas').get(0).getContext('2d');

@@ -1,6 +1,8 @@
-@import './toast.css';
+@import '/styles/toast.css';
+
 /* font-awesome */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+
 /* fonts */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&display=swap');
@@ -22,9 +24,9 @@
 
 /* normalize margins and paddings */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 /*  
@@ -38,22 +40,22 @@ html {
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
     background: var(--col-bg);
-    min-height: 100vh;
-    width: 100%;
     display: flex;
     flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    width: 100%;
 }
 
 .hidden {
-    opacity: 0%;
     display: none;
+    opacity: 0%;
 }
 
 .soft-hidden {
-    visibility: hidden;
     cursor: default;
+    visibility: hidden;
 }
 
 .disallow-focusing {
@@ -70,18 +72,18 @@ body {
 }
 
 .code {
-    font-family: 'Fira Mono', monospace;
-    padding: 0px 0.3rem;
     background: rgba(0, 0, 0, 0.2);
     border: 1px solid var(--col-acc);
     border-radius: 4px;
+    font-family: 'Fira Mono', monospace;
+    padding: 0px 0.3rem;
 }
 
 /* hover and focus effect for buttons and inputs */
 input:focus,
 textarea:focus {
-    outline: none;
     box-shadow: var(--state-shadow);
+    outline: none;
 }
 
 button {
@@ -95,18 +97,18 @@ button {
 ======================
 */
 header {
+    align-items: center;
+    background: var(--col-bg3);
+    display: flex;
+    height: 5.5rem;
+    padding: 0.3rem 0;
     position: static;
     width: 100%;
-    height: 5.5rem;
-    display: flex;
-    background: var(--col-bg3);
-    align-items: center;
-    padding: 0.3rem 0;
 }
 
 header img {
-    width: 4rem;
     margin-right: 1.5rem;
+    width: 4rem;
 }
 
 header > span {
@@ -114,35 +116,35 @@ header > span {
 }
 
 header .name {
+    color: white;
     font-size: 1.5rem;
     font-weight: 500;
     white-space: nowrap;
-    color: white;
 }
 
 header .version {
+    align-self: flex-end;
+    color: #ffffffa0;
     font-size: 1rem;
     font-weight: 300;
-    align-self: flex-end;
     margin-left: 0.5rem;
-    color: #ffffffa0;
 }
 #return-main {
-    cursor: pointer;
-    padding: 0.6rem 1rem;
-    margin: auto 0.5rem;
-    transition: all 0.2s ease;
-    display: flex;
     align-items: center;
     border-right: 3px solid #666;
+    cursor: pointer;
+    display: flex;
+    margin: auto 0.5rem;
+    padding: 0.6rem 1rem;
+    transition: all 0.2s ease;
 }
 #return-main img {
-    vertical-align: middle;
     margin-right: 0;
+    vertical-align: middle;
 }
 #return-main:hover {
-    box-shadow: 0 0 10px 0 #fff1;
     background: #fff1;
+    box-shadow: 0 0 10px 0 #fff1;
 }
 
 /*  
@@ -151,21 +153,21 @@ header .version {
 =======================
 */
 .imports {
-    position: absolute;
-    left: 1rem;
     display: flex;
     flex-direction: column-reverse;
+    left: 1rem;
+    position: absolute;
     transition: all 0.2s ease;
 }
 #show-imports {
     background: none;
     border: none;
+    border-radius: 4px;
     color: white;
     font-size: 2rem;
-    width: 3rem;
     padding: 0.4rem 0;
-    border-radius: 4px;
     transition: all 0.2s ease;
+    width: 3rem;
     z-index: 2;
 }
 #show-imports:hover {
@@ -179,126 +181,126 @@ header .version {
 }
 .imports-list {
     background: var(--col-bg);
-    padding: 0.5rem;
     border: 1px solid var(--col-acc);
-    margin: 0.5rem 1rem 0.5rem 0;
     border-radius: 5px;
+    margin: 0.5rem 1rem 0.5rem 0;
+    padding: 0.5rem;
     transition: all 0.2s ease;
     z-index: 2;
 }
 .imports-list.hidden {
-    transform: translateX(-100%);
-    opacity: 0%;
     display: block;
+    opacity: 0%;
+    transform: translateX(-100%);
 }
 .dimmer {
-	background-color: #000;
-	left: 0;
-	opacity: 0.6;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	height: 100%;
-    z-index: 1;
+    background-color: #000;
+    height: 100%;
+    left: 0;
+    opacity: 0.6;
+    position: fixed;
+    top: 0;
     transition: opacity 0.2s;
+    width: 100%;
+    z-index: 1;
 }
 .dimmer.disallow-focusing {
-	opacity: 0;
-	z-index: -99;
-	display: block !important;
+    display: block !important;
+    opacity: 0;
+    z-index: -99;
 }
 .imports h1 {
-    font-size: 1.2rem;
     color: white;
+    font-size: 1.2rem;
     margin-bottom: 1rem;
 }
 .imports h2 {
-    font-size: 1rem;
     color: white;
+    font-size: 1rem;
     font-weight: 300;
     margin-bottom: 0.6rem;
 }
 .imports h2 .tip {
-    font-size: 0.6rem;
-    border-radius: 999px;
     border: 1px solid var(--col-acc);
-    padding: 0 0.2rem;
+    border-radius: 999px;
     cursor: help;
+    font-size: 0.6rem;
+    padding: 0 0.2rem;
 }
 .imports .input-form {
-    margin: 0.6rem 0 0 8px;
+    align-items: center;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    margin: 0.6rem 0 0 8px;
 }
 .imports .input-form input {
-    padding: 0.2rem 0.4rem;
     background: var(--col-bg2);
     border: 1px solid var(--col-acc);
     border-radius: 3px;
-    color: white;
     box-shadow: none;
+    color: white;
     height: 100%;
+    padding: 0.2rem 0.4rem;
 }
 .imports .input-form #color-import-submit {
-    height: 100%;
-    margin-left: 0.6rem;
-    padding: 0.2rem 0.3rem;
     background: var(--col-bg2);
     border: 1px solid var(--col-acc);
     border-radius: 3px;
     color: var(--orange);
     font-weight: bold;
+    height: 100%;
+    margin-left: 0.6rem;
+    padding: 0.2rem 0.3rem;
     transition: all 0.2s ease;
 }
 .imports .input-form #color-import-submit:hover {
     background: var(--col-bg3);
 }
 .imports .color-model {
-    display: flex;
     align-items: center;
+    display: flex;
     justify-content: flex-start;
 }
 .imports .color-model .btn-option {
     background: none;
     border: none;
-    width: min-content;
+    font-size: 12px;
     margin: 0.2rem 0.8rem;
     padding: 0.2rem 0.3rem;
-    font-size: 12px;
+    width: min-content;
 }
 .imports .color-model .option {
+    align-items: center;
     background: var(--col-bg3);
-    height: 2rem;
-    width: 6rem;
-    border-radius: 4px;
     border: 1px solid var(--col-acc);
+    border-radius: 4px;
     cursor: pointer;
     display: flex;
-    align-items: center;
+    height: 2rem;
     justify-content: space-evenly;
     transition: all 0.3s ease;
+    width: 6rem;
 }
 .imports .color-model .option span {
     color: var(--box-border);
 }
 .imports .color-model .option .dot {
-    height: 1rem;
-    width: 1rem;
-    border-radius: 999px;
     border: 2px solid var(--dot-border);
+    border-radius: 999px;
+    height: 1rem;
     transition: all 0.3s ease;
+    width: 1rem;
 }
 .imports .color-model .option .dot::before {
+    background: var(--orange);
+    border-radius: 999px;
     content: '';
-    position: absolute;
     height: 0.5rem;
-    width: 0.5rem;
     margin-left: 0.125rem;
     margin-top: 0.125rem;
-    border-radius: 999px;
-    background: var(--orange);
     opacity: 0;
+    position: absolute;
+    width: 0.5rem;
 }
 .imports .color-model #option1:checked ~ .btn-option1 .option,
 .imports .color-model #option2:checked ~ .btn-option2 .option {
@@ -327,50 +329,50 @@ header .version {
 ====================
 */
 main {
-    flex-grow: 1;
     display: flex;
+    flex-grow: 1;
     height: 100%;
     margin: 1rem 0;
 }
 main > section {
-    width: 50%;
     display: flex;
     padding: 2rem 1rem 0;
+    width: 50%;
 }
 /* inputs */
 #inputs {
-    flex-direction: column;
     align-items: center;
     border-right: 1px solid var(--col-acc);
+    flex-direction: column;
 }
 .text-input {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 .text-input span {
-    font-weight: bold;
-    font-size: 18px;
     color: white;
+    font-size: 18px;
+    font-weight: bold;
 }
 .text-input input {
-    padding: 8px;
-    display: block;
-    width: 5em;
     border: 2px dotted black;
-    font-size: 2em;
     box-shadow: var(--state-shadow);
+    display: block;
     font-family: Consolas, 'Times New Roman', Times, serif;
+    font-size: 2em;
+    padding: 8px;
     text-align: center;
+    width: 5em;
 }
 .text-input .suggestions {
-    margin-top: 0.5rem;
     height: 50px;
+    margin-top: 0.5rem;
 }
 .text-input .suggestions-label {
-    font-size: 0.9rem;
     color: white;
     font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
     font-weight: 200;
     text-align: center;
 }
@@ -381,13 +383,13 @@ main > section {
     margin-left: 1.4rem;
 }
 .text-input .suggestions li a {
-    position: relative;
-    left: -6px;
+    border-bottom: 1px dotted currentColor;
+    color: darkgray;
+    cursor: help;
     font-family: monospace;
     font-size: 0.9rem;
-    color: darkgray;
-    border-bottom: 1px dotted currentColor;
-    cursor: help;
+    left: -6px;
+    position: relative;
 }
 .text-input .suggestions ::marker {
     color: darkgray;
@@ -409,10 +411,10 @@ main > section {
     cursor: ew-resize;
 }
 .IroWheelLightness {
-    width: 101% !important;
     height: 101% !important;
-    top: -1px !important;
     left: -1px !important;
+    top: -1px !important;
+    width: 101% !important;
 }
 .IroSlider {
     background: black !important;
@@ -427,8 +429,8 @@ main > section {
     font-weight: 300;
 }
 .other-values th {
-    font-weight: 500;
     font-size: 1.2rem;
+    font-weight: 500;
 }
 .other-values tr td:first-of-type span {
     margin-right: 1rem;
@@ -459,9 +461,9 @@ main > section {
 }
 /* outputs */
 #outputs {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
     position: relative;
     top: -1.5rem;
 }
@@ -474,30 +476,30 @@ canvas {
 }
 /* contributors */
 .contributors {
-    margin: 0.8rem 1.1rem;
+    bottom: 0;
     display: flex;
     flex-direction: column;
+    margin: 0.8rem 1.1rem;
     position: fixed;
     right: 0;
-    bottom: 0;
 }
 .contributors button {
     background: none;
     border: none;
-    transition: none;
-    font-size: 20px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
     color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    transition: none;
 }
 .contributors .list {
     background: var(--col-bg2) none repeat scroll 0% 0%;
-    border-radius: 4px;
     border: 1px solid var(--col-acc2);
+    border-radius: 4px;
 }
 .contributors button i {
-    transition: transform 0.4s ease;
     transform: rotate(-90deg);
+    transition: transform 0.4s ease;
 }
 .contributors .list:not(.hidden-height) ~ h3 i {
     transform: rotate(-180deg);
@@ -513,43 +515,43 @@ canvas {
     margin: 0.5rem 0;
 }
 .tooltip {
-    position: relative;
-    display: inline-block;
+    border-bottom: 1px dotted white;
     color: white;
+    display: inline-block;
     font-family: 'Montserrat', sans-serif;
     font-weight: 200;
-    border-bottom: 1px dotted white;
+    position: relative;
 }
 .tooltip .tooltiptext {
-    visibility: hidden;
-    width: max-content;
-    max-width: 300px;
     background-color: var(--col-bg3);
-    color: #fff;
-    text-align: left;
-    border-radius: 6px;
     border: 1px solid var(--col-acc2);
+    border-radius: 6px;
+    bottom: -5px;
+    color: #fff;
+    max-width: 300px;
+    opacity: 0;
     padding: 5px 5px 5px 25px;
     position: absolute;
-    z-index: 1;
-    bottom: -5px;
     right: 110%;
+    text-align: left;
     /* fade animation */
     transition: all 0.2s ease;
-    opacity: 0;
+    visibility: hidden;
+    width: max-content;
+    z-index: 1;
 }
 .tooltip > span:nth-child(1) {
     cursor: help;
 }
 .tooltip .tooltiptext::after {
-    content: '';
-    position: absolute;
+    border-color: transparent transparent transparent var(--col-acc2);
+    border-style: solid;
+    border-width: 5px;
     bottom: 10px;
+    content: '';
     left: 100%;
     margin-top: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent transparent var(--col-acc2);
+    position: absolute;
 }
 .tooltip:hover .tooltiptext,
 .tooltip:active .tooltiptext {
@@ -562,8 +564,8 @@ canvas {
 .tooltip .tooltiptext li span {
     font-family: 'Montserrat', sans-serif;
     font-size: 0.8rem;
-    position: relative;
     left: -7px;
+    position: relative;
 }
 
 /*  
@@ -573,47 +575,47 @@ canvas {
 */
 footer {
     background: var(--col-bg3);
-    width: 100%;
     display: flex;
     justify-content: center;
-    padding: 0.4rem 2rem;
     justify-self: flex-end;
+    padding: 0.4rem 2rem;
+    width: 100%;
 }
 
 /* social media buttons styling */
 .github-button-wrapper a {
-    color: white;
-    text-decoration: none;
-    display: inline-block;
-    height: 40px;
-    width: 40px;
-    margin: 0 5px;
     background: var(--col-bg);
     border-radius: 50px;
-    cursor: pointer;
     box-shadow: 0 3px 5px black;
-    transition: all 0.3s ease;
-    overflow: hidden;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    height: 40px;
+    margin: 0 5px;
     outline: none;
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    width: 40px;
 }
 
 .github-button-wrapper a:hover,
 .github-button-wrapper a:focus,
 .github-button-wrapper a:active {
-    width: 200px;
     background: var(--col-bg2);
     color: white;
+    width: 200px;
 }
 
 .github-button-wrapper a .icon {
+    border-radius: 50px;
+    box-sizing: border-box;
     display: inline-block;
     height: 40px;
-    width: 40px;
-    text-align: center;
-    box-sizing: border-box;
-    border-radius: 50px;
     line-height: 40px;
+    text-align: center;
     transition: all 0.2s ease;
+    width: 40px;
 }
 
 .github-button-wrapper a .icon i {
@@ -652,16 +654,16 @@ footer {
         top: 4.5rem;
     }
     main > section {
-        width: 100%;
         padding: 3rem 1rem;
+        width: 100%;
     }
     #inputs {
         border: none;
     }
     #outputs a,
     #outputs a img {
-        width: 130px;
         height: 130px;
+        width: 130px;
     }
     .text-input .suggestions-label {
         font-size: 0.8rem;
@@ -682,8 +684,8 @@ footer {
         font-size: 1.7rem;
     }
     .text-input .suggestions {
-        margin-top: 0.5rem;
         height: 30px;
+        margin-top: 0.5rem;
     }
     .other-values {
         font-size: 0.9rem;

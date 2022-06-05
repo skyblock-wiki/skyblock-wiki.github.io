@@ -10,23 +10,23 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
 
-        <script type="module" src="./js/index.js"></script>
-        <script type="module" src="./js/contributors.js"></script>
-        <script type="module" src="./js/color_models.js"></script>
+        <script type="module" src="./scripts/index.js"></script>
+        <script type="module" src="./scripts/contributors.js"></script>
+        <script type="module" src="./scripts/color_models.js"></script>
 
-        <link rel="stylesheet" href="./css/styles.css" />
-        <link rel="icon" href="../../return-icon.png" />
-        <link rel="icon" href="./favicon.png" />
+        <link rel="stylesheet" href="./styles/styles.css" />
+        <link rel="icon" href="/files/images/return-icon.png" />
+        <link rel="icon" href="/files/images/tool-icons/leather-armor.png" />
     </head>
 
     <body>
         <header>
-            <a href="../../index.html" id="return-main">
+            <a href="/index.html" id="return-main">
                 <span>
-                    <img src="../../return-icon.png" alt="back" />
+                    <img src="/files/images/return-icon.png" alt="back" />
                 </span>
             </a>
-            <img src="favicon.png" alt="logo" />
+            <img src="/files/images/tool-icons/leather-armor.png" alt="logo" />
             <span>
                 <span class="name">Colored Armor Generator</span>
                 <span class="version">v3.0</span>
@@ -125,22 +125,7 @@
         </main>
         <div class="contributors">
             <div id="contrib-list-div" class="list hidden-height" style="height: auto">
-                <ul id="contrib-list">
-                    <!-- example layout 
-					<li>
-						<div class="tooltip">
-							<span>joker876</span>
-							<span class="tooltiptext">
-								<ul>
-									<li><span>Did some thing</span></li>
-									<li><span>Did some thing 2</span></li>
-									<li><span>Did some thing 3</span></li>
-								</ul>
-							</span>
-						</div>
-					</li>
-				-->
-                </ul>
+                <ul id="contrib-list"></ul>
             </div>
             <h3>
                 <button id="show-contribs">

@@ -1,9 +1,8 @@
-import { Toast } from '../../../js/toast.js';
+import { Toast } from '../../../scripts/toast.js';
 import { colorPicker, showHideMenu } from './index.js';
 
 export function loadColorFromModel(e) {
-    if (e)
-        e.preventDefault();
+    if (e) e.preventDefault();
 
     const input = $('#color-import');
     const isRGB = $('.color-model #option1').is(':checked');
