@@ -93,7 +93,7 @@ function triggerCreation(inputType, inputValue) {
             if (inputType === 'id') {
                 if (input.substring(input.length-6) === '_armor') {
                     console.log(input);
-                    console.log(input.substring(input.length-6);
+                    console.log(input.substring(input.length-6));
                 }
             } else {
                 if (input.substring(input.length-6) === ' armor') {
