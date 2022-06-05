@@ -173,7 +173,11 @@ header .version {
 }
 main,
 aside {
-    width: 50%;
+    width: 25%;
+    padding: 2rem;
+}
+aside {
+    width: 75%;
     padding: 2rem;
 }
 /*  
@@ -250,6 +254,9 @@ aside section {
     display: flex;
     flex-direction: column;
 }
+aside .templates {
+    width: 50%;
+}
 aside .templates th {
     padding-right: 1rem;
     text-align: right;
@@ -271,7 +278,7 @@ aside .templates div:not(aside .templates td .copy-div) {
     transition: all 0.2s ease;
     font-family: 'Fira Code', monospace;
     font-size: 0.75rem;
-    width: 25rem;
+    width: 100%;
     max-height: 15rem;
     overflow: auto;
 }
