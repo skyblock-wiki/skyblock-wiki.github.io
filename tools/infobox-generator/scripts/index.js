@@ -89,16 +89,16 @@ function triggerCreation(inputType, inputValue) {
             }
         }
         // To do: add support for armor sets
-        if (input[input.length-5, input.length-1] === 'armor') {
+        if (input.substring(input.length-5) === 'armor') {
             if (inputType === 'id') {
-                if (input[input.length-6, input.length-1] === '_armor') {
+                if (input.substring(input.length-6) === '_armor') {
                     console.log(input);
-                    console.log(input[input.length-6, input.length-1]);
+                    console.log(input.substring(input.length-6);
                 }
             } else {
-                if (input[input.length-6, input.length-1] === ' armor') {
+                if (input.substring(input.length-6) === ' armor') {
                     console.log(input);
-                    console.log(input[input.length-6, input.length-1]);
+                    console.log(input.substring(input.length-6));
                 }
             }
         }
