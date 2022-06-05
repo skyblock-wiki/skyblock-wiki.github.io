@@ -1,12 +1,12 @@
-# skyblock-wiki.github.io
+# Hypixel SkyBlock Wiki Tools
 
 A site to provide tools for [Hypixel SkyBlock Wiki](https://hypixel-skyblock.fandom.com/) users.
 
 ## List of tools:
 
 -   [Head Renderer](https://skyblock-wiki.github.io/tools/head-render/)
--   [Leather Armor Color Generator](https://skyblock-wiki.github.io/tools/leather-armor/)
--   [NPC Sprite Generator](https://jsfiddle.net/Fewfre/sg5bqo2j/)
+-   [Leather Armor Generator](https://skyblock-wiki.github.io/tools/leather-armor/)
+-   [Infobox Generator](https://skyblock-wiki.github.io/tools/infobox-generator/)
 -   [UI Generator](https://jsfiddle.net/MonkeysHK/nb2csh1a/)
 
 ## List of contributors:
