@@ -10,7 +10,7 @@ Node.prototype.on = window.on = (name, fn) => {
 NodeList.prototype.__proto__ = Array.prototype;
 
 NodeList.prototype.on = NodeList.prototype.addEventListener = (name, fn) => {
-    this.forEach((elem, i) => {
-        elem.on(name, fn);
+    this.forEach((element) => {
+        element.on(name, fn);
     });
 };

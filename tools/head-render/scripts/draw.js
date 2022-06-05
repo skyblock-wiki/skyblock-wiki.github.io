@@ -1,6 +1,5 @@
 import { Toast } from '../../../scripts/toast.js';
-import { context, spriteCanvas, toggleImageLoader } from './index.js';
-import { $img, $imgLink, $sprite, $spriteLink } from './index.js';
+import { $img, $imgLink, $sprite, $spriteLink, context, spriteCanvas, toggleImageLoader } from './index.js';
 
 // ////////////////////////////
 // Pre-Render

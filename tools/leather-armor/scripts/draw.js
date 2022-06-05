@@ -1,7 +1,7 @@
 import { ITEM_SCALE, allCTX, allCanvas, assets, colorHash, state } from './index.js';
 
 export function draw() {
-    if (state != 'active') return;
+    if (state !== 'active') return;
 
     const color = colorHash;
 

@@ -183,18 +183,18 @@ section.contributors {
     content: ',';
     margin-right: 5px;
 }
-.contributors .tasklist {
+.contributors .task-list {
     list-style-type: disc;
     margin-bottom: 0.5rem;
     margin-left: 1rem;
 }
-.contributors .tasklist li {
+.contributors .task-list li {
     color: white;
     font-size: 0.8rem;
     font-weight: 200;
     margin: 0.2rem 0;
 }
-.contributors .tasklist li * {
+.contributors .task-list li * {
     left: -4px;
     position: relative;
 }
@@ -203,12 +203,12 @@ section.contributors {
     display: inline-block;
     position: relative;
 }
-body.hasHover .contributors .discord:hover > .discordtip,
-body.hasHover .contributors .discord:focus > .discordtip,
-body.hasHover .contributors .discord:active > .discordtip {
+body.has-hover .contributors .discord:hover > .discord-tooltip,
+body.has-hover .contributors .discord:focus > .discord-tooltip,
+body.has-hover .contributors .discord:active > .discord-tooltip {
     visibility: visible;
 }
-.contributors .discordtip {
+.contributors .discord-tooltip {
     align-items: center;
     background: var(--col-bg);
     border: 1px solid var(--col-acc);
@@ -222,7 +222,7 @@ body.hasHover .contributors .discord:active > .discordtip {
     visibility: hidden;
     width: max-content;
 }
-.contributors .discordtip::after {
+.contributors .discord-tooltip::after {
     border-color: var(--col-acc2) transparent transparent transparent;
     border-style: solid;
     border-width: 5px;
@@ -231,22 +231,22 @@ body.hasHover .contributors .discord:active > .discordtip {
     left: calc(50% - 0.4rem);
     position: absolute;
 }
-.contributors .discordtip span {
+.contributors .discord-tooltip span {
     font-family: monospace;
 }
-.contributors .discordtip .copy-text,
-.contributors .discordtip .copy-popup {
+.contributors .discord-tooltip .copy-text,
+.contributors .discord-tooltip .copy-popup {
     font-size: 0.65rem;
     opacity: 75%;
 }
-.contributors .discordtip .copy-popup {
+.contributors .discord-tooltip .copy-popup {
     color: limegreen;
     display: none;
 }
-.contributors .discordtip.copied .copy-text {
+.contributors .discord-tooltip.copied .copy-text {
     display: none;
 }
-.contributors .discordtip.copied .copy-popup {
+.contributors .discord-tooltip.copied .copy-popup {
     display: block;
 }
 /*  

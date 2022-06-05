@@ -2,8 +2,11 @@ import { contributors } from '../data/contributors.js';
 import { linkImages, linkTitles } from '../data/other.js';
 import { Toast } from './toast.js';
 
+/**
+ * Processes discord tooltips
+ */
 function processToDiscordTooltips() {
-    document.querySelectorAll('.discordtip').forEach((el) => {
+    document.querySelectorAll('.discord-tooltip').forEach((el) => {
         el.style.left = `${el.offsetWidth / -2 + el.parentElement.offsetHeight / 2}px`;
         el.style.bottom = `${el.parentElement.offsetWidth + 3}px`;
 
@@ -23,8 +26,13 @@ function processToDiscordTooltips() {
 
 const allCOntributorElements = [];
 
+/**
+ * Creates a link
+ * @param {object} link the link object to create
+ * @returns {string} the HTML string for the link
+ */
 function makeLink(link) {
-    if (link.type == 'discord') return makeDiscordElement(link.value);
+    if (link.type === 'discord') return makeDiscordElement(link.value);
 
     const image = linkImages[link.type];
     const title = linkTitles[link.type];
@@ -32,12 +40,17 @@ function makeLink(link) {
     return `<a class="link" href="${link.value}"${link.value.match(/^https?:\/\//) ? ' target=_blank' : ''} title="${title}">${image}</a>`;
 }
 
-function makeDiscordElement(usertag) {
+/**
+ * Creates a discord element
+ * @param {string} userTag the tag of the user to create
+ * @returns {string} the HTML string for the user
+ */
+function makeDiscordElement(userTag) {
     return [
         '<button class="discord link">', //
         `${linkImages.discord}`,
-        `<div class="discordtip" copy-value="${usertag}">`,
-        `<span>${usertag}</span>`,
+        `<div class="discord-tooltip" copy-value="${userTag}">`,
+        `<span>${userTag}</span>`,
         '<small class="copy-text">click to copy</small>',
         '<small class="copy-popup">copied!</small>',
         '</div>',
@@ -59,11 +72,11 @@ contributors.forEach((contrib) => {
         '</a>',
         '<hr>',
         `<h4>${contrib.name}</h4>`,
-        '<ul class="tasklist">',
+        '<ul class="task-list">',
         contrib.owner ? '<li>Owner of the GitHub repository and organization</li>' : '',
         contrib.member ? '<li>Member of the GitHub repository and organization</li>' : '',
         contrib.tasks.map((task) => `<li>${task}</li>`).join(''),
-        contrib.inactive ? `<li><span style='color: #f33; margin-left: 4px;'>No longer active!</span></li>` : '',
+        contrib.inactive ? '<li><span style="color: #f33; margin-left: 4px;">No longer active!</span></li>' : '',
         '</ul>',
         '<div class="links">',
         links.join(''),

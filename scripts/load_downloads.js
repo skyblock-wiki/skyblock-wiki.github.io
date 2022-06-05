@@ -11,7 +11,7 @@ downloads.forEach((dld) => {
 
         if (content === 'text') content = link.text;
 
-        links.push(`<a class="link" href="${link.type == 'download' ? '/files/downloads' : ''}${link.link}"${link.link.match(/^https?:\/\//) ? ' target=_blank' : ''}${link.type == 'download' ? ' download' : ''}>${content}</a>`);
+        links.push(`<a class="link" href="${link.type === 'download' ? '/files/downloads' : ''}${link.link}"${link.link.match(/^https?:\/\//) ? ' target=_blank' : ''}${link.type === 'download' ? ' download' : ''}>${content}</a>`);
         if (link.border) links.push('<span class="line"></span>');
     });
     const element = [
@@ -28,4 +28,5 @@ downloads.forEach((dld) => {
 
     allDownloadElements.push(element);
 });
-$('section.downloads > ul').html(allDownloadElements);
+
+document.querySelector('section.downloads > ul').innerHTML = allDownloadElements.join('');

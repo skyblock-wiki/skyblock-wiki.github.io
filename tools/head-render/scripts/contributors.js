@@ -5,11 +5,17 @@ const contributors = {
     MonkeysHK: ['Created the renderer from NameMC and texture ID', 'Integrated the sprite renderer into this tool'],
 };
 
-const contributorsList = Object.keys(contributors).map((name) => constructSingleContributor(name, contributors[name]));
+const contributorsList = Object.keys(contributors).map((name) => createContributor(name, contributors[name]));
 
 document.getElementById('contrib-list').innerHTML = contributorsList.join('');
 
-function constructSingleContributor(name, list) {
+/**
+ * Creates information for a contributor
+ * @param {string} name the name of the contributor
+ * @param {Array} list the list of tasks the contributor has done
+ * @returns {string} the HTML string for the contributor
+ */
+function createContributor(name, list) {
     return [
         '<li>', //
         '<div class="tooltip">',
