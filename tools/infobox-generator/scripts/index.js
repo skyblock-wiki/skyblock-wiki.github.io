@@ -21,6 +21,10 @@ const copyInfoboxButton = document.getElementById('copy-infobox');
 const essenceTableElement = document.getElementById('essence-table');
 const copyEssenceTableButton = document.getElementById('copy-essence-table');
 
+nameInput.addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') nameSubmitButton.click();
+});
+
 nameSubmitButton.addEventListener('click', () => {
     triggerCreation('name', nameInput.value);
 });
@@ -36,6 +40,10 @@ nameClearButton.addEventListener('click', () => {
         type: 'success',
         time: 1000,
     }).show();
+});
+
+idInput.addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') idSubmitButton.click();
 });
 
 idSubmitButton.addEventListener('click', () => {
@@ -75,18 +83,11 @@ copyEssenceTableButton.addEventListener('click', () => {
  */
 function triggerCreation(inputType, inputValue) {
     if (!itemsData) {
-        new Toast({
-            message: 'The item list has not yet loaded. Please wait or try refreshing the page!',
-            type: 'disallow',
-            time: 4000,
-        }).show();
+        new Toast({ message: 'The item list has not yet loaded. Please wait or try refreshing the page!', type: 'disallow', time: 2000 }).show();
     } else {
         let input = inputValue.toLowerCase();
-        for (const index in itemsData) {
-            const item = itemsData[index];
-            if (input === item[inputType].toLowerCase()) {
-                return createInfobox(item);
-            }
+         for (const item of itemsData) {
+            if (input === item[inputType].toLowerCase()) return createInfobox(item);
         }
         // To do: add support for armor sets
         if (input.substring(input.length-5) === 'armor') {
@@ -113,17 +114,9 @@ function triggerCreation(inputType, inputValue) {
 function copyText(id) {
     try {
         window.navigator.clipboard.writeText(document.getElementById(id).innerHTML.replaceAll('<br>', '\n'));
-        new Toast({
-            message: 'Copied!',
-            type: 'success',
-            time: 2000,
-        }).show();
+        new Toast({ message: 'Copied!', type: 'success', time: 2000 }).show();
     } catch (error) {
-        new Toast({
-            message: 'Unable to copy, please try again!',
-            type: 'disallow',
-            time: 4000,
-        }).show();
+        new Toast({ message: 'Unable to copy!', type: 'disallow', time: 4000 }).show();
     }
 }
 
@@ -156,102 +149,82 @@ function romanize(num) {
     return Array(+digits.join('') + 1).join('M') + roman;
 }
 
+const categories = { SWORD: 'weapon', WAND: 'weapon', BOW: 'weapon', LONGSWORD: 'weapon', DEPLOYABLE: 'item', COSMETIC: 'item', TRAVEL_SCROLL: 'item', ACCESSORY: 'accessory', HELMET: 'armor', CHESTPLATE: 'armor', LEGGINGS: 'armor', BOOTS: 'boots', PET_ITEM: 'item', ARROW_POISON: 'item', GAUNTLET: 'item', BELT: 'item', BRACELET: 'item', CLOAK: 'item', GLOVES: 'item', NECKLACE: 'item', DUNGEON_PASS: 'item', REFORGE_STONE: 'reforge stone', BAIT: 'item', AXE: 'item', HOE: 'item', SPADE: 'item', SHEARS: 'item', PICKAXE: 'item', FISHING_ROD: 'fishing rod' };
+
 /**
  * Creates the infobox for the item
  * @param {object} itemData the item data
  */
 function createInfobox(itemData) {
     let infobox = '{{Infobox ';
-    if (itemData.category) {
-        const categories = { SWORD: 'weapon', WAND: 'weapon', BOW: 'weapon', LONGSWORD: 'weapon', DEPLOYABLE: 'item', COSMETIC: 'item', TRAVEL_SCROLL: 'item', ACCESSORY: 'accessory', HELMET: 'armor', CHESTPLATE: 'armor', LEGGINGS: 'armor', BOOTS: 'boots', PET_ITEM: 'item', ARROW_POISON: 'item', GAUNTLET: 'item', BELT: 'item', BRACELET: 'item', CLOAK: 'item', GLOVES: 'item', NECKLACE: 'item', DUNGEON_PASS: 'item', REFORGE_STONE: 'reforge stone', BAIT: 'item', AXE: 'item', HOE: 'item', SPADE: 'item', SHEARS: 'item', PICKAXE: 'item', FISHING_ROD: 'fishing rod' };
-        infobox += categories[itemData.category];
-    } else {
-        infobox += 'item';
-    }
+
+    if (itemData.category) infobox += categories[itemData.category] || 'item';
+    else infobox += 'item';
+
     infobox += '<br>';
+
     if (includeExtra) {
-        infobox += '|title = ' + itemData.name + '<br>';
-        infobox += '|image = ' + itemData.name + '.png<br>';
-        infobox += '|slot_item = ' + itemData.name + '<br>';
+        infobox += [
+            `|title = ${itemData.name}`, //
+            `|image = ${itemData.name}.png`,
+            `|slot_item = ${itemData.name}`,
+        ].join('<br>');
     }
-    if (itemData.tier) {
-        infobox += '|rarity = ' + itemData.tier.toLowerCase() + '<br>';
-    }
+
+    if (itemData.tier) infobox += `|rarity = ${itemData.tier.toLowerCase()}<br>`;
+
     infobox += '|id = ' + itemData.id + '<br>';
     const percentages = { attack_speed: true, critical_chance: true, critical_damage: true, sea_creature_chance: true }; // eslint-disable-line camelcase
     // To do: Add support for "fragged" items (called "STARRED_itemname" by the api).
     if (itemData.stats) {
         const statKeys = Object.keys(itemData.stats);
-        for (let i = 0; i < statKeys.length; i++) {
-            if (statKeys[i] === 'WEAPON_ABILITY_DAMAGE') {
-                continue;
-            } else if (statKeys[i] === 'WALK_SPEED') {
-                infobox += '|speed = ' + itemData.stats[statKeys[i]] + '<br>';
-            } else {
-                let percent = '';
-                if (percentages[statKeys[i].toLowerCase()]) {
-                    percent = '%';
-                }
-                infobox += '|' + statKeys[i].toLowerCase() + ' = ' + itemData.stats[statKeys[i]] + percent + '<br>';
-            }
+        for (const key of statKeys) {
+            if (key === 'WEAPON_ABILITY_DAMAGE') continue;
+            else if (key === 'WALK_SPEED') infobox += `|speed = ${itemData.stats[key]}<br>`;
+            else infobox += `|${key.toLowerCase()} = ${itemData.stats[key]}${percentages[key.toLowerCase()] ? '%' : ''}<br>`;
         }
     }
+
     if (itemData.tiered_stats) {
         const statKeys = Object.keys(itemData.tiered_stats);
-        for (let i = 0; i < statKeys.length; i++) {
-            const a = itemData.tiered_stats[statKeys[i]][0];
-            const b = itemData.tiered_stats[statKeys[i]][itemData.tiered_stats[statKeys[i]].length - 1];
+        for (const key of statKeys) {
+            const min = itemData.tiered_stats[key][0];
+            const max = itemData.tiered_stats[key][itemData.tiered_stats[key].length - 1];
+
             let stat;
-            if (a === b) {
-                stat = a.toString();
-            } else if (a < b) {
-                stat = a.toString() + '-' + b.toString();
-            } else {
-                stat = b.toString() + '-' + a.toString();
-            }
-            if (statKeys[i] === 'WEAPON_ABILITY_DAMAGE') {
-                continue;
-            } else if (statKeys[i] === 'WALK_SPEED') {
-                infobox += '|speed = ' + stat + '<br>';
-            } else {
-                let percent = '';
-                if (percentages[statKeys[i].toLowerCase()]) {
-                    percent = '%';
-                }
-                infobox += '|' + statKeys[i].toLowerCase() + ' = ' + stat + percent + '<br>';
-            }
+            if (min === max) stat = min.toString();
+            else if (min < max) stat = min.toString() + '-' + max.toString();
+            else stat = max.toString() + '-' + min.toString();
+
+            if (key === 'WEAPON_ABILITY_DAMAGE') continue;
+            else if (key === 'WALK_SPEED') infobox += '|speed = ' + stat + '<br>';
+            else infobox += `|${key.toLowerCase()} = ${stat}${percentages[key.toLowerCase()] ? '%' : ''}<br>`;
         }
     }
+
     if (itemData.gemstone_slots) {
         infobox += '|gemstone_slots = <br>';
-        for (let a = 0; a < itemData.gemstone_slots.length; a++) {
-            infobox += '1* ' + toTitleCase(itemData.gemstone_slots[a].slot_type);
-            if (itemData.gemstone_slots[a].costs) {
+
+        for (const gemstone of itemData.gemstone_slots) {
+            infobox += '*1 ' + toTitleCase(gemstone.slot_type);
+            if (gemstone.costs) {
                 infobox += ' &';
-                const len = itemData.gemstone_slots[a].costs.length;
-                for (let b = 0; b < len; b++) {
-                    const cost = itemData.gemstone_slots[a].costs[b];
-                    if ('coins' in cost) {
-                        infobox += cost.coins.toString();
-                    } else {
-                        infobox += cost.amount.toString() + ' ' + toTitleCase(cost.item_id.toLowerCase().replace('_gem', '').replace('_', ' '));
-                    }
-                    if (b !== len - 1) {
-                        infobox += ', ';
-                    }
-                }
+
+                infobox += gemstone.costs
+                    .map((cost) => {
+                        if ('coins' in cost) return cost.coins.toString();
+                        else return cost.amount.toString() + ' ' + toTitleCase(cost.item_id.toLowerCase().replace('_gem', '').replace('_', ' '));
+                    })
+                    .join(', ');
+
                 infobox += '&';
             }
             infobox += '<br>';
         }
     }
     if (itemData.requirements || itemData.catacombs_requirements) {
-        let requirements;
-        if (itemData.requirements) {
-            requirements = Object.assign(itemData.requirements, itemData.catacombs_requirements);
-        } else {
-            requirements = itemData.catacombs_requirements;
-        }
+        const requirements = { ...itemData.requirements, ...itemData.catacombs_requirements };
+
         if ('skill' in requirements) {
             const skillLvl = requirements.skill;
             if (skillLvl.type.toLowerCase() === 'combat') {
@@ -260,10 +233,12 @@ function createInfobox(itemData) {
                 infobox += '|other_level_requirement = {{Skl|' + skillLvl.type.toLowerCase() + '|' + skillLvl.level + '}}<br>';
             }
         }
+
         if ('slayer' in requirements) {
             const slayerLvl = requirements.slayer;
             infobox += '|slayer_level_requirement = ' + toTitleCase(slayerLvl.slayer_boss_type) + ' Slayer ' + slayerLvl.level.toString() + '<br>';
         }
+
         if ('dungeon' in requirements) {
             const dungeonLvl = requirements.dungeon;
             infobox += '|dungeon_level_requirement = {{Skl|' + dungeonLvl.type.toLowerCase() + '|' + dungeonLvl.level + '}}';
@@ -272,6 +247,7 @@ function createInfobox(itemData) {
             }
             infobox += '<br>';
         }
+
         if ('dungeon_completion' in requirements) {
             const dungeonComp = requirements.dungeon_completion;
             infobox += '|dungeon_floor_clearing_requirement = ' + toTitleCase(dungeonComp.type.replace('_', ' ')) + ' Floor ' + romanize(dungeonComp.tier);
@@ -281,60 +257,55 @@ function createInfobox(itemData) {
             infobox += '<br>';
         }
     }
-    if (itemData.category !== 'REFORGE_STONE' && itemData.category !== 'ACCESSORY') {
-        infobox += '|enchant = u<br>|reforge = u<br>';
-    }
-    if (bazaarData[itemData.id]) {
-        infobox += '|auctionable = No<br>';
-    } else if (itemData.soulbound) {
-        infobox += '|auctionable = No<br>';
-    } else {
-        infobox += '|auctionable = u<br>';
-    }
+
+    if (itemData.category !== 'REFORGE_STONE' && itemData.category !== 'ACCESSORY') infobox += '|enchant = unknown<br>|reforge = unknown<br>';
+
+    if (bazaarData[itemData.id]) infobox += '|auctionable = no<br>';
+    else if (itemData.soulbound) infobox += '|auctionable = no<br>';
+    else infobox += '|auctionable = unknown<br>';
+
     if (itemData.soulbound) {
         if (itemData.soulbound.toLowerCase() === 'coop') {
             infobox += '|tradeable = {{No|text=y}}<br>(Except to Co-op members)<br>|soulbound = Co-op<br>';
         } else {
-            infobox += '|tradeable = No<br>|soulbound = Player<br>';
+            infobox += '|tradeable = no<br>|soulbound = Player<br>';
         }
     } else {
-        infobox += '|tradeable = u<br>';
+        infobox += '|tradeable = unknown<br>';
     }
+
     if ('museum' in itemData) {
-        if (itemData.museum === true) {
-            infobox += '|museum = Yes<br>';
-        } else {
-            infobox += '|museum = No<br>';
-        }
+        if (itemData.museum) infobox += '|museum = yes<br>';
+        else infobox += '|museum = no<br>';
     } else {
-        infobox += '|museum = u<br>';
+        infobox += '|museum = unknown<br>';
     }
+
     if (itemData.npc_sell_price) {
-        infobox += '|salable = Yes<br>';
-        infobox += '|sell = ' + itemData.npc_sell_price.toString() + '<br>';
+        infobox += '|salable = yes<br>';
+        infobox += `|sell = ${itemData.npc_sell_price}<br>`;
     } else {
-        infobox += '|salable = No<br>';
+        infobox += '|salable = no<br>';
     }
-    if (bazaarData[itemData.id]) {
-        infobox += '|bazaar = ' + itemData.id + '<br>';
-    }
+
+    if (bazaarData[itemData.id]) infobox += `|bazaar = ${itemData.id}<br>`;
+
     if ('color' in itemData) {
-        const color = itemData.color.split(',');
-        let hex = '';
-        for (let i = 0; i < 3; i++) {
-            hex += Number(color[i]).toString(16);
-        }
-        infobox += '|color = ' + hex + '<br>';
+        const hex = itemData.color
+            .split(',')
+            .map((color) => Number(color).toString(16))
+            .join('');
+
+        infobox += `|color = ${hex}<br>`;
     }
+
     infobox += '}}';
+
     copyInfoboxButton.disabled = false;
     infoboxElement.parentElement.classList.remove('unselectable');
     infoboxElement.innerHTML = infobox;
-    if (itemData.upgrade_costs) {
-        createEssenceTable(itemData);
-    } else {
-        essenceTableElement.innerHTML = '&ZeroWidthSpace;';
-    }
+    if (itemData.upgrade_costs) createEssenceTable(itemData);
+    else essenceTableElement.innerHTML = '&ZeroWidthSpace;';
 }
 
 /**
@@ -343,65 +314,64 @@ function createInfobox(itemData) {
  */
 function createEssenceTable(itemData) {
     let essenceTable = '{{Essence Crafting<br>|type = weapon<br>';
-    for (let i = 0; i < itemData.upgrade_costs[0].length; i++) {
-        if ('essence_type' in itemData.upgrade_costs[0][i]) {
-            essenceTable += '|essence = ' + toTitleCase(itemData.upgrade_costs[0][i].essence_type) + '<br>';
+
+    for (const cost of itemData.upgrade_costs[0]) {
+        if ('essence_type' in cost) {
+            essenceTable += `|essence = ${toTitleCase(cost.essence_type)}<br>`;
             break;
-        } else if (i === itemData.upgrade_costs[0].length - 1) {
-            essenceTable += '|essence = none<br>';
-        }
+        } else if (cost === itemData.upgrade_costs[itemData.upgrade_costs.length - 1]) essenceTable += '|essence = none<br>';
     }
-    if ('dungeon_item_conversion_cost' in itemData) {
-        essenceTable += '|convert = ' + itemData.dungeon_item_conversion_cost.amount.toString() + ' Essence<br>';
-    }
-    for (let a = 0; a < itemData.upgrade_costs.length; a++) {
-        itemData.upgrade_costs[a].reverse();
+
+    if ('dungeon_item_conversion_cost' in itemData) essenceTable += `|convert = ${itemData.dungeon_item_conversion_cost.amount} Essence<br>`;
+
+    for (const costs of itemData.upgrade_costs) {
+        costs.reverse();
         essenceTable += '|';
-        for (let b = 0; b < itemData.upgrade_costs[a].length; b++) {
-            essenceTable += itemData.upgrade_costs[a][b].amount.toString() + ' ';
-            if ('essence_type' in itemData.upgrade_costs[a][b]) {
-                essenceTable += 'Essence';
-            } else if ('item_id' in itemData.upgrade_costs[a][b]) {
+
+        for (const tierCost of costs) {
+            essenceTable += tierCost.amount.toString() + ' ';
+            if ('essence_type' in tierCost) essenceTable += 'Essence';
+            else if ('item_id' in tierCost) {
                 let itemName;
-                for (let i = 0; i < itemsData.length; i++) {
-                    if (itemsData[i].id === itemData.upgrade_costs[a][b].item_id) {
-                        itemName = itemsData[i].name;
+                for (const item of itemsData) {
+                    if (tierCost.item_id === item.id) {
+                        itemName = item.name;
                         break;
                     }
                 }
                 essenceTable += itemName;
             }
-            if (b === itemData.upgrade_costs[a].length - 1) {
-                essenceTable += '<br>';
-            } else {
-                essenceTable += '; ';
-            }
+
+            if (tierCost === costs[costs.length - 1]) essenceTable += '<br>';
+            else essenceTable += '; ';
         }
     }
+
     if ('prestige' in itemData) {
         essenceTable += '|prestige = ';
-        for (let a = 0; a < itemData.prestige.costs.length; a++) {
-            essenceTable += itemData.prestige.costs[a].amount.toString() + ' ';
-            if ('essence_type' in itemData.prestige.costs[a]) {
-                essenceTable += 'Essence';
-            } else if ('item_id' in itemData.prestige.costs[a]) {
+
+        for (const cost of itemData.prestige.costs) {
+            essenceTable += cost.amount + ' ';
+
+            if ('essence_type' in cost) essenceTable += 'Essence';
+            else if ('item_id' in cost) {
                 let itemName;
-                for (let i = 0; i < itemsData.length; i++) {
-                    if (itemsData[i].id === itemData.prestige.costs[a].item_id) {
-                        itemName = itemsData[i].name;
+                for (const item of itemsData) {
+                    if (cost.item_id === item.id) {
+                        itemName = item.name;
                         break;
                     }
                 }
                 essenceTable += itemName;
             }
-            if (a === itemData.prestige.costs.length - 1) {
-                essenceTable += '<br>';
-            } else {
-                essenceTable += '; ';
-            }
+
+            if (cost === itemData.prestige.costs[itemData.prestige.costs.length - 1]) essenceTable += '<br>';
+            else essenceTable += '; ';
         }
     }
+
     essenceTable += '}}';
+
     copyEssenceTableButton.disabled = false;
     essenceTableElement.parentElement.classList.remove('unselectable');
     essenceTableElement.innerHTML = essenceTable;
