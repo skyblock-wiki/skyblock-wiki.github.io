@@ -8,8 +8,8 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
-        <script type="module" src="./scripts/index.js"></script>
-        <script type="module" src="./scripts/contributors.js"></script>
+        <script src="./scripts/index.js" type="module"></script>
+        <script src="./scripts/contributors.js" type="module"></script>
 
         <link rel="stylesheet" href="./styles/styles.css" />
         <link rel="icon" href="/files/images/return-icon.png" />
@@ -33,22 +33,20 @@
             <main>
                 <section>
                     <h3>Create from item name</h3>
-                    <div class="sec-err" id="nameError"></div>
                     <input type="text" id="name" placeholder="Item name" />
                     <br />
                     <span class="unselectable">
-                        <button class="sec-subm" id="nameSubmit">Create</button>
-                        <button class="sec-clr" id="nameClear">Clear</button>
+                        <button class="sec-subm" id="name-submit">Create</button>
+                        <button class="sec-clr" id="name-clear">Clear</button>
                     </span>
                 </section>
                 <section>
                     <h3>Create from item ID</h3>
-                    <div class="sec-err" id="idError"></div>
                     <input type="text" id="id" placeholder="Item ID" />
                     <br />
                     <span class="unselectable">
-                        <button class="sec-subm" id="idSubmit">Create</button>
-                        <button class="sec-clr" id="idClear">Clear</button>
+                        <button class="sec-subm" id="id-submit">Create</button>
+                        <button class="sec-clr" id="id-clear">Clear</button>
                     </span>
                 </section>
                 <section>

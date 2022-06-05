@@ -64,7 +64,7 @@ const mainElem = {
 const subElem = {
     nbt: $('#nbtSubmit'),
     val: $('#valSubmit'),
-    tid: $('#tidSubmit'),
+    tid: $('#tid-submit'),
 };
 const errElem = {
     nbt: $('#nbtError'),
@@ -237,7 +237,7 @@ $('#valClear').on('click', () => {
     mainElem.val.val('');
     clrError();
 });
-$('#tidClear').on('click', () => {
+$('#tid-clear').on('click', () => {
     mainElem.tid.val('');
     clrError();
 });

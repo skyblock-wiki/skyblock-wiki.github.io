@@ -1,72 +1,88 @@
 import { Toast } from '../../../scripts/toast.js';
 
-/**
- * Fetches items from the API
- */
-async function fetchItems() {
-    const itemsData = await fetch('https://api.hypixel.net/resources/skyblock/items');
-    window.itemList = await itemsData.json();
-    window.itemList = window.itemList.items;
-    const bazaarData = await fetch('https://api.hypixel.net/skyblock/bazaar');
-    window.bazaarList = await bazaarData.json();
-    window.bazaarList = window.bazaarList.products;
-}
-
-fetchItems();
+const itemsData = (await (await fetch('https://api.hypixel.net/resources/skyblock/items')).json()).items;
+const bazaarData = (await (await fetch('https://api.hypixel.net/skyblock/bazaar')).json()).products;
 
 window.settings = { title: false };
 
-const mainElem = {
-    name: document.getElementById('name'),
-    id: document.getElementById('id'),
-};
+const nameInput = document.getElementById('name');
+const nameSubmitButton = document.getElementById('name-submit');
+const nameClearButton = document.getElementById('name-clear');
 
-const subElem = {
-    name: document.getElementById('nameSubmit'),
-    id: document.getElementById('idSubmit'),
-};
+const idInput = document.getElementById('id');
+const idSubmitButton = document.getElementById('id-submit');
+const idClearButton = document.getElementById('id-clear');
 
-mainElem.name.addEventListener('input', () => {
-    onChanged('name');
+const infoboxElement = document.getElementById('infobox');
+const copyInfoboxButton = document.getElementById('copy-infobox');
+
+const essenceTableElement = document.getElementById('essence-table');
+const copyEssenceTableButton = document.getElementById('copy-essence-table');
+
+nameSubmitButton.addEventListener('click', () => {
+    triggerCreation('name', nameInput.value);
 });
-subElem.name.addEventListener('click', () => {
-    onChanged('name');
+
+nameClearButton.addEventListener('click', () => {
+    nameInput.value = '';
+    infoboxElement.innerHTML = '&ZeroWidthSpace;';
+    copyInfoboxButton.disabled = true;
+    essenceTableElement.innerHTML = '&ZeroWidthSpace;';
+    copyEssenceTableButton.disabled = true;
+    new Toast({
+        message: 'Cleared!',
+        type: 'success',
+        time: 1000,
+    }).show();
 });
-mainElem.id.addEventListener('input', () => {
-    onChanged('id');
+
+idSubmitButton.addEventListener('click', () => {
+    triggerCreation('id', idInput.value);
 });
-subElem.id.addEventListener('click', () => {
-    onChanged('id');
+
+idClearButton.addEventListener('click', () => {
+    idInput.value = '';
+    infoboxElement.innerHTML = '&ZeroWidthSpace;';
+    copyInfoboxButton.disabled = true;
+    essenceTableElement.innerHTML = '&ZeroWidthSpace;';
+    copyEssenceTableButton.disabled = true;
+    new Toast({
+        message: 'Cleared!',
+        type: 'success',
+        time: 1000,
+    }).show();
+});
+
+copyInfoboxButton.addEventListener('click', () => {
+    copyText('infobox');
+});
+
+copyEssenceTableButton.addEventListener('click', () => {
+    copyText('essence-table');
 });
 
 /**
- * Handles inputs
+ * Handles the creation input
  * @param {'name'|'id'} inputType the type of input
+ * @param {string} inputValue the value of the input
  */
-function onChanged(inputType) {
-    if (!window.itemList) {
+function triggerCreation(inputType, inputValue) {
+    if (!itemsData) {
         new Toast({
             message: 'The item list has not yet loaded. Please wait or try refreshing the page!',
             type: 'disallow',
             time: 4000,
         }).show();
     } else {
-        const thing = document.getElementById(inputType).value.toLowerCase();
-        for (let i = 0; i < window.itemList.length; i++) {
-            if (window.itemList[i][inputType].toLowerCase() === thing) {
-                createInfobox(window.itemList[i]);
+        for (const index in itemsData) {
+            const item = itemsData[index];
+            if (inputValue.toLowerCase() === item[inputType].toLowerCase()) {
+                createInfobox(item);
                 break;
             }
         }
     }
 }
-
-document.getElementById('copy-infobox').addEventListener('click', () => {
-    copyText('infobox');
-});
-document.getElementById('copy-essence-table').addEventListener('click', () => {
-    copyText('essence-table');
-});
 
 /**
  * Copies an element's innerHTML to the clipboard
@@ -243,7 +259,7 @@ function createInfobox(itemData) {
     if (itemData.category !== 'REFORGE_STONE' && itemData.category !== 'ACCESSORY') {
         infobox += '|enchant = u<br>|reforge = u<br>';
     }
-    if (window.bazaarList[itemData.id]) {
+    if (bazaarData[itemData.id]) {
         infobox += '|auctionable = No<br>';
     } else if (itemData.soulbound) {
         infobox += '|auctionable = No<br>';
@@ -274,7 +290,7 @@ function createInfobox(itemData) {
     } else {
         infobox += '|salable = No<br>';
     }
-    if (window.bazaarList[itemData.id]) {
+    if (bazaarData[itemData.id]) {
         infobox += '|bazaar = ' + itemData.id + '<br>';
     }
     if ('color' in itemData) {
@@ -286,13 +302,13 @@ function createInfobox(itemData) {
         infobox += '|color = ' + hex + '<br>';
     }
     infobox += '}}';
-    document.getElementById('copy-infobox').disabled = false;
-    document.getElementById('infobox').parentElement.classList.remove('unselectable');
-    document.getElementById('infobox').innerHTML = infobox;
+    copyInfoboxButton.disabled = false;
+    infoboxElement.parentElement.classList.remove('unselectable');
+    infoboxElement.innerHTML = infobox;
     if (itemData.upgrade_costs) {
         createEssenceTable(itemData);
     } else {
-        document.getElementById('essence-table').innerHTML = '&ZeroWidthSpace;';
+        essenceTableElement.innerHTML = '&ZeroWidthSpace;';
     }
 }
 
@@ -322,9 +338,9 @@ function createEssenceTable(itemData) {
                 essenceTable += 'Essence';
             } else if ('item_id' in itemData.upgrade_costs[a][b]) {
                 let itemName;
-                for (let i = 0; i < window.itemList.length; i++) {
-                    if (window.itemList[i].id === itemData.upgrade_costs[a][b].item_id) {
-                        itemName = window.itemList[i].name;
+                for (let i = 0; i < itemsData.length; i++) {
+                    if (itemsData[i].id === itemData.upgrade_costs[a][b].item_id) {
+                        itemName = itemsData[i].name;
                         break;
                     }
                 }
@@ -345,9 +361,9 @@ function createEssenceTable(itemData) {
                 essenceTable += 'Essence';
             } else if ('item_id' in itemData.prestige.costs[a]) {
                 let itemName;
-                for (let i = 0; i < window.itemList.length; i++) {
-                    if (window.itemList[i].id === itemData.prestige.costs[a].item_id) {
-                        itemName = window.itemList[i].name;
+                for (let i = 0; i < itemsData.length; i++) {
+                    if (itemsData[i].id === itemData.prestige.costs[a].item_id) {
+                        itemName = itemsData[i].name;
                         break;
                     }
                 }
@@ -361,7 +377,7 @@ function createEssenceTable(itemData) {
         }
     }
     essenceTable += '}}';
-    document.getElementById('copy-essence-table').disabled = false;
-    document.getElementById('essence-table').parentElement.classList.remove('unselectable');
-    document.getElementById('essence-table').innerHTML = essenceTable;
+    copyEssenceTableButton.disabled = false;
+    essenceTableElement.parentElement.classList.remove('unselectable');
+    essenceTableElement.innerHTML = essenceTable;
 }
