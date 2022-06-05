@@ -255,9 +255,9 @@ function createInfobox(itemData) {
     }
     if (itemData['soulbound']) {
         if (itemData['soulbound'].toLowerCase() == 'coop') {
-            infobox += '|tradeable = {{No|text=y}}<br>(Except to Co-op members)<br>';
+            infobox += '|tradeable = {{No|text=y}}<br>(Except to Co-op members)<br>|soulbound = Co-op<br>';
         } else {
-            infobox += '|tradeable = No<br>';
+            infobox += '|tradeable = No<br>|soulbound = Player<br>';
         }
     } else {
         infobox += '|tradeable = u<br>';
