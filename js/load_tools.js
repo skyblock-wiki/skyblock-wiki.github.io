@@ -25,7 +25,7 @@ const tools = [
         thumbnail: './tools/infobox-generator/favicon.png',
         name: 'Infobox Generator',
         version: 'v1.0',
-        description: 'Uses data from the items API and spits out basic infoboxes and essence crafting tables with the corresponding item data, for editor\'s modification.',
+        description: 'Creates basic infoboxes and essence crafting tables from the items API data.',
     },
     {
         link: 'https://jsfiddle.net/MonkeysHK/nb2csh1a/',
