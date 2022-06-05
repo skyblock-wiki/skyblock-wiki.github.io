@@ -21,6 +21,13 @@ const tools = [
         description: 'Render NPC sprites.',
     },
     {
+        link: './tools/infobox-generator/index.html',
+        thumbnail: './tools/infobox-generator/favicon.png',
+        name: 'Infobox Generator',
+        version: 'v1.0',
+        description: 'Creates basic infoboxes and essence crafting tables from the items API data.',
+    },
+    {
         link: 'https://jsfiddle.net/MonkeysHK/nb2csh1a/',
         thumbnail: './tools/thumbnails/ui-parser.png',
         name: 'UI Generator',
