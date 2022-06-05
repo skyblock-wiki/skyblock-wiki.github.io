@@ -2,7 +2,7 @@ export const downloads = [
     {
         name: 'Wikitools Mod',
         description: 'A mod that lets you render any entity (mob, player, NPC, item, anything) with a single click of a button. Requires Forge for Minecraft 1.8.x.',
-        thumbnail: 'wikitools.png',
+        thumbnail: 'wikitools',
         links: [
             {
                 type: 'download',
@@ -18,7 +18,7 @@ export const downloads = [
     {
         name: 'Mineshot Mod',
         description: 'A mod that lets you take isometric screenshots.',
-        thumbnail: 'mineshot.png',
+        thumbnail: 'mineshot',
         largeThumbnail: true,
         links: [
             {
@@ -39,7 +39,7 @@ export const downloads = [
     {
         name: 'World Downloader Mod',
         description: 'A mod that lets you download a world from multiplayer to singleplayer.',
-        thumbnail: 'world-downloader.png',
+        thumbnail: 'world-downloader',
         links: [
             {
                 type: 'text',
@@ -56,7 +56,7 @@ export const downloads = [
     {
         name: 'Enchanted Item Toolkit (PS)',
         description: 'A set of <span class="code">.psd</span> templates used to make images for enchanted items and blocks.',
-        thumbnail: 'enchanted-items-ps.png',
+        thumbnail: 'enchanted-items-ps',
         links: [
             {
                 type: 'download',
@@ -73,7 +73,7 @@ export const downloads = [
     {
         name: 'Enchanted Item Toolkit (GIMP)',
         description: 'A set of <span class="code">.xcf</span> templates used to make images for enchanted items and blocks.',
-        thumbnail: 'enchanted-items-gimp.png',
+        thumbnail: 'enchanted-items-gimp',
         links: [
             {
                 type: 'download',
@@ -90,7 +90,7 @@ export const downloads = [
     {
         name: 'BlockRenderer Mod',
         description: 'A mod that allows quick rendering of any item, block and head.',
-        thumbnail: 'blockrenderer.png',
+        thumbnail: 'blockrenderer',
         links: [
             {
                 type: 'download',

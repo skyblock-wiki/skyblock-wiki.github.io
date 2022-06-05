@@ -3,10 +3,10 @@ import { linkImages, linkNames } from '../data/other.js';
 
 const allDownloadElements = [];
 
-downloads.forEach((el) => {
+downloads.forEach((dld) => {
     const links = [];
 
-    el.links.forEach((link) => {
+    dld.links.forEach((link) => {
         let content = linkImages[link.type] || linkNames[link.type];
 
         if (content === 'text') content = link.text;
@@ -16,10 +16,10 @@ downloads.forEach((el) => {
     });
     const element = [
         '<li>', //
-        `<img src="/files/images/download-thumbnails/${el.thumbnail}"${el.largeThumbnail ? ' style="width: 100%"' : ''} alt="tool logo">`,
+        `<img src="/files/images/download-thumbnails/${dld.thumbnail}.png"${dld.largeThumbnail ? ' style="width: 100%"' : ''} alt="${dld.name} logo">`,
         '<hr>',
-        `<h4>${el.name}</h4>`,
-        `<p>${el.description}</p>`,
+        `<h4>${dld.name}</h4>`,
+        `<p>${dld.description}</p>`,
         '<div class="links">',
         links.join(''),
         '</div>',

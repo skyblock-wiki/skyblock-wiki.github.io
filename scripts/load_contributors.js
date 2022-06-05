@@ -45,22 +45,23 @@ function makeDiscordElement(usertag) {
     ].join('');
 }
 
-contributors.forEach((el) => {
+contributors.forEach((contrib) => {
     const links = [];
 
-    el.links.forEach((link) => {
+    contrib.links.forEach((link) => {
         links.push(makeLink(link));
         if (link.border) links.push('<span class="line"></span>');
     });
     const element = [
         '<li>', //
-        `<a href="${el.links[0].value}">`,
-        `<img src="/files/images/user-icons/${el.thumbnail}" alt="user logo">`,
+        `<a href="${contrib.links[0].value}">`,
+        `<img src="/files/images/user-icons/${contrib.thumbnail || 'default_icon'}.png" alt="${contrib.name} logo">`,
         '</a>',
         '<hr>',
-        `<h4>${el.name}</h4>`,
+        `<h4>${contrib.name}</h4>`,
         '<ul class="tasklist">',
-        el.tasks.map((task) => `<li>${task}</li>`).join(''),
+        contrib.tasks.map((task) => `<li>${task}</li>`).join(''),
+        contrib.inactive ? `<li><span style='color: #f33; margin-left: 4px;'>No longer active!</span></li>` : '',
         '</ul>',
         '<div class="links">',
         links.join(''),

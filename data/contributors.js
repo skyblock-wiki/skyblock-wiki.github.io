@@ -1,8 +1,7 @@
 export const contributors = [
     {
         name: 'joker876',
-        thumbnail: 'joker876.png',
-        aka: [],
+        thumbnail: 'joker876',
         tasks: ['Owner of the GitHub repository and organization', 'Created the main page', 'Helped create the Head Render Thingy', 'Helped create the Leather Armor Renderer'],
         links: [
             {
@@ -26,8 +25,7 @@ export const contributors = [
     },
     {
         name: 'Fewfre',
-        thumbnail: 'fewfre.png',
-        aka: [],
+        thumbnail: 'fewfre',
         tasks: ['Helped create the Head Render Thingy', 'Helped create the Leather Armor Renderer', 'Helped with many other issues'],
         links: [
             {
@@ -46,31 +44,9 @@ export const contributors = [
         ],
     },
     {
-        name: 'Thundercraft5',
-        thumbnail: 'ruby.png',
-        aka: ['Ruby'],
-        tasks: ['Owner of the GitHub repository and organization', 'Maintains the Hypixel SkyBlock Wiki Bot', 'Added various enhancements to the site', "<span style='color: #f33; margin-left: 4px;'>No longer active!</span>"],
-        links: [
-            {
-                type: 'wiki',
-                value: 'https://hypixel-skyblock.fandom.com/wiki/User:Thundercraft5',
-                border: true,
-            },
-            {
-                type: 'discord',
-                value: '💻Ruby#3280',
-            },
-            {
-                type: 'github',
-                value: 'https://github.com/Thundercraft5',
-            },
-        ],
-    },
-    {
         name: 'MonkeysHK',
-        thumbnail: 'blank.png',
-        aka: [],
-        tasks: ['Member of the GitHub repository/organization', 'Helped create the Head Render Thingy', 'Helped create the Leather Armor Renderer'],
+        thumbnail: '',
+        tasks: ['Member of the GitHub repository and organization', 'Helped create the Head Render Thingy', 'Helped create the Leather Armor Renderer'],
         links: [
             {
                 type: 'wiki',
@@ -88,10 +64,72 @@ export const contributors = [
         ],
     },
     {
-        name: 'Pwign',
-        thumbnail: 'pwign.png',
+        name: 'TheTrueShaman',
+        thumbnail: 'shaman',
         aka: [],
-        tasks: ['Helped create the Head Render Thingy', "<span style='color: #f33; margin-left: 4px;'>No longer active!</span>"],
+        tasks: ['Member of the GitHub repository and organization', 'Helped create the Infobox Generator'],
+        links: [
+            {
+                type: 'wiki',
+                value: 'https://hypixel-skyblock.fandom.com/wiki/User:TheTrueShaman',
+                border: true,
+            },
+            {
+                type: 'discord',
+                value: 'TheTrueShaman#9445',
+            },
+            {
+                type: 'github',
+                value: 'https://github.com/The-Shaman',
+            },
+        ],
+    },
+    {
+        name: 'Eejit43 (AKA Eejit)',
+        thumbnail: 'eejit',
+        tasks: ['Member of the GitHub repository and organization', 'Helped with various things in the site', 'Contributed to the Hypixel SkyBlock Wiki Bot'],
+        links: [
+            {
+                type: 'wiki',
+                value: 'https://hypixel-skyblock.fandom.com/wiki/User:Eejit43',
+                border: true,
+            },
+            {
+                type: 'discord',
+                value: 'eejit#7578',
+            },
+            {
+                type: 'github',
+                value: 'https://github.com/Eejit43',
+            },
+        ],
+    },
+    {
+        name: 'Thundercraft5 (AKA Ruby)',
+        thumbnail: 'ruby',
+        tasks: ['Owner of the GitHub repository and organization', 'Maintains the Hypixel SkyBlock Wiki Bot', 'Added various enhancements to the site'],
+        inactive: true,
+        links: [
+            {
+                type: 'wiki',
+                value: 'https://hypixel-skyblock.fandom.com/wiki/User:Thundercraft5',
+                border: true,
+            },
+            {
+                type: 'discord',
+                value: '💻Ruby#3280',
+            },
+            {
+                type: 'github',
+                value: 'https://github.com/Thundercraft5',
+            },
+        ],
+    },
+    {
+        name: 'Pwign',
+        thumbnail: 'pwign',
+        tasks: ['Helped create the Head Render Thingy'],
+        inactive: true,
         links: [
             {
                 type: 'wiki',

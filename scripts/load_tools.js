@@ -3,7 +3,7 @@ import { tools } from '../data/tools.js';
 const allElements = tools.map((tool) =>
     [
         '<li>', //
-        `<img src="/files/images/tool-icons/${tool.thumbnail}" alt="tool logo">`,
+        `<img src="/files/images/tool-icons/${tool.thumbnail}.png" alt="tool logo">`,
         '<hr>',
         `<h4>${tool.name}</h4>`,
         `<span class="version">${tool.version ? tool.version : '&nbsp;'}</span>`,
