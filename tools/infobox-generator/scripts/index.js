@@ -85,25 +85,11 @@ function triggerCreation(inputType, inputValue) {
     if (!itemsData) {
         new Toast({ message: 'The item list has not yet loaded. Please wait or try refreshing the page!', type: 'disallow', time: 2000 }).show();
     } else {
-        let input = inputValue.toLowerCase();
-         for (const item of itemsData) {
-            if (input === item[inputType].toLowerCase()) return createInfobox(item);
+        for (const item of itemsData) {
+            if (inputValue.toLowerCase() === item[inputType].toLowerCase()) return createInfobox(item);
         }
-        // To do: add support for armor sets
-        if (input.substring(input.length-5) === 'armor') {
-            if (inputType === 'id' && input.substring(input.length-6) === '_armor') {
-                console.log(input.substring(0, input.length-6));
-                console.log(input.substring(input.length-6));
-            } else if (inputType === 'name' && input.substring(input.length-6) === ' armor') {
-                console.log(input.substring(0, input.length-6));
-                console.log(input.substring(input.length-6));
-            }
-        }
-        new Toast({
-            message: 'The item you entered does not exist!',
-            type: 'disallow',
-            time: 2000,
-        }).show();
+
+        new Toast({ message: 'The item you entered does not exist!', type: 'disallow', time: 2000 }).show();
     }
 }
 
@@ -175,7 +161,7 @@ function createInfobox(itemData) {
 
     infobox += '|id = ' + itemData.id + '<br>';
     const percentages = { attack_speed: true, critical_chance: true, critical_damage: true, sea_creature_chance: true }; // eslint-disable-line camelcase
-    // To do: Add support for "fragged" items (called "STARRED_itemname" by the api).
+
     if (itemData.stats) {
         const statKeys = Object.keys(itemData.stats);
         for (const key of statKeys) {
@@ -375,8 +361,4 @@ function createEssenceTable(itemData) {
     copyEssenceTableButton.disabled = false;
     essenceTableElement.parentElement.classList.remove('unselectable');
     essenceTableElement.innerHTML = essenceTable;
-}
-
-function createArmorInfobox(helmet, chestplate, leggings, boots) {
-    console.log(helmet);
 }
