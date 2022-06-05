@@ -327,6 +327,8 @@ function createInfobox(itemData) {
     document.getElementById('infobox').innerHTML = infobox;
     if (itemData['upgrade_costs']) {
         createEssenceTable(itemData);
+    } else {
+        document.getElementById('essenceTable').innerHTML = '　';
     }
 }
 
