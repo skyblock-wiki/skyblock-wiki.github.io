@@ -81,13 +81,27 @@ function triggerCreation(inputType, inputValue) {
             time: 4000,
         }).show();
     } else {
+        let input = inputValue.toLowerCase();
         for (const index in itemsData) {
             const item = itemsData[index];
-            if (inputValue.toLowerCase() === item[inputType].toLowerCase()) {
+            if (input === item[inputType].toLowerCase()) {
                 return createInfobox(item);
             }
         }
-
+        // To do: add support for armor sets
+        if (input[input.length-5, input.length-1] === 'armor') {
+            if (inputType === 'id') {
+                if (input[input.length-6, input.length-1] === '_armor') {
+                    console.log(input);
+                    console.log(input[input.length-6, input.length-1]);
+                }
+            } else {
+                if (input[input.length-6, input.length-1] === ' armor') {
+                    console.log(input);
+                    console.log(input[input.length-6, input.length-1]);
+                }
+            }
+        }
         new Toast({
             message: 'The item you entered does not exist!',
             type: 'disallow',
@@ -169,6 +183,7 @@ function createInfobox(itemData) {
     }
     infobox += '|id = ' + itemData.id + '<br>';
     const percentages = { attack_speed: true, critical_chance: true, critical_damage: true, sea_creature_chance: true }; // eslint-disable-line camelcase
+    // To do: Add support for "fragged" items (called "STARRED_itemname" by the api).
     if (itemData.stats) {
         const statKeys = Object.keys(itemData.stats);
         for (let i = 0; i < statKeys.length; i++) {
