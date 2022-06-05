@@ -171,12 +171,9 @@ header .version {
     width: 100%;
     flex-grow: 1;
 }
-main {
-    width: 25%;
-    padding: 2rem;
-}
+main,
 aside {
-    width: 75%;
+    width: 50%;
     padding: 2rem;
 }
 /*  
@@ -220,7 +217,7 @@ main label {
 main textarea {
     width: 100%;
     min-height: 4rem;
-    height: 5rem;
+    height: 6rem;
     max-height: 16rem;
     margin: 0.5rem 0;
     padding: 0.2rem;
@@ -250,7 +247,6 @@ aside {
     padding-bottom: 0.5rem;
 }
 aside section {
-    width: 50%;
     display: flex;
     flex-direction: column;
 }
@@ -275,7 +271,7 @@ aside .templates div:not(aside .templates td .copy-div) {
     transition: all 0.2s ease;
     font-family: 'Fira Code', monospace;
     font-size: 0.75rem;
-    width: 100%;
+    width: 25rem;
     max-height: 15rem;
     overflow: auto;
 }
@@ -443,9 +439,9 @@ footer {
     line-height: 40px;
 }
 /*  
-=============================
-		Responsivenes
-=============================
+==============================
+		Responsiveness
+==============================
 */
 @media screen and (max-width: 830px) {
     body {
@@ -468,12 +464,4 @@ footer {
     #return-main {
         padding: 0.3rem 0.8rem;
     }
-}
-@media screen and (max-width: 380px) {
-    aside .nbtInfo input {
-        width: 100%;
-    }
-    /* aside img#drawn {
-		width: 80%;
-	} */
 }
