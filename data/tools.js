@@ -28,7 +28,7 @@ export const tools = [
         description: 'Generate UIs from NBT Data.',
     },
     {
-        link: 'https://mcstacker.bimbimma.com/mcstacker1.10.php',
+        link: 'https://legacy.mcstacker.net/mcstacker1.10.php',
         thumbnail: 'mcstacker.png',
         name: '1.8 Command Generator',
         version: null,
