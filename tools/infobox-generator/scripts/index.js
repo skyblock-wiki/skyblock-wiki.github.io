@@ -3,7 +3,7 @@ import { Toast } from '../../../scripts/toast.js';
 const itemsData = (await (await fetch('https://api.hypixel.net/resources/skyblock/items')).json()).items;
 const bazaarData = (await (await fetch('https://api.hypixel.net/skyblock/bazaar')).json()).products;
 
-window.settings = { title: false };
+let includeExtra = false;
 
 const nameInput = document.getElementById('name');
 const nameSubmitButton = document.getElementById('name-submit');
@@ -12,6 +12,8 @@ const nameClearButton = document.getElementById('name-clear');
 const idInput = document.getElementById('id');
 const idSubmitButton = document.getElementById('id-submit');
 const idClearButton = document.getElementById('id-clear');
+
+const includeExtraCheckbox = document.getElementById('include-extra');
 
 const infoboxElement = document.getElementById('infobox');
 const copyInfoboxButton = document.getElementById('copy-infobox');
@@ -53,6 +55,10 @@ idClearButton.addEventListener('click', () => {
     }).show();
 });
 
+includeExtraCheckbox.addEventListener('input', () => {
+    includeExtra = includeExtraCheckbox.checked;
+});
+
 copyInfoboxButton.addEventListener('click', () => {
     copyText('infobox');
 });
@@ -65,6 +71,7 @@ copyEssenceTableButton.addEventListener('click', () => {
  * Handles the creation input
  * @param {'name'|'id'} inputType the type of input
  * @param {string} inputValue the value of the input
+ * @returns {void}
  */
 function triggerCreation(inputType, inputValue) {
     if (!itemsData) {
@@ -152,7 +159,7 @@ function createInfobox(itemData) {
         infobox += 'item';
     }
     infobox += '<br>';
-    if (window.settings.title) {
+    if (includeExtra) {
         infobox += '|title = ' + itemData.name + '<br>';
         infobox += '|image = ' + itemData.name + '.png<br>';
         infobox += '|slot_item = ' + itemData.name + '<br>';
