@@ -77,10 +77,15 @@ function triggerCreation(inputType, inputValue) {
         for (const index in itemsData) {
             const item = itemsData[index];
             if (inputValue.toLowerCase() === item[inputType].toLowerCase()) {
-                createInfobox(item);
-                break;
+                return createInfobox(item);
             }
         }
+
+        new Toast({
+            message: 'The item you entered does not exist!',
+            type: 'disallow',
+            time: 2000,
+        }).show();
     }
 }
 
