@@ -21,6 +21,13 @@ const tools = [
         description: 'Render NPC sprites.',
     },
     {
+        link: './tools/infobox-generator/index.html',
+        thumbnail: './tools/infobox-generator/favicon.png',
+        name: 'Infobox Generator',
+        version: 'v1.0',
+        description: 'Uses data from the items API and spits out basic infoboxes and essence crafting tables with the corresponding item data, for editor\'s modification.',
+    },
+    {
         link: 'https://jsfiddle.net/MonkeysHK/nb2csh1a/',
         thumbnail: './tools/thumbnails/ui-parser.png',
         name: 'UI Generator',
@@ -47,13 +54,6 @@ const tools = [
         name: '<abbr title="Not Enough Updates">NEU</abbr> Repository',
         version: null,
         description: 'Repository for information about public SkyBlock items.',
-    },
-    {
-        link: './tools/infobox-generator/index.html',
-        thumbnail: './tools/infobox-generator/favicon.png',
-        name: 'Infobox Generator',
-        version: 'v1.0',
-        description: 'Uses data from the items API and spits out basic infoboxes and essence crafting tables with the corresponding item data, for editor\'s modification.',
     },
 ];
 const allElements = [];
