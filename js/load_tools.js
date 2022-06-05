@@ -56,22 +56,20 @@ const tools = [
         description: 'Repository for information about public SkyBlock items.',
     },
 ];
-const allElements = [];
 
-tools.forEach((el) => {
-    const element = [
-        '<li>',
-        `<img src="${el.thumbnail}" alt="tool logo">`,
+const allElements = tools.map((tool) =>
+    [
+        '<li>', //
+        `<img src="${tool.thumbnail}" alt="tool logo">`,
         '<hr>',
-        `<h4>${el.name}</h4>`,
-        `<span class="version">${el.version ? el.version : '&nbsp;'}</span>`,
-        `<p>${el.description}</p>`,
+        `<h4>${tool.name}</h4>`,
+        `<span class="version">${tool.version ? tool.version : '&nbsp;'}</span>`,
+        `<p>${tool.description}</p>`,
         '<div class="links">',
-        `<a class="link" href="${el.link}"${el.link.match(/^https?:\/\//) ? ' target=_blank' : ''}>Open</a>`,
+        `<a class="link" href="${tool.link}"${tool.link.match(/^https?:\/\//) ? ' target=_blank' : ''}>Open</a>`,
         '</div>',
         '</li>',
-    ].join('');
+    ].join('')
+);
 
-    allElements.push(element);
-});
-$('section.tools > ul').html(allElements);
+document.querySelector('section.tools > ul').innerHTML = allElements.join('');

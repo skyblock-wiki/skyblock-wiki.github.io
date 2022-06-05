@@ -1,51 +1,40 @@
 import { Toast } from './toast.js';
 
 function processToDiscordTooltips() {
-    $('.discordtip').each((index, el) => {
-        $(el).css({
-            // $(el).parent().outerWidth()/2
-            left: `${$(el).outerWidth() / -2 + $(el).parent().outerWidth() / 2}px`,
-            bottom: `${$(el).parent().outerHeight() + 3}px`,
+    document.querySelectorAll('.discordtip').forEach((el) => {
+        el.style.left = `${el.offsetWidth / -2 + el.parentElement.offsetHeight / 2}px`;
+        el.style.bottom = `${el.parentElement.offsetWidth + 3}px`;
+
+        el.addEventListener('click', () => {
+            const toCopy = el.getAttribute('copy-value');
+            if (toCopy) {
+                navigator.clipboard.writeText(toCopy);
+                new Toast({
+                    message: 'Copied!',
+                    type: 'success',
+                    time: 2000,
+                }).show();
+            }
         });
     });
-    $('.discordtip').click(function () {
-        $(this).attr('copy-value').copyToClipboard();
-    });
 }
-String.prototype.copyToClipboard = function () {
-    const el = document.createElement('textarea');
-
-    el.value = this;
-    el.setAttribute('readonly', '');
-    el.style = { display: 'none' };
-    document.body.appendChild(el);
-    el.select();
-    el.setSelectionRange(0, 9999999);
-    document.execCommand('copy');
-    document.body.removeChild(el);
-    new Toast({
-        message: 'Copied!',
-        type: 'success',
-        time: 2000,
-    }).show();
-};
 
 const linkImages = {
-    text: '%s',
-    wiki: '<img src="./WikiIcon.png">',
+    wiki: '<img src="./wiki-icon.png">',
     discord: '<img src="./img/curseforge-icon.png">',
     website: '<img src="./img/website-icon.png">',
     github: '<img src="./img/github-icon.png">',
-    curseforge: '<img src="./img/curseforge-icon.png">',
+    curseForge: '<img src="./img/curseforge-icon.png">',
 };
+
 const linkTitles = {
-    text: '',
-    wiki: 'Userpage on the wiki',
-    discord: '',
+    wiki: 'Wiki userpage',
+    discord: 'Discord Username',
     website: 'Personal Website',
     github: 'GitHub Profile',
-    curseforge: 'Curseforge Profile',
+    curseForge: 'CurseForge Profile',
 };
+
 const contributors = [
     {
         name: 'joker876',
@@ -67,7 +56,7 @@ const contributors = [
                 value: 'https://github.com/joker876',
             },
             {
-                type: 'curseforge',
+                type: 'curseForge',
                 value: 'https://www.curseforge.com/members/joker876xd8',
             },
         ],
@@ -130,7 +119,7 @@ const contributors = [
                 value: 'https://github.com/MonkeysHK',
             },
             {
-                type: 'curseforge',
+                type: 'curseForge',
                 value: 'https://www.curseforge.com/members/MonkeysHK',
             },
         ],
@@ -148,24 +137,21 @@ const contributors = [
         ],
     },
 ];
+
 const allCOntributorElements = [];
 
 function makeLink(link) {
     if (link.type == 'discord') return makeDiscordElement(link.value);
-    let text = linkImages[link.type];
 
-    if (link.type == 'text') text = link.text;
-
+    const image = linkImages[link.type];
     const title = linkTitles[link.type];
 
-    return `<a class="link" href="${link.value}"${link.value.match(/^https?:\/\//) ? ' target=_blank' : ''} title="${title}">${text}</a>`;
+    return `<a class="link" href="${link.value}"${link.value.match(/^https?:\/\//) ? ' target=_blank' : ''} title="${title}">${image}</a>`;
 }
 
 function makeDiscordElement(usertag) {
-    const hasHover = $('body').hasClass('hasHover');
-
     return [
-        '<button class="discord link">',
+        '<button class="discord link">', //
         '<img src="./img/discord-icon.png">',
         `<div class="discordtip" copy-value="${usertag}">`,
         `<span>${usertag}</span>`,
@@ -176,9 +162,6 @@ function makeDiscordElement(usertag) {
     ].join('');
 }
 
-function makeAKA(list) {
-    if (list.length == 0) return;
-}
 contributors.forEach((el) => {
     const links = [];
 
@@ -187,7 +170,7 @@ contributors.forEach((el) => {
         if (link.border) links.push('<span class="line"></span>');
     });
     const element = [
-        '<li>',
+        '<li>', //
         `<a href="${el.links[0].value}">`,
         `<img src="./img/usericons/${el.thumbnail}" alt="user logo">`,
         '</a>',
@@ -204,5 +187,7 @@ contributors.forEach((el) => {
 
     allCOntributorElements.push(element);
 });
-$('section.contributors > ul').html(allCOntributorElements);
+
+document.querySelector('section.contributors > ul').innerHTML = allCOntributorElements.join('');
+
 processToDiscordTooltips();

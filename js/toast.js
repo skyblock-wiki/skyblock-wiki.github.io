@@ -1,4 +1,4 @@
-const iconMap = {
+const icons = {
     success: 'check-circle',
     warn: 'exclamation-circle',
     error: 'exclamation-circle',
@@ -39,11 +39,11 @@ export class Toast {
 
         this.time = options?.time ?? Toast.defaults.time;
 
-        if (options?.type && iconMap[options.type]) {
+        if (options?.type && icons[options.type]) {
             this.iconDiv = document.createElement('div');
             this.iconDiv.className = 'toast-icon';
             this.icon = document.createElement('i');
-            this.icon.className = `fas fa-${iconMap[options.type]}`;
+            this.icon.className = `fas fa-${icons[options.type]}`;
             this.iconDiv.appendChild(this.icon);
             this.el.appendChild(this.iconDiv);
         }

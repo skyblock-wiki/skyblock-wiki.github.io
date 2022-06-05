@@ -13,7 +13,7 @@ const downloads = [
         links: [
             {
                 type: 'download',
-                link: 'wikitools-2.6.3.jar',
+                link: 'wikitools-2.6.5.jar',
                 border: true,
             },
             {

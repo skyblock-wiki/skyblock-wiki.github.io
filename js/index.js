@@ -1,8 +1,11 @@
-$('header .hamburger').click(() => {
-    $('header nav').toggleClass('active');
-    if ($('header nav').hasClass('active'))
+const hamburger = document.querySelector('header .hamburger');
+const nav = document.querySelector('header nav');
+
+hamburger.addEventListener('click', () => {
+    nav.classList.toggle('active');
+    if (nav.classList.contains('active')) {
         setTimeout(() => {
-            $('header .hamburger').toggleClass('active');
+            hamburger.classList.toggle('active');
         }, 100);
-    else $('header .hamburger').toggleClass('active');
+    } else hamburger.classList.toggle('active');
 });
