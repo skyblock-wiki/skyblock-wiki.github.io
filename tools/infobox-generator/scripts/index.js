@@ -63,7 +63,7 @@ document.getElementById('copy-essenceTable').addEventListener('click', () => {
 
 function copyText(selector) {
     try {
-        window.navigator.clipboard.writeText(document.getElementById(selector).innerHTML);
+        window.navigator.clipboard.writeText(document.getElementById(selector).innerHTML.replaceAll('<br>', '\n'));
         new Toast({
             message: 'Copied!',
             type: 'success',
