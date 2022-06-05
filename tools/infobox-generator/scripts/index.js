@@ -13,54 +13,40 @@ fetchItems();
 
 window.settings = { title: false };
 
-function clear() {
-    for (let i = 0; i < document.getElementsByClassName('sec-err').length; i++) {
-        document.getElementsByClassName('sec-err')[i].innerHTML = '';
-    }
-}
-
 const mainElem = {
     name: document.getElementById('name'),
     id: document.getElementById('id'),
 };
+
 const subElem = {
     name: document.getElementById('nameSubmit'),
     id: document.getElementById('idSubmit'),
 };
-const errElem = {
-    name: document.getElementById('nameError'),
-    id: document.getElementById('idError'),
-};
-const toStr = {
-    name: 'name',
-    id: 'item ID',
-};
 
-mainElem.name.addEventListener('input', onNameChanged);
-subElem.name.addEventListener('click', onNameChanged);
-mainElem.id.addEventListener('input', onIdChanged);
-subElem.id.addEventListener('click', onIdChanged);
-
-function onNameChanged(event) {
+mainElem.name.addEventListener('input', () => {
     onChanged('name');
-}
-
-function onIdChanged(event) {
+});
+subElem.name.addEventListener('click', () => {
+    onChanged('name');
+});
+mainElem.id.addEventListener('input', () => {
     onChanged('id');
-}
+});
+subElem.id.addEventListener('click', () => {
+    onChanged('id');
+});
 
-function onChanged(input_type) {
+function onChanged(inputType) {
     if (!window.itemList) {
-        console.error('window.itemList not loaded.');
         new Toast({
             message: 'The item list has not yet loaded. Please wait or try refreshing the page!',
             type: 'disallow',
             time: 4000,
         }).show();
     } else {
-        const thing = document.getElementById(input_type).value.toLowerCase();
+        const thing = document.getElementById(inputType).value.toLowerCase();
         for (let i = 0; i < window.itemList.length; i++) {
-            if (window.itemList[i][input_type].toLowerCase() == thing) {
+            if (window.itemList[i][inputType].toLowerCase() === thing) {
                 createInfobox(window.itemList[i]);
                 break;
             }
@@ -68,17 +54,16 @@ function onChanged(input_type) {
     }
 }
 
-document.getElementById('copy-infobox').addEventListener('click', function () {
+document.getElementById('copy-infobox').addEventListener('click', () => {
     copyText('infobox');
 });
-document.getElementById('copy-essenceTable').addEventListener('click', function () {
+document.getElementById('copy-essenceTable').addEventListener('click', () => {
     copyText('essenceTable');
 });
 
 function copyText(selector) {
-    let el = document.getElementById(selector).innerHTML;
     try {
-        window.navigator.clipboard.writeText(el);
+        window.navigator.clipboard.writeText(document.getElementById(selector).innerHTML);
         new Toast({
             message: 'Copied!',
             type: 'success',
@@ -87,7 +72,7 @@ function copyText(selector) {
     } catch (error) {
         console.error(error);
         new Toast({
-            message: 'Could not copy. Please try again!',
+            message: 'Unable to copy, please try again!',
             type: 'disallow',
             time: 4000,
         }).show();
@@ -96,7 +81,7 @@ function copyText(selector) {
 
 function toTitleCase(str) {
     str = str.toLowerCase().split(' ');
-    for (var i = 0; i < str.length; i++) {
+    for (let i = 0; i < str.length; i++) {
         str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
     }
     return str.join(' ');
@@ -112,91 +97,88 @@ function gemstoneHelper(gemstone) {
 //Stolen from: https://stackoverflow.com/questions/9083037/convert-a-number-into-a-roman-numeral-in-javascript
 function romanize(num) {
     if (isNaN(num)) return NaN;
-    var digits = String(+num).split(''),
-        key = ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM', '', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC', '', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'],
-        roman = '',
-        i = 3;
+    const digits = String(+num).split('');
+    const key = ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM', '', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC', '', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'];
+    let roman = '';
+    let i = 3;
     while (i--) roman = (key[+digits.pop() + i * 10] || '') + roman;
     return Array(+digits.join('') + 1).join('M') + roman;
 }
 
 function createInfobox(itemData) {
-    console.log(itemData);
     let infobox = '{{Infobox ';
-    if (itemData['category']) {
-        let categories = { SWORD: 'weapon', WAND: 'weapon', BOW: 'weapon', LONGSWORD: 'weapon', DEPLOYABLE: 'item', COSMETIC: 'item', TRAVEL_SCROLL: 'item', ACCESSORY: 'accessory', HELMET: 'armor', CHESTPLATE: 'armor', LEGGINGS: 'armor', BOOTS: 'boots', PET_ITEM: 'item', ARROW_POISON: 'item', GAUNTLET: 'item', BELT: 'item', BRACELET: 'item', CLOAK: 'item', GLOVES: 'item', NECKLACE: 'item', DUNGEON_PASS: 'item', REFORGE_STONE: 'reforge stone', BAIT: 'item', AXE: 'item', HOE: 'item', SPADE: 'item', SHEARS: 'item', PICKAXE: 'item', FISHING_ROD: 'fishing rod' };
-        infobox += categories[itemData['category']];
+    if (itemData.category) {
+        const categories = { SWORD: 'weapon', WAND: 'weapon', BOW: 'weapon', LONGSWORD: 'weapon', DEPLOYABLE: 'item', COSMETIC: 'item', TRAVEL_SCROLL: 'item', ACCESSORY: 'accessory', HELMET: 'armor', CHESTPLATE: 'armor', LEGGINGS: 'armor', BOOTS: 'boots', PET_ITEM: 'item', ARROW_POISON: 'item', GAUNTLET: 'item', BELT: 'item', BRACELET: 'item', CLOAK: 'item', GLOVES: 'item', NECKLACE: 'item', DUNGEON_PASS: 'item', REFORGE_STONE: 'reforge stone', BAIT: 'item', AXE: 'item', HOE: 'item', SPADE: 'item', SHEARS: 'item', PICKAXE: 'item', FISHING_ROD: 'fishing rod' };
+        infobox += categories[itemData.category];
     } else {
         infobox += 'item';
     }
     infobox += '<br>';
-    if (window.settings['title']) {
-        infobox += '|title = ' + itemData['name'] + '<br>';
-        infobox += '|image = ' + itemData['name'] + '.png<br>';
-        infobox += '|slot_item = ' + itemData['name'] + '<br>';
+    if (window.settings.title) {
+        infobox += '|title = ' + itemData.name + '<br>';
+        infobox += '|image = ' + itemData.name + '.png<br>';
+        infobox += '|slot_item = ' + itemData.name + '<br>';
     }
-    if (itemData['tier']) {
-        infobox += '|rarity = ' + itemData['tier'].toLowerCase() + '<br>';
+    if (itemData.tier) {
+        infobox += '|rarity = ' + itemData.tier.toLowerCase() + '<br>';
     }
-    infobox += '|id = ' + itemData['id'] + '<br>';
-    let percentages = { attack_speed: true, critical_chance: true, critical_damage: true, sea_creature_chance: true };
-    if (itemData['stats']) {
-        const stat_keys = Object.keys(itemData['stats']);
-        for (let i = 0; i < stat_keys.length; i++) {
-            if (stat_keys[i] == 'WEAPON_ABILITY_DAMAGE') {
+    infobox += '|id = ' + itemData.id + '<br>';
+    const percentages = { attack_speed: true, critical_chance: true, critical_damage: true, sea_creature_chance: true }; // eslint-disable-line camelcase
+    if (itemData.stats) {
+        const statKeys = Object.keys(itemData.stats);
+        for (let i = 0; i < statKeys.length; i++) {
+            if (statKeys[i] === 'WEAPON_ABILITY_DAMAGE') {
                 continue;
-            } else if (stat_keys[i] == 'WALK_SPEED') {
-                infobox += '|speed = ' + itemData['stats'][stat_keys[i]] + '<br>';
+            } else if (statKeys[i] === 'WALK_SPEED') {
+                infobox += '|speed = ' + itemData.stats[statKeys[i]] + '<br>';
             } else {
                 let percent = '';
-                if (percentages[stat_keys[i].toLowerCase()]) {
+                if (percentages[statKeys[i].toLowerCase()]) {
                     percent = '%';
                 }
-                infobox += '|' + stat_keys[i].toLowerCase() + ' = ' + itemData['stats'][stat_keys[i]] + percent + '<br>';
+                infobox += '|' + statKeys[i].toLowerCase() + ' = ' + itemData.stats[statKeys[i]] + percent + '<br>';
             }
         }
     }
-    if (itemData['tiered_stats']) {
-        const stat_keys = Object.keys(itemData['tiered_stats']);
-        for (let i = 0; i < stat_keys.length; i++) {
-            let a = itemData['tiered_stats'][stat_keys[i]][0];
-            let b = itemData['tiered_stats'][stat_keys[i]][itemData['tiered_stats'][stat_keys[i]].length - 1];
+    if (itemData.tiered_stats) {
+        const statKeys = Object.keys(itemData.tiered_stats);
+        for (let i = 0; i < statKeys.length; i++) {
+            const a = itemData.tiered_stats[statKeys[i]][0];
+            const b = itemData.tiered_stats[statKeys[i]][itemData.tiered_stats[statKeys[i]].length - 1];
             let stat;
-            if (a == b) {
+            if (a === b) {
                 stat = a.toString();
+            } else if (a < b) {
+                stat = a.toString() + '-' + b.toString();
             } else {
-                if (a < b) {
-                    stat = a.toString() + '-' + b.toString();
-                } else {
-                    stat = b.toString() + '-' + a.toString();
-                }
+                stat = b.toString() + '-' + a.toString();
             }
-            if (stat_keys[i] == 'WALK_SPEED') {
+            if (statKeys[i] === 'WALK_SPEED') {
                 infobox += '|speed = ' + stat + '<br>';
             } else {
                 let percent = '';
-                if (percentages[stat_keys[i].toLowerCase()]) {
+                if (percentages[statKeys[i].toLowerCase()]) {
                     percent = '%';
                 }
-                infobox += '|' + stat_keys[i].toLowerCase() + ' = ' + stat + percent + '<br>';
+                infobox += '|' + statKeys[i].toLowerCase() + ' = ' + stat + percent + '<br>';
             }
         }
     }
-    if (itemData['gemstone_slots']) {
+    if (itemData.gemstone_slots) {
         infobox += '|gemstone_slots = <br>';
-        for (let a = 0; a < itemData['gemstone_slots'].length; a++) {
-            infobox += '1* ' + toTitleCase(itemData['gemstone_slots'][a]['slot_type']);
-            if (itemData['gemstone_slots'][a]['costs']) {
+        for (let a = 0; a < itemData.gemstone_slots.length; a++) {
+            infobox += '1* ' + toTitleCase(itemData.gemstone_slots[a].slot_type);
+            if (itemData.gemstone_slots[a].costs) {
                 infobox += ' &';
-                let len = itemData['gemstone_slots'][a]['costs'].length;
+                const len = itemData.gemstone_slots[a].costs.length;
                 for (let b = 0; b < len; b++) {
-                    let cost = itemData['gemstone_slots'][a]['costs'][b];
+                    const cost = itemData.gemstone_slots[a].costs[b];
                     if ('coins' in cost) {
-                        infobox += cost['coins'].toString();
+                        infobox += cost.coins.toString();
                     } else {
-                        infobox += cost['amount'].toString() + ' ' + gemstoneHelper(cost['item_id']);
+                        infobox += cost.amount.toString() + ' ' + gemstoneHelper(cost.item_id);
                     }
-                    if (!(b == len - 1)) {
+                    if (b !== len - 1) {
                         infobox += ', ';
                     }
                 }
@@ -205,56 +187,54 @@ function createInfobox(itemData) {
             infobox += '<br>';
         }
     }
-    if (itemData['requirements'] || itemData['catacombs_requirements']) {
+    if (itemData.requirements || itemData.catacombs_requirements) {
         let requirements;
-        if (itemData['requirements']) {
-            requirements = Object.assign(itemData['requirements'], itemData['catacombs_requirements']);
+        if (itemData.requirements) {
+            requirements = Object.assign(itemData.requirements, itemData.catacombs_requirements);
         } else {
-            requirements = itemData['catacombs_requirements'];
+            requirements = itemData.catacombs_requirements;
         }
         if ('skill' in requirements) {
-            let s_l = requirements['skill'];
-            if (s_l['type'].toLowerCase() == 'combat') {
-                infobox += '|combat_level_requirement = {{Skl|combat|' + s_l['level'] + '}}<br>';
+            const skillLvl = requirements.skill;
+            if (skillLvl.type.toLowerCase() === 'combat') {
+                infobox += '|combat_level_requirement = {{Skl|combat|' + skillLvl.level + '}}<br>';
             } else {
-                infobox += '|other_level_requirement = {{Skl|' + s_l['type'].toLowerCase() + '|' + s_l['level'] + '}}<br>';
+                infobox += '|other_level_requirement = {{Skl|' + skillLvl.type.toLowerCase() + '|' + skillLvl.level + '}}<br>';
             }
         }
         if ('slayer' in requirements) {
-            let s_l = requirements['slayer'];
-            infobox += '|slayer_level_requirement = ' + toTitleCase(s_l['slayer_boss_type']) + ' Slayer ' + s_l['level'].toString() + '<br>';
+            const slayerLvl = requirements.slayer;
+            infobox += '|slayer_level_requirement = ' + toTitleCase(slayerLvl.slayer_boss_type) + ' Slayer ' + slayerLvl.level.toString() + '<br>';
         }
         if ('dungeon' in requirements) {
-            let d_l = requirements['dungeon'];
-            infobox += '|dungeon_level_requirement = {{Skl|' + d_l['type'].toLowerCase() + '|' + d_l['level'] + '}}';
-            if (itemData['dungeon_item_conversion_cost']) {
+            const dungeonLvl = requirements.dungeon;
+            infobox += '|dungeon_level_requirement = {{Skl|' + dungeonLvl.type.toLowerCase() + '|' + dungeonLvl.level + '}}';
+            if (itemData.dungeon_item_conversion_cost) {
                 infobox += ' (when dungeonized)';
             }
             infobox += '<br>';
         }
         if ('dungeon_completion' in requirements) {
-            let d_c = requirements['dungeon_completion'];
-            infobox += '|dungeon_floor_clearing_requirement = ' + toTitleCase(d_c['type'].replace('_', ' ')) + ' Floor ' + romanize(d_c['tier']);
-            if (itemData['dungeon_item_conversion_cost']) {
+            const dungeonComp = requirements.dungeon_completion;
+            infobox += '|dungeon_floor_clearing_requirement = ' + toTitleCase(dungeonComp.type.replace('_', ' ')) + ' Floor ' + romanize(dungeonComp.tier);
+            if (itemData.dungeon_item_conversion_cost) {
                 infobox += ' (when dungeonized)';
             }
             infobox += '<br>';
         }
     }
-    if (itemData['category'] != 'REFORGE_STONE' && itemData['category'] != 'ACCESSORY') {
+    if (itemData.category !== 'REFORGE_STONE' && itemData.category !== 'ACCESSORY') {
         infobox += '|enchant = u<br>|reforge = u<br>';
     }
-    if (window.bazaarList[itemData['id']]) {
+    if (window.bazaarList[itemData.id]) {
+        infobox += '|auctionable = No<br>';
+    } else if (itemData.soulbound) {
         infobox += '|auctionable = No<br>';
     } else {
-        if (itemData['soulbound']) {
-            infobox += '|auctionable = No<br>';
-        } else {
-            infobox += '|auctionable = u<br>';
-        }
+        infobox += '|auctionable = u<br>';
     }
-    if (itemData['soulbound']) {
-        if (itemData['soulbound'].toLowerCase() == 'coop') {
+    if (itemData.soulbound) {
+        if (itemData.soulbound.toLowerCase() === 'coop') {
             infobox += '|tradeable = {{No|text=y}}<br>(Except to Co-op members)<br>|soulbound = Co-op<br>';
         } else {
             infobox += '|tradeable = No<br>|soulbound = Player<br>';
@@ -263,7 +243,7 @@ function createInfobox(itemData) {
         infobox += '|tradeable = u<br>';
     }
     if ('museum' in itemData) {
-        if (itemData['museum'] == true) {
+        if (itemData.museum === true) {
             infobox += '|museum = Yes<br>';
         } else {
             infobox += '|museum = No<br>';
@@ -271,17 +251,17 @@ function createInfobox(itemData) {
     } else {
         infobox += '|museum = u<br>';
     }
-    if (itemData['npc_sell_price']) {
+    if (itemData.npc_sell_price) {
         infobox += '|salable = Yes<br>';
-        infobox += '|sell = ' + itemData['npc_sell_price'].toString() + '<br>';
+        infobox += '|sell = ' + itemData.npc_sell_price.toString() + '<br>';
     } else {
         infobox += '|salable = No<br>';
     }
-    if (window.bazaarList[itemData['id']]) {
-        infobox += '|bazaar = ' + itemData['id'] + '<br>';
+    if (window.bazaarList[itemData.id]) {
+        infobox += '|bazaar = ' + itemData.id + '<br>';
     }
     if ('color' in itemData) {
-        let color = itemData['color'].split(',');
+        const color = itemData.color.split(',');
         let hex = '';
         for (let i = 0; i < 3; i++) {
             hex += Number(color[i]).toString(16);
@@ -292,44 +272,44 @@ function createInfobox(itemData) {
     document.getElementById('copy-infobox').disabled = false;
     document.getElementById('infobox').parentElement.classList.remove('unselectable');
     document.getElementById('infobox').innerHTML = infobox;
-    if (itemData['upgrade_costs']) {
+    if (itemData.upgrade_costs) {
         createEssenceTable(itemData);
     } else {
-        document.getElementById('essenceTable').innerHTML = '　';
+        document.getElementById('essenceTable').innerHTML = '&ZeroWidthSpace;';
     }
 }
 
 function createEssenceTable(itemData) {
     let essenceTable = '{{Essence Crafting<br>|type = weapon<br>';
-    for (let i = 0; i < itemData['upgrade_costs'][0].length; i++) {
-        if ('essence_type' in itemData['upgrade_costs'][0][i]) {
-            essenceTable += '|essence = ' + toTitleCase(itemData['upgrade_costs'][0][i]['essence_type']) + '<br>';
+    for (let i = 0; i < itemData.upgrade_costs[0].length; i++) {
+        if ('essence_type' in itemData.upgrade_costs[0][i]) {
+            essenceTable += '|essence = ' + toTitleCase(itemData.upgrade_costs[0][i].essence_type) + '<br>';
             break;
-        } else if (i == itemData['upgrade_costs'][0].length - 1) {
+        } else if (i === itemData.upgrade_costs[0].length - 1) {
             essenceTable += '|essence = none<br>';
         }
     }
     if ('dungeon_item_conversion_cost' in itemData) {
-        essenceTable += '|convert = ' + itemData['dungeon_item_conversion_cost']['amount'].toString() + ' Essence<br>';
+        essenceTable += '|convert = ' + itemData.dungeon_item_conversion_cost.amount.toString() + ' Essence<br>';
     }
-    for (let a = 0; a < itemData['upgrade_costs'].length; a++) {
-        itemData['upgrade_costs'][a].reverse();
+    for (let a = 0; a < itemData.upgrade_costs.length; a++) {
+        itemData.upgrade_costs[a].reverse();
         essenceTable += '|';
-        for (let b = 0; b < itemData['upgrade_costs'][a].length; b++) {
-            essenceTable += itemData['upgrade_costs'][a][b]['amount'].toString() + ' ';
-            if ('essence_type' in itemData['upgrade_costs'][a][b]) {
+        for (let b = 0; b < itemData.upgrade_costs[a].length; b++) {
+            essenceTable += itemData.upgrade_costs[a][b].amount.toString() + ' ';
+            if ('essence_type' in itemData.upgrade_costs[a][b]) {
                 essenceTable += 'Essence';
-            } else if ('item_id' in itemData['upgrade_costs'][a][b]) {
-                let item_name;
+            } else if ('item_id' in itemData.upgrade_costs[a][b]) {
+                let itemName;
                 for (let i = 0; i < window.itemList.length; i++) {
-                    if (window.itemList[i]['id'] == itemData['upgrade_costs'][a][b]['item_id']) {
-                        item_name = window.itemList[i]['name'];
+                    if (window.itemList[i].id == itemData.upgrade_costs[a][b].item_id) {
+                        itemName = window.itemList[i].name;
                         break;
                     }
                 }
-                essenceTable += item_name;
+                essenceTable += itemName;
             }
-            if (b == itemData['upgrade_costs'][a].length - 1) {
+            if (b === itemData.upgrade_costs[a].length - 1) {
                 essenceTable += '<br>';
             } else {
                 essenceTable += '; ';
@@ -338,21 +318,21 @@ function createEssenceTable(itemData) {
     }
     if ('prestige' in itemData) {
         essenceTable += '|prestige = ';
-        for (let a = 0; a < itemData['prestige']['costs'].length; a++) {
-            essenceTable += itemData['prestige']['costs'][a]['amount'].toString() + ' ';
-            if ('essence_type' in itemData['prestige']['costs'][a]) {
+        for (let a = 0; a < itemData.prestige.costs.length; a++) {
+            essenceTable += itemData.prestige.costs[a].amount.toString() + ' ';
+            if ('essence_type' in itemData.prestige.costs[a]) {
                 essenceTable += 'Essence';
-            } else if ('item_id' in itemData['prestige']['costs'][a]) {
-                let item_name;
+            } else if ('item_id' in itemData.prestige.costs[a]) {
+                let itemName;
                 for (let i = 0; i < window.itemList.length; i++) {
-                    if (window.itemList[i]['id'] == itemData['prestige']['costs'][a]['item_id']) {
-                        item_name = window.itemList[i]['name'];
+                    if (window.itemList[i].id === itemData.prestige.costs[a].item_id) {
+                        itemName = window.itemList[i].name;
                         break;
                     }
                 }
-                essenceTable += item_name;
+                essenceTable += itemName;
             }
-            if (a == itemData['prestige']['costs'].length - 1) {
+            if (a === itemData.prestige.costs.length - 1) {
                 essenceTable += '<br>';
             } else {
                 essenceTable += '; ';
@@ -363,5 +343,4 @@ function createEssenceTable(itemData) {
     document.getElementById('copy-essenceTable').disabled = false;
     document.getElementById('essenceTable').parentElement.classList.remove('unselectable');
     document.getElementById('essenceTable').innerHTML = essenceTable;
-    console.log(essenceTable);
 }
