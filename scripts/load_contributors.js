@@ -60,6 +60,8 @@ contributors.forEach((contrib) => {
         '<hr>',
         `<h4>${contrib.name}</h4>`,
         '<ul class="tasklist">',
+        contrib.owner ? '<li>Owner of the GitHub repository and organization</li>' : '',
+        contrib.member ? '<li>Member of the GitHub repository and organization</li>' : '',
         contrib.tasks.map((task) => `<li>${task}</li>`).join(''),
         contrib.inactive ? `<li><span style='color: #f33; margin-left: 4px;'>No longer active!</span></li>` : '',
         '</ul>',

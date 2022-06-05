@@ -1,32 +1,31 @@
 const contributors = {
     TheTrueShaman: ['Created this tool.'],
 };
-let contribsList = '';
 
-for (const key in contributors)
-    if (Object.hasOwnProperty.call(contributors, key)) {
-        const value = contributors[key];
+const contributorsList = Object.keys(contributors).map((name) => constructSingleContributor(name, contributors[name]));
 
-        contribsList += constructSingleContributor(key, value);
-    }
-
-$('#contrib-list').html(contribsList);
+document.getElementById('contrib-list').innerHTML = contributorsList.join('');
 
 function constructSingleContributor(name, list) {
-    return `<li>
-	<div class="tooltip">
-		<span>${name}</span>
-		<span class="tooltiptext">
-			<ul>
-				${list.map((text) => `<li><span>${text}</span></li>`).join('')}
-			</ul>
-		</span>
-	</div>
-</li>`;
+    return [
+        '<li>', //
+        '<div class="tooltip">',
+        '<span>',
+        name,
+        '</span>',
+        '<span class="tooltiptext">',
+        '<ul>',
+        list.map((text) => `<li><span>${text}</span></li>`).join(''),
+        '</ul>',
+        '</span>',
+        '</div>',
+        '</li>',
+    ].join('');
 }
 
-$('#contrib-list-div').hide();
-$('#show-contribs').click(() => {
-    $('#contrib-list-div').toggleClass('hidden-height');
+document.getElementById('contrib-list-div').style.display = 'none';
+
+document.getElementById('show-contribs').addEventListener('click', () => {
+    document.getElementById('contrib-list-div').classList.toggle('hidden-height');
     $('#contrib-list-div').toggle('slow');
 });

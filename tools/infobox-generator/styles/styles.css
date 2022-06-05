@@ -231,6 +231,18 @@ main textarea {
     transition: box-shadow 0.1s ease;
     width: 100%;
 }
+main input[type='text'] {
+    background-color: var(--col-bg2);
+    border: 1px solid var(--col-acc);
+    border-radius: 4px;
+    color: white;
+    font-family: 'Fira Mono', monospace;
+    margin: 0.5rem 0;
+    padding: 0.2rem;
+    resize: none;
+    transition: box-shadow 0.1s ease;
+    width: 16rem;
+}
 .sec-err {
     color: red;
     font-size: 0.8rem;

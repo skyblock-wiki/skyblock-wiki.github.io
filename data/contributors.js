@@ -2,7 +2,8 @@ export const contributors = [
     {
         name: 'joker876',
         thumbnail: 'joker876',
-        tasks: ['Owner of the GitHub repository and organization', 'Created the main page', 'Helped create the Head Render Thingy', 'Helped create the Leather Armor Renderer'],
+        owner: true,
+        tasks: ['Created the main page', 'Helped create the Head Render Thingy', 'Helped create the Leather Armor Renderer'],
         links: [
             {
                 type: 'wiki',
@@ -46,7 +47,8 @@ export const contributors = [
     {
         name: 'MonkeysHK',
         thumbnail: '',
-        tasks: ['Member of the GitHub repository and organization', 'Helped create the Head Render Thingy', 'Helped create the Leather Armor Renderer'],
+        member: true,
+        tasks: ['Helped create the Head Render Thingy', 'Helped create the Leather Armor Renderer'],
         links: [
             {
                 type: 'wiki',
@@ -66,8 +68,8 @@ export const contributors = [
     {
         name: 'TheTrueShaman',
         thumbnail: 'shaman',
-        aka: [],
-        tasks: ['Member of the GitHub repository and organization', 'Helped create the Infobox Generator'],
+        member: true,
+        tasks: ['Helped create the Infobox Generator'],
         links: [
             {
                 type: 'wiki',
@@ -87,7 +89,8 @@ export const contributors = [
     {
         name: 'Eejit43 (AKA Eejit)',
         thumbnail: 'eejit',
-        tasks: ['Member of the GitHub repository and organization', 'Helped with various things in the site', 'Contributed to the Hypixel SkyBlock Wiki Bot'],
+        member: true,
+        tasks: ['Helped with various things in the site', 'Contributed to the Hypixel SkyBlock Wiki Bot'],
         links: [
             {
                 type: 'wiki',
@@ -107,7 +110,8 @@ export const contributors = [
     {
         name: 'Thundercraft5 (AKA Ruby)',
         thumbnail: 'ruby',
-        tasks: ['Owner of the GitHub repository and organization', 'Maintains the Hypixel SkyBlock Wiki Bot', 'Added various enhancements to the site'],
+        member: true,
+        tasks: ['Owner of the GitHub repository and organization', 'Contributed to the Hypixel SkyBlock Wiki Bot', 'Added various enhancements to the site'],
         inactive: true,
         links: [
             {

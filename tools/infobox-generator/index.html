@@ -34,7 +34,7 @@
                 <section>
                     <h3>Create from item name</h3>
                     <div class="sec-err" id="nameError"></div>
-                    <textarea id="name" placeholder="Use the item name"></textarea>
+                    <input type="text" id="name" placeholder="Item name" />
                     <br />
                     <span class="unselectable">
                         <button class="sec-subm" id="nameSubmit">Create</button>
@@ -44,7 +44,7 @@
                 <section>
                     <h3>Create from item ID</h3>
                     <div class="sec-err" id="idError"></div>
-                    <textarea id="id" placeholder="Use the item ID"></textarea>
+                    <input type="text" id="id" placeholder="Item ID" />
                     <br />
                     <span class="unselectable">
                         <button class="sec-subm" id="idSubmit">Create</button>
@@ -65,8 +65,7 @@
                                 <tr>
                                     <th>Infobox</th>
                                     <td class="unselectable">
-                                        <!-- There is a blank character which is not a space to give the div some height -->
-                                        <div id="infobox">　</div>
+                                        <div id="infobox">&ZeroWidthSpace;</div>
                                         <div class="copy-div">
                                             <button id="copy-infobox" class="copy" disabled>Copy</button>
                                         </div>
@@ -75,8 +74,7 @@
                                 <tr>
                                     <th>Essence Table</th>
                                     <td class="unselectable">
-                                        <!-- There is a blank character which is not a space to give the div some height -->
-                                        <div id="essenceTable">　</div>
+                                        <div id="essenceTable">&ZeroWidthSpace;</div>
                                         <div class="copy-div">
                                             <button id="copy-essenceTable" class="copy" disabled>Copy</button>
                                         </div>

@@ -7,19 +7,19 @@ const icons = {
 };
 
 /*
- *======== Usage ========
- *Constructor:
- *let foo = new Toast({
- *	message: The message that should be displayed,
- *	type: The type of the toast. List can be seen above,
- *	time: OPTIONAL The default delay before the toast disappears (in ms) default: 3000,
- *	class: OPTIONAL ['class1', 'class2', ...],
- *})
- *Showing:
- *foo.show(OPTIONAL time in ms);
+ * ======== Usage ========
+ * Constructor:
+ * let foo = new Toast({
+ *	 message: The message that should be displayed,
+ *	 type: The type of the toast. List can be seen above,
+ *	 time: OPTIONAL The default delay before the toast disappears (in ms) default: 3000,
+ *	 class: OPTIONAL ['class1', 'class2', ...],
+ * })
+ * Showing:
+ * foo.show(OPTIONAL time in ms);
  *
- *Hiding:
- *foo.hide()
+ * Hiding:
+ * foo.hide()
  */
 export class Toast {
     static defaults = { time: 3000 };
