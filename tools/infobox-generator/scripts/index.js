@@ -90,16 +90,12 @@ function triggerCreation(inputType, inputValue) {
         }
         // To do: add support for armor sets
         if (input.substring(input.length-5) === 'armor') {
-            if (inputType === 'id') {
-                if (input.substring(input.length-6) === '_armor') {
-                    console.log(input);
-                    console.log(input.substring(input.length-6));
-                }
-            } else {
-                if (input.substring(input.length-6) === ' armor') {
-                    console.log(input);
-                    console.log(input.substring(input.length-6));
-                }
+            if (inputType === 'id' && input.substring(input.length-6) === '_armor') {
+                console.log(input.substring(0, input.length-6));
+                console.log(input.substring(input.length-6));
+            } else if (inputType === 'name' && input.substring(input.length-6) === ' armor') {
+                console.log(input.substring(0, input.length-6));
+                console.log(input.substring(input.length-6));
             }
         }
         new Toast({
@@ -409,4 +405,8 @@ function createEssenceTable(itemData) {
     copyEssenceTableButton.disabled = false;
     essenceTableElement.parentElement.classList.remove('unselectable');
     essenceTableElement.innerHTML = essenceTable;
+}
+
+function createArmorInfobox(helmet, chestplate, leggings, boots) {
+    console.log(helmet);
 }
