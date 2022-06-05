@@ -198,7 +198,9 @@ function createInfobox(itemData) {
             } else {
                 stat = b.toString() + '-' + a.toString();
             }
-            if (statKeys[i] === 'WALK_SPEED') {
+            if (statKeys[i] === 'WEAPON_ABILITY_DAMAGE') {
+                continue;
+            } else if (statKeys[i] === 'WALK_SPEED') {
                 infobox += '|speed = ' + stat + '<br>';
             } else {
                 let percent = '';
