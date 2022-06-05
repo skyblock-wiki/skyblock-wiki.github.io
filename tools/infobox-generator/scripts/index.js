@@ -85,8 +85,7 @@ function triggerCreation(inputType, inputValue) {
     if (!itemsData) {
         new Toast({ message: 'The item list has not yet loaded. Please wait or try refreshing the page!', type: 'disallow', time: 2000 }).show();
     } else {
-        for (const index in itemsData) {
-            const item = itemsData[index];
+        for (const item of itemsData) {
             if (inputValue.toLowerCase() === item[inputType].toLowerCase()) return createInfobox(item);
         }
 
@@ -302,65 +301,58 @@ function createInfobox(itemData) {
 function createEssenceTable(itemData) {
     let essenceTable = '{{Essence Crafting<br>|type = weapon<br>';
 
-    for (let i = 0; i < itemData.upgrade_costs[0].length; i++) {
-        if ('essence_type' in itemData.upgrade_costs[0][i]) {
-            essenceTable += '|essence = ' + toTitleCase(itemData.upgrade_costs[0][i].essence_type) + '<br>';
+    for (const cost of itemData.upgrade_costs[0]) {
+        if ('essence_type' in cost) {
+            essenceTable += `|essence = ${toTitleCase(cost.essence_type)}<br>`;
             break;
-        } else if (i === itemData.upgrade_costs[0].length - 1) {
-            essenceTable += '|essence = none<br>';
-        }
+        } else if (cost === itemData.upgrade_costs[itemData.upgrade_costs.length - 1]) essenceTable += '|essence = none<br>';
     }
 
-    if ('dungeon_item_conversion_cost' in itemData) {
-        essenceTable += '|convert = ' + itemData.dungeon_item_conversion_cost.amount.toString() + ' Essence<br>';
-    }
+    if ('dungeon_item_conversion_cost' in itemData) essenceTable += `|convert = ${itemData.dungeon_item_conversion_cost.amount} Essence<br>`;
 
-    for (let a = 0; a < itemData.upgrade_costs.length; a++) {
-        itemData.upgrade_costs[a].reverse();
+    for (const costs of itemData.upgrade_costs) {
+        costs.reverse();
         essenceTable += '|';
-        for (let b = 0; b < itemData.upgrade_costs[a].length; b++) {
-            essenceTable += itemData.upgrade_costs[a][b].amount.toString() + ' ';
-            if ('essence_type' in itemData.upgrade_costs[a][b]) {
-                essenceTable += 'Essence';
-            } else if ('item_id' in itemData.upgrade_costs[a][b]) {
+
+        for (const tierCost of costs) {
+            essenceTable += tierCost.amount.toString() + ' ';
+            if ('essence_type' in tierCost) essenceTable += 'Essence';
+            else if ('item_id' in tierCost) {
                 let itemName;
-                for (let i = 0; i < itemsData.length; i++) {
-                    if (itemsData[i].id === itemData.upgrade_costs[a][b].item_id) {
-                        itemName = itemsData[i].name;
+                for (const item of itemsData) {
+                    if (tierCost.item_id === item.id) {
+                        itemName = item.name;
                         break;
                     }
                 }
                 essenceTable += itemName;
             }
-            if (b === itemData.upgrade_costs[a].length - 1) {
-                essenceTable += '<br>';
-            } else {
-                essenceTable += '; ';
-            }
+
+            if (tierCost === costs[costs.length - 1]) essenceTable += '<br>';
+            else essenceTable += '; ';
         }
     }
 
     if ('prestige' in itemData) {
         essenceTable += '|prestige = ';
-        for (let a = 0; a < itemData.prestige.costs.length; a++) {
-            essenceTable += itemData.prestige.costs[a].amount.toString() + ' ';
-            if ('essence_type' in itemData.prestige.costs[a]) {
-                essenceTable += 'Essence';
-            } else if ('item_id' in itemData.prestige.costs[a]) {
+
+        for (const cost of itemData.prestige.costs) {
+            essenceTable += cost.amount + ' ';
+
+            if ('essence_type' in cost) essenceTable += 'Essence';
+            else if ('item_id' in cost) {
                 let itemName;
-                for (let i = 0; i < itemsData.length; i++) {
-                    if (itemsData[i].id === itemData.prestige.costs[a].item_id) {
-                        itemName = itemsData[i].name;
+                for (const item of itemsData) {
+                    if (cost.item_id === item.id) {
+                        itemName = item.name;
                         break;
                     }
                 }
                 essenceTable += itemName;
             }
-            if (a === itemData.prestige.costs.length - 1) {
-                essenceTable += '<br>';
-            } else {
-                essenceTable += '; ';
-            }
+
+            if (cost === itemData.prestige.costs[itemData.prestige.costs.length - 1]) essenceTable += '<br>';
+            else essenceTable += '; ';
         }
     }
 
