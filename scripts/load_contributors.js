@@ -145,6 +145,7 @@ const contributors = [
             {
                 type: 'wiki',
                 value: 'https://hypixel-skyblock.fandom.com/wiki/User:TheTrueShaman',
+                border: true,
             },
             {
                 type: 'discord',
