@@ -5,45 +5,45 @@
 */
 footer {
     background: var(--col-bg3);
-    margin-top: 1rem;
-    width: 100%;
     display: flex;
     justify-content: center;
-    padding: 0.4rem 2rem;
     justify-self: flex-end;
+    margin-top: 1rem;
+    padding: 0.4rem 2rem;
+    width: 100%;
 }
 /* social media buttons styling */
 .github-button-wrapper a {
-    color: white;
-    text-decoration: none;
-    display: inline-block;
-    height: 40px;
-    width: 40px;
-    margin: 0 5px;
     background: var(--col-bg);
     border-radius: 50px;
-    cursor: pointer;
     box-shadow: 0 3px 5px black;
-    transition: all 0.3s ease;
-    overflow: hidden;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    height: 40px;
+    margin: 0 5px;
     outline: none;
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    width: 40px;
 }
 .github-button-wrapper a:hover,
 .github-button-wrapper a:focus,
 .github-button-wrapper a:active {
-    width: 200px;
     background: var(--col-bg3);
     color: white;
+    width: 200px;
 }
 .github-button-wrapper a .icon {
+    border-radius: 50px;
+    box-sizing: border-box;
     display: inline-block;
     height: 40px;
-    width: 40px;
-    text-align: center;
-    box-sizing: border-box;
-    border-radius: 50px;
     line-height: 40px;
+    text-align: center;
     transition: all 0.2s ease;
+    width: 40px;
 }
 .github-button-wrapper a .icon i {
     font-size: 20px;

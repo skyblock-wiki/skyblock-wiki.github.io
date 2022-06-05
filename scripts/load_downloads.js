@@ -130,7 +130,7 @@ downloads.forEach((el) => {
     });
     const element = [
         '<li>', //
-        `<img src="/files/images/downloads/${el.thumbnail}"${el.largeThumbnail ? ' style="width: 100%"' : ''} alt="tool logo">`,
+        `<img src="/files/images/download-thumbnails/${el.thumbnail}"${el.largeThumbnail ? ' style="width: 100%"' : ''} alt="tool logo">`,
         '<hr>',
         `<h4>${el.name}</h4>`,
         `<p>${el.description}</p>`,

@@ -2,7 +2,7 @@ const tools = [
     {
         link: './tools/head-render/index.html',
         thumbnail: 'head-render.png',
-        name: 'Head Render Thingy/NPC Sprite Maker',
+        name: 'Head Render Thingy',
         version: 'v4.0',
         description: 'Render custom player heads and NPC sprites from various different data models.',
     },
@@ -18,7 +18,7 @@ const tools = [
         thumbnail: 'infobox-generator.png',
         name: 'Infobox Generator',
         version: 'v1.0',
-        description: 'Creates basic infoboxes and essence crafting tables from the items API data.',
+        description: "Creates basic infoboxes and essence crafting tables from an item's API data.",
     },
     {
         link: 'https://jsfiddle.net/MonkeysHK/nb2csh1a/',
@@ -53,7 +53,7 @@ const tools = [
 const allElements = tools.map((tool) =>
     [
         '<li>', //
-        `<img src="/files/images/tools/${tool.thumbnail}" alt="tool logo">`,
+        `<img src="/files/images/tool-icons/${tool.thumbnail}" alt="tool logo">`,
         '<hr>',
         `<h4>${tool.name}</h4>`,
         `<span class="version">${tool.version ? tool.version : '&nbsp;'}</span>`,

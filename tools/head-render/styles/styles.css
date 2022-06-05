@@ -1,4 +1,4 @@
-@import './toast.css';
+@import '/styles/toast.css';
 
 /* font-awesome */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
@@ -19,9 +19,9 @@
 }
 /* normalize margins and paddings */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 /*  
@@ -34,19 +34,19 @@ html {
     width: 100%;
 }
 body {
-    font-family: 'Montserrat', sans-serif;
     background: var(--col-bg);
-    min-height: 100vh;
-    width: 100%;
     display: flex;
     flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    width: 100%;
 }
 .hidden {
     display: none;
 }
 .soft-hidden {
-    visibility: hidden;
     cursor: default;
+    visibility: hidden;
 }
 .unselectable {
     -webkit-touch-callout: none;
@@ -57,21 +57,21 @@ body {
     user-select: none;
 }
 .code {
-    font-family: 'Fira Mono', monospace;
-    padding: 0px 0.3rem;
     background: rgba(0, 0, 0, 0.2);
     border: 1px solid var(--col-acc);
     border-radius: 4px;
+    font-family: 'Fira Mono', monospace;
+    padding: 0px 0.3rem;
 }
 /* checkboxes */
 .checkbox-custom {
-    position: absolute;
     opacity: 0;
+    position: absolute;
 }
 .checkbox-label {
+    align-items: center;
     display: flex;
     gap: 4px;
-    align-items: center;
 }
 .checkbox-label .checkbox i {
     display: none;
@@ -89,25 +89,25 @@ body {
 /* hover and focus effect for buttons and inputs */
 input:focus,
 textarea:focus {
-    outline: none;
     box-shadow: var(--state-shadow);
+    outline: none;
 }
 /* buttons */
 button {
-    width: max-content;
-    height: max-content;
-    padding: 0.2rem 0.3rem;
-    border-radius: 4px;
-    border: 1px solid var(--col-acc);
     background-color: var(--col-bg2);
+    border: 1px solid var(--col-acc);
+    border-radius: 4px;
     color: white;
     cursor: pointer;
+    height: max-content;
+    padding: 0.2rem 0.3rem;
     transition: all 0.2s ease;
+    width: max-content;
 }
 button:disabled {
-    opacity: 50%;
     color: #aaa;
     cursor: default;
+    opacity: 50%;
 }
 /*  
 ======================
@@ -115,50 +115,50 @@ button:disabled {
 ======================
 */
 header {
+    align-items: center;
+    background: var(--col-bg3);
+    display: flex;
+    height: 5.5rem;
+    padding: 0.3rem 0;
     position: static;
     width: 100%;
-    height: 5.5rem;
-    display: flex;
-    background: var(--col-bg3);
-    align-items: center;
-    padding: 0.3rem 0;
 }
 header img {
-    width: 4rem;
     margin-right: 1.5rem;
+    width: 4rem;
 }
 header > span:nth-child(2) {
     display: flex;
 }
 header .name {
+    color: white;
     font-size: 1.5rem;
     font-weight: 500;
     white-space: nowrap;
-    color: white;
 }
 header .version {
+    align-self: flex-end;
+    color: #ffffffa0;
     font-size: 1rem;
     font-weight: 300;
-    align-self: flex-end;
     margin-left: 0.5rem;
-    color: #ffffffa0;
 }
 #return-main {
-    cursor: pointer;
-    padding: 0.6rem 1rem;
-    margin: auto 0.5rem;
-    transition: all 0.2s ease;
-    display: flex;
     align-items: center;
     border-right: 3px solid #666;
+    cursor: pointer;
+    display: flex;
+    margin: auto 0.5rem;
+    padding: 0.6rem 1rem;
+    transition: all 0.2s ease;
 }
 #return-main img {
-    vertical-align: middle;
     margin-right: 0;
+    vertical-align: middle;
 }
 #return-main:hover {
-    box-shadow: 0 0 10px 0 #fff1;
     background: #fff1;
+    box-shadow: 0 0 10px 0 #fff1;
 }
 
 /*  
@@ -167,16 +167,16 @@ header .version {
 =======================
 */
 #wrapper {
-    margin-top: 1rem;
-    display: flex;
     clear: both;
-    width: 100%;
+    display: flex;
     flex-grow: 1;
+    margin-top: 1rem;
+    width: 100%;
 }
 main,
 aside {
-    width: 50%;
     padding: 2rem;
+    width: 50%;
 }
 /*  
 =======================
@@ -198,15 +198,15 @@ main section:nth-of-type(1) {
     height: 7.5rem;
 }
 h3:not(.contributors h3) {
-    font-family: 'Montserrat', sans-serif;
     color: white;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.25rem;
     font-weight: 300;
     margin-bottom: 0.5rem;
 }
 main p {
-    font-family: 'Montserrat', sans-serif;
     color: white;
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.9rem;
     font-weight: 200;
     margin-bottom: 0.8rem;
@@ -215,23 +215,23 @@ main input[type='file'] {
     color: white;
 }
 main textarea {
-    width: 100%;
-    min-height: 4rem;
-    height: 6rem;
-    max-height: 16rem;
-    margin: 0.5rem 0;
-    padding: 0.2rem;
+    background-color: var(--col-bg2);
     border: 1px solid var(--col-acc);
     border-radius: 4px;
-    background-color: var(--col-bg2);
     color: white;
     font-family: 'Fira Mono', monospace;
-    transition: box-shadow 0.1s ease;
+    height: 6rem;
+    margin: 0.5rem 0;
+    max-height: 16rem;
+    min-height: 4rem;
+    padding: 0.2rem;
     resize: vertical;
+    transition: box-shadow 0.1s ease;
+    width: 100%;
 }
 .sec-err {
-    font-size: 0.8rem;
     color: red;
+    font-size: 0.8rem;
     font-weight: 200;
 }
 /* */
@@ -254,39 +254,39 @@ aside section {
     flex-direction: column;
 }
 aside .nbtInfo th {
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 200;
     padding-right: 1rem;
     text-align: right;
-    color: white;
-    font-weight: 200;
-    font-size: 0.9rem;
 }
 aside .nbtInfo td div {
     display: inline-block;
     margin: 0.2rem 0;
 }
 aside .nbtInfo input {
-    padding: 0.2rem 0.3rem;
-    border-radius: 4px;
-    border: 1px solid var(--col-acc);
     background-color: var(--col-bg2);
+    border: 1px solid var(--col-acc);
+    border-radius: 4px;
     color: #aaa;
     cursor: pointer;
-    transition: all 0.2s ease;
     font-family: 'Fira Code', monospace;
     font-size: 0.75rem;
+    padding: 0.2rem 0.3rem;
+    transition: all 0.2s ease;
     width: 15rem;
 }
 aside section > *:not(a) {
     padding: 0 0.5rem;
 }
 aside .headbox {
-    height: 7.5rem;
     border-bottom: 1px solid var(--col-bg3);
+    height: 7.5rem;
     margin-bottom: 1rem;
 }
 aside .titlebox {
-    display: flex;
     align-items: center;
+    display: flex;
     justify-content: space-between;
 }
 aside .titlebox h3 {
@@ -294,18 +294,18 @@ aside .titlebox h3 {
 }
 aside #warning {
     color: red;
-    font-weight: 200;
-    font-size: 0.7rem;
-    text-align: justify;
     display: none;
+    font-size: 0.7rem;
+    font-weight: 200;
+    text-align: justify;
 }
 aside #loading {
-    height: 20px;
-    width: 95px;
+    align-self: center;
     border: none;
     display: none;
-    align-self: center;
+    height: 20px;
     margin: 3rem;
+    width: 95px;
 }
 aside #drawnLink,
 aside #spriteLink {
@@ -313,45 +313,45 @@ aside #spriteLink {
 }
 aside img#drawn,
 aside img#sprite {
-    margin: 0.5rem 0 0;
-    cursor: pointer;
-    border-radius: 4px;
-    border: 1px solid var(--col-acc);
     background-color: var(--col-bg2);
+    border: 1px solid var(--col-acc);
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0.5rem 0 0;
 }
 aside img#drawn {
-    width: 350px;
     height: 350px;
+    width: 350px;
 }
 aside img#sprite {
-    width: 150px;
     height: 150px;
+    width: 150px;
 }
 /* contributors */
 .contributors {
-    margin: 0.8rem 1.1rem;
+    bottom: 0;
     display: flex;
     flex-direction: column;
+    margin: 0.8rem 1.1rem;
     position: fixed;
     right: 0;
-    bottom: 0;
 }
 .contributors button {
     background: none;
     border: none;
-    transition: none;
-    font-size: 20px;
     font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
     font-weight: 300;
+    transition: none;
 }
 .contributors .list {
     background: var(--col-bg2) none repeat scroll 0% 0%;
-    border-radius: 4px;
     border: 1px solid var(--col-acc2);
+    border-radius: 4px;
 }
 .contributors button i {
-    transition: transform 0.4s ease;
     transform: rotate(-90deg);
+    transition: transform 0.4s ease;
 }
 .contributors .list:not(.hidden-height) ~ h3 i {
     transform: rotate(-180deg);
@@ -367,43 +367,43 @@ aside img#sprite {
     margin: 0.5rem 0;
 }
 .tooltip {
-    position: relative;
-    display: inline-block;
+    border-bottom: 1px dotted white;
     color: white;
+    display: inline-block;
     font-family: 'Montserrat', sans-serif;
     font-weight: 200;
-    border-bottom: 1px dotted white;
+    position: relative;
 }
 .tooltip .tooltiptext {
-    visibility: hidden;
-    width: max-content;
-    max-width: 300px;
     background-color: var(--col-bg3);
-    color: #fff;
-    text-align: left;
-    border-radius: 6px;
     border: 1px solid var(--col-acc2);
+    border-radius: 6px;
+    bottom: -5px;
+    color: #fff;
+    max-width: 300px;
+    opacity: 0;
     padding: 5px 5px 5px 25px;
     position: absolute;
-    z-index: 1;
-    bottom: -5px;
     right: 110%;
+    text-align: left;
     /* fade animation */
     transition: all 0.2s ease;
-    opacity: 0;
+    visibility: hidden;
+    width: max-content;
+    z-index: 1;
 }
 .tooltip > span:nth-child(1) {
     cursor: help;
 }
 .tooltip .tooltiptext::after {
-    content: '';
-    position: absolute;
+    border-color: transparent transparent transparent var(--col-acc2);
+    border-style: solid;
+    border-width: 5px;
     bottom: 10px;
+    content: '';
     left: 100%;
     margin-top: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent transparent var(--col-acc2);
+    position: absolute;
 }
 .tooltip:hover .tooltiptext,
 .tooltip:active .tooltiptext {
@@ -416,8 +416,8 @@ aside img#sprite {
 .tooltip .tooltiptext li span {
     font-family: 'Montserrat', sans-serif;
     font-size: 0.8rem;
-    position: relative;
     left: -7px;
+    position: relative;
 }
 /*  
 ======================
@@ -426,45 +426,45 @@ aside img#sprite {
 */
 footer {
     background: var(--col-bg3);
-    margin-top: 1rem;
-    width: 100%;
     display: flex;
     justify-content: center;
-    padding: 0.4rem 2rem;
     justify-self: flex-end;
+    margin-top: 1rem;
+    padding: 0.4rem 2rem;
+    width: 100%;
 }
 /* social media buttons styling */
 .github-button-wrapper a {
-    color: white;
-    text-decoration: none;
-    display: inline-block;
-    height: 40px;
-    width: 40px;
-    margin: 0 5px;
     background: var(--col-bg);
     border-radius: 50px;
-    cursor: pointer;
     box-shadow: 0 3px 5px black;
-    transition: all 0.3s ease;
-    overflow: hidden;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    height: 40px;
+    margin: 0 5px;
     outline: none;
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    width: 40px;
 }
 .github-button-wrapper a:hover,
 .github-button-wrapper a:focus,
 .github-button-wrapper a:active {
-    width: 200px;
     background: var(--col-bg3);
     color: white;
+    width: 200px;
 }
 .github-button-wrapper a .icon {
+    border-radius: 50px;
+    box-sizing: border-box;
     display: inline-block;
     height: 40px;
-    width: 40px;
-    text-align: center;
-    box-sizing: border-box;
-    border-radius: 50px;
     line-height: 40px;
+    text-align: center;
     transition: all 0.2s ease;
+    width: 40px;
 }
 .github-button-wrapper a .icon i {
     font-size: 20px;
@@ -484,13 +484,13 @@ footer {
         overflow-x: hidden;
     }
     #wrapper {
-        flex-direction: column;
         align-items: flex-end;
+        flex-direction: column;
     }
     main,
     aside {
-        width: 100%;
         border: none;
+        width: 100%;
     }
     aside {
         border-top: 2px solid var(--col-acc2);
