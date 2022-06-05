@@ -1,5 +1,8 @@
 import { Toast } from '../../../scripts/toast.js';
 
+/**
+ * Fetches items from the API
+ */
 async function fetchItems() {
     const itemsData = await fetch('https://api.hypixel.net/resources/skyblock/items');
     window.itemList = await itemsData.json();
@@ -36,6 +39,10 @@ subElem.id.addEventListener('click', () => {
     onChanged('id');
 });
 
+/**
+ * Handles inputs
+ * @param {'name'|'id'} inputType the type of input
+ */
 function onChanged(inputType) {
     if (!window.itemList) {
         new Toast({
@@ -57,20 +64,23 @@ function onChanged(inputType) {
 document.getElementById('copy-infobox').addEventListener('click', () => {
     copyText('infobox');
 });
-document.getElementById('copy-essenceTable').addEventListener('click', () => {
-    copyText('essenceTable');
+document.getElementById('copy-essence-table').addEventListener('click', () => {
+    copyText('essence-table');
 });
 
-function copyText(selector) {
+/**
+ * Copies an element's innerHTML to the clipboard
+ * @param {string} id the id of the element to copy
+ */
+function copyText(id) {
     try {
-        window.navigator.clipboard.writeText(document.getElementById(selector).innerHTML.replaceAll('<br>', '\n'));
+        window.navigator.clipboard.writeText(document.getElementById(id).innerHTML.replaceAll('<br>', '\n'));
         new Toast({
             message: 'Copied!',
             type: 'success',
             time: 2000,
         }).show();
     } catch (error) {
-        console.error(error);
         new Toast({
             message: 'Unable to copy, please try again!',
             type: 'disallow',
@@ -79,6 +89,11 @@ function copyText(selector) {
     }
 }
 
+/**
+ * Converts a string to title case
+ * @param {string} str the string to convert
+ * @returns {string} the converted string
+ */
 function toTitleCase(str) {
     str = str.toLowerCase().split(' ');
     for (let i = 0; i < str.length; i++) {
@@ -87,14 +102,12 @@ function toTitleCase(str) {
     return str.join(' ');
 }
 
-function gemstoneHelper(gemstone) {
-    gemstone = gemstone.toLowerCase();
-    gemstone = gemstone.replace('_gem', '');
-    gemstone = gemstone.replace('_', ' ');
-    return toTitleCase(gemstone);
-}
-
-//Stolen from: https://stackoverflow.com/questions/9083037/convert-a-number-into-a-roman-numeral-in-javascript
+/**
+ * Converts a number to roman numerals
+ * @param {number} num the number to convert
+ * @returns {string} the converted number
+ * @see https://stackoverflow.com/questions/9083037/convert-a-number-into-a-roman-numeral-in-javascript
+ */
 function romanize(num) {
     if (isNaN(num)) return NaN;
     const digits = String(+num).split('');
@@ -105,6 +118,10 @@ function romanize(num) {
     return Array(+digits.join('') + 1).join('M') + roman;
 }
 
+/**
+ * Creates the infobox for the item
+ * @param {object} itemData the item data
+ */
 function createInfobox(itemData) {
     let infobox = '{{Infobox ';
     if (itemData.category) {
@@ -176,7 +193,7 @@ function createInfobox(itemData) {
                     if ('coins' in cost) {
                         infobox += cost.coins.toString();
                     } else {
-                        infobox += cost.amount.toString() + ' ' + gemstoneHelper(cost.item_id);
+                        infobox += cost.amount.toString() + ' ' + toTitleCase(cost.item_id.toLowerCase().replace('_gem', '').replace('_', ' '));
                     }
                     if (b !== len - 1) {
                         infobox += ', ';
@@ -275,10 +292,14 @@ function createInfobox(itemData) {
     if (itemData.upgrade_costs) {
         createEssenceTable(itemData);
     } else {
-        document.getElementById('essenceTable').innerHTML = '&ZeroWidthSpace;';
+        document.getElementById('essence-table').innerHTML = '&ZeroWidthSpace;';
     }
 }
 
+/**
+ * Creates the essence table for the item
+ * @param {object} itemData the item data
+ */
 function createEssenceTable(itemData) {
     let essenceTable = '{{Essence Crafting<br>|type = weapon<br>';
     for (let i = 0; i < itemData.upgrade_costs[0].length; i++) {
@@ -302,7 +323,7 @@ function createEssenceTable(itemData) {
             } else if ('item_id' in itemData.upgrade_costs[a][b]) {
                 let itemName;
                 for (let i = 0; i < window.itemList.length; i++) {
-                    if (window.itemList[i].id == itemData.upgrade_costs[a][b].item_id) {
+                    if (window.itemList[i].id === itemData.upgrade_costs[a][b].item_id) {
                         itemName = window.itemList[i].name;
                         break;
                     }
@@ -340,7 +361,7 @@ function createEssenceTable(itemData) {
         }
     }
     essenceTable += '}}';
-    document.getElementById('copy-essenceTable').disabled = false;
-    document.getElementById('essenceTable').parentElement.classList.remove('unselectable');
-    document.getElementById('essenceTable').innerHTML = essenceTable;
+    document.getElementById('copy-essence-table').disabled = false;
+    document.getElementById('essence-table').parentElement.classList.remove('unselectable');
+    document.getElementById('essence-table').innerHTML = essenceTable;
 }
