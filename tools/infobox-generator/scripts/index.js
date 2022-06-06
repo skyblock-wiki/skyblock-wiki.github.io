@@ -99,14 +99,29 @@ function triggerCreation(inputType, inputValue) {
                 const armor = input.substring(0, input.length-6);
                 console.log(armor);
                 for (const item of itemsData) {
-                    if (item.id.toLowerCase().match(`^${armor}_(?:helmet|chestplate|leggings|boots)$`)) console.log(item.id.toLowerCase());
+                    if (item.name.toLowerCase().match(`^${armor}_(?:helmet|chestplate|leggings|boots)$`)) {
+                        if (item.name.toLowerCase().match(`^${armor}_helmet$`)) armor_set = Object.assign(armor_set, {helmet: item});
+                        else if (item.name.toLowerCase().match(`^${armor}_chestplate$`)) armor_set = Object.assign(armor_set, {chestplate: item});
+                        else if (item.name.toLowerCase().match(`^${armor}_leggings$`)) armor_set = Object.assign(armor_set, {leggings: item});
+                        else (item.name.toLowerCase().match(`^${armor}_boots$`)) armor_set = Object.assign(armor_set, {boots: item});
+                        console.log(item.id.toLowerCase());
+                    }
                 }
+                console.log(armor_set);
             } else if (inputType === 'name' && input.substring(input.length-6) === ' armor') {
                 const armor = input.substring(0, input.length-6);
                 console.log(armor);
+                let armor_set = {};
                 for (const item of itemsData) {
-                    if (item.name.toLowerCase().match(`^${armor} (?:helmet|chestplate|leggings|boots)$`)) console.log(item.name.toLowerCase());
+                    if (item.name.toLowerCase().match(`^${armor} (?:helmet|chestplate|leggings|boots)$`)) {
+                        if (item.name.toLowerCase().match(`^${armor} helmet$`)) armor_set = Object.assign(armor_set, {helmet: item});
+                        else if (item.name.toLowerCase().match(`^${armor} chestplate$`)) armor_set = Object.assign(armor_set, {chestplate: item});
+                        else if (item.name.toLowerCase().match(`^${armor} leggings$`)) armor_set = Object.assign(armor_set, {leggings: item});
+                        else (item.name.toLowerCase().match(`^${armor} boots$`)) armor_set = Object.assign(armor_set, {boots: item});
+                        console.log(item.name.toLowerCase());
+                    }
                 }
+                console.log(armor_set);
             }
         }
         new Toast({ message: 'The item you entered does not exist!', type: 'disallow', time: 2000 }).show();
