@@ -103,7 +103,7 @@ function triggerCreation(inputType, inputValue) {
                         if (item.name.toLowerCase().match(`^${armor}_helmet$`)) armor_set = Object.assign(armor_set, {helmet: item});
                         else if (item.name.toLowerCase().match(`^${armor}_chestplate$`)) armor_set = Object.assign(armor_set, {chestplate: item});
                         else if (item.name.toLowerCase().match(`^${armor}_leggings$`)) armor_set = Object.assign(armor_set, {leggings: item});
-                        else (item.name.toLowerCase().match(`^${armor}_boots$`)) armor_set = Object.assign(armor_set, {boots: item});
+                        else armor_set = Object.assign(armor_set, {boots: item});
                         console.log(item.id.toLowerCase());
                     }
                 }
@@ -117,7 +117,7 @@ function triggerCreation(inputType, inputValue) {
                         if (item.name.toLowerCase().match(`^${armor} helmet$`)) armor_set = Object.assign(armor_set, {helmet: item});
                         else if (item.name.toLowerCase().match(`^${armor} chestplate$`)) armor_set = Object.assign(armor_set, {chestplate: item});
                         else if (item.name.toLowerCase().match(`^${armor} leggings$`)) armor_set = Object.assign(armor_set, {leggings: item});
-                        else (item.name.toLowerCase().match(`^${armor} boots$`)) armor_set = Object.assign(armor_set, {boots: item});
+                        else armor_set = Object.assign(armor_set, {boots: item});
                         console.log(item.name.toLowerCase());
                     }
                 }
