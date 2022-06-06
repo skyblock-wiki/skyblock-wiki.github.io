@@ -15,7 +15,6 @@ export const downloads = [
         largeThumbnail: true,
         links: [
             { type: 'download', link: 'Mineshot-v1.7-1.8.9.jar', border: true },
-            { type: 'website', link: 'http://www.9minecraft.net/mineshot-mod' },
             { type: 'github', link: 'https://github.com/ata4/mineshot' },
         ],
     },
