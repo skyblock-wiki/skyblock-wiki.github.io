@@ -26,7 +26,17 @@ nameInput.addEventListener('keyup', (event) => {
 });
 
 nameSubmitButton.addEventListener('click', () => {
-    triggerCreation('name', nameInput.value);
+    if (!itemsData) {
+        new Toast({ message: 'The item list has not yet loaded. Please wait or try refreshing the page!', type: 'disallow', time: 2000 }).show();
+    } else {
+        for (const item of itemsData) {
+            if (nameInput.value.toLowerCase() === item.id.toLowerCase()) {
+                idInput.value = '';
+                return createInfobox(item);
+            }
+        }
+        new Toast({ message: 'The item you entered does not exist!', type: 'disallow', time: 2000 }).show();
+    }
 });
 
 nameClearButton.addEventListener('click', () => {
@@ -37,11 +47,7 @@ nameClearButton.addEventListener('click', () => {
     essenceTableElement.value = '';
     essenceTableElement.style.height = 'unset';
     copyEssenceTableButton.disabled = true;
-    new Toast({
-        message: 'Cleared!',
-        type: 'success',
-        time: 1000,
-    }).show();
+    new Toast({ message: 'Cleared!', type: 'success', time: 1000 }).show();
 });
 
 idInput.addEventListener('keyup', (event) => {
@@ -49,7 +55,17 @@ idInput.addEventListener('keyup', (event) => {
 });
 
 idSubmitButton.addEventListener('click', () => {
-    triggerCreation('id', idInput.value);
+    if (!itemsData) {
+        new Toast({ message: 'The item list has not yet loaded. Please wait or try refreshing the page!', type: 'disallow', time: 2000 }).show();
+    } else {
+        for (const item of itemsData) {
+            if (idInput.value.toLowerCase().replaceAll(' ', '_') === item.id.toLowerCase()) {
+                nameInput.value = '';
+                return createInfobox(item);
+            }
+        }
+        new Toast({ message: 'The item you entered does not exist!', type: 'disallow', time: 2000 }).show();
+    }
 });
 
 idClearButton.addEventListener('click', () => {
@@ -60,11 +76,7 @@ idClearButton.addEventListener('click', () => {
     essenceTableElement.value = '';
     essenceTableElement.style.height = 'unset';
     copyEssenceTableButton.disabled = true;
-    new Toast({
-        message: 'Cleared!',
-        type: 'success',
-        time: 1000,
-    }).show();
+    new Toast({ message: 'Cleared!', type: 'success', time: 1000 }).show();
 });
 
 includeExtraCheckbox.addEventListener('input', () => {
@@ -78,24 +90,6 @@ copyInfoboxButton.addEventListener('click', () => {
 copyEssenceTableButton.addEventListener('click', () => {
     copyText('essence-table');
 });
-
-/**
- * Handles the creation input
- * @param {'name'|'id'} inputType the type of input
- * @param {string} inputValue the value of the input
- * @returns {void}
- */
-function triggerCreation(inputType, inputValue) {
-    if (!itemsData) {
-        new Toast({ message: 'The item list has not yet loaded. Please wait or try refreshing the page!', type: 'disallow', time: 2000 }).show();
-    } else {
-        for (const item of itemsData) {
-            if (inputValue.toLowerCase() === item[inputType].toLowerCase()) return createInfobox(item);
-        }
-
-        new Toast({ message: 'The item you entered does not exist!', type: 'disallow', time: 2000 }).show();
-    }
-}
 
 /**
  * Copies an element's innerHTML to the clipboard
