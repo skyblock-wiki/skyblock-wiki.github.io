@@ -98,27 +98,31 @@ function triggerCreation(inputType, inputValue) {
             if (inputType === 'id' && input.substring(input.length-6) === '_armor') {
                 const armor = input.substring(0, input.length-6);
                 let armor_set = {};
+                let exists = false;
                 for (const item of itemsData) {
                     if (item.id.toLowerCase().match(`^${armor}_(?:helmet|chestplate|leggings|boots)$`)) {
+                        exists = true;
                         if (item.id.toLowerCase().match(`^${armor}_helmet$`)) armor_set = Object.assign(armor_set, {helmet: item});
                         else if (item.id.toLowerCase().match(`^${armor}_chestplate$`)) armor_set = Object.assign(armor_set, {chest: item});
                         else if (item.id.toLowerCase().match(`^${armor}_leggings$`)) armor_set = Object.assign(armor_set, {legs: item});
                         else armor_set = Object.assign(armor_set, {boots: item});
                     }
                 }
-                return createArmorInfobox(armor_set);
+                if (exists) return createArmorInfobox(armor_set);
             } else if (inputType === 'name' && input.substring(input.length-6) === ' armor') {
                 const armor = input.substring(0, input.length-6);
                 let armor_set = {};
+                let exists = false;
                 for (const item of itemsData) {
                     if (item.name.toLowerCase().match(`^${armor} (?:helmet|chestplate|leggings|boots)$`)) {
+                        exists = true;
                         if (item.name.toLowerCase().match(`^${armor} helmet$`)) armor_set = Object.assign(armor_set, {helmet: item});
                         else if (item.name.toLowerCase().match(`^${armor} chestplate$`)) armor_set = Object.assign(armor_set, {chest: item});
                         else if (item.name.toLowerCase().match(`^${armor} leggings$`)) armor_set = Object.assign(armor_set, {legs: item});
                         else armor_set = Object.assign(armor_set, {boots: item});
                     }
                 }
-                return createArmorInfobox(armor_set);
+                if (exists) return createArmorInfobox(armor_set);
             }
         }
         new Toast({ message: 'The item you entered does not exist!', type: 'disallow', time: 2000 }).show();
