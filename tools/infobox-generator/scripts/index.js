@@ -97,7 +97,6 @@ function triggerCreation(inputType, inputValue) {
         if (input.substring(input.length-5) === 'armor') {
             if (inputType === 'id' && input.substring(input.length-6) === '_armor') {
                 const armor = input.substring(0, input.length-6);
-                console.log(armor);
                 let armor_set = {};
                 for (const item of itemsData) {
                     if (item.id.toLowerCase().match(`^${armor}_(?:helmet|chestplate|leggings|boots)$`)) {
@@ -105,13 +104,11 @@ function triggerCreation(inputType, inputValue) {
                         else if (item.id.toLowerCase().match(`^${armor}_chestplate$`)) armor_set = Object.assign(armor_set, {chestplate: item});
                         else if (item.id.toLowerCase().match(`^${armor}_leggings$`)) armor_set = Object.assign(armor_set, {leggings: item});
                         else armor_set = Object.assign(armor_set, {boots: item});
-                        console.log(item.id.toLowerCase());
                     }
                 }
-                console.log(armor_set);
+                createArmorInfobox(armor_set);
             } else if (inputType === 'name' && input.substring(input.length-6) === ' armor') {
                 const armor = input.substring(0, input.length-6);
-                console.log(armor);
                 let armor_set = {};
                 for (const item of itemsData) {
                     if (item.name.toLowerCase().match(`^${armor} (?:helmet|chestplate|leggings|boots)$`)) {
@@ -119,10 +116,9 @@ function triggerCreation(inputType, inputValue) {
                         else if (item.name.toLowerCase().match(`^${armor} chestplate$`)) armor_set = Object.assign(armor_set, {chestplate: item});
                         else if (item.name.toLowerCase().match(`^${armor} leggings$`)) armor_set = Object.assign(armor_set, {leggings: item});
                         else armor_set = Object.assign(armor_set, {boots: item});
-                        console.log(item.name.toLowerCase());
                     }
                 }
-                console.log(armor_set);
+                createArmorInfobox(armor_set);
             }
         }
         new Toast({ message: 'The item you entered does not exist!', type: 'disallow', time: 2000 }).show();
@@ -402,6 +398,6 @@ function createEssenceTable(itemData) {
     essenceTableElement.style.height = essenceTableElement.scrollHeight + 3 + 'px';
 }
 
-function createArmorInfobox(helmet, chestplate, leggings, boots) {
-    console.log(helmet);
+function createArmorInfobox(armor) {
+    console.log(armor);
 }
