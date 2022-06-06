@@ -101,8 +101,8 @@ function triggerCreation(inputType, inputValue) {
                 for (const item of itemsData) {
                     if (item.id.toLowerCase().match(`^${armor}_(?:helmet|chestplate|leggings|boots)$`)) {
                         if (item.id.toLowerCase().match(`^${armor}_helmet$`)) armor_set = Object.assign(armor_set, {helmet: item});
-                        else if (item.id.toLowerCase().match(`^${armor}_chestplate$`)) armor_set = Object.assign(armor_set, {chestplate: item});
-                        else if (item.id.toLowerCase().match(`^${armor}_leggings$`)) armor_set = Object.assign(armor_set, {leggings: item});
+                        else if (item.id.toLowerCase().match(`^${armor}_chestplate$`)) armor_set = Object.assign(armor_set, {chest: item});
+                        else if (item.id.toLowerCase().match(`^${armor}_leggings$`)) armor_set = Object.assign(armor_set, {legs: item});
                         else armor_set = Object.assign(armor_set, {boots: item});
                     }
                 }
@@ -113,8 +113,8 @@ function triggerCreation(inputType, inputValue) {
                 for (const item of itemsData) {
                     if (item.name.toLowerCase().match(`^${armor} (?:helmet|chestplate|leggings|boots)$`)) {
                         if (item.name.toLowerCase().match(`^${armor} helmet$`)) armor_set = Object.assign(armor_set, {helmet: item});
-                        else if (item.name.toLowerCase().match(`^${armor} chestplate$`)) armor_set = Object.assign(armor_set, {chestplate: item});
-                        else if (item.name.toLowerCase().match(`^${armor} leggings$`)) armor_set = Object.assign(armor_set, {leggings: item});
+                        else if (item.name.toLowerCase().match(`^${armor} chestplate$`)) armor_set = Object.assign(armor_set, {chest: item});
+                        else if (item.name.toLowerCase().match(`^${armor} leggings$`)) armor_set = Object.assign(armor_set, {legs: item});
                         else armor_set = Object.assign(armor_set, {boots: item});
                     }
                 }
