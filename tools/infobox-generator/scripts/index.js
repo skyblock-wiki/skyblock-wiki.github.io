@@ -413,6 +413,7 @@ function createArmorInfobox(armor) {
     
     let rarities = [];
     for (const piece in armor) {
+        console.log(piece);
         rarities.push(piece.tier);
     }
     console.log(rarities);
