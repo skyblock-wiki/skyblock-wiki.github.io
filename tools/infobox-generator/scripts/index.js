@@ -195,7 +195,7 @@ function createInfobox(itemData) {
 
     if (itemData.tier) infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
 
-    infobox += '|id = ' + itemData.id + '\n';
+    infobox += `|id = ${itemData.id}\n`;
     const percentages = { attack_speed: true, critical_chance: true, critical_damage: true, sea_creature_chance: true }; // eslint-disable-line camelcase
 
     if (itemData.stats) {
@@ -420,11 +420,15 @@ function createArmorInfobox(armor) {
     if (includeExtra) {
         infobox += [
             `|title = ${setName}`,
-            `|image = ${setName}.png`,
+            `|image = ${setName}.png\n`,
         ].join('\n');
         for (const piece in armor) {
-            infobox += `|slot_${piece} = ${armor[piece].name}`;
+            infobox += `|slot_${piece} = ${armor[piece].name}\n`;
         }
+    }
+    
+    for (const piece in armor) {
+        infobox += `|${piece}_id = ${armor[piece].id}\n`;
     }
     
     let rarities = [];
