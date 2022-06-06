@@ -1,8 +1,3 @@
-/*  
-======================
-		Footer
-======================
-*/
 footer {
     background: var(--col-bg3);
     display: flex;
@@ -12,7 +7,7 @@ footer {
     padding: 0.4rem 2rem;
     width: 100%;
 }
-/* social media buttons styling */
+
 .github-button-wrapper a {
     background: var(--col-bg);
     border-radius: 50px;
@@ -28,6 +23,7 @@ footer {
     transition: all 0.3s ease;
     width: 40px;
 }
+
 .github-button-wrapper a:hover,
 .github-button-wrapper a:focus,
 .github-button-wrapper a:active {
@@ -35,6 +31,7 @@ footer {
     color: white;
     width: 200px;
 }
+
 .github-button-wrapper a .icon {
     border-radius: 50px;
     box-sizing: border-box;
@@ -45,10 +42,12 @@ footer {
     transition: all 0.2s ease;
     width: 40px;
 }
+
 .github-button-wrapper a .icon i {
     font-size: 20px;
     line-height: 40px;
 }
+
 .github-button-wrapper a span {
     font-weight: 500;
     line-height: 40px;

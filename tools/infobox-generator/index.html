@@ -17,68 +17,70 @@
     </head>
 
     <body>
-        <header>
-            <a href="/index.html" id="return-main">
+        <div>
+            <header>
+                <a href="/index.html" id="return-main">
+                    <span>
+                        <img src="/files/images/return-icon.png" alt="back" />
+                    </span>
+                </a>
+                <img src="/files/images/tool-icons/infobox-generator.png" alt="logo" />
                 <span>
-                    <img src="/files/images/return-icon.png" alt="back" />
+                    <span class="name">Infobox Generator</span>
+                    <span class="version">v1.0</span>
                 </span>
-            </a>
-            <img src="/files/images/tool-icons/infobox-generator.png" alt="logo" />
-            <span>
-                <span class="name">Infobox Generator</span>
-                <span class="version">v1.0</span>
-            </span>
-        </header>
-        <div id="grid-wrapper">
-            <div>
-                <div class="input">
-                    <h3>Create from item name</h3>
-                    <input type="text" id="name" placeholder="Item name" />
-                    <br />
-                    <span class="unselectable">
-                        <button class="sec-subm" id="name-submit">Create</button>
-                        <button class="sec-clr" id="name-clear">Clear</button>
-                    </span>
+            </header>
+            <div id="grid-wrapper">
+                <div>
+                    <div class="input">
+                        <h3>Create from item name</h3>
+                        <input type="text" id="name" placeholder="Item name" />
+                        <br />
+                        <span class="unselectable">
+                            <button class="sec-subm" id="name-submit">Create</button>
+                            <button class="sec-clr" id="name-clear">Clear</button>
+                        </span>
+                    </div>
+                    <div class="input">
+                        <h3>Create from item ID</h3>
+                        <input type="text" id="id" placeholder="Item ID" />
+                        <br />
+                        <span class="unselectable">
+                            <button class="sec-subm" id="id-submit">Create</button>
+                            <button class="sec-clr" id="id-clear">Clear</button>
+                        </span>
+                    </div>
+                    <div class="input">
+                        <h3>Options</h3>
+                        <input type="checkbox" id="include-extra" />
+                        <label for="include-extra">Enable the title, image, and slot tags.</label><br />
+                    </div>
                 </div>
-                <div class="input">
-                    <h3>Create from item ID</h3>
-                    <input type="text" id="id" placeholder="Item ID" />
-                    <br />
-                    <span class="unselectable">
-                        <button class="sec-subm" id="id-submit">Create</button>
-                        <button class="sec-clr" id="id-clear">Clear</button>
-                    </span>
+                <div style="margin-bottom: 60px">
+                    <h2>Results:</h2>
+                    <table class="templates">
+                        <tbody>
+                            <tr>
+                                <th>Infobox</th>
+                                <td class="unselectable">
+                                    <textarea id="infobox" disabled></textarea>
+                                    <div class="copy-result">
+                                        <button id="copy-infobox" class="copy" disabled>Copy</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Essence Table</th>
+                                <td class="unselectable">
+                                    <textarea id="essence-table" disabled></textarea>
+                                    <div class="copy-result">
+                                        <button id="copy-essence-table" class="copy" disabled>Copy</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="input">
-                    <h3>Options</h3>
-                    <input type="checkbox" id="include-extra" />
-                    <label for="include-extra">Enable the title, image, and slot tags.</label><br />
-                </div>
-            </div>
-            <div style="margin-bottom: 60px">
-                <h2>Results:</h2>
-                <table class="templates">
-                    <tbody>
-                        <tr>
-                            <th>Infobox</th>
-                            <td class="unselectable">
-                                <textarea id="infobox" disabled></textarea>
-                                <div class="copy-result">
-                                    <button id="copy-infobox" class="copy" disabled>Copy</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Essence Table</th>
-                            <td class="unselectable">
-                                <textarea id="essence-table" disabled></textarea>
-                                <div class="copy-result">
-                                    <button id="copy-essence-table" class="copy" disabled>Copy</button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
         <footer>
