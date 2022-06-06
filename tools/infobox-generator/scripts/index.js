@@ -96,13 +96,13 @@ function triggerCreation(inputType, inputValue) {
                 const armor = input.substring(0, input.length-6);
                 console.log(armor);
                 for (const item of itemsData) {
-                    if (item.id.toLowerCase().match(`^{armor}_(?:helmet|chestplate|leggings|boots)$)`)) console.log(item.id.toLowerCase());
+                    if (item.id.toLowerCase().match(`^${armor}_(?:helmet|chestplate|leggings|boots)$`)) console.log(item.id.toLowerCase());
                 }
             } else if (inputType === 'name' && input.substring(input.length-6) === ' armor') {
                 const armor = input.substring(0, input.length-6);
                 console.log(armor);
                 for (const item of itemsData) {
-                    if (item.name.toLowerCase().match(`^{armor} (?:helmet|chestplate|leggings|boots)$)`)) console.log(item.name.toLowerCase());
+                    if (item.name.toLowerCase().match(`^${armor} (?:helmet|chestplate|leggings|boots)$`)) console.log(item.name.toLowerCase());
                 }
             }
         }
@@ -329,7 +329,6 @@ function createEssenceTable(itemData) {
 
     for (const costs of itemData.upgrade_costs) {
         let costs_copy = costs.map((x) => x);
-        costs_copy.reverse();
         essenceTable += '|';
 
         for (const tierCost of costs_copy) {
