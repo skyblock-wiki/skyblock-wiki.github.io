@@ -398,6 +398,23 @@ function createEssenceTable(itemData) {
     essenceTableElement.style.height = essenceTableElement.scrollHeight + 3 + 'px';
 }
 
+function allAreEqual(array) {
+    const result = array.every(element => {
+        if (element === array[0]) {
+            return true;
+        }
+    });
+    return result;
+}
+
 function createArmorInfobox(armor) {
     console.log(armor);
+    let infobox = '{{Infobox Armor\n';
+    
+    let rarities = [];
+    for (const piece of armor) {
+        rarities.push(piece.tier);
+    }
+    if (allAreEqual(rarities)) infobox += `|rarity = ${toTitleCase(rarities[0])}\n`;
+    else infobox += '|rarity = Various\n';
 }
