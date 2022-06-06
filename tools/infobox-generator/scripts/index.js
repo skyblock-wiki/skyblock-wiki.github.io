@@ -98,6 +98,7 @@ function triggerCreation(inputType, inputValue) {
             if (inputType === 'id' && input.substring(input.length-6) === '_armor') {
                 const armor = input.substring(0, input.length-6);
                 console.log(armor);
+                let armor_set = {};
                 for (const item of itemsData) {
                     if (item.name.toLowerCase().match(`^${armor}_(?:helmet|chestplate|leggings|boots)$`)) {
                         if (item.name.toLowerCase().match(`^${armor}_helmet$`)) armor_set = Object.assign(armor_set, {helmet: item});
