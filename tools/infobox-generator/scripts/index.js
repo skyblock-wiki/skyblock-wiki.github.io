@@ -100,10 +100,10 @@ function triggerCreation(inputType, inputValue) {
                 console.log(armor);
                 let armor_set = {};
                 for (const item of itemsData) {
-                    if (item.name.toLowerCase().match(`^${armor}_(?:helmet|chestplate|leggings|boots)$`)) {
-                        if (item.name.toLowerCase().match(`^${armor}_helmet$`)) armor_set = Object.assign(armor_set, {helmet: item});
-                        else if (item.name.toLowerCase().match(`^${armor}_chestplate$`)) armor_set = Object.assign(armor_set, {chestplate: item});
-                        else if (item.name.toLowerCase().match(`^${armor}_leggings$`)) armor_set = Object.assign(armor_set, {leggings: item});
+                    if (item.id.toLowerCase().match(`^${armor}_(?:helmet|chestplate|leggings|boots)$`)) {
+                        if (item.id.toLowerCase().match(`^${armor}_helmet$`)) armor_set = Object.assign(armor_set, {helmet: item});
+                        else if (item.id.toLowerCase().match(`^${armor}_chestplate$`)) armor_set = Object.assign(armor_set, {chestplate: item});
+                        else if (item.id.toLowerCase().match(`^${armor}_leggings$`)) armor_set = Object.assign(armor_set, {leggings: item});
                         else armor_set = Object.assign(armor_set, {boots: item});
                         console.log(item.id.toLowerCase());
                     }
