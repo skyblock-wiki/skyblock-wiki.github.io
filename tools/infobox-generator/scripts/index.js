@@ -416,7 +416,7 @@ function createArmorInfobox(armor) {
     let infobox = '{{Infobox Armor\n';
     
     let armorFullNames = {helmet: 'Helmet', chest: 'Chestplate', legs: 'Leggings', boots: 'Boots'};
-    const setName = armor[Object.keys(armor)[0]].name.replace(new RegExp(` ${armorFullNames[Object.keys(armor)[0]]}$`), '');
+    const setName = armor[Object.keys(armor)[0]].name.replace(new RegExp(` ${armorFullNames[Object.keys(armor)[0]]}$`), ' Armor');
     if (includeExtra) {
         infobox += [
             `|title = ${setName}`,
