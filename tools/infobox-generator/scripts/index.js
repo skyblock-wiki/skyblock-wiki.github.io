@@ -415,6 +415,18 @@ function createArmorInfobox(armor) {
     console.log(armor);
     let infobox = '{{Infobox Armor\n';
     
+    let armorFullNames = {helmet: 'Helmet', chest: 'Chestplate', legs: 'Leggings', boots: 'Boots'};
+    const setName = armor[Object.keys(armor)[0]].name.replace(new RegExp(` ${armorFullNames[Object.keys(armor)[0]]}$`, '');
+    if (includeExtra) {
+        infobox += [
+            `|title = ${setName}`,
+            `|image = ${setName}.png`,
+        ].join('\n');
+        for (const piece in armor) {
+            infobox += `|slot_${piece} = ${armor[piece].name}`;
+        }
+    }
+    
     let rarities = [];
     for (const piece in armor) {
         rarities.push(armor[piece].tier);
