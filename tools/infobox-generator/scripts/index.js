@@ -106,7 +106,7 @@ function triggerCreation(inputType, inputValue) {
                         else armor_set = Object.assign(armor_set, {boots: item});
                     }
                 }
-                createArmorInfobox(armor_set);
+                return createArmorInfobox(armor_set);
             } else if (inputType === 'name' && input.substring(input.length-6) === ' armor') {
                 const armor = input.substring(0, input.length-6);
                 let armor_set = {};
@@ -118,7 +118,7 @@ function triggerCreation(inputType, inputValue) {
                         else armor_set = Object.assign(armor_set, {boots: item});
                     }
                 }
-                createArmorInfobox(armor_set);
+                return createArmorInfobox(armor_set);
             }
         }
         new Toast({ message: 'The item you entered does not exist!', type: 'disallow', time: 2000 }).show();
