@@ -130,18 +130,18 @@ aside section {
     display: flex;
     flex-direction: column;
 }
-aside .nbtInfo th {
+aside .nbt-info th {
     color: white;
     font-size: 0.9rem;
     font-weight: 200;
     padding-right: 1rem;
     text-align: right;
 }
-aside .nbtInfo td div {
+aside .nbt-info td div {
     display: inline-block;
     margin: 0.2rem 0;
 }
-aside .nbtInfo input {
+aside .nbt-info input {
     background-color: var(--col-bg2);
     border: 1px solid var(--col-acc);
     border-radius: 4px;
@@ -286,7 +286,7 @@ aside img#sprite {
     }
 }
 @media screen and (max-width: 380px) {
-    aside .nbtInfo input {
+    aside .nbt-info input {
         width: 100%;
     }
     /* aside img#drawn {

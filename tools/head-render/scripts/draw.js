@@ -1,50 +1,46 @@
+/* global THREE */
+
 import { Toast } from '../../../scripts/toast.js';
-import { $img, $imgLink, $sprite, $spriteLink, context, spriteCanvas, toggleImageLoader } from './index.js';
+import { img, imgLink, sprite, spriteLink, context, spriteCanvas, toggleImageLoader } from './index.js';
 
-// ////////////////////////////
-// Pre-Render
-// ////////////////////////////
+/**
+ * Creates and renders the image
+ * @param {string} imageSrc the image source
+ */
 export function createImageThenRender(imageSrc) {
-    const $textureImage = $('<img>');
+    const image = document.createElement('img');
+    image.src = imageSrc;
 
-    $textureImage.attr('src', imageSrc);
-
-    $textureImage.on('load', () => {
-        const _img = $textureImage.get(0);
+    image.addEventListener('load', () => {
+        context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+        context.drawImage(image, 0, 0);
 
         context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-        context.drawImage(_img, 0, 0);
-
-        context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-        context.drawImage(_img, 0, 0);
+        context.drawImage(image, 0, 0);
 
         render();
         makeSprite();
-        new Toast({
-            message: 'Rendering...',
-            type: 'info',
-            time: 1000,
-        }).show();
+        new Toast({ message: 'Rendering...', type: 'info', time: 1000 }).show();
     });
 }
 
-// ////////////////////////////
-// Rendering 3D block
-// ////////////////////////////
+// Renders 3D block
+const frontFace = [new THREE.Vector2(0.125, 0), new THREE.Vector2(0.25, 0), new THREE.Vector2(0.25, 0.5), new THREE.Vector2(0.125, 0.5)];
+const leftFace = [new THREE.Vector2(0.25, 0), new THREE.Vector2(0.375, 0), new THREE.Vector2(0.375, 0.5), new THREE.Vector2(0.25, 0.5)];
+const backFace = [new THREE.Vector2(0.375, 0), new THREE.Vector2(0.5, 0), new THREE.Vector2(0.5, 0.5), new THREE.Vector2(0.375, 0.5)];
+const bottomFace = [new THREE.Vector2(0.25, 0.5), new THREE.Vector2(0.375, 0.5), new THREE.Vector2(0.375, 1), new THREE.Vector2(0.25, 1)];
+const rightFace = [new THREE.Vector2(0, 0), new THREE.Vector2(0.125, 0), new THREE.Vector2(0.125, 0.5), new THREE.Vector2(0, 0.5)];
+const topFace = [new THREE.Vector2(0.125, 0.5), new THREE.Vector2(0.25, 0.5), new THREE.Vector2(0.25, 1), new THREE.Vector2(0.125, 1)];
+const frontHat = [new THREE.Vector2(0.625, 0), new THREE.Vector2(0.75, 0), new THREE.Vector2(0.75, 0.5), new THREE.Vector2(0.625, 0.5)];
+const backHat = [new THREE.Vector2(0.875, 0), new THREE.Vector2(1, 0), new THREE.Vector2(1, 0.5), new THREE.Vector2(0.875, 0.5)];
+const leftHat = [new THREE.Vector2(0.75, 0), new THREE.Vector2(0.875, 0), new THREE.Vector2(0.875, 0.5), new THREE.Vector2(0.75, 0.5)];
+const bottomHat = [new THREE.Vector2(0.75, 0.5), new THREE.Vector2(0.875, 0.5), new THREE.Vector2(0.875, 1), new THREE.Vector2(0.75, 1)];
+const topHat = [new THREE.Vector2(0.625, 0.5), new THREE.Vector2(0.75, 0.5), new THREE.Vector2(0.75, 1), new THREE.Vector2(0.625, 1)];
+const rightHat = [new THREE.Vector2(0.5, 0), new THREE.Vector2(0.625, 0), new THREE.Vector2(0.625, 0.5), new THREE.Vector2(0.5, 0.5)];
 
-const frontface = [new THREE.Vector2(0.125, 0), new THREE.Vector2(0.25, 0), new THREE.Vector2(0.25, 0.5), new THREE.Vector2(0.125, 0.5)];
-const leftface = [new THREE.Vector2(0.25, 0), new THREE.Vector2(0.375, 0), new THREE.Vector2(0.375, 0.5), new THREE.Vector2(0.25, 0.5)];
-const backface = [new THREE.Vector2(0.375, 0), new THREE.Vector2(0.5, 0), new THREE.Vector2(0.5, 0.5), new THREE.Vector2(0.375, 0.5)];
-const bottomface = [new THREE.Vector2(0.25, 0.5), new THREE.Vector2(0.375, 0.5), new THREE.Vector2(0.375, 1), new THREE.Vector2(0.25, 1)];
-const rightface = [new THREE.Vector2(0, 0), new THREE.Vector2(0.125, 0), new THREE.Vector2(0.125, 0.5), new THREE.Vector2(0, 0.5)];
-const topface = [new THREE.Vector2(0.125, 0.5), new THREE.Vector2(0.25, 0.5), new THREE.Vector2(0.25, 1), new THREE.Vector2(0.125, 1)];
-const fronthat = [new THREE.Vector2(0.625, 0), new THREE.Vector2(0.75, 0), new THREE.Vector2(0.75, 0.5), new THREE.Vector2(0.625, 0.5)];
-const backhat = [new THREE.Vector2(0.875, 0), new THREE.Vector2(1, 0), new THREE.Vector2(1, 0.5), new THREE.Vector2(0.875, 0.5)];
-const lefthat = [new THREE.Vector2(0.75, 0), new THREE.Vector2(0.875, 0), new THREE.Vector2(0.875, 0.5), new THREE.Vector2(0.75, 0.5)];
-const bottomhat = [new THREE.Vector2(0.75, 0.5), new THREE.Vector2(0.875, 0.5), new THREE.Vector2(0.875, 1), new THREE.Vector2(0.75, 1)];
-const tophat = [new THREE.Vector2(0.625, 0.5), new THREE.Vector2(0.75, 0.5), new THREE.Vector2(0.75, 1), new THREE.Vector2(0.625, 1)];
-const righthat = [new THREE.Vector2(0.5, 0), new THREE.Vector2(0.625, 0), new THREE.Vector2(0.625, 0.5), new THREE.Vector2(0.5, 0.5)];
-
+/**
+ * Renders the image
+ */
 function render() {
     const texture = new THREE.CanvasTexture(context.canvas);
 
@@ -54,11 +50,12 @@ function render() {
     // Initialize scene
     const scene = new THREE.Scene();
     const scene2 = new THREE.Scene();
-    const main_object = new THREE.Object3D();
-    const back_layer = new THREE.Object3D();
+    const mainObject = new THREE.Object3D();
+    const backLayer = new THREE.Object3D();
     const width = 512;
     const height = 512;
-    // Initilalize camera
+
+    // Initialize camera
     const viewSize = 253;
     const aspectRatio = width / height;
     const camera = new THREE.OrthographicCamera((-aspectRatio * viewSize) / 2, (aspectRatio * viewSize) / 2, viewSize / 2, -viewSize / 2, -1000, 1000);
@@ -73,38 +70,26 @@ function render() {
     camera.updateProjectionMatrix();
 
     // Initialize renderer
-    const renderer = new THREE.WebGLRenderer({
-        canvas: $('#render').get(0),
-        antialias: false,
-        alpha: true,
-        preserveDrawingBuffer: true,
-    });
+    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('render'), antialias: false, alpha: true, preserveDrawingBuffer: true });
 
     renderer.setClearColor(0xffffff, 0);
-    /* renderer.setPixelRatio(window.devicePixelRatio); */
     renderer.shadowMap.enabled = true;
     renderer.setSize(width, height);
-    renderer.autoClear = false; // important!
-    $('body').append(renderer.domElement);
+    renderer.autoClear = false;
+    document.body.append(renderer.domElement);
 
-    /* var headAspectRatio = 15.9; // MC WIKI */
-    const headAspectRatio = 14.67; // Ingame Item
+    const headAspectRatio = 14.67; // In-game item (15.9 on Minecraft Wiki)
 
-    back_layer.scale.set(headAspectRatio, headAspectRatio, headAspectRatio);
-    main_object.scale.set(headAspectRatio, headAspectRatio, headAspectRatio);
+    backLayer.scale.set(headAspectRatio, headAspectRatio, headAspectRatio);
+    mainObject.scale.set(headAspectRatio, headAspectRatio, headAspectRatio);
 
-    scene2.add(back_layer);
-    scene.add(main_object);
+    scene2.add(backLayer);
+    scene.add(mainObject);
 
     // Light
     const dirLight = new THREE.DirectionalLight(0xffffff);
 
-    /*
-     * dirLight.intensity = 0.435;
-     * dirLight.intensity = 0.46;
-     */
     dirLight.intensity = 0.9;
-    /* dirLight.position.set(-1, 2.25, 1.24).normalize(); */
     dirLight.position.set(-4, 3, 1);
     dirLight.shadow.mapSize.width = 2048;
     dirLight.shadow.mapSize.height = 2048;
@@ -130,12 +115,7 @@ function render() {
 
     const backLight = new THREE.DirectionalLight(0xffffff);
 
-    /*
-     * dirLight.intensity = 0.435;
-     * dirLight.intensity = 0.46;
-     */
     backLight.intensity = 0.5;
-    /* dirLight.position.set(-1, 2.25, 1.24).normalize(); */
     backLight.position.set(2, 0, 2);
     backLight.shadow.mapSize.width = 2048;
     backLight.shadow.mapSize.height = 2048;
@@ -148,136 +128,111 @@ function render() {
     backLight.shadow.bias = -0.0001;
     scene2.add(backLight);
 
-    // Back Hat
-
+    /**
+     * Render back hat
+     */
     function renderBackHat() {
         const backHatOverlay = new THREE.BoxGeometry(8.5, 8.5, 8.5);
-        // Material
-        const backHatMaterial = new THREE.MeshLambertMaterial({
-            map: texture,
-            alphaTest: 0.1,
-            transparent: true,
-            side: THREE.BackSide,
-        });
+        const backHatMaterial = new THREE.MeshLambertMaterial({ map: texture, alphaTest: 0.1, transparent: true, side: THREE.BackSide });
 
-        backHatOverlay.faceVertexUvs[0][0] = [fronthat[3], fronthat[0], fronthat[2]];
-        backHatOverlay.faceVertexUvs[0][1] = [fronthat[0], fronthat[1], fronthat[2]];
+        backHatOverlay.faceVertexUvs[0][0] = [frontHat[3], frontHat[0], frontHat[2]];
+        backHatOverlay.faceVertexUvs[0][1] = [frontHat[0], frontHat[1], frontHat[2]];
 
-        backHatOverlay.faceVertexUvs[0][2] = [backhat[3], backhat[0], backhat[2]];
-        backHatOverlay.faceVertexUvs[0][3] = [backhat[0], backhat[1], backhat[2]];
+        backHatOverlay.faceVertexUvs[0][2] = [backHat[3], backHat[0], backHat[2]];
+        backHatOverlay.faceVertexUvs[0][3] = [backHat[0], backHat[1], backHat[2]];
 
-        backHatOverlay.faceVertexUvs[0][4] = [tophat[2], tophat[3], tophat[1]];
-        backHatOverlay.faceVertexUvs[0][5] = [tophat[3], tophat[0], tophat[1]];
+        backHatOverlay.faceVertexUvs[0][4] = [topHat[2], topHat[3], topHat[1]];
+        backHatOverlay.faceVertexUvs[0][5] = [topHat[3], topHat[0], topHat[1]];
 
-        backHatOverlay.faceVertexUvs[0][6] = [bottomhat[3], bottomhat[2], bottomhat[0]];
-        backHatOverlay.faceVertexUvs[0][7] = [bottomhat[2], bottomhat[1], bottomhat[0]];
+        backHatOverlay.faceVertexUvs[0][6] = [bottomHat[3], bottomHat[2], bottomHat[0]];
+        backHatOverlay.faceVertexUvs[0][7] = [bottomHat[2], bottomHat[1], bottomHat[0]];
 
-        backHatOverlay.faceVertexUvs[0][8] = [righthat[3], righthat[0], righthat[2]];
-        backHatOverlay.faceVertexUvs[0][9] = [righthat[0], righthat[1], righthat[2]];
+        backHatOverlay.faceVertexUvs[0][8] = [rightHat[3], rightHat[0], rightHat[2]];
+        backHatOverlay.faceVertexUvs[0][9] = [rightHat[0], rightHat[1], rightHat[2]];
 
-        backHatOverlay.faceVertexUvs[0][10] = [lefthat[3], lefthat[0], lefthat[2]];
-        backHatOverlay.faceVertexUvs[0][11] = [lefthat[0], lefthat[1], lefthat[2]];
+        backHatOverlay.faceVertexUvs[0][10] = [leftHat[3], leftHat[0], leftHat[2]];
+        backHatOverlay.faceVertexUvs[0][11] = [leftHat[0], leftHat[1], leftHat[2]];
 
         const backHatCube = new THREE.Mesh(backHatOverlay, backHatMaterial);
 
         backHatCube.visible = true;
-        back_layer.add(backHatCube);
+        backLayer.add(backHatCube);
     }
 
-    // Head
+    /**
+     * Render head
+     */
     function renderHead() {
         const headCube = new THREE.BoxGeometry(8, 8, 8);
-        // Material
-        const headMaterial = new THREE.MeshLambertMaterial({
-            map: texture,
-            alphaTest: 0.5,
-            transparent: true,
-            side: THREE.DoubleSide,
-        });
+        const headMaterial = new THREE.MeshLambertMaterial({ map: texture, alphaTest: 0.5, transparent: true, side: THREE.DoubleSide });
 
-        headCube.faceVertexUvs[0][0] = [frontface[3], frontface[0], frontface[2]];
-        headCube.faceVertexUvs[0][1] = [frontface[0], frontface[1], frontface[2]];
+        headCube.faceVertexUvs[0][0] = [frontFace[3], frontFace[0], frontFace[2]];
+        headCube.faceVertexUvs[0][1] = [frontFace[0], frontFace[1], frontFace[2]];
 
-        headCube.faceVertexUvs[0][2] = [backface[3], backface[0], backface[2]];
-        headCube.faceVertexUvs[0][3] = [backface[0], backface[1], backface[2]];
+        headCube.faceVertexUvs[0][2] = [backFace[3], backFace[0], backFace[2]];
+        headCube.faceVertexUvs[0][3] = [backFace[0], backFace[1], backFace[2]];
 
-        headCube.faceVertexUvs[0][4] = [topface[2], topface[3], topface[1]];
-        headCube.faceVertexUvs[0][5] = [topface[3], topface[0], topface[1]];
+        headCube.faceVertexUvs[0][4] = [topFace[2], topFace[3], topFace[1]];
+        headCube.faceVertexUvs[0][5] = [topFace[3], topFace[0], topFace[1]];
 
-        headCube.faceVertexUvs[0][6] = [bottomface[3], bottomface[2], bottomface[0]];
-        headCube.faceVertexUvs[0][7] = [bottomface[2], bottomface[1], bottomface[0]];
+        headCube.faceVertexUvs[0][6] = [bottomFace[3], bottomFace[2], bottomFace[0]];
+        headCube.faceVertexUvs[0][7] = [bottomFace[2], bottomFace[1], bottomFace[0]];
 
-        headCube.faceVertexUvs[0][8] = [rightface[3], rightface[0], rightface[2]];
-        headCube.faceVertexUvs[0][9] = [rightface[0], rightface[1], rightface[2]];
+        headCube.faceVertexUvs[0][8] = [rightFace[3], rightFace[0], rightFace[2]];
+        headCube.faceVertexUvs[0][9] = [rightFace[0], rightFace[1], rightFace[2]];
 
-        headCube.faceVertexUvs[0][10] = [leftface[3], leftface[0], leftface[2]];
-        headCube.faceVertexUvs[0][11] = [leftface[0], leftface[1], leftface[2]];
+        headCube.faceVertexUvs[0][10] = [leftFace[3], leftFace[0], leftFace[2]];
+        headCube.faceVertexUvs[0][11] = [leftFace[0], leftFace[1], leftFace[2]];
 
         const head = new THREE.Mesh(headCube, headMaterial);
 
         head.visible = true;
-        main_object.add(head);
+        mainObject.add(head);
     }
 
-    // Front Hat
+    /**
+     * Render front hat
+     */
     function renderFrontHat() {
         const frontHatOverlay = new THREE.BoxGeometry(8.5, 8.5, 8.5);
-        // Material
-        const frontHatMaterial = new THREE.MeshLambertMaterial({
-            map: texture,
-            alphaTest: 0.1,
-            transparent: true,
-            side: THREE.FrontSide,
-        });
+        const frontHatMaterial = new THREE.MeshLambertMaterial({ map: texture, alphaTest: 0.1, transparent: true, side: THREE.FrontSide });
 
-        frontHatOverlay.faceVertexUvs[0][0] = [fronthat[3], fronthat[0], fronthat[2]];
-        frontHatOverlay.faceVertexUvs[0][1] = [fronthat[0], fronthat[1], fronthat[2]];
+        frontHatOverlay.faceVertexUvs[0][0] = [frontHat[3], frontHat[0], frontHat[2]];
+        frontHatOverlay.faceVertexUvs[0][1] = [frontHat[0], frontHat[1], frontHat[2]];
 
-        frontHatOverlay.faceVertexUvs[0][2] = [backhat[3], backhat[0], backhat[2]];
-        frontHatOverlay.faceVertexUvs[0][3] = [backhat[0], backhat[1], backhat[2]];
+        frontHatOverlay.faceVertexUvs[0][2] = [backHat[3], backHat[0], backHat[2]];
+        frontHatOverlay.faceVertexUvs[0][3] = [backHat[0], backHat[1], backHat[2]];
 
-        frontHatOverlay.faceVertexUvs[0][4] = [tophat[2], tophat[3], tophat[1]];
-        frontHatOverlay.faceVertexUvs[0][5] = [tophat[3], tophat[0], tophat[1]];
+        frontHatOverlay.faceVertexUvs[0][4] = [topHat[2], topHat[3], topHat[1]];
+        frontHatOverlay.faceVertexUvs[0][5] = [topHat[3], topHat[0], topHat[1]];
 
-        frontHatOverlay.faceVertexUvs[0][6] = [bottomhat[3], bottomhat[2], bottomhat[0]];
-        frontHatOverlay.faceVertexUvs[0][7] = [bottomhat[2], bottomhat[1], bottomhat[0]];
+        frontHatOverlay.faceVertexUvs[0][6] = [bottomHat[3], bottomHat[2], bottomHat[0]];
+        frontHatOverlay.faceVertexUvs[0][7] = [bottomHat[2], bottomHat[1], bottomHat[0]];
 
-        frontHatOverlay.faceVertexUvs[0][8] = [righthat[3], righthat[0], righthat[2]];
-        frontHatOverlay.faceVertexUvs[0][9] = [righthat[0], righthat[1], righthat[2]];
+        frontHatOverlay.faceVertexUvs[0][8] = [rightHat[3], rightHat[0], rightHat[2]];
+        frontHatOverlay.faceVertexUvs[0][9] = [rightHat[0], rightHat[1], rightHat[2]];
 
-        frontHatOverlay.faceVertexUvs[0][10] = [lefthat[3], lefthat[0], lefthat[2]];
-        frontHatOverlay.faceVertexUvs[0][11] = [lefthat[0], lefthat[1], lefthat[2]];
+        frontHatOverlay.faceVertexUvs[0][10] = [leftHat[3], leftHat[0], leftHat[2]];
+        frontHatOverlay.faceVertexUvs[0][11] = [leftHat[0], leftHat[1], leftHat[2]];
 
         const frontHatCube = new THREE.Mesh(frontHatOverlay, frontHatMaterial);
 
         frontHatCube.visible = true;
-        main_object.add(frontHatCube);
+        mainObject.add(frontHatCube);
     }
-
-    /*
-     * back_layer.rotation.x -= 2;
-     * main_object.rotation.x -= 2;
-     */
 
     renderBackHat();
     renderHead();
     renderFrontHat();
 
-    const animate = function () {
+    const animate = () => {
         requestAnimationFrame(animate);
-
-        /*
-         * back_layer.rotation.y -= 0.01;
-         * back_layer.rotation.x -= 0.01;
-         * main_object.rotation.x -= 0.01;
-         * main_object.rotation.y -= 0.01;
-         */
 
         renderer.clear();
         renderer.setViewport(0, 0, width, height);
         renderer.render(scene2, camera);
 
-        renderer.clearDepth(); // important! clear the depth buffer
+        renderer.clearDepth();
         renderer.setViewport(0, 0, width, height);
         renderer.render(scene, camera);
     };
@@ -286,28 +241,40 @@ function render() {
     renderImageUrl(renderer.domElement.toDataURL());
 }
 
-function renderImageUrl(uri) {
-    $img.attr('src', uri);
-    $imgLink.attr('href', uri);
-    $imgLink.removeClass('hidden');
+/**
+ * Renders the image url
+ * @param {string} url the url of the image
+ */
+function renderImageUrl(url) {
+    img.src = url;
+    imgLink.href = url;
+    imgLink.classList.remove('hidden');
     toggleImageLoader();
 }
 
+/**
+ * Makes the head sprite
+ */
 function makeSprite() {
     const scale = 8;
 
     spriteCanvas.clearRect(0, 0, spriteCanvas.canvas.width, spriteCanvas.canvas.height);
-    const cnv = context.canvas;
+
+    const { canvas } = context;
 
     spriteCanvas.imageSmoothingEnabled = false;
-    spriteCanvas.drawImage(cnv, -8 * scale, -8 * scale, cnv.width * scale, cnv.height * scale);
-    spriteCanvas.drawImage(cnv, -40 * scale, -8 * scale, cnv.width * scale, cnv.height * scale);
+    spriteCanvas.drawImage(canvas, -8 * scale, -8 * scale, canvas.width * scale, canvas.height * scale);
+    spriteCanvas.drawImage(canvas, -40 * scale, -8 * scale, canvas.width * scale, canvas.height * scale);
 
     renderSpriteUrl(spriteCanvas.canvas.toDataURL('image/png'));
 }
 
-function renderSpriteUrl(uri) {
-    $sprite.attr('src', uri);
-    $spriteLink.attr('href', uri.replace('image/png', 'image/octet-stream'));
-    $spriteLink.removeClass('hidden');
+/**
+ * Renders the sprite url
+ * @param {string} url the url of the sprite
+ */
+function renderSpriteUrl(url) {
+    sprite.src = url;
+    spriteLink.href = url.replace('image/png', 'image/octet-stream');
+    spriteLink.classList.remove('hidden');
 }

@@ -1,162 +1,155 @@
 import { Toast } from '../../../scripts/toast.js';
 import { createImageThenRender } from './draw.js';
 
-export var context = $('#canvas').get(0).getContext('2d');
+export const context = document.getElementById('canvas').getContext('2d');
 context.canvas.width = 64;
 context.canvas.height = 16;
-export var spriteCanvas = $('#spriteCanvas').get(0).getContext('2d');
+export const spriteCanvas = document.getElementById('spriteCanvas').getContext('2d');
 spriteCanvas.canvas.width = 64;
 spriteCanvas.canvas.height = 64;
 
-export const $img = $('#drawn');
-export const $imgLink = $('#drawnLink');
-export const $sprite = $('#sprite');
-export const $spriteLink = $('#spriteLink');
+export const img = document.getElementById('drawn');
+export const imgLink = document.getElementById('drawnLink');
+export const sprite = document.getElementById('sprite');
+export const spriteLink = document.getElementById('spriteLink');
 
-const $loading = $('#loading');
-const $warning = $('#warning');
+const loading = document.getElementById('loading');
 
+/**
+ * Clears and input and outputs
+ */
 function clear() {
-    $('#nbtInfo').html('');
-    $imgLink.attr('href', '');
-    $imgLink.attr('download', '');
-    $imgLink.addClass('hidden');
-    $spriteLink.attr('href', '');
-    $spriteLink.attr('download', '');
-    $spriteLink.addClass('hidden');
-    $img.attr('src', '');
-    $sprite.attr('src', '');
-    $warning.html('');
-    $('.sec-err').html('');
+    imgLink.href = '';
+    imgLink.setAttribute('download', '');
+    imgLink.classList.add('hidden');
+    spriteLink.href = '';
+    spriteLink.setAttribute('download', '');
+    spriteLink.classList.add('hidden');
+    img.src = '';
+    sprite.src = '';
+    document.querySelectorAll('.sec-error').forEach((elem) => {
+        elem.innerHTML = '';
+    });
 }
 
-// ////////////////////////////
-// Obtain texture from upload
-// ////////////////////////////
-$('#fileUpload').on('change', readImage);
+const fileUpload = document.getElementById('file-upload');
 
-function readImage() {
+// Obtain texture from upload
+fileUpload.addEventListener('change', () => {
     clear();
     toggleImageLoader();
-    if (this.files && this.files[0]) {
-        const FR = new FileReader();
 
-        FR.onload = function (e) {
-            createImageThenRender(e.target.result);
-        };
-        FR.readAsDataURL(this.files[0]);
+    if (fileUpload.files[0]) {
+        const fileReader = new FileReader();
+
+        fileReader.addEventListener('load', (event) => {
+            createImageThenRender(event.target.result);
+        });
+
+        fileReader.readAsDataURL(fileUpload.files[0]);
     }
-    // var timestamp = new Date().toLocaleString("en-UK",{ hour12: false }).replace(/[\/:]/g, "-").replace(/,/g,"");
-    const filename = this.files[0].name.replace(/\.[a-z]{2,4}$/, '').trim();
 
-    $imgLink.attr('download', `${filename} Head Render.png`.trim());
-    $spriteLink.attr('download', `${filename} Sprite Render.png`.trim());
-}
+    const filename = fileUpload.files[0].name.replace(/\.[a-z]{2,4}$/, '').trim();
 
-// ////////////////////////////
-// Obtain texture from nbt data
-// ////////////////////////////
+    imgLink.setAttribute('download', `${filename} Head Render.png`.trim());
+    spriteLink.setAttribute('download', `${filename} Sprite Render.png`.trim());
+});
+
 const mainElem = {
-    nbt: $('#nbt'),
-    val: $('#val'),
-    tid: $('#tid'),
+    nbt: document.getElementById('nbt'),
+    val: document.getElementById('val'),
+    tid: document.getElementById('tid'),
 };
+
 const subElem = {
-    nbt: $('#nbtSubmit'),
-    val: $('#valSubmit'),
-    tid: $('#tid-submit'),
+    nbt: document.getElementById('nbt-submit'),
+    val: document.getElementById('val-submit'),
+    tid: document.getElementById('tid-submit'),
 };
+
 const errElem = {
-    nbt: $('#nbtError'),
-    val: $('#valError'),
-    tid: $('#tidError'),
-};
-const toStr = {
-    nbt: 'NBT Data',
-    val: 'command',
-    tid: 'texture ID',
+    nbt: document.getElementById('nbt-error'),
+    val: document.getElementById('val-error'),
+    tid: document.getElementById('tid-error'),
 };
 
-mainElem.nbt.on('paste', onNbtChanged);
-mainElem.nbt.on('input', onNbtChanged);
-subElem.nbt.on('click', onNbtChanged);
-mainElem.val.on('paste', onValChanged);
-mainElem.val.on('input', onValChanged);
-subElem.val.on('click', onValChanged);
-mainElem.tid.on('paste', onTidChanged);
-mainElem.tid.on('input', onTidChanged);
-subElem.tid.on('click', onTidChanged);
+const textureID = document.getElementById('textureID');
+const textureTemplate = document.getElementById('textureTemplate');
 
-$('#copy-id').on('click', () => {
-    copyText('#textureID');
+['paste', 'input'].forEach((type) => mainElem.nbt.addEventListener(type, onNbtChanged));
+subElem.nbt.addEventListener('click', onNbtChanged);
+['paste', 'input'].forEach((type) => mainElem.val.addEventListener(type, onValChanged));
+subElem.val.addEventListener('click', onValChanged);
+['paste', 'input'].forEach((type) => mainElem.tid.addEventListener(type, onTidChanged));
+subElem.tid.addEventListener('click', onTidChanged);
+
+document.getElementById('copy-id').addEventListener('click', () => {
+    copyText(textureID);
 });
-$('#copy-template').on('click', () => {
-    copyText('#textureTemplate');
+document.getElementById('copy-template').addEventListener('click', () => {
+    copyText(document.getElementById('textureTemplate'));
 });
-$('#open-id').on('click', () => {
-    openTexture('#textureID');
+document.getElementById('open-id').addEventListener('click', () => {
+    openTexture(textureID.value);
 });
 
-function copyText(selector) {
-    const el = $(selector);
-
-    el.select();
-    document.execCommand('copy');
-    el.blur();
-    document.getSelection().removeAllRanges();
-    new Toast({
-        message: 'Copied!',
-        type: 'success',
-        time: 2000,
-    }).show();
+/**
+ * Copies and element's text to the clipboard
+ * @param {HTMLElement} element the element who's value to copy
+ */
+function copyText(element) {
+    navigator.clipboard.writeText(element.value);
+    new Toast({ message: 'Copied!', type: 'success', time: 2000 }).show();
 }
 
-function openTexture(selector) {
-    const ID = $(selector).val();
+/**
+ * Opens a texture in a new tab
+ * @param {id} id the id of the texture to open
+ */
+function openTexture(id) {
+    const tab = window.open(`https://textures.minecraft.net/texture/${id}`, '_blank');
 
-    openLink(`http://textures.minecraft.net/texture/${ID}`);
+    if (tab) tab.focus();
+    else new Toast({ message: 'Could not open! Please allow popups for this website!', type: 'disallow', time: 4000 }).show();
 }
 
-function openLink(url) {
-    // source: https://stackoverflow.com/questions/19851782/how-to-open-a-url-in-a-new-tab-using-javascript-or-jquery
-    const tab = window.open(url, '_blank');
-
-    if (tab)
-        // Browser has allowed it to be opened
-        tab.focus();
-    // Browser has blocked it
-    else
-        new Toast({
-            message: 'Could not copy. Please allow popups for this website!',
-            type: 'disallow',
-            time: 4000,
-        }).show();
+/**
+ * Updates the output texture ID info
+ * @param {id} id the texture ID
+ */
+function updateTextureIdOutputs(id) {
+    textureID.value = id;
+    textureTemplate.value = `{{HeadRender|${id}}}`;
+    document.querySelectorAll('.nbt-info button').forEach((element) => (element.disabled = false));
 }
 
-function updateNBTInfo(ID) {
-    $('#textureID').val(ID);
-    $('#textureTemplate').val(`{{HeadRender|${ID}}}`);
-    $('.nbtInfo button').prop('disabled', false);
-}
+/**
+ * Handles texture ID changes
+ * @param {string} url the texture URL
+ * @param {'nbt'|'val'|'tid'} element the element
+ * @param {string} [fileName=null] the name of the file
+ */
+function handleTidChange(url, element, fileName = null) {
+    imgLink.setAttribute('download', `${fileName ? fileName.trim() : url.split('/texture/')[1]} Head Render.png`.trim());
+    spriteLink.setAttribute('download', `${fileName ? fileName.trim() : url.split('/texture/')[1]} Sprite Render.png`.trim());
+    updateTextureIdOutputs(url.split('/texture/')[1]);
 
-function _onTidChanged(url, elm, filename = null) {
-    $imgLink.attr('download', `${filename ? filename.trim() : ''} Head Render.png`.trim());
-    $spriteLink.attr('download', `${filename ? filename.trim() : ''} Sprite Render.png`.trim());
-    updateNBTInfo(url.split('/texture/')[1]);
-    $warning.html(`If it keeps loading without showing a render, the ${toStr[elm]} is most likely invalid.`);
-
-    // Now fetch image data and then load/render it!
-    clrError();
+    clearErrors();
     setTimeout(() => {
-        // Clear it so it's easier to paste next data if there is any
-        mainElem[elm].val('');
+        mainElem[element].value = '';
     }, 100);
     toggleImageLoader();
     readImageUrl(url);
 }
 
-function _onValChanged(textureData, elm, filename = null) {
-    // The data in encoded, so decode from Base64 format
+/**
+ * Handles value changes
+ * @param {string} textureData the texture data
+ * @param {'nbt'|'val'|'tid'} element the element
+ * @param {string} [fileName=null] the file name
+ * @returns {void}
+ */
+function handleValChange(textureData, element, fileName = null) {
     textureData = atob(textureData);
     if (!textureData.match(/{\\&quot;/g))
         textureData = textureData.replace(/(\w+)(?=:)/g, (s) => {
@@ -164,143 +157,149 @@ function _onValChanged(textureData, elm, filename = null) {
             else return `"${s}"`;
         });
 
-    // parse it as json as well
     try {
         textureData = JSON.parse(textureData);
-    } catch (e) {
-        console.log(e.toString());
-
-        return nbtError('Error parsing texture data', elm);
+    } catch (error) {
+        return nbtError('Error parsing texture data', element);
     }
-    //  Find url in texture data
+
     const url = textureData?.textures?.SKIN?.url;
+    if (!url) return nbtError("Texture data doesn't contain skin url!", element);
 
-    if (!url) return nbtError("Texture data doesn't contain head url", elm);
-
-    $imgLink.attr('download', 'Head Render.png');
-    $spriteLink.attr('download', 'Sprite Render.png');
-    _onTidChanged(url, elm, filename);
+    imgLink.setAttribute('download', 'Head Render.png');
+    spriteLink.setAttribute('download', 'Sprite Render.png');
+    handleTidChange(url, element, fileName);
 }
 
+/**
+ * Loads texture ID changes
+ * @param {ClipboardEvent|MouseEvent|Event} event the event
+ * @returns {void}
+ */
 function onTidChanged(event) {
     clear();
-    if (!mainElem.tid.val()) return;
-    let tidText = (event.clipboardData || window.clipboardData)?.getData('text') || mainElem.tid.val();
+    if (!mainElem.tid.value) return;
 
-    tidText = tidText.replace(/\W/g, '').toLowerCase();
-    if (!/^[a-f0-9]{59,64}$/i.test(tidText)) return nbtError('Not a valid texture ID', 'tid');
+    const textureId = ((event.clipboardData || window.clipboardData)?.getData('text') || mainElem.tid.value).replace(/\W/g, '').toLowerCase();
 
-    const url = `http://textures.minecraft.net/texture/${tidText}`;
+    if (!/^[a-f0-9]{59,64}$/i.test(textureId)) return nbtError('Provided texture ID is invalid!', 'tid');
 
-    _onTidChanged(url, 'tid');
+    handleTidChange(`https://textures.minecraft.net/texture/${textureId}`, 'tid');
 }
 
+/**
+ * Loads value changes
+ * @param {ClipboardEvent|MouseEvent|Event} event the event
+ * @returns {void}
+ */
 function onValChanged(event) {
     clear();
-    if (!mainElem.val.val()) return;
-    let textureData = (event.clipboardData || window.clipboardData)?.getData('text') || mainElem.val.val();
+    if (!mainElem.val.value) return;
+
+    let textureData = (event.clipboardData || window.clipboardData)?.getData('text') || mainElem.val.value;
 
     if (textureData.match(/Value\s*:\s*"\s*([A-Za-z0-9]*)=*\s*"/g)) textureData = textureData.match(/(?<=Value\s*:\s*"\s*)([A-Za-z0-9]*)(?==*\s*")/g);
     else textureData = textureData.match(/(?<=\s*)([A-Za-z0-9]*)(?==*\s*)/g);
 
     if (textureData.length < 1) return nbtError('Not a valid Texture Value', 'val');
 
-    _onValChanged(textureData[0], 'val');
+    handleValChange(textureData[0], 'val');
 }
 
+/**
+ * Loads NBT changes
+ * @param {ClipboardEvent|MouseEvent|Event} event the event
+ * @returns {void}
+ */
 function onNbtChanged(event) {
     clear();
-    // Parse as json - if paste event copy from clipboard, otherwise grab from textarea itself
-    const nbt = (event.clipboardData || window.clipboardData)?.getData('text') || mainElem.nbt.val();
-
-    if (!nbt) return clrError();
+    const nbt = (event.clipboardData || window.clipboardData)?.getData('text') || mainElem.nbt.value;
+    if (!nbt) return clearErrors();
 
     const json = parseNBT(nbt);
-
     if (!json) return nbtError('Error parsing nbt', 'nbt');
 
-    // Now find the data we need in json
     const textureData = json?.tag?.SkullOwner?.Properties?.textures?.[0]?.Value;
+    if (!textureData) return nbtError('Invalid JSON format!', 'nbt');
 
-    if (!textureData) return nbtError('Json not in correct format for head data', 'nbt');
+    const fileName = (json?.tag?.display?.Name || 'unknown').replace(/§[0-9a-f]/, '');
 
-    const fileName = (json?.tag?.display?.Name || 'undefined').replace(/§\w/, '');
-
-    _onValChanged(textureData, 'nbt', fileName);
+    handleValChange(textureData, 'nbt', fileName);
 }
 
-$('#nbtClear').on('click', () => {
-    mainElem.nbt.val('');
-    clrError();
+document.getElementById('nbt-clear').addEventListener('click', () => {
+    mainElem.nbt.value = '';
+    clearErrors();
 });
-$('#valClear').on('click', () => {
-    mainElem.val.val('');
-    clrError();
+document.getElementById('val-clear').addEventListener('click', () => {
+    mainElem.val.value = '';
+    clearErrors();
 });
-$('#tid-clear').on('click', () => {
-    mainElem.tid.val('');
-    clrError();
+document.getElementById('tid-clear').addEventListener('click', () => {
+    mainElem.tid.value = '';
+    clearErrors();
 });
 
+/**
+ * Fetches an image url and renders it
+ * @param {string} url the url of the image to read
+ */
 async function readImageUrl(url) {
-    // Since canvas drawing requires CORS, we can get around this by passing it to a third party tool
-    await fetch(`https://hsw-cors.herokuapp.com/${url.split('//')[1]}`)
-        .then((response) => {
-            if (response.status >= 400 && response.status < 600) throw new Error();
+    try {
+        const response = await fetch(`https://eejitstools.com/cors-anywhere?url=http://${url.split('//')[1]}&image=true`);
+        if (!response.ok) throw new Error();
 
-            return response;
-        })
-        .then((b) => b.blob())
-        .then((blob) => {
-            createImageThenRender(URL.createObjectURL(blob));
-        })
-        .catch((err) => {
-            new Toast({
-                message: 'Render Unsuccessful: Unknown Texture ID',
-                type: 'error',
-                time: 3500,
-            }).show();
-            toggleImageLoader();
-        });
+        createImageThenRender(URL.createObjectURL(await response.blob()));
+    } catch (error) {
+        new Toast({ message: 'Render Unsuccessful: Invalid Texture ID', type: 'error', time: 3500 }).show();
+        toggleImageLoader();
+    }
 }
 
-function nbtError(error, elm) {
-    errElem[elm].html(error);
+/**
+ * Shows NBT error
+ * @param {string} error the error to show
+ * @param {'nbt'|'val'|'tid'} element the element to show to error in
+ */
+function nbtError(error, element) {
+    errElem[element].innerHTML = error;
 }
 
-function clrError() {
-    Object.values(errElem).forEach((el) => {
-        el.html('');
+/**
+ * Clears all error messages
+ */
+function clearErrors() {
+    Object.values(errElem).forEach((element) => {
+        element.innerHTML = '';
     });
 }
 
-// Source: https://jsfiddle.net/joker876/ygm834cd
+/**
+ * Parses NBT
+ * @param {string} nbt the NBT to parse
+ * @returns {object|null} the parsed NBT (or null if error)
+ * @see https://jsfiddle.net/joker876/ygm834cd
+ */
 function parseNBT(nbt) {
     try {
-        // actual parser here
-        nbt = nbt.replace(/\n/g, '');
-        nbt = nbt.replace(/([_a-zA-Z]+?): ?(["|\d|\{|\[])(?!\s*,\s*)/g, '"$1": $2');
-        nbt = nbt.replace(/: ?(\d+?)[bsfl]/g, ': $1');
-        nbt = nbt.replace(/\d+?\s*:\s*(["\{\[])/g, '$1');
-        nbt = nbt.replace(/": ?1b/g, '": true');
-        nbt = nbt.replace(/": ?0b/g, '": false');
+        nbt = nbt
+            .replace(/\n/g, '')
+            .replace(/([_a-zA-Z]+?): ?(["|\d|{|[])(?!\s*,\s*)/g, '"$1": $2')
+            .replace(/: ?(\d+?)[bsfl]/g, ': $1')
+            .replace(/\d+?\s*:\s*(["{[])/g, '$1')
+            .replace(/": ?1b/g, '": true')
+            .replace(/": ?0b/g, '": false');
 
         return JSON.parse(nbt);
-    } catch (e) {
-        $('#nbtInfo').html(
-            `<table>${[
-                ['NBT', nbt],
-                ['Error', e],
-            ]
-                .map(([th, td]) => `<tr><th>${th}: </th><td>${td}</td></tr>`)
-                .join('')}</table>`
-        );
-
+    } catch (error) {
         return null;
     }
 }
 
+/**
+ * Toggles the image loader
+ */
 export function toggleImageLoader() {
-    $loading.toggle();
-    $warning.toggle();
+    if (loading.style.display === 'none') loading.style.display = 'unset';
+    else loading.style.display = 'none';
 }
