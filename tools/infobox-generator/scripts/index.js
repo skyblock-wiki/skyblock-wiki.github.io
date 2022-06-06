@@ -81,29 +81,32 @@ copyEssenceTableButton.addEventListener('click', () => {
  * @param {string} inputValue the value of the input
  * @returns {void}
  */
+
 function triggerCreation(inputType, inputValue) {
     if (!itemsData) {
         new Toast({ message: 'The item list has not yet loaded. Please wait or try refreshing the page!', type: 'disallow', time: 2000 }).show();
     } else {
-        let input = inputValue.toLowerCase();
-         for (const item of itemsData) {
+        const input = inputValue.toLowerCase();
+        for (const item of itemsData) {
             if (input === item[inputType].toLowerCase()) return createInfobox(item);
         }
         // To do: add support for armor sets
         if (input.substring(input.length-5) === 'armor') {
             if (inputType === 'id' && input.substring(input.length-6) === '_armor') {
-                console.log(input.substring(0, input.length-6));
-                console.log(input.substring(input.length-6));
+                const armor = input.substring(0, input.length-6);
+                console.log(armor);
+                for (const item of itemsData) {
+                    if (item.id.toLowerCase().match(`^{armor}_(?:helmet|chestplate|leggings|boots)$)`)) console.log(item.id.toLowerCase());
+                }
             } else if (inputType === 'name' && input.substring(input.length-6) === ' armor') {
-                console.log(input.substring(0, input.length-6));
-                console.log(input.substring(input.length-6));
+                const armor = input.substring(0, input.length-6);
+                console.log(armor);
+                for (const item of itemsData) {
+                    if (item.name.toLowerCase().match(`^{armor} (?:helmet|chestplate|leggings|boots)$)`)) console.log(item.name.toLowerCase());
+                }
             }
         }
-        new Toast({
-            message: 'The item you entered does not exist!',
-            type: 'disallow',
-            time: 2000,
-        }).show();
+        new Toast({ message: 'The item you entered does not exist!', type: 'disallow', time: 2000 }).show();
     }
 }
 
@@ -325,10 +328,11 @@ function createEssenceTable(itemData) {
     if ('dungeon_item_conversion_cost' in itemData) essenceTable += `|convert = ${itemData.dungeon_item_conversion_cost.amount} Essence<br>`;
 
     for (const costs of itemData.upgrade_costs) {
-        costs.reverse();
+        let costs_copy = costs.map((x) => x);
+        costs_copy.reverse();
         essenceTable += '|';
 
-        for (const tierCost of costs) {
+        for (const tierCost of costs_copy) {
             essenceTable += tierCost.amount.toString() + ' ';
             if ('essence_type' in tierCost) essenceTable += 'Essence';
             else if ('item_id' in tierCost) {
@@ -342,7 +346,7 @@ function createEssenceTable(itemData) {
                 essenceTable += itemName;
             }
 
-            if (tierCost === costs[costs.length - 1]) essenceTable += '<br>';
+            if (tierCost === costs_copy[costs_copy.length - 1]) essenceTable += '<br>';
             else essenceTable += '; ';
         }
     }
