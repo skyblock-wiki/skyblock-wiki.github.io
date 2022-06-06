@@ -415,6 +415,8 @@ function createArmorInfobox(armor) {
     for (const piece in armor) {
         rarities.push(piece.tier);
     }
+    console.log(rarities);
     if (allAreEqual(rarities)) infobox += `|rarity = ${toTitleCase(rarities[0])}\n`;
     else infobox += '|rarity = Various\n';
+    console.log(infobox);
 }
