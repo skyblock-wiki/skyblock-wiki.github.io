@@ -29,9 +29,9 @@
                 <span class="version">v1.0</span>
             </span>
         </header>
-        <div id="wrapper">
-            <main>
-                <section>
+        <div id="grid-wrapper">
+            <div>
+                <div class="input">
                     <h3>Create from item name</h3>
                     <input type="text" id="name" placeholder="Item name" />
                     <br />
@@ -39,8 +39,8 @@
                         <button class="sec-subm" id="name-submit">Create</button>
                         <button class="sec-clr" id="name-clear">Clear</button>
                     </span>
-                </section>
-                <section>
+                </div>
+                <div class="input">
                     <h3>Create from item ID</h3>
                     <input type="text" id="id" placeholder="Item ID" />
                     <br />
@@ -48,74 +48,65 @@
                         <button class="sec-subm" id="id-submit">Create</button>
                         <button class="sec-clr" id="id-clear">Clear</button>
                     </span>
-                </section>
-                <section>
+                </div>
+                <div class="input">
                     <h3>Options</h3>
                     <input type="checkbox" id="include-extra" />
                     <label for="include-extra">Enable the title, image, and slot tags.</label><br />
-                </section>
-            </main>
-            <aside>
-                <section>
-                    <div class="headbox">
-                        <table class="templates">
-                            <tbody>
-                                <tr>
-                                    <th>Infobox</th>
-                                    <td class="unselectable">
-                                        <div id="infobox">&ZeroWidthSpace;</div>
-                                        <div class="copy-div">
-                                            <button id="copy-infobox" class="copy" disabled>Copy</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Essence Table</th>
-                                    <td class="unselectable">
-                                        <div id="essence-table">&ZeroWidthSpace;</div>
-                                        <div class="copy-div">
-                                            <button id="copy-essence-table" class="copy" disabled>Copy</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-            </aside>
+                </div>
+            </div>
+            <div style="margin-bottom: 60px">
+                <h2>Results:</h2>
+                <table class="templates">
+                    <tbody>
+                        <tr>
+                            <th>Infobox</th>
+                            <td class="unselectable">
+                                <textarea id="infobox" disabled></textarea>
+                                <div class="copy-result">
+                                    <button id="copy-infobox" class="copy" disabled>Copy</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Essence Table</th>
+                            <td class="unselectable">
+                                <textarea id="essence-table" disabled></textarea>
+                                <div class="copy-result">
+                                    <button id="copy-essence-table" class="copy" disabled>Copy</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
+        <footer>
+            <div class="github-button-wrapper unselectable">
+                <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/tree/main/tools/infobox-generator" target="_blank">
+                    <div class="icon"><i class="fas fa-code"></i></div>
+                    <span>View Code</span>
+                </a>
+                <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/issues" target="_blank">
+                    <div class="icon"><i class="fas fa-bug"></i></div>
+                    <span>Report Bug</span>
+                </a>
+                <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/pulls" target="_blank">
+                    <div class="icon"><i class="fas fa-code-branch"></i></div>
+                    <span>Contribute</span>
+                </a>
+            </div>
+        </footer>
         <div class="contributors">
             <div id="contrib-list-div" class="list hidden-height" style="height: auto">
                 <ul id="contrib-list"></ul>
             </div>
             <h3>
-                <button id="show-contribs">
+                <button id="show-contributors">
                     <span>Contributors</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
             </h3>
         </div>
-        <footer>
-            <div class="github-button-wrapper unselectable">
-                <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/tree/main/tools/infobox-generator" target="_blank">
-                    <div class="icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <span>View Code</span>
-                </a>
-                <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/issues" target="_blank">
-                    <div class="icon">
-                        <i class="fas fa-bug"></i>
-                    </div>
-                    <span>Report Bug</span>
-                </a>
-                <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/pulls" target="_blank">
-                    <div class="icon">
-                        <i class="fas fa-code-branch"></i>
-                    </div>
-                    <span>Contribute</span>
-                </a>
-            </div>
-        </footer>
     </body>
 </html>
