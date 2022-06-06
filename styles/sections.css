@@ -1,16 +1,3 @@
-:root {
-    --col-bg: #1e1e1e;
-    --col-bg2: #252525;
-    --col-bg3: #323232;
-    --col-acc: #444;
-    --col-acc2: #4a4a4a;
-    --orange: #ed5f00;
-    --curcol: red;
-    --state-shadow: 0 0 3px 2px var(--curcol);
-    --dot-border: #999;
-    --box-border: #666;
-    --imports-selected: white;
-}
 /*  
 ===================================
 		General Section CSS

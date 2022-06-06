@@ -7,11 +7,8 @@ if (tool in contributors) {
 
     document.getElementById('contrib-list').innerHTML = contributorsList.join('');
 
-    document.getElementById('contrib-list-div').style.display = 'none';
-
     document.getElementById('show-contributors').addEventListener('click', () => {
-        document.getElementById('contrib-list-div').classList.toggle('hidden-height');
-        $('#contrib-list-div').toggle('slow');
+        document.getElementById('contrib-list-div').classList.toggle('hidden');
     });
 }
 

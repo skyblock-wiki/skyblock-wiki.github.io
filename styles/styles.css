@@ -1,37 +1,6 @@
 @import url('./sections.css');
 @import url('./footer.css');
-
-/* font-awesome */
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
-
-/* fonts */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&display=swap');
-
-/* create variables */
-:root {
-    --col-bg: #1e1e1e;
-    --col-bg2: #252525;
-    --col-bg3: #323232;
-    --col-acc: #444;
-    --col-acc2: #4a4a4a;
-    --orange: #ed5f00;
-    --curcol: red;
-    --state-shadow: 0 0 3px 2px var(--curcol);
-    --dot-border: #999;
-    --box-border: #666;
-    --imports-selected: white;
-
-    --link-shadow: 0 0 10px 0 #fff1;
-    --link-bgcolor: #fff1;
-}
-
-/* normalize margins and paddings */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+@import url('./global.css');
 
 /*  
 ========================
@@ -211,7 +180,7 @@ main {
 /* 
 CSS for "tools", "downloads", and "contributors" sections is loaded on top
 
-source file: ROOT/css/sections.css
+source file: ROOT/styles/sections.css
 */
 
 /*  

@@ -1,0 +1,83 @@
+/* Imports */
+@import url('/styles/toast.css');
+
+/* Font-awesome */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&display=swap');
+
+/* Variables */
+:root {
+    --col-bg: #1e1e1e;
+    --col-bg2: #252525;
+    --col-bg3: #323232;
+    --col-acc: #444;
+    --col-acc2: #4a4a4a;
+    --orange: #ed5f00;
+    --curcol: red;
+    --state-shadow: 0 0 3px 2px var(--curcol);
+    --dot-border: #999;
+    --box-border: #666;
+    --imports-selected: white;
+
+    --link-shadow: 0 0 10px 0 #fff1;
+    --link-bgcolor: #fff1;
+}
+
+/* Normalize margins and paddings */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contributors */
+.page-contributors {
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    margin: 0.4rem 1rem;
+    position: fixed;
+    right: 0;
+}
+
+.page-contributors button {
+    background: none;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    transition: none;
+    color: white;
+}
+
+.page-contributors .list {
+    background: var(--col-bg2) none repeat scroll 0% 0%;
+    border: 1px solid var(--col-acc2);
+    border-radius: 4px;
+}
+
+.page-contributors button i {
+    transform: rotate(-90deg);
+    transition: transform 0.4s ease;
+    margin-left: 5px;
+}
+
+.page-contributors .list:not(.hidden) ~ h3 i {
+    transform: rotate(-180deg);
+}
+
+.page-contributors .list.hidden {
+    overflow: hidden;
+}
+
+.page-contributors #contrib-list {
+    list-style: none;
+    margin: 0 1rem;
+}
+
+.page-contributors #contrib-list > li {
+    margin: 0.5rem 0;
+}

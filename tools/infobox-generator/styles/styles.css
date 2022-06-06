@@ -1,28 +1,4 @@
-@import '/styles/toast.css';
-
-/* font-awesome */
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
-
-/* fonts */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&display=swap');
-
-/* create variables */
-:root {
-    --col-bg: #1e1e1e;
-    --col-bg2: #252525;
-    --col-bg3: #323232;
-    --col-acc: #444;
-    --col-acc2: #4a4a4a;
-    --orange: #cc9933;
-    --state-shadow: 0 0 3px 2px var(--orange);
-}
-/* normalize margins and paddings */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+@import '/styles/global.css';
 
 /*  
 ========================
@@ -287,46 +263,6 @@ textarea#essence-table {
     display: block;
     margin-block: 5px;
     max-width: 90%;
-}
-
-/* contributors */
-.contributors {
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    margin: 0.8rem 1.1rem;
-    position: fixed;
-    right: 0;
-}
-.contributors button {
-    background: none;
-    border: none;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
-    font-weight: 300;
-    transition: none;
-}
-.contributors .list {
-    background: var(--col-bg2) none repeat scroll 0% 0%;
-    border: 1px solid var(--col-acc2);
-    border-radius: 4px;
-}
-.contributors button i {
-    transform: rotate(-90deg);
-    transition: transform 0.4s ease;
-}
-.contributors .list:not(.hidden-height) ~ h3 i {
-    transform: rotate(-180deg);
-}
-.contributors .list.hidden-height {
-    overflow: hidden;
-}
-.contributors #contrib-list {
-    list-style: none;
-    margin: 0 1rem;
-}
-.contributors #contrib-list > li {
-    margin: 0.5rem 0;
 }
 .tooltip {
     border-bottom: 1px dotted white;
