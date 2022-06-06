@@ -31,9 +31,11 @@ nameSubmitButton.addEventListener('click', () => {
 
 nameClearButton.addEventListener('click', () => {
     nameInput.value = '';
-    infoboxElement.innerHTML = '&ZeroWidthSpace;';
+    infoboxElement.value = '';
+    infoboxElement.style.height = 'unset';
     copyInfoboxButton.disabled = true;
-    essenceTableElement.innerHTML = '&ZeroWidthSpace;';
+    essenceTableElement.value = '';
+    essenceTableElement.style.height = 'unset';
     copyEssenceTableButton.disabled = true;
     new Toast({
         message: 'Cleared!',
@@ -52,9 +54,11 @@ idSubmitButton.addEventListener('click', () => {
 
 idClearButton.addEventListener('click', () => {
     idInput.value = '';
-    infoboxElement.innerHTML = '&ZeroWidthSpace;';
+    infoboxElement.value = '';
+    infoboxElement.style.height = 'unset';
     copyInfoboxButton.disabled = true;
-    essenceTableElement.innerHTML = '&ZeroWidthSpace;';
+    essenceTableElement.value = '';
+    essenceTableElement.style.height = 'unset';
     copyEssenceTableButton.disabled = true;
     new Toast({
         message: 'Cleared!',
@@ -99,7 +103,7 @@ function triggerCreation(inputType, inputValue) {
  */
 function copyText(id) {
     try {
-        window.navigator.clipboard.writeText(document.getElementById(id).innerHTML.replaceAll('<br>', '\n'));
+        window.navigator.clipboard.writeText(document.getElementById(id).value);
         new Toast({ message: 'Copied!', type: 'success', time: 2000 }).show();
     } catch (error) {
         new Toast({ message: 'Unable to copy!', type: 'disallow', time: 4000 }).show();
@@ -147,27 +151,27 @@ function createInfobox(itemData) {
     if (itemData.category) infobox += categories[itemData.category] || 'item';
     else infobox += 'item';
 
-    infobox += '<br>';
+    infobox += '\n';
 
     if (includeExtra) {
         infobox += [
             `|title = ${itemData.name}`, //
             `|image = ${itemData.name}.png`,
-            `|slot_item = ${itemData.name}`,
-        ].join('<br>');
+            `|slot_item = ${itemData.name}\n`,
+        ].join('\n');
     }
 
-    if (itemData.tier) infobox += `|rarity = ${itemData.tier.toLowerCase()}<br>`;
+    if (itemData.tier) infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
 
-    infobox += '|id = ' + itemData.id + '<br>';
+    infobox += '|id = ' + itemData.id + '\n';
     const percentages = { attack_speed: true, critical_chance: true, critical_damage: true, sea_creature_chance: true }; // eslint-disable-line camelcase
 
     if (itemData.stats) {
         const statKeys = Object.keys(itemData.stats);
         for (const key of statKeys) {
             if (key === 'WEAPON_ABILITY_DAMAGE') continue;
-            else if (key === 'WALK_SPEED') infobox += `|speed = ${itemData.stats[key]}<br>`;
-            else infobox += `|${key.toLowerCase()} = ${itemData.stats[key]}${percentages[key.toLowerCase()] ? '%' : ''}<br>`;
+            else if (key === 'WALK_SPEED') infobox += `|speed = ${itemData.stats[key]}\n`;
+            else infobox += `|${key.toLowerCase()} = ${itemData.stats[key]}${percentages[key.toLowerCase()] ? '%' : ''}\n`;
         }
     }
 
@@ -183,13 +187,13 @@ function createInfobox(itemData) {
             else stat = max.toString() + '-' + min.toString();
 
             if (key === 'WEAPON_ABILITY_DAMAGE') continue;
-            else if (key === 'WALK_SPEED') infobox += '|speed = ' + stat + '<br>';
-            else infobox += `|${key.toLowerCase()} = ${stat}${percentages[key.toLowerCase()] ? '%' : ''}<br>`;
+            else if (key === 'WALK_SPEED') infobox += '|speed = ' + stat + '\n';
+            else infobox += `|${key.toLowerCase()} = ${stat}${percentages[key.toLowerCase()] ? '%' : ''}\n`;
         }
     }
 
     if (itemData.gemstone_slots) {
-        infobox += '|gemstone_slots = <br>';
+        infobox += '|gemstone_slots = \n';
 
         for (const gemstone of itemData.gemstone_slots) {
             infobox += '*1 ' + toTitleCase(gemstone.slot_type);
@@ -205,7 +209,7 @@ function createInfobox(itemData) {
 
                 infobox += '&';
             }
-            infobox += '<br>';
+            infobox += '\n';
         }
     }
     if (itemData.requirements || itemData.catacombs_requirements) {
@@ -214,15 +218,15 @@ function createInfobox(itemData) {
         if ('skill' in requirements) {
             const skillLvl = requirements.skill;
             if (skillLvl.type.toLowerCase() === 'combat') {
-                infobox += '|combat_level_requirement = {{Skl|combat|' + skillLvl.level + '}}<br>';
+                infobox += '|combat_level_requirement = {{Skl|combat|' + skillLvl.level + '}}\n';
             } else {
-                infobox += '|other_level_requirement = {{Skl|' + skillLvl.type.toLowerCase() + '|' + skillLvl.level + '}}<br>';
+                infobox += '|other_level_requirement = {{Skl|' + skillLvl.type.toLowerCase() + '|' + skillLvl.level + '}}\n';
             }
         }
 
         if ('slayer' in requirements) {
             const slayerLvl = requirements.slayer;
-            infobox += '|slayer_level_requirement = ' + toTitleCase(slayerLvl.slayer_boss_type) + ' Slayer ' + slayerLvl.level.toString() + '<br>';
+            infobox += '|slayer_level_requirement = ' + toTitleCase(slayerLvl.slayer_boss_type) + ' Slayer ' + slayerLvl.level.toString() + '\n';
         }
 
         if ('dungeon' in requirements) {
@@ -231,7 +235,7 @@ function createInfobox(itemData) {
             if (itemData.dungeon_item_conversion_cost) {
                 infobox += ' (when dungeonized)';
             }
-            infobox += '<br>';
+            infobox += '\n';
         }
 
         if ('dungeon_completion' in requirements) {
@@ -240,41 +244,41 @@ function createInfobox(itemData) {
             if (itemData.dungeon_item_conversion_cost) {
                 infobox += ' (when dungeonized)';
             }
-            infobox += '<br>';
+            infobox += '\n';
         }
     }
 
-    if (itemData.category !== 'REFORGE_STONE' && itemData.category !== 'ACCESSORY') infobox += '|enchant = unknown<br>|reforge = unknown<br>';
+    if (itemData.category !== 'REFORGE_STONE' && itemData.category !== 'ACCESSORY') infobox += '|enchant = unknown\n|reforge = unknown\n';
 
-    if (bazaarData[itemData.id]) infobox += '|auctionable = no<br>';
-    else if (itemData.soulbound) infobox += '|auctionable = no<br>';
-    else infobox += '|auctionable = unknown<br>';
+    if (bazaarData[itemData.id]) infobox += '|auctionable = no\n';
+    else if (itemData.soulbound) infobox += '|auctionable = no\n';
+    else infobox += '|auctionable = unknown\n';
 
     if (itemData.soulbound) {
         if (itemData.soulbound.toLowerCase() === 'coop') {
-            infobox += '|tradeable = {{No|text=y}}<br>(Except to Co-op members)<br>|soulbound = Co-op<br>';
+            infobox += '|tradeable = {{No|text=y}}\n(Except to Co-op members)\n|soulbound = Co-op\n';
         } else {
-            infobox += '|tradeable = no<br>|soulbound = Player<br>';
+            infobox += '|tradeable = no\n|soulbound = Player\n';
         }
     } else {
-        infobox += '|tradeable = unknown<br>';
+        infobox += '|tradeable = unknown\n';
     }
 
     if ('museum' in itemData) {
-        if (itemData.museum) infobox += '|museum = yes<br>';
-        else infobox += '|museum = no<br>';
+        if (itemData.museum) infobox += '|museum = yes\n';
+        else infobox += '|museum = no\n';
     } else {
-        infobox += '|museum = unknown<br>';
+        infobox += '|museum = unknown\n';
     }
 
     if (itemData.npc_sell_price) {
-        infobox += '|salable = yes<br>';
-        infobox += `|sell = ${itemData.npc_sell_price}<br>`;
+        infobox += '|salable = yes\n';
+        infobox += `|sell = ${itemData.npc_sell_price}\n`;
     } else {
-        infobox += '|salable = no<br>';
+        infobox += '|salable = no\n';
     }
 
-    if (bazaarData[itemData.id]) infobox += `|bazaar = ${itemData.id}<br>`;
+    if (bazaarData[itemData.id]) infobox += `|bazaar = ${itemData.id}\n`;
 
     if ('color' in itemData) {
         const hex = itemData.color
@@ -282,16 +286,18 @@ function createInfobox(itemData) {
             .map((color) => Number(color).toString(16))
             .join('');
 
-        infobox += `|color = ${hex}<br>`;
+        infobox += `|color = ${hex}\n`;
     }
 
     infobox += '}}';
 
     copyInfoboxButton.disabled = false;
     infoboxElement.parentElement.classList.remove('unselectable');
-    infoboxElement.innerHTML = infobox;
+    infoboxElement.value = infobox;
+    infoboxElement.style.height = infoboxElement.scrollHeight + 3 + 'px';
+
     if (itemData.upgrade_costs) createEssenceTable(itemData);
-    else essenceTableElement.innerHTML = '&ZeroWidthSpace;';
+    else essenceTableElement.value = '';
 }
 
 /**
@@ -299,16 +305,16 @@ function createInfobox(itemData) {
  * @param {object} itemData the item data
  */
 function createEssenceTable(itemData) {
-    let essenceTable = '{{Essence Crafting<br>|type = weapon<br>';
+    let essenceTable = '{{Essence Crafting\n|type = weapon\n';
 
     for (const cost of itemData.upgrade_costs[0]) {
         if ('essence_type' in cost) {
-            essenceTable += `|essence = ${toTitleCase(cost.essence_type)}<br>`;
+            essenceTable += `|essence = ${toTitleCase(cost.essence_type)}\n`;
             break;
-        } else if (cost === itemData.upgrade_costs[itemData.upgrade_costs.length - 1]) essenceTable += '|essence = none<br>';
+        } else if (cost === itemData.upgrade_costs[itemData.upgrade_costs.length - 1]) essenceTable += '|essence = none\n';
     }
 
-    if ('dungeon_item_conversion_cost' in itemData) essenceTable += `|convert = ${itemData.dungeon_item_conversion_cost.amount} Essence<br>`;
+    if ('dungeon_item_conversion_cost' in itemData) essenceTable += `|convert = ${itemData.dungeon_item_conversion_cost.amount} Essence\n`;
 
     for (const costs of itemData.upgrade_costs) {
         costs.reverse();
@@ -328,7 +334,7 @@ function createEssenceTable(itemData) {
                 essenceTable += itemName;
             }
 
-            if (tierCost === costs[costs.length - 1]) essenceTable += '<br>';
+            if (tierCost === costs[costs.length - 1]) essenceTable += '\n';
             else essenceTable += '; ';
         }
     }
@@ -351,7 +357,7 @@ function createEssenceTable(itemData) {
                 essenceTable += itemName;
             }
 
-            if (cost === itemData.prestige.costs[itemData.prestige.costs.length - 1]) essenceTable += '<br>';
+            if (cost === itemData.prestige.costs[itemData.prestige.costs.length - 1]) essenceTable += '\n';
             else essenceTable += '; ';
         }
     }
@@ -360,5 +366,6 @@ function createEssenceTable(itemData) {
 
     copyEssenceTableButton.disabled = false;
     essenceTableElement.parentElement.classList.remove('unselectable');
-    essenceTableElement.innerHTML = essenceTable;
+    essenceTableElement.value = essenceTable;
+    essenceTableElement.style.height = essenceTableElement.scrollHeight + 3 + 'px';
 }

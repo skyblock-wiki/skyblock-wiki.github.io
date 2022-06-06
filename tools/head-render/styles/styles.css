@@ -279,17 +279,17 @@ aside .nbtInfo input {
 aside section > *:not(a) {
     padding: 0 0.5rem;
 }
-aside .headbox {
+aside .head-box {
     border-bottom: 1px solid var(--col-bg3);
     height: 7.5rem;
     margin-bottom: 1rem;
 }
-aside .titlebox {
+aside .title-box {
     align-items: center;
     display: flex;
     justify-content: space-between;
 }
-aside .titlebox h3 {
+aside .title-box h3 {
     margin-right: 2rem;
 }
 aside #warning {
@@ -374,7 +374,7 @@ aside img#sprite {
     font-weight: 200;
     position: relative;
 }
-.tooltip .tooltiptext {
+.tooltip .tooltip-text {
     background-color: var(--col-bg3);
     border: 1px solid var(--col-acc2);
     border-radius: 6px;
@@ -395,7 +395,7 @@ aside img#sprite {
 .tooltip > span:nth-child(1) {
     cursor: help;
 }
-.tooltip .tooltiptext::after {
+.tooltip .tooltip-text::after {
     border-color: transparent transparent transparent var(--col-acc2);
     border-style: solid;
     border-width: 5px;
@@ -405,15 +405,15 @@ aside img#sprite {
     margin-top: -5px;
     position: absolute;
 }
-.tooltip:hover .tooltiptext,
-.tooltip:active .tooltiptext {
+.tooltip:hover .tooltip-text,
+.tooltip:active .tooltip-text {
     opacity: 1;
     visibility: visible;
 }
-.tooltip .tooltiptext ul {
+.tooltip .tooltip-text ul {
     list-style-type: disc;
 }
-.tooltip .tooltiptext li span {
+.tooltip .tooltip-text li span {
     font-family: 'Montserrat', sans-serif;
     font-size: 0.8rem;
     left: -7px;

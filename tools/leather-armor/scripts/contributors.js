@@ -21,7 +21,7 @@ function createContributor(name, list) {
         '<span>',
         name,
         '</span>',
-        '<span class="tooltiptext">',
+        '<span class="tooltip-text">',
         '<ul>',
         list.map((text) => `<li><span>${text}</span></li>`).join(''),
         '</ul>',
@@ -33,7 +33,7 @@ function createContributor(name, list) {
 
 document.getElementById('contrib-list-div').style.display = 'none';
 
-document.getElementById('show-contribs').addEventListener('click', () => {
+document.getElementById('show-contributors').addEventListener('click', () => {
     document.getElementById('contrib-list-div').classList.toggle('hidden-height');
     $('#contrib-list-div').toggle('slow');
 });
