@@ -460,7 +460,7 @@ function createArmorInfobox(armor) {
     for (const piece in armor) {
         rarities.push(armor[piece].tier);
     }
-    if (allAreEqual(rarities)) infobox += `|rarity = ${toTitleCase(rarities[0])}\n`;
+    if (allAreEqual(rarities)) infobox += `|rarity = ${rarities[0].toLowerCase()}\n`;
     else infobox += '|rarity = Various\n';
     
     const percentages = { attack_speed: true, critical_chance: true, critical_damage: true, sea_creature_chance: true }; // eslint-disable-line camelcase
