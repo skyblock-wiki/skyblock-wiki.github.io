@@ -219,7 +219,7 @@ function createInfobox(itemData) {
             else stat = max.toString() + '-' + min.toString();
 
             if (key === 'WEAPON_ABILITY_DAMAGE') continue;
-            else if (key === 'WALK_SPEED') infobox += '|speed = ' + stat + '\n';
+            else if (key === 'WALK_SPEED') infobox += `|speed = ${stat}\n`;
             else infobox += `|${key.toLowerCase()} = ${stat}${percentages[key.toLowerCase()] ? '%' : ''}\n`;
         }
     }
@@ -437,5 +437,38 @@ function createArmorInfobox(armor) {
     }
     if (allAreEqual(rarities)) infobox += `|rarity = ${toTitleCase(rarities[0])}\n`;
     else infobox += '|rarity = Various\n';
+    
+    const percentages = { attack_speed: true, critical_chance: true, critical_damage: true, sea_creature_chance: true }; // eslint-disable-line camelcase
+    let totalStats = {};
+    for (const piece in armor) {
+        const itemData = armor[piece];
+        
+        if (itemData.stats) {
+            const statKeys = Object.keys(itemData.stats);
+            for (const key of statKeys) {
+                if (key === 'WEAPON_ABILITY_DAMAGE') continue;
+                else if (key === 'WALK_SPEED') infobox += `|${piece}_speed = ${itemData.stats[key]}\n`;
+                else infobox += `|${piece}_${key.toLowerCase()} = ${itemData.stats[key]}${percentages[key.toLowerCase()] ? '%' : ''}\n`;
+            }
+        }
+        
+        if (itemData.tiered_stats) {
+            const statKeys = Object.keys(itemData.tiered_stats);
+            for (const key of statKeys) {
+                const min = itemData.tiered_stats[key][0];
+                const max = itemData.tiered_stats[key][itemData.tiered_stats[key].length - 1];
+
+                let stat;
+                if (min === max) stat = min.toString();
+                else if (min < max) stat = min.toString() + '-' + max.toString();
+                else stat = max.toString() + '-' + min.toString();
+
+                if (key === 'WEAPON_ABILITY_DAMAGE') continue;
+                else if (key === 'WALK_SPEED') infobox += `|${piece}_speed = ${stat}\n`;
+                else infobox += `|${piece}_${key.toLowerCase()} = ${stat}${percentages[key.toLowerCase()] ? '%' : ''}\n`;
+            }
+        } 
+    }
+    
     console.log(infobox);
 }
