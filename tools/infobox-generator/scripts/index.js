@@ -205,16 +205,17 @@ function createInfobox(itemData) {
 
     if (itemData.tier) infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
 
-    infobox += `|id = ${itemData.id}\n`;
-    const percentages = { attack_speed: true, critical_chance: true, critical_damage: true, sea_creature_chance: true }; // eslint-disable-line camelcase
-
-    let starred_item = false;
+    let starredItem = false;
     for (const item of itemsData) {
         if (item.id.match('STARRED_' + itemData.id)) {
-            starred_item = item;
+            starredItem = item;
             break;
         }
     }
+    
+    if (starredItem) infobox += `|id = ${itemData.id}&ltbr>${starredItem.id}\n`;
+    else infobox += `|id = ${itemData.id}\n`;
+    const percentages = { attack_speed: true, critical_chance: true, critical_damage: true, sea_creature_chance: true }; // eslint-disable-line camelcase
     
     if (itemData.stats) {
         const statKeys = Object.keys(itemData.stats);
@@ -222,7 +223,11 @@ function createInfobox(itemData) {
             if (key === 'WEAPON_ABILITY_DAMAGE') continue;
             else if (key === 'WALK_SPEED') infobox += `|speed = ${itemData.stats[key]}`;
             else infobox += `|${key.toLowerCase()} = ${itemData.stats[key]}${percentages[key.toLowerCase()] ? '%' : ''}`;
-            if (starred_item) infobox += ` (${starred_item.stats[key]} with frags)`;
+            if (starredItem) {
+                if (starredItem.stats[key] && starredItem.stats[key] != itemData.stats[key]) {
+                    infobox += ` (${starredItem.stats[key]} with frags)`;
+                }
+            }
             infobox += '\n';
         }
     }
