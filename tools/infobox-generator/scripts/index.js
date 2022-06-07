@@ -210,7 +210,7 @@ function createInfobox(itemData) {
 
     let starred_item = false;
     for (const item of itemsData) {
-        if (item.id.toLowerCase().match('STARRED_' + itemData.id)) {
+        if (item.id.match('STARRED_' + itemData.id)) {
             starred_item = item;
             break;
         }
