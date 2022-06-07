@@ -452,6 +452,14 @@ function createArmorInfobox(armor) {
         }
     }
     
+    for (const piece of armor) {
+        for (const item of itemsData) {
+            if (item.id.match(`^STARRED_${piece.id}$`)) {
+                console.log(item);
+            }
+        }
+    }
+    
     for (const piece in armor) {
         infobox += `|${piece}_id = ${armor[piece].id}\n`;
     }
