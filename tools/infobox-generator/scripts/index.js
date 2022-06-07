@@ -452,9 +452,9 @@ function createArmorInfobox(armor) {
         }
     }
     
-    for (const piece of armor) {
+    for (const piece in armor) {
         for (const item of itemsData) {
-            if (item.id.match(`^STARRED_${piece.id}$`)) {
+            if (item.id.match(`^STARRED_${armor[piece].id}$`)) {
                 console.log(item);
             }
         }
