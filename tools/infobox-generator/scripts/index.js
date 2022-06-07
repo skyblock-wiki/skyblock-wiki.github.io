@@ -474,7 +474,9 @@ function createArmorInfobox(armor) {
     }
     
     for (const piece in armor) {
-        infobox += `|${piece}_id = ${armor[piece].id}\n`;
+        infobox += `|${piece}_id = ${armor[piece].id}`;
+        if (armor[piece].starredItem) infobox += `<br>${armor[piece].starredItem}`;
+        infobox += '\n';
     }
     
     let rarities = [];
