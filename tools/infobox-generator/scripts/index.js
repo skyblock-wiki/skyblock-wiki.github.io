@@ -475,7 +475,7 @@ function createArmorInfobox(armor) {
     
     for (const piece in armor) {
         infobox += `|${piece}_id = ${armor[piece].id}`;
-        if (armor[piece].starredItem) infobox += `<br>${armor[piece].starredItem}`;
+        if (armor[piece].starredItem) infobox += `<br>${armor[piece].starredItem.id}`;
         infobox += '\n';
     }
     
