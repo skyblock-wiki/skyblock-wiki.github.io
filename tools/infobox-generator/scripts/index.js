@@ -108,7 +108,12 @@ function triggerCreation(inputType, inputValue) {
                         else armor_set = Object.assign(armor_set, {boots: item});
                     }
                 }
-                if (exists) return createArmorInfobox({helmet: armor_set.helmet, chest: armor_set.chest, legs: armor_set.legs, boots: armor_set.boots});
+                let sorted_armor = {}
+                if (armor_set.helmet) sorted_armor = Object.assign(sorted_armor, {helmet: armor_set.helmet});
+                if (armor_set.chest) sorted_armor = Object.assign(sorted_armor, {chest: armor_set.chest});
+                if (armor_set.legs) sorted_armor = Object.assign(sorted_armor, {legs: armor_set.legs});
+                if (armor_set.boots) sorted_armor = Object.assign(sorted_armor, {boots: armor_set.boots});
+                if (exists) return createArmorInfobox(sorted_armor);
             } else if (inputType === 'name' && input.substring(input.length-6) === ' armor') {
                 const armor = input.substring(0, input.length-6);
                 let armor_set = {};
@@ -122,7 +127,12 @@ function triggerCreation(inputType, inputValue) {
                         else armor_set = Object.assign(armor_set, {boots: item});
                     }
                 }
-                if (exists) return createArmorInfobox({helmet: armor_set.helmet, chest: armor_set.chest, legs: armor_set.legs, boots: armor_set.boots});
+                let sorted_armor = {}
+                if (armor_set.helmet) sorted_armor = Object.assign(sorted_armor, {helmet: armor_set.helmet});
+                if (armor_set.chest) sorted_armor = Object.assign(sorted_armor, {chest: armor_set.chest});
+                if (armor_set.legs) sorted_armor = Object.assign(sorted_armor, {legs: armor_set.legs});
+                if (armor_set.boots) sorted_armor = Object.assign(sorted_armor, {boots: armor_set.boots});
+                if (exists) return createArmorInfobox(sorted_armor);
             }
         }
         new Toast({ message: 'The item you entered does not exist!', type: 'disallow', time: 2000 }).show();
@@ -198,12 +208,22 @@ function createInfobox(itemData) {
     infobox += `|id = ${itemData.id}\n`;
     const percentages = { attack_speed: true, critical_chance: true, critical_damage: true, sea_creature_chance: true }; // eslint-disable-line camelcase
 
+    let starred_item = false;
+    for (const item of itemsData) {
+        if (item.id.toLowerCase().match('STARRED_' + itemData.id)) {
+            starred_item = item;
+            break;
+        }
+    }
+    
     if (itemData.stats) {
         const statKeys = Object.keys(itemData.stats);
         for (const key of statKeys) {
             if (key === 'WEAPON_ABILITY_DAMAGE') continue;
-            else if (key === 'WALK_SPEED') infobox += `|speed = ${itemData.stats[key]}\n`;
-            else infobox += `|${key.toLowerCase()} = ${itemData.stats[key]}${percentages[key.toLowerCase()] ? '%' : ''}\n`;
+            else if (key === 'WALK_SPEED') infobox += `|speed = ${itemData.stats[key]}`;
+            else infobox += `|${key.toLowerCase()} = ${itemData.stats[key]}${percentages[key.toLowerCase()] ? '%' : ''}`;
+            if (starred_item) infobox += ` (${starred_item.stats[key]} with frags)`;
+            infobox += '\n';
         }
     }
 
