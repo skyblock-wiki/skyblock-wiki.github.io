@@ -441,7 +441,7 @@ function createArmorInfobox(armor) {
     let infobox = '{{Infobox Armor\n';
     
     for (const piece in armor) {
-        if (armor[piece].match('STARRED_')) {
+        if (armor[piece].id.match('STARRED_')) {
             for (const item of itemsData) {
                 if (item.id.match(`^${armor[piece].id.replace('STARRED_', '')}$`)) {
                     console.log(item);
