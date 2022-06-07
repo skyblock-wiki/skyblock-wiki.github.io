@@ -375,6 +375,7 @@ function createEssenceTable(itemData) {
 
     for (const costs of itemData.upgrade_costs) {
         let costs_copy = costs.map((x) => x);
+        costs_copy.reverse();
         essenceTable += '|';
 
         for (const tierCost of costs_copy) {
