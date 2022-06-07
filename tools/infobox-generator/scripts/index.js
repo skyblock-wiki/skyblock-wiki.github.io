@@ -440,6 +440,24 @@ function createArmorInfobox(armor) {
     console.log(armor);
     let infobox = '{{Infobox Armor\n';
     
+    for (const piece in armor) {
+        if (piece.match('STARRED_')) {
+            for (const item of itemsData) {
+                if (item.id.match(`^${armor[piece].id.replace('STARRED_', '')}$`)) {
+                    console.log(item);
+                    console.log(item.id);
+                }
+            }   
+        } else {
+            for (const item of itemsData) {
+                if (item.id.match(`^STARRED_${armor[piece].id}$`)) {
+                    console.log(item);
+                    console.log(item.id);
+                }
+            }
+        }
+    }
+    
     let armorFullNames = {helmet: 'Helmet', chest: 'Chestplate', legs: 'Leggings', boots: 'Boots'};
     const setName = armor[Object.keys(armor)[0]].name.replace(new RegExp(` ${armorFullNames[Object.keys(armor)[0]]}$`), ' Armor');
     if (includeExtra) {
@@ -449,14 +467,6 @@ function createArmorInfobox(armor) {
         ].join('\n');
         for (const piece in armor) {
             infobox += `|slot_${piece} = ${armor[piece].name}\n`;
-        }
-    }
-    
-    for (const piece in armor) {
-        for (const item of itemsData) {
-            if (item.id.match(`^STARRED_${armor[piece].id}$`)) {
-                console.log(item);
-            }
         }
     }
     
