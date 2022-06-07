@@ -444,15 +444,16 @@ function createArmorInfobox(armor) {
         if (armor[piece].id.match('STARRED_')) {
             for (const item of itemsData) {
                 if (item.id.match(`^${armor[piece].id.replace('STARRED_', '')}$`)) {
-                    console.log(item);
-                    console.log(item.id);
+                    const starred = armor[piece];
+                    armor[piece] = item;
+                    armor[piece].starredItem = starred;
+                    console.log(armor[piece]);
                 }
             }   
         } else {
             for (const item of itemsData) {
                 if (item.id.match(`^STARRED_${armor[piece].id}$`)) {
-                    console.log(item);
-                    console.log(item.id);
+                    armor[piece].starredItem = item;
                 }
             }
         }
