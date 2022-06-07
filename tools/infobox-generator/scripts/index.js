@@ -448,12 +448,14 @@ function createArmorInfobox(armor) {
                     armor[piece] = item;
                     armor[piece].starredItem = starred;
                     console.log(armor[piece]);
+                    break;
                 }
             }   
         } else {
             for (const item of itemsData) {
                 if (item.id.match(`^STARRED_${armor[piece].id}$`)) {
                     armor[piece].starredItem = item;
+                    break;
                 }
             }
         }
