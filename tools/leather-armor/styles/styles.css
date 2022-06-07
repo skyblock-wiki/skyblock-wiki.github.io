@@ -327,6 +327,7 @@ main > section {
 }
 .IroSlider {
     background: black !important;
+    box-sizing: unset;
 }
 /* color values */
 .other-values {
