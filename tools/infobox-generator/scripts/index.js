@@ -533,8 +533,7 @@ function createArmorInfobox(armor) {
             const statKeys = Object.keys(itemData.stats);
             for (const key of statKeys) {
                 if (key === 'WEAPON_ABILITY_DAMAGE') continue;
-                else if (key === 'WALK_SPEED') infobox += `|${piece}_speed = ${itemData.stats[key]}`;
-                else infobox += `|${piece}_${key.toLowerCase()} = ${itemData.stats[key]}${percentages[key.toLowerCase()] ? '%' : ''}`;
+                else infobox += `|${piece}_${replace[key] || key.toLowerCase()} = ${itemData.stats[key]}${percentages[key.toLowerCase()] ? '%' : ''}`;
                 
                 if (!totalStats[key]) totalStats[key] = {min: 0, max: 0};
                 totalStats[key].min += itemData.stats[key];
@@ -561,8 +560,7 @@ function createArmorInfobox(armor) {
                 else stat = max.toString() + '-' + min.toString();
 
                 if (key === 'WEAPON_ABILITY_DAMAGE') continue;
-                else if (key === 'WALK_SPEED') infobox += `|${piece}_speed = ${stat}\n`;
-                else infobox += `|${piece}_${key.toLowerCase()} = ${stat}${percentages[key.toLowerCase()] ? '%' : ''}\n`;
+                else infobox += `|${piece}_${replace[key] || key.toLowerCase()} = ${stat}${percentages[key.toLowerCase()] ? '%' : ''}\n`;
                 
                 if (!totalStats[key]) totalStats[key] = {min: 0, max: 0};
                 totalStats[key].min += min;
@@ -581,8 +579,7 @@ function createArmorInfobox(armor) {
         else stat = max.toString() + '-' + min.toString();
 
         if (key === 'WEAPON_ABILITY_DAMAGE') continue;
-        else if (key === 'WALK_SPEED') infobox += `|speed = ${stat}`;
-        else infobox += `|${key.toLowerCase()} = ${stat}${percentages[key.toLowerCase()] ? '%' : ''}`;
+        else infobox += `|${replace[key] || key.toLowerCase()} = ${stat}${percentages[key.toLowerCase()] ? '%' : ''}`;
                 
         if (totalStats[key].starred) {
             if (totalStats[key].starred != min) infobox += ` (${totalStats[key].starred} with frags)`;
