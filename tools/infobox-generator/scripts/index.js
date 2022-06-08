@@ -547,7 +547,7 @@ function createArmorInfobox(armor) {
         else infobox += `|${key.toLowerCase()} = ${stat}${percentages[key.toLowerCase()] ? '%' : ''}`;
                 
         if (totalStats[key].starred) {
-            infobox += ` (${totalStats[key].starred} with frags)`;
+            if (totalStats[key].starred != min) infobox += ` (${totalStats[key].starred} with frags)`;
         }
         infobox += '\n';
     }
