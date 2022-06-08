@@ -182,6 +182,7 @@ function romanize(num) {
 }
 
 const categories = { SWORD: 'weapon', WAND: 'weapon', BOW: 'weapon', LONGSWORD: 'weapon', DEPLOYABLE: 'item', COSMETIC: 'item', TRAVEL_SCROLL: 'item', ACCESSORY: 'accessory', HELMET: 'armor', CHESTPLATE: 'armor', LEGGINGS: 'armor', BOOTS: 'boots', PET_ITEM: 'item', ARROW_POISON: 'item', GAUNTLET: 'item', BELT: 'item', BRACELET: 'item', CLOAK: 'item', GLOVES: 'item', NECKLACE: 'item', DUNGEON_PASS: 'item', REFORGE_STONE: 'reforge stone', BAIT: 'item', AXE: 'item', HOE: 'item', SPADE: 'item', SHEARS: 'item', PICKAXE: 'item', FISHING_ROD: 'fishing rod' };
+const replace = {CRITICAL_CHANCE: 'crit_chance', CRITICAL_DAMAGE: 'crit_damage', WALK_SPEED: 'speed'};
 
 /**
  * Creates the infobox for the item
@@ -238,8 +239,7 @@ function createInfobox(itemData) {
         const statKeys = Object.keys(itemData.stats);
         for (const key of statKeys) {
             if (key === 'WEAPON_ABILITY_DAMAGE') continue;
-            else if (key === 'WALK_SPEED') infobox += `|speed = ${itemData.stats[key]}`;
-            else infobox += `|${key.toLowerCase()} = ${itemData.stats[key]}${percentages[key.toLowerCase()] ? '%' : ''}`;
+            else infobox += `|${replace[key] || key.toLowerCase()} = ${itemData.stats[key]}${percentages[key.toLowerCase()] ? '%' : ''}`;
             if (starredItem) {
                 if (starredItem.stats[key] && starredItem.stats[key] != itemData.stats[key]) {
                     infobox += ` (${starredItem.stats[key]} with frags)`;
@@ -261,8 +261,7 @@ function createInfobox(itemData) {
             else stat = max.toString() + '-' + min.toString();
 
             if (key === 'WEAPON_ABILITY_DAMAGE') continue;
-            else if (key === 'WALK_SPEED') infobox += `|speed = ${stat}\n`;
-            else infobox += `|${key.toLowerCase()} = ${stat}${percentages[key.toLowerCase()] ? '%' : ''}\n`;
+            else infobox += `|${replace[key] || key.toLowerCase()} = ${stat}${percentages[key.toLowerCase()] ? '%' : ''}\n`;
         }
     }
 
