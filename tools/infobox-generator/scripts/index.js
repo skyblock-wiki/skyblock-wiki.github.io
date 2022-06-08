@@ -504,7 +504,7 @@ function createArmorInfobox(armor) {
                 if (itemData.starredItem) {
                     if (!totalStats[key].starred) totalStats[key].starred = 0;
                     totalStats[key].starred += itemData.starredItem.stats[key];
-                    infobox += ` (${itemData.starredItem.stats[key]} with frags)`;
+                    if (itemData.starredItem.stats[key] != itemData.stats[key]) infobox += ` (${itemData.starredItem.stats[key]} with frags)`;
                 }
                 
                 infobox += '\n';
@@ -547,11 +547,7 @@ function createArmorInfobox(armor) {
         else infobox += `|${key.toLowerCase()} = ${stat}${percentages[key.toLowerCase()] ? '%' : ''}`;
                 
         if (totalStats[key].starred) {
-            if (totalStats[key].starred != min) {
-                infobox += ` (${totalStats[key].starred} with frags)`;
-                console.log(totalStats[key].starred);
-                console.log(min);
-            }
+            if (totalStats[key].starred != min) infobox += ` (${totalStats[key].starred} with frags)`;
         }
         infobox += '\n';
     }
