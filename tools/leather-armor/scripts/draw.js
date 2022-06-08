@@ -54,5 +54,5 @@ function drawPiece(canvas, ctx, name, color) {
 
     document.getElementById(`${name}_img`).src = canvas.toDataURL('image/png');
     document.getElementById(`${name}_lnk`).href = canvas.toDataURL('image/png');
-    document.getElementById(`${name}_lnk`).setAttribute('download', `Dyed ${name} ${color}.png`);
+    document.getElementById(`${name}_lnk`).download = `Dyed ${name} ${color}.png`;
 }

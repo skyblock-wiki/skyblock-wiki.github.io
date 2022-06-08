@@ -1,9 +1,9 @@
 /* global iro */
 
-import { loadColorFromModel, updatePlaceholder } from './color_import.js';
-import { updateColorsList } from './color_models.js';
+import { loadColorFromModel, updatePlaceholder } from './color-import.js';
+import { updateColorsList } from './color-models.js';
 import { draw } from './draw.js';
-import { loadFromLocalStorage, saveToLocalStorage } from './local_storage.js';
+import { loadFromLocalStorage, saveToLocalStorage } from './local-storage.js';
 
 const helmCanvas = document.getElementById('helmet');
 const chestCanvas = document.getElementById('chestplate');

@@ -20,10 +20,10 @@ const loading = document.getElementById('loading');
  */
 function clear() {
     imgLink.href = '';
-    imgLink.setAttribute('download', '');
+    imgLink.download = '';
     imgLink.classList.add('hidden');
     spriteLink.href = '';
-    spriteLink.setAttribute('download', '');
+    spriteLink.download = '';
     spriteLink.classList.add('hidden');
     img.src = '';
     sprite.src = '';
@@ -51,8 +51,8 @@ fileUpload.addEventListener('change', () => {
 
     const filename = fileUpload.files[0].name.replace(/\.[a-z]{2,4}$/, '').trim();
 
-    imgLink.setAttribute('download', `${filename} Head Render.png`.trim());
-    spriteLink.setAttribute('download', `${filename} Sprite Render.png`.trim());
+    imgLink.download = `${filename} Head Render.png`.trim();
+    spriteLink.download = `${filename} Sprite Render.png`.trim();
 });
 
 const mainElem = {
@@ -130,8 +130,8 @@ function updateTextureIdOutputs(id) {
  * @param {string} [fileName=null] the name of the file
  */
 function handleTidChange(url, element, fileName = null) {
-    imgLink.setAttribute('download', `${fileName ? fileName.trim() : url.split('/texture/')[1]} Head Render.png`.trim());
-    spriteLink.setAttribute('download', `${fileName ? fileName.trim() : url.split('/texture/')[1]} Sprite Render.png`.trim());
+    imgLink.download = `${fileName ? fileName.trim() : url.split('/texture/')[1]} Head Render.png`.trim();
+    spriteLink.download = `${fileName ? fileName.trim() : url.split('/texture/')[1]} Sprite Render.png`.trim();
     updateTextureIdOutputs(url.split('/texture/')[1]);
 
     clearErrors();
@@ -166,8 +166,8 @@ function handleValChange(textureData, element, fileName = null) {
     const url = textureData?.textures?.SKIN?.url;
     if (!url) return nbtError("Texture data doesn't contain skin url!", element);
 
-    imgLink.setAttribute('download', 'Head Render.png');
-    spriteLink.setAttribute('download', 'Sprite Render.png');
+    imgLink.download = 'Head Render.png';
+    spriteLink.download = 'Sprite Render.png';
     handleTidChange(url, element, fileName);
 }
 

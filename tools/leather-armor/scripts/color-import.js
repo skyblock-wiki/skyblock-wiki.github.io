@@ -75,5 +75,5 @@ export function updatePlaceholder(element) {
 
     if (element) isRGB = element.getAttribute('id') === 'button-model-rgb';
     else isRGB = document.querySelector('.color-model #option1').checked;
-    document.getElementById('color-import').setAttribute('placeholder', `e.g. ${isRGB ? '255,255,255' : '16777215'}`);
+    document.getElementById('color-import').placeholder = `e.g. ${isRGB ? '255,255,255' : '16777215'}`;
 }
