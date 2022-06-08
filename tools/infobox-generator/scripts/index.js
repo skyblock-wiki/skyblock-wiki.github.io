@@ -231,6 +231,7 @@ function createInfobox(itemData) {
 
     infobox += `|id = ${itemData.id}`;
     if (starredItem) infobox += `<br>${starredItem.id}`;
+    infobox += '\n';
     const percentages = { attack_speed: true, critical_chance: true, critical_damage: true, sea_creature_chance: true }; // eslint-disable-line camelcase
     
     if (itemData.stats) {
