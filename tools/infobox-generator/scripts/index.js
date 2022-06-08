@@ -499,13 +499,13 @@ function createArmorInfobox(armor) {
                 else if (key === 'WALK_SPEED') infobox += `|${piece}_speed = ${itemData.stats[key]}\n`;
                 else infobox += `|${piece}_${key.toLowerCase()} = ${itemData.stats[key]}${percentages[key.toLowerCase()] ? '%' : ''}\n`;
                 
-                if (totalStats[key]) {
-                    totalStats[key].min += itemData.stats[key];
-                    totalStats[key].max += itemData.stats[key];
-                } else {
-                    totalStats[key] = {};
-                    totalStats[key].min = itemData.stats[key];
-                    totalStats[key].max = itemData.stats[key];
+                if (!totalStats[key]) totalStats[key] = {min: 0, max: 0};
+                totalStats[key].min += itemData.stats[key];
+                totalStats[key].max += itemData.stats[key];
+                if (itemData.starredItem) {
+                    if (!totalStats[key].starred) totalStats[key].starred = {min: 0, max: 0};
+                    totalStats[key].starred.min += itemData.starredItem.stats[key];
+                    totalStats[key].starred.max += itemData.starredItem.stats[key];
                 }
             }
         }
@@ -537,11 +537,6 @@ function createArmorInfobox(armor) {
         } 
     }
     
-    // To do: find a way to incorporate starred (fragged) items into this.
-    //if (itemData.starredItem) {
-        //totalStats[key].starred.min += itemData.starredItem.stats[key];
-        //totalStats[key].starred.max += itemData.starredItem.stats[key];
-    //}
     console.log(totalStats);
     console.log(infobox);
 }
