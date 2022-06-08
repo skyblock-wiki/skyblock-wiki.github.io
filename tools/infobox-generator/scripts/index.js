@@ -448,7 +448,6 @@ function createArmorInfobox(armor) {
                     const starred = armor[piece];
                     armor[piece] = item;
                     armor[piece].starredItem = starred;
-                    console.log(armor[piece]);
                     break;
                 }
             }   
@@ -525,13 +524,13 @@ function createArmorInfobox(armor) {
                 else if (key === 'WALK_SPEED') infobox += `|${piece}_speed = ${stat}\n`;
                 else infobox += `|${piece}_${key.toLowerCase()} = ${stat}${percentages[key.toLowerCase()] ? '%' : ''}\n`;
                 
-                if (totalStats[key]) {
-                    totalStats[key].min += min;
-                    totalStats[key].max += max;
-                } else {
-                    totalStats[key] = {};
-                    totalStats[key].min = min;
-                    totalStats[key].max = max;
+                if (!totalStats[key]) totalStats[key] = {min: 0, max: 0};
+                totalStats[key].min += itemData.stats[key];
+                totalStats[key].max += itemData.stats[key];
+                if (itemData.starredItem) {
+                    if (!totalStats[key].starred) totalStats[key].starred = {min: 0, max: 0};
+                    totalStats[key].starred.min += itemData.starredItem.tiered_stats[key];
+                    totalStats[key].starred.max += itemData.starredItem.tiered_stats[key];
                 }
             }
         } 
