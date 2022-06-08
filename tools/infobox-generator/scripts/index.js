@@ -586,6 +586,10 @@ function createArmorInfobox(armor) {
         }
         infobox += '\n';
     }
+   
+    //To do: Implement gemstone slots, requirements, and all the tags which are yes, no or unknown.
+    
+    infobox += '}}';
     console.log(totalStats);
     console.log(infobox);
 }
