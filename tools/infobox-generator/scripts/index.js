@@ -495,17 +495,19 @@ function createArmorInfobox(armor) {
             const statKeys = Object.keys(itemData.stats);
             for (const key of statKeys) {
                 if (key === 'WEAPON_ABILITY_DAMAGE') continue;
-                else if (key === 'WALK_SPEED') infobox += `|${piece}_speed = ${itemData.stats[key]}\n`;
-                else infobox += `|${piece}_${key.toLowerCase()} = ${itemData.stats[key]}${percentages[key.toLowerCase()] ? '%' : ''}\n`;
+                else if (key === 'WALK_SPEED') infobox += `|${piece}_speed = ${itemData.stats[key]}`;
+                else infobox += `|${piece}_${key.toLowerCase()} = ${itemData.stats[key]}${percentages[key.toLowerCase()] ? '%' : ''}`;
                 
                 if (!totalStats[key]) totalStats[key] = {min: 0, max: 0};
                 totalStats[key].min += itemData.stats[key];
                 totalStats[key].max += itemData.stats[key];
                 if (itemData.starredItem) {
-                    if (!totalStats[key].starred) totalStats[key].starred = {min: 0, max: 0};
-                    totalStats[key].starred.min += itemData.starredItem.stats[key];
-                    totalStats[key].starred.max += itemData.starredItem.stats[key];
+                    if (!totalStats[key].starred) totalStats[key].starred = 0;
+                    totalStats[key].starred += itemData.starredItem.stats[key];
+                    infobox += ` (${itemData.starredItem.stats[key]} with frags)`;
                 }
+                
+                infobox += '\n';
             }
         }
         
@@ -525,17 +527,30 @@ function createArmorInfobox(armor) {
                 else infobox += `|${piece}_${key.toLowerCase()} = ${stat}${percentages[key.toLowerCase()] ? '%' : ''}\n`;
                 
                 if (!totalStats[key]) totalStats[key] = {min: 0, max: 0};
-                totalStats[key].min += itemData.stats[key];
-                totalStats[key].max += itemData.stats[key];
-                if (itemData.starredItem) {
-                    if (!totalStats[key].starred) totalStats[key].starred = {min: 0, max: 0};
-                    totalStats[key].starred.min += itemData.starredItem.tiered_stats[key];
-                    totalStats[key].starred.max += itemData.starredItem.tiered_stats[key];
-                }
+                totalStats[key].min += min;
+                totalStats[key].max += max;
             }
         } 
     }
     
+    for (const key in totalStats) {
+        const min = totalStats[key].min;
+        const max = totalStats[key].max;
+
+        let stat;
+        if (min === max) stat = min.toString();
+        else if (min < max) stat = min.toString() + '-' + max.toString();
+        else stat = max.toString() + '-' + min.toString();
+
+        if (key === 'WEAPON_ABILITY_DAMAGE') continue;
+        else if (key === 'WALK_SPEED') infobox += `|speed = ${stat}`;
+        else infobox += `|${key.toLowerCase()} = ${stat}${percentages[key.toLowerCase()] ? '%' : ''}`;
+                
+        if (totalStats[key].starred) {
+            infobox += ` (${totalStats[key].starred} with frags)`;
+        }
+        infobox += '\n';
+    }
     console.log(totalStats);
     console.log(infobox);
 }
