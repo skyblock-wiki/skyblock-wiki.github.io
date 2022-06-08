@@ -203,17 +203,32 @@ function createInfobox(itemData) {
         ].join('\n');
     }
 
-    if (itemData.tier) infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
-
     let starredItem = false;
-    for (const item of itemsData) {
-        if (item.id.match('STARRED_' + itemData.id)) {
-            starredItem = item;
-            break;
+    if (itemData.id.match('STARRED_')) {
+        for (const item of itemsData) {
+            if (item.id.match(`^${itemData.id.replace('STARRED_', '')}$`)) {
+                starredItem = itemData;
+                itemData = item;
+                break;
+            }
+        }   
+    } else {
+        for (const item of itemsData) {
+            if (item.id.match(`^STARRED_${itemData.id}$`)) {
+                starredItem = item;
+                break;
+            }
         }
     }
     
-    if (starredItem) infobox += `|id = ${itemData.id}<br>${starredItem.id}\n`;
+    if (itemData.tier) {
+        if (!starredItem) infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
+        else (starredItem) {
+            if (starredItem.tier != itemData.tier) infobox += `|rarity = {{r|${itemData.tier.toLowerCase()}}} ({{r|${starredItem.tier.toLowerCase()}}} with frags)\n`;
+            else infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
+        }
+    }
+
     else infobox += `|id = ${itemData.id}\n`;
     const percentages = { attack_speed: true, critical_chance: true, critical_damage: true, sea_creature_chance: true }; // eslint-disable-line camelcase
     
@@ -439,7 +454,7 @@ function allAreEqual(array) {
 
 function createArmorInfobox(armor) {
     console.log(armor);
-    let infobox = '{{Infobox Armor\n';
+    let infobox = '{{Infobox armor\n';
     
     for (const piece in armor) {
         if (armor[piece].id.match('STARRED_')) {
