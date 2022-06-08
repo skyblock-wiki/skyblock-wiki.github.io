@@ -222,8 +222,9 @@ function createInfobox(itemData) {
     }
     
     if (itemData.tier) {
-        if (!starredItem) infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
-        else (starredItem) {
+        if (!starredItem) {
+            infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
+        } else (starredItem) {
             if (starredItem.tier != itemData.tier) infobox += `|rarity = {{r|${itemData.tier.toLowerCase()}}} ({{r|${starredItem.tier.toLowerCase()}}} with frags)\n`;
             else infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
         }
@@ -283,7 +284,29 @@ function createInfobox(itemData) {
             }
             infobox += '\n';
         }
+        
+        if (starredItem && starredItem.gemstone_slots != itemData.gemstone_slots) {
+        infobox += '|gemstone_slots_fragged = \n';
+
+            for (const gemstone of starredItem.gemstone_slots) {
+                infobox += '*1 ' + toTitleCase(gemstone.slot_type);
+                if (gemstone.costs) {
+                    infobox += ' &';
+
+                    infobox += gemstone.costs
+                        .map((cost) => {
+                            if ('coins' in cost) return cost.coins.toString();
+                            else return cost.amount.toString() + ' ' + toTitleCase(cost.item_id.toLowerCase().replace('_gem', '').replace('_', ' '));
+                        })
+                        .join(', ');
+
+                    infobox += '&';
+                }
+                infobox += '\n';
+            }
+        }
     }
+    
     if (itemData.requirements || itemData.catacombs_requirements) {
         const requirements = { ...itemData.requirements, ...itemData.catacombs_requirements };
 
