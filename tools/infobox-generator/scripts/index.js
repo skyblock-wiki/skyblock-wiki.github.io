@@ -222,9 +222,8 @@ function createInfobox(itemData) {
     }
     
     if (itemData.tier) {
-        if (!starredItem) {
-            infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
-        } else (starredItem) {
+        if (!starredItem) infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
+        else {
             if (starredItem.tier != itemData.tier) infobox += `|rarity = {{r|${itemData.tier.toLowerCase()}}} ({{r|${starredItem.tier.toLowerCase()}}} with frags)\n`;
             else infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
         }
