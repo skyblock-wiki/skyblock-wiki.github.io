@@ -30,7 +30,7 @@ nameSubmitButton.addEventListener('click', () => {
         new Toast({ message: 'The item list has not yet loaded. Please wait or try refreshing the page!', type: 'disallow', time: 2000 }).show();
     } else {
         for (const item of itemsData) {
-            if (nameInput.value.toLowerCase() === item.id.toLowerCase()) {
+            if (nameInput.value.toLowerCase() === item.name.toLowerCase()) {
                 idInput.value = '';
                 return createInfobox(item);
             }
