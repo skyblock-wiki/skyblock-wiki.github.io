@@ -378,7 +378,7 @@ function createInfobox(itemData) {
     if ('color' in itemData) {
         const hex = itemData.color
             .split(',')
-            .map((color) => Number(color).toString(16))
+            .map((color) => (Number(color).toString(16).length === 1 ? '0' : '') + Number(color).toString(16))
             .join('');
 
         infobox += `|color = ${hex}\n`;
@@ -587,7 +587,7 @@ function createArmorInfobox(armor) {
         infobox += '\n';
     }
    
-    //To do: Implement gemstone slots, requirements, and all the tags which are yes, no or unknown.
+    //To do: Implement gemstone slots, requirements, and all the tags which are yes, no, or unknown, and color.
     
     infobox += '}}';
     console.log(totalStats);
