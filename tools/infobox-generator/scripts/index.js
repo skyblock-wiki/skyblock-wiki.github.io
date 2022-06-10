@@ -529,32 +529,32 @@ function createArmorInfobox(armor) {
     const percentages = { attack_speed: true, critical_chance: true, critical_damage: true, sea_creature_chance: true }; // eslint-disable-line camelcase
     let totalStats = {};
     for (const piece in armor) {
-        const itemData = armor[piece];
+        const pieceData = armor[piece];
         
-        if (itemData.stats) {
-            const statKeys = Object.keys(itemData.stats);
+        if (pieceData.stats) {
+            const statKeys = Object.keys(pieceData.stats);
             for (const key of statKeys) {
                 if (key === 'WEAPON_ABILITY_DAMAGE') continue;
-                else infobox += `|${piece}_${replace[key] || key.toLowerCase()} = ${itemData.stats[key]}${percentages[key.toLowerCase()] ? '%' : ''}`;
+                else infobox += `|${piece}_${replace[key] || key.toLowerCase()} = ${pieceData.stats[key]}${percentages[key.toLowerCase()] ? '%' : ''}`;
                 
                 if (!totalStats[key]) totalStats[key] = {min: 0, max: 0};
-                totalStats[key].min += itemData.stats[key];
-                totalStats[key].max += itemData.stats[key];
-                if (itemData.starredItem) {
+                totalStats[key].min += pieceData.stats[key];
+                totalStats[key].max += pieceData.stats[key];
+                if (pieceData.starredItem) {
                     if (!totalStats[key].starred) totalStats[key].starred = 0;
-                    totalStats[key].starred += itemData.starredItem.stats[key];
-                    if (itemData.starredItem.stats[key] != itemData.stats[key]) infobox += ` (${itemData.starredItem.stats[key]} with frags)`;
+                    totalStats[key].starred += pieceData.starredItem.stats[key];
+                    if (pieceData.starredItem.stats[key] != pieceData.stats[key]) infobox += ` (${pieceData.starredItem.stats[key]} with frags)`;
                 }
                 
                 infobox += '\n';
             }
         }
         
-        if (itemData.tiered_stats) {
-            const statKeys = Object.keys(itemData.tiered_stats);
+        if (pieceData.tiered_stats) {
+            const statKeys = Object.keys(pieceData.tiered_stats);
             for (const key of statKeys) {
-                const min = itemData.tiered_stats[key][0];
-                const max = itemData.tiered_stats[key][itemData.tiered_stats[key].length - 1];
+                const min = pieceData.tiered_stats[key][0];
+                const max = pieceData.tiered_stats[key][pieceData.tiered_stats[key].length - 1];
 
                 let stat;
                 if (min === max) stat = min.toString();
@@ -697,7 +697,22 @@ function createArmorInfobox(armor) {
             infobox += '\n';
         }
     }
+    
     //To do: Implement all the tags which are yes, no, or unknown, and color.
+    infobox += '|enchant = yes\n|reforge = yes\n';
+   
+    if (itemData.soulbound) infobox += '|auctionable = no\n';
+    else infobox += '|auctionable = unknown\n';
+    
+    if (itemData.soulbound) {
+        if (itemData.soulbound.toLowerCase() === 'coop') {
+            infobox += '|tradeable = {{No|text=y}}\n(Except to Co-op members)\n|soulbound = Co-op\n';
+        } else {
+            infobox += '|tradeable = no\n|soulbound = Player\n';
+        }
+    } else {
+        infobox += '|tradeable = unknown\n';
+    }
     
     infobox += '}}';
     console.log(totalStats);
