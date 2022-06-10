@@ -499,6 +499,7 @@ function createArmorInfobox(armor) {
         }
     }
     
+    const itemData = armor[Object.keys(armor)[0]];
     let armorFullNames = {helmet: 'Helmet', chest: 'Chestplate', legs: 'Leggings', boots: 'Boots'};
     const setName = armor[Object.keys(armor)[0]].name.replace(new RegExp(` ${armorFullNames[Object.keys(armor)[0]]}$`), ' Armor');
     if (includeExtra) {
@@ -620,7 +621,6 @@ function createArmorInfobox(armor) {
     }
     
     if (gemsSame) {
-        let itemData = armor[Object.keys(armor)[0]];
         infobox += '|gemstone_slots = \n';
 
         for (const gemstone of itemData.gemstone_slots) {
@@ -661,7 +661,43 @@ function createArmorInfobox(armor) {
             }
         }
     }
-    //To do: Implement requirements, and all the tags which are yes, no, or unknown, and color.
+    
+    if (itemData.requirements || itemData.catacombs_requirements) {
+        const requirements = { ...itemData.requirements, ...itemData.catacombs_requirements };
+
+        if ('skill' in requirements) {
+            const skillLvl = requirements.skill;
+            if (skillLvl.type.toLowerCase() === 'combat') {
+                infobox += '|combat_level_requirement = {{Skl|combat|' + skillLvl.level + '}}\n';
+            } else {
+                infobox += '|other_level_requirement = {{Skl|' + skillLvl.type.toLowerCase() + '|' + skillLvl.level + '}}\n';
+            }
+        }
+
+        if ('slayer' in requirements) {
+            const slayerLvl = requirements.slayer;
+            infobox += '|slayer_level_requirement = ' + toTitleCase(slayerLvl.slayer_boss_type) + ' Slayer ' + slayerLvl.level.toString() + '\n';
+        }
+
+        if ('dungeon' in requirements) {
+            const dungeonLvl = requirements.dungeon;
+            infobox += '|dungeon_level_requirement = {{Skl|' + dungeonLvl.type.toLowerCase() + '|' + dungeonLvl.level + '}}';
+            if (itemData.dungeon_item_conversion_cost) {
+                infobox += ' (when dungeonized)';
+            }
+            infobox += '\n';
+        }
+
+        if ('dungeon_completion' in requirements) {
+            const dungeonComp = requirements.dungeon_completion;
+            infobox += '|dungeon_floor_clearing_requirement = ' + toTitleCase(dungeonComp.type.replace('_', ' ')) + ' Floor ' + romanize(dungeonComp.tier);
+            if (itemData.dungeon_item_conversion_cost) {
+                infobox += ' (when dungeonized)';
+            }
+            infobox += '\n';
+        }
+    }
+    //To do: Implement all the tags which are yes, no, or unknown, and color.
     
     infobox += '}}';
     console.log(totalStats);
