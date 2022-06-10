@@ -702,4 +702,9 @@ function createArmorInfobox(armor) {
     infobox += '}}';
     console.log(totalStats);
     console.log(infobox);
+    
+    copyInfoboxButton.disabled = false;
+    infoboxElement.parentElement.classList.remove('unselectable');
+    infoboxElement.value = infobox;
+    infoboxElement.style.height = infoboxElement.scrollHeight + 3 + 'px';
 }
