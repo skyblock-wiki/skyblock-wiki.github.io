@@ -519,7 +519,8 @@ function createArmorInfobox(armor) {
     
     let rarities = [];
     for (const piece in armor) {
-        rarities.push(armor[piece].tier);
+        if (armor[piece].tier) rarities.push(armor[piece].tier);
+        else rarities.push("COMMON");
     }
     if (allAreEqual(rarities)) infobox += `|rarity = ${rarities[0].toLowerCase()}\n`;
     else infobox += '|rarity = Various\n';
@@ -598,8 +599,28 @@ function createArmorInfobox(armor) {
         else starredGemsSame = false;
     }
     
-    let itemData = Object.keys(armor)[0];
-    if (itemData.gemstone_slots) {
+    if (gemsArray[0] && gemsSame) {
+        for (let i; i < gemsArray.length; i++) {
+            if (gemsArray[i] != gemsArray[0]) {
+                gemsSame = false;
+                console.log('Not same');
+                break;
+            }
+        }
+        
+        if (starredGemsArray[0] && starredGemsSame) {
+            for (let i; i < starredGemsArray.length; i++) {
+                if (starredGemsArray[i] != starredGemsArray[0]) {
+                    starredGemsSame = false;
+                    console.log('Not same, starred');
+                    break;
+                }
+            }
+        }
+    }
+    
+    if (gemsSame) {
+        let itemData = armor[Object.keys(armor)[0]];
         infobox += '|gemstone_slots = \n';
 
         for (const gemstone of itemData.gemstone_slots) {
@@ -619,7 +640,7 @@ function createArmorInfobox(armor) {
             infobox += '\n';
         }
         
-        if (itemData.starredItem && itemData.starredItem.gemstone_slots != itemData.gemstone_slots) {
+        if (itemData.starredItem && itemData.starredItem.gemstone_slots != itemData.gemstone_slots && starredGemsSame) {
         infobox += '|gemstone_slots_fragged = \n';
 
             for (const gemstone of itemData.starredItem.gemstone_slots) {
