@@ -586,8 +586,61 @@ function createArmorInfobox(armor) {
         }
         infobox += '\n';
     }
-   
-    //To do: Implement gemstone slots, requirements, and all the tags which are yes, no, or unknown, and color.
+    
+    let gemsSame = true;
+    let starredGemsSame = true;
+    let gemsArray = [];
+    let starredGemsArray = []
+    for (const piece in armor) {
+        if (armor[piece].gemstone_slots) gemsArray.push(armor[piece].gemstone_slots);
+        else gemsSame = false;
+        if (armor[piece].starredItem && armor[piece].starredItem.gemstone_slots) starredGemsArray.push(armor[piece].starredItem.gemstone_slots);
+        else starredGemsSame = false;
+    }
+    
+    let itemData = Object.keys(armor)[0];
+    if (itemData.gemstone_slots) {
+        infobox += '|gemstone_slots = \n';
+
+        for (const gemstone of itemData.gemstone_slots) {
+            infobox += '*1 ' + toTitleCase(gemstone.slot_type);
+            if (gemstone.costs) {
+                infobox += ' &';
+
+                infobox += gemstone.costs
+                    .map((cost) => {
+                        if ('coins' in cost) return cost.coins.toString();
+                        else return cost.amount.toString() + ' ' + toTitleCase(cost.item_id.toLowerCase().replace('_gem', '').replace('_', ' '));
+                    })
+                    .join(', ');
+
+                infobox += '&';
+            }
+            infobox += '\n';
+        }
+        
+        if (itemData.starredItem && itemData.starredItem.gemstone_slots != itemData.gemstone_slots) {
+        infobox += '|gemstone_slots_fragged = \n';
+
+            for (const gemstone of itemData.starredItem.gemstone_slots) {
+                infobox += '*1 ' + toTitleCase(gemstone.slot_type);
+                if (gemstone.costs) {
+                    infobox += ' &';
+
+                    infobox += gemstone.costs
+                        .map((cost) => {
+                            if ('coins' in cost) return cost.coins.toString();
+                            else return cost.amount.toString() + ' ' + toTitleCase(cost.item_id.toLowerCase().replace('_gem', '').replace('_', ' '));
+                        })
+                        .join(', ');
+
+                    infobox += '&';
+                }
+                infobox += '\n';
+            }
+        }
+    }
+    //To do: Implement requirements, and all the tags which are yes, no, or unknown, and color.
     
     infobox += '}}';
     console.log(totalStats);
