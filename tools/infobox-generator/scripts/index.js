@@ -181,6 +181,16 @@ function romanize(num) {
     return Array(+digits.join('') + 1).join('M') + roman;
 }
 
+Array.prototype.remove = function(value) {
+    for (var i = this.length; i--; )
+    {
+        if (this[i] === value) {
+            this.splice(i, 1);
+        }
+    }
+}
+
+
 const categories = { SWORD: 'weapon', WAND: 'weapon', BOW: 'weapon', LONGSWORD: 'weapon', DEPLOYABLE: 'item', COSMETIC: 'item', TRAVEL_SCROLL: 'item', ACCESSORY: 'accessory', HELMET: 'armor', CHESTPLATE: 'armor', LEGGINGS: 'armor', BOOTS: 'boots', PET_ITEM: 'item', ARROW_POISON: 'item', GAUNTLET: 'item', BELT: 'item', BRACELET: 'item', CLOAK: 'item', GLOVES: 'item', NECKLACE: 'item', DUNGEON_PASS: 'item', REFORGE_STONE: 'reforge stone', BAIT: 'item', AXE: 'item', HOE: 'item', SPADE: 'item', SHEARS: 'item', PICKAXE: 'item', FISHING_ROD: 'fishing rod' };
 const replace = {CRITICAL_CHANCE: 'crit_chance', CRITICAL_DAMAGE: 'crit_damage', WALK_SPEED: 'speed'};
 
@@ -750,6 +760,8 @@ function createArmorInfobox(armor) {
     if (colors.length > 0 && !(colors[0] === '' && allAreEqual(colors))) {
         if (allAreEqual(colors)) {
             infobox += `|color = ${colors[0]}\n|all_colors_the_same = true\n`;
+        } else if (allAreEqual(colors.map((x) => x).remove(''))) {
+            infobox += `|color = ${colors.map((x) => x).remove('')[0]}\n|all_colors_the_same = true\n`;
         } else {
             infobox += `|color = ${colors.join(',')}\n`;
         }
