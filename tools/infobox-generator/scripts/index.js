@@ -758,10 +758,12 @@ function createArmorInfobox(armor) {
         }
     }
     if (colors.length > 0 && !(colors[0] === '' && allAreEqual(colors))) {
+        let colorsWithout = colors.map((x) => x).remove('');
+        console.log(colorsWithout);
         if (allAreEqual(colors)) {
             infobox += `|color = ${colors[0]}\n|all_colors_the_same = true\n`;
-        } else if (allAreEqual(colors.map((x) => x).remove(''))) {
-            infobox += `|color = ${colors.map((x) => x).remove('')[0]}\n|all_colors_the_same = true\n`;
+        } else if (allAreEqual(colorsWithout)) {
+            infobox += `|color = ${colorsWithout[0]}\n|all_colors_the_same = true\n`;
         } else {
             infobox += `|color = ${colors.join(',')}\n`;
         }
