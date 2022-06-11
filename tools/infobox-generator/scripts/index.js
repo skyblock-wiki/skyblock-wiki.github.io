@@ -198,7 +198,7 @@ function createInfobox(itemData) {
 
     if (includeExtra) {
         infobox += [
-            `|title = ${itemData.name}`, //
+            `|title = ${itemData.name}`,
             `|image = ${itemData.name}.png`,
             `|slot_item = ${itemData.name}\n`,
         ].join('\n');
@@ -712,6 +712,41 @@ function createArmorInfobox(armor) {
         }
     } else {
         infobox += '|tradeable = unknown\n';
+    }
+    
+    let sellPrice = 0;
+    for (const piece in armor) {
+        if (armor[piece].npc_sell_price) {
+            sellPrice += armor[piece].npc_sell_price;
+        }
+    }
+    
+    if (sellPrice != 0) {
+        infobox += '|salable = yes\n';
+        infobox += `|sell = ${sellPrice}\n`;
+    } else {
+        infobox += '|salable = no\n';
+    }
+    
+    let colors = [];
+    for (const piece in armor) {
+        if ('color' in armor[piece]) {
+            const hex = armor[piece].color
+                .split(',')
+                .map((color) => (Number(color).toString(16).length === 1 ? '0' : '') + Number(color).toString(16))
+                .join('');
+
+            colors.push(hex);
+        } else {
+            colors.push('');
+        }
+    }
+    if (colors.length > 0 && !(colors[0] === '' && allAreEqual(colors))) {
+        if (allAreEqual(colors)) {
+            infobox += `|color = ${colors[0]}\n|all_colors_the_same = true\n`;
+        } else {
+            infobox += `|color = ${colors.join(',')}\n`;
+        }
     }
     
     infobox += '}}';
