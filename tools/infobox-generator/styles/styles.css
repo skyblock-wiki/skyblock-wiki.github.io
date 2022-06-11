@@ -1,117 +1,5 @@
-@import '/styles/toast.css';
+@import '/styles/global.css';
 
-/* font-awesome */
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
-
-/* fonts */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&display=swap');
-
-/* create variables */
-:root {
-    --col-bg: #1e1e1e;
-    --col-bg2: #252525;
-    --col-bg3: #323232;
-    --col-acc: #444;
-    --col-acc2: #4a4a4a;
-    --orange: #cc9933;
-    --state-shadow: 0 0 3px 2px var(--orange);
-}
-/* normalize margins and paddings */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-/*  
-========================
-		Main CSS
-========================
-*/
-html {
-    scroll-behavior: smooth;
-    width: 100%;
-}
-body {
-    background: var(--col-bg);
-    display: flex;
-    flex-direction: column;
-    font-family: 'Montserrat', sans-serif;
-    min-height: 100vh;
-    width: 100%;
-}
-body > div {
-    flex: 1 0 auto;
-}
-.hidden {
-    display: none;
-}
-.soft-hidden {
-    cursor: default;
-    visibility: hidden;
-}
-.unselectable {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-.code {
-    background: rgba(0, 0, 0, 0.2);
-    border: 1px solid var(--col-acc);
-    border-radius: 4px;
-    font-family: 'Fira Mono', monospace;
-    padding: 0px 0.3rem;
-}
-/* checkboxes */
-.checkbox-custom {
-    opacity: 0;
-    position: absolute;
-}
-.checkbox-label {
-    align-items: center;
-    display: flex;
-    gap: 4px;
-}
-.checkbox-label .checkbox i {
-    display: none;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-}
-.checkbox-custom:checked ~ label .checkbox i:nth-of-type(1) {
-    display: initial;
-    opacity: 1;
-}
-.checkbox-custom:not(:checked) ~ label .checkbox i:nth-of-type(2) {
-    display: initial;
-    opacity: 1;
-}
-/* hover and focus effect for buttons and inputs */
-input:focus,
-textarea:focus {
-    box-shadow: var(--state-shadow);
-    outline: none;
-}
-/* buttons */
-button {
-    background-color: var(--col-bg2);
-    border: 1px solid var(--col-acc);
-    border-radius: 4px;
-    color: white;
-    cursor: pointer;
-    height: max-content;
-    padding: 0.2rem 0.3rem;
-    transition: all 0.2s ease;
-    width: max-content;
-}
-button:disabled {
-    color: #aaa;
-    cursor: default;
-    opacity: 50%;
-}
 /*  
 ======================
 		Header
@@ -215,33 +103,6 @@ label {
     padding-left: 0.25rem;
     text-align: right;
 }
-textarea {
-    background-color: var(--col-bg2);
-    border: 1px solid var(--col-acc);
-    border-radius: 4px;
-    color: white;
-    font-family: 'Fira Mono', monospace;
-    height: 5rem;
-    margin: 0.5rem 0;
-    max-height: 16rem;
-    min-height: 4rem;
-    padding: 0.2rem;
-    resize: none;
-    transition: box-shadow 0.1s ease;
-    width: 100%;
-}
-input[type='text'] {
-    background-color: var(--col-bg2);
-    border: 1px solid var(--col-acc);
-    border-radius: 4px;
-    color: white;
-    font-family: 'Fira Mono', monospace;
-    margin: 0.5rem 0;
-    padding: 0.2rem;
-    resize: none;
-    transition: box-shadow 0.1s ease;
-    width: 16rem;
-}
 
 /*  
 ========================
@@ -272,61 +133,12 @@ h2 {
 }
 textarea#infobox,
 textarea#essence-table {
-    background-color: var(--col-bg2);
-    border: 1px solid var(--col-acc);
-    border-radius: 4px;
-    color: #aaa;
-    font-family: 'Fira Code', monospace;
-    font-size: 0.75rem;
     max-height: 15rem;
-    overflow: auto;
-    padding: 0.2rem 0.3rem;
-    transition: all 0.2s ease;
     width: 25rem;
     resize: none;
     display: block;
     margin-block: 5px;
     max-width: 90%;
-}
-
-/* contributors */
-.contributors {
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    margin: 0.8rem 1.1rem;
-    position: fixed;
-    right: 0;
-}
-.contributors button {
-    background: none;
-    border: none;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
-    font-weight: 300;
-    transition: none;
-}
-.contributors .list {
-    background: var(--col-bg2) none repeat scroll 0% 0%;
-    border: 1px solid var(--col-acc2);
-    border-radius: 4px;
-}
-.contributors button i {
-    transform: rotate(-90deg);
-    transition: transform 0.4s ease;
-}
-.contributors .list:not(.hidden-height) ~ h3 i {
-    transform: rotate(-180deg);
-}
-.contributors .list.hidden-height {
-    overflow: hidden;
-}
-.contributors #contrib-list {
-    list-style: none;
-    margin: 0 1rem;
-}
-.contributors #contrib-list > li {
-    margin: 0.5rem 0;
 }
 .tooltip {
     border-bottom: 1px dotted white;
@@ -381,59 +193,7 @@ textarea#essence-table {
     left: -7px;
     position: relative;
 }
-/*  
-======================
-		Footer
-======================
-*/
-footer {
-    background: var(--col-bg3);
-    display: flex;
-    justify-content: center;
-    padding: 0.4rem 2rem;
-    width: 100%;
-}
-/* social media buttons styling */
-.github-button-wrapper a {
-    background: var(--col-bg);
-    border-radius: 50px;
-    box-shadow: 0 3px 5px black;
-    color: white;
-    cursor: pointer;
-    display: inline-block;
-    height: 40px;
-    margin: 0 5px;
-    outline: none;
-    overflow: hidden;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    width: 40px;
-}
-.github-button-wrapper a:hover,
-.github-button-wrapper a:focus,
-.github-button-wrapper a:active {
-    background: var(--col-bg3);
-    color: white;
-    width: 200px;
-}
-.github-button-wrapper a .icon {
-    border-radius: 50px;
-    box-sizing: border-box;
-    display: inline-block;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    transition: all 0.2s ease;
-    width: 40px;
-}
-.github-button-wrapper a .icon i {
-    font-size: 20px;
-    line-height: 40px;
-}
-.github-button-wrapper a span {
-    font-weight: 500;
-    line-height: 40px;
-}
+
 /*  
 ==============================
 		Responsiveness
