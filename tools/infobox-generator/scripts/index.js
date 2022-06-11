@@ -523,7 +523,13 @@ function createArmorInfobox(armor) {
         if (armor[piece].tier) rarities.push(armor[piece].tier);
         else rarities.push("COMMON");
     }
-    if (allAreEqual(rarities)) infobox += `|rarity = ${rarities[0].toLowerCase()}\n`;
+    if (allAreEqual(rarities)) {
+        if (!itemData.starredItem) infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
+        else {
+            if (itemData.starredItem.tier != itemData.tier) infobox += `|rarity = {{r|${itemData.tier.toLowerCase()}}} ({{r|${itemData.starredItem.tier.toLowerCase()}}} with frags)\n`;
+            else infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
+        }
+    }
     else infobox += '|rarity = Various\n';
     
     const percentages = { attack_speed: true, critical_chance: true, critical_damage: true, sea_creature_chance: true }; // eslint-disable-line camelcase
