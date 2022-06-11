@@ -6,10 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Infobox Generator</title>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
         <script src="./scripts/index.js" type="module"></script>
-        <script src="./scripts/contributors.js" type="module"></script>
+        <script src="/scripts/contributors.js" type="module"></script>
 
         <link rel="stylesheet" href="./styles/styles.css" />
         <link rel="icon" href="/files/images/return-icon.png" />
@@ -17,7 +15,7 @@
     </head>
 
     <body>
-        <div>
+        <div style="flex: 1 0 auto">
             <header>
                 <a href="/index.html" id="return-main">
                     <span>
@@ -63,7 +61,7 @@
                             <tr>
                                 <th>Infobox</th>
                                 <td class="unselectable">
-                                    <textarea id="infobox" disabled></textarea>
+                                    <textarea id="infobox" style="height: unset" disabled></textarea>
                                     <div class="copy-result">
                                         <button id="copy-infobox" class="copy" disabled>Copy</button>
                                     </div>
@@ -72,7 +70,7 @@
                             <tr>
                                 <th>Essence Table</th>
                                 <td class="unselectable">
-                                    <textarea id="essence-table" disabled></textarea>
+                                    <textarea id="essence-table" style="height: unset" disabled></textarea>
                                     <div class="copy-result">
                                         <button id="copy-essence-table" class="copy" disabled>Copy</button>
                                     </div>
@@ -82,6 +80,12 @@
                     </table>
                 </div>
             </div>
+        </div>
+        <div class="page-contributors">
+            <div id="contrib-list-div" class="list hidden" style="height: auto"><ul id="contrib-list"></ul></div>
+            <h3>
+                <button id="show-contributors"><span>Contributors</span><i class="fas fa-chevron-down"></i></button>
+            </h3>
         </div>
         <footer>
             <div class="github-button-wrapper unselectable">
@@ -99,16 +103,5 @@
                 </a>
             </div>
         </footer>
-        <div class="contributors">
-            <div id="contrib-list-div" class="list hidden-height" style="height: auto">
-                <ul id="contrib-list"></ul>
-            </div>
-            <h3>
-                <button id="show-contributors">
-                    <span>Contributors</span>
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-            </h3>
-        </div>
     </body>
 </html>
