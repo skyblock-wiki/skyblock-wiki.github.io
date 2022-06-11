@@ -754,11 +754,11 @@ function createArmorInfobox(armor) {
 
             colors.push(hex);
         } else {
-            colors.push('');
+            colors.push(' ');
         }
     }
     if (colors.length > 0 && !(colors[0] === '' && allAreEqual(colors))) {
-        let colorsWithout = colors.map((x) => x).remove('');
+        let colorsWithout = colors.map((x) => x).remove(' ');
         console.log(colorsWithout);
         if (allAreEqual(colors)) {
             infobox += `|color = ${colors[0]}\n|all_colors_the_same = true\n`;
