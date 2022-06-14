@@ -85,46 +85,45 @@ function triggerCreation(inputType, inputValue) {
         for (const item of itemsData) {
             if (input === item[inputType].toLowerCase()) return createInfobox(item);
         }
-        // To do: add support for armor sets
-        if (input.substring(input.length-5) === 'armor') {
-            if (inputType === 'id' && input.substring(input.length-6) === '_armor') {
-                const armor = input.substring(0, input.length-6);
-                let armor_set = {};
+        if (input.substring(input.length - 5) === 'armor') {
+            if (inputType === 'id' && input.substring(input.length - 6) === '_armor') {
+                const armor = input.substring(0, input.length - 6);
+                const armorSet = {};
                 let exists = false;
                 for (const item of itemsData) {
                     if (item.id.toLowerCase().match(`^${armor}_(?:helmet|chestplate|leggings|boots)$`)) {
                         exists = true;
-                        if (item.id.toLowerCase().match(`^${armor}_helmet$`)) armor_set = Object.assign(armor_set, {helmet: item});
-                        else if (item.id.toLowerCase().match(`^${armor}_chestplate$`)) armor_set = Object.assign(armor_set, {chest: item});
-                        else if (item.id.toLowerCase().match(`^${armor}_leggings$`)) armor_set = Object.assign(armor_set, {legs: item});
-                        else armor_set = Object.assign(armor_set, {boots: item});
+                        if (item.id.toLowerCase().match(`^${armor}_helmet$`)) armorSet.helmet = item;
+                        else if (item.id.toLowerCase().match(`^${armor}_chestplate$`)) armorSet.chestplate = item;
+                        else if (item.id.toLowerCase().match(`^${armor}_leggings$`)) armorSet.leggings = item;
+                        else armorSet.boots = item;
                     }
                 }
-                let sorted_armor = {}
-                if (armor_set.helmet) sorted_armor = Object.assign(sorted_armor, {helmet: armor_set.helmet});
-                if (armor_set.chest) sorted_armor = Object.assign(sorted_armor, {chest: armor_set.chest});
-                if (armor_set.legs) sorted_armor = Object.assign(sorted_armor, {legs: armor_set.legs});
-                if (armor_set.boots) sorted_armor = Object.assign(sorted_armor, {boots: armor_set.boots});
-                if (exists) return createArmorInfobox(sorted_armor);
-            } else if (inputType === 'name' && input.substring(input.length-6) === ' armor') {
-                const armor = input.substring(0, input.length-6);
-                let armor_set = {};
+                const sortedArmor = {};
+                if (armorSet.helmet) sortedArmor.helmet = armorSet.helmet;
+                if (armorSet.chest) sortedArmor.chest = armorSet.chest;
+                if (armorSet.legs) sortedArmor.legs = armorSet.legs;
+                if (armorSet.boots) sortedArmor.boots = armorSet.boots;
+                if (exists) return createArmorInfobox(sortedArmor);
+            } else if (inputType === 'name' && input.substring(input.length - 6) === ' armor') {
+                const armor = input.substring(0, input.length - 6);
+                const armorSet = {};
                 let exists = false;
                 for (const item of itemsData) {
-                    if (item.name.toLowerCase().match(`^${armor} (?:helmet|chestplate|leggings|boots)$`)) {
+                    if (item.name.toLowerCase().match(`^${armor} (?:helmet|hat|cap|chestplate|tunic|shirt|leggings|pants|boots|shoes|sandals)$`)) {
                         exists = true;
-                        if (item.name.toLowerCase().match(`^${armor} helmet$`)) armor_set = Object.assign(armor_set, {helmet: item});
-                        else if (item.name.toLowerCase().match(`^${armor} chestplate$`)) armor_set = Object.assign(armor_set, {chest: item});
-                        else if (item.name.toLowerCase().match(`^${armor} leggings$`)) armor_set = Object.assign(armor_set, {legs: item});
-                        else armor_set = Object.assign(armor_set, {boots: item});
+                        if (item.name.toLowerCase().match(`^${armor} (helmet|hat|cap)$`)) armorSet.helmet = item;
+                        else if (item.name.toLowerCase().match(`^${armor} (chestplate|tunic|shirt)$`)) armorSet.chest = item;
+                        else if (item.name.toLowerCase().match(`^${armor} (leggings|pants)$`)) armorSet.legs = item;
+                        else armorSet.boots = item;
                     }
                 }
-                let sorted_armor = {}
-                if (armor_set.helmet) sorted_armor = Object.assign(sorted_armor, {helmet: armor_set.helmet});
-                if (armor_set.chest) sorted_armor = Object.assign(sorted_armor, {chest: armor_set.chest});
-                if (armor_set.legs) sorted_armor = Object.assign(sorted_armor, {legs: armor_set.legs});
-                if (armor_set.boots) sorted_armor = Object.assign(sorted_armor, {boots: armor_set.boots});
-                if (exists) return createArmorInfobox(sorted_armor);
+                const sortedArmor = {};
+                if (armorSet.helmet) sortedArmor.helmet = armorSet.helmet;
+                if (armorSet.chest) sortedArmor.chest = armorSet.chest;
+                if (armorSet.legs) sortedArmor.legs = armorSet.legs;
+                if (armorSet.boots) sortedArmor.boots = armorSet.boots;
+                if (exists) return createArmorInfobox(sortedArmor);
             }
         }
         new Toast({ message: 'The item you entered does not exist!', type: 'disallow', time: 2000 }).show();
@@ -173,23 +172,29 @@ function romanize(num) {
     return Array(+digits.join('') + 1).join('M') + roman;
 }
 
+/**
+ * Checks if either given object contains `essence_type`
+ * @param {object} a the first object
+ * @param {object} b the second object
+ * @returns {-1|1|0} -1 if `essence_type` in `a`, 1 if `essence_type` in `b`, 0 if neither
+ */
 function compare(a, b) {
     if ('essence_type' in a) return -1;
     else if ('essence_type' in b) return 1;
     else return 0;
 }
 
+/**
+ * Checks if all items in the given array are equal
+ * @param {Array} array the array to check
+ * @returns {boolean} true if all items are equal, false if not
+ */
 function allAreEqual(array) {
-    const result = array.every(element => {
-        if (element === array[0]) {
-            return true;
-        }
-    });
-    return result;
+    return array.every((element) => element === array[0]);
 }
 
 const categories = { SWORD: 'weapon', WAND: 'weapon', BOW: 'weapon', LONGSWORD: 'weapon', DEPLOYABLE: 'item', COSMETIC: 'item', TRAVEL_SCROLL: 'item', ACCESSORY: 'accessory', HELMET: 'armor', CHESTPLATE: 'armor', LEGGINGS: 'armor', BOOTS: 'boots', PET_ITEM: 'item', ARROW_POISON: 'item', GAUNTLET: 'item', BELT: 'item', BRACELET: 'item', CLOAK: 'item', GLOVES: 'item', NECKLACE: 'item', DUNGEON_PASS: 'item', REFORGE_STONE: 'reforge stone', BAIT: 'item', AXE: 'item', HOE: 'item', SPADE: 'item', SHEARS: 'item', PICKAXE: 'item', FISHING_ROD: 'fishing rod' };
-const replace = {CRITICAL_CHANCE: 'crit_chance', CRITICAL_DAMAGE: 'crit_damage', WALK_SPEED: 'speed'};
+const replace = { CRITICAL_CHANCE: 'crit_chance', CRITICAL_DAMAGE: 'crit_damage', WALK_SPEED: 'speed' };
 
 /**
  * Creates the infobox for the item
@@ -204,11 +209,7 @@ function createInfobox(itemData) {
     infobox += '\n';
 
     if (includeExtra) {
-        infobox += [
-            `|title = ${itemData.name}`,
-            `|image = ${itemData.name}.png`,
-            `|slot_item = ${itemData.name}\n`,
-        ].join('\n');
+        infobox += [`|title = ${itemData.name}`, `|image = ${itemData.name}.png`, `|slot_item = ${itemData.name}\n`].join('\n');
     }
 
     let starredItem = false;
@@ -219,7 +220,7 @@ function createInfobox(itemData) {
                 itemData = item;
                 break;
             }
-        }   
+        }
     } else {
         for (const item of itemsData) {
             if (item.id.match(`^STARRED_${itemData.id}$`)) {
@@ -228,15 +229,13 @@ function createInfobox(itemData) {
             }
         }
     }
-    
+
     if (itemData.tier) {
-        if (!starredItem) infobox += `|rarity = ${itemData.tier.toLowerCase().replace('_',' ')}\n`;
-        else {
-            if (starredItem.tier != itemData.tier) infobox += `|rarity = {{r|${itemData.tier.toLowerCase()}}} ({{r|${starredItem.tier.toLowerCase()}}} with frags)\n`;
-            else infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
-        }
+        if (!starredItem) infobox += `|rarity = ${itemData.tier.toLowerCase().replace('_', ' ')}\n`;
+        else if (starredItem.tier !== itemData.tier) infobox += `|rarity = {{r|${itemData.tier.toLowerCase()}}} ({{r|${starredItem.tier.toLowerCase()}}} with frags)\n`;
+        else infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
     } else {
-        itemData.tier = "COMMON";
+        itemData.tier = 'COMMON';
         infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
     }
 
@@ -251,7 +250,7 @@ function createInfobox(itemData) {
             if (key === 'WEAPON_ABILITY_DAMAGE') continue;
             else infobox += `|${replace[key] || key.toLowerCase()} = ${itemData.stats[key]}${percentages[key.toLowerCase()] ? '%' : ''}`;
             if (starredItem) {
-                if (starredItem.stats[key] && starredItem.stats[key] != itemData.stats[key]) {
+                if (starredItem.stats[key] && starredItem.stats[key] !== itemData.stats[key]) {
                     infobox += ` (${starredItem.stats[key]} with frags)`;
                 }
             }
@@ -294,9 +293,9 @@ function createInfobox(itemData) {
             }
             infobox += '\n';
         }
-        
-        if (starredItem && starredItem.gemstone_slots != itemData.gemstone_slots) {
-        infobox += '|gemstone_slots_fragged = \n';
+
+        if (starredItem && starredItem.gemstone_slots !== itemData.gemstone_slots) {
+            infobox += '|gemstone_slots_fragged = \n';
 
             for (const gemstone of starredItem.gemstone_slots) {
                 infobox += '*1 ' + toTitleCase(gemstone.slot_type);
@@ -422,11 +421,11 @@ function createEssenceTable(itemData) {
     if ('dungeon_item_conversion_cost' in itemData) essenceTable += `|convert = ${itemData.dungeon_item_conversion_cost.amount} Essence\n`;
 
     for (const costs of itemData.upgrade_costs) {
-        let costs_copy = costs.map((x) => x);
-        costs_copy.sort(compare);
+        const costsCopy = costs;
+        costsCopy.sort(compare);
         essenceTable += '|';
 
-        for (const tierCost of costs_copy) {
+        for (const tierCost of costsCopy) {
             essenceTable += tierCost.amount.toString() + ' ';
             if ('essence_type' in tierCost) essenceTable += 'Essence';
             else if ('item_id' in tierCost) {
@@ -440,7 +439,7 @@ function createEssenceTable(itemData) {
                 essenceTable += itemName;
             }
 
-            if (tierCost === costs_copy[costs_copy.length - 1]) essenceTable += '\n';
+            if (tierCost === costsCopy[costsCopy.length - 1]) essenceTable += '\n';
             else essenceTable += '; ';
         }
     }
@@ -476,86 +475,83 @@ function createEssenceTable(itemData) {
     essenceTableElement.style.height = essenceTableElement.scrollHeight + 3 + 'px';
 }
 
-function createArmorInfobox(armor) {
+/**
+ * Creates the infobox for the item
+ * @param {object} armorData the armor data
+ */
+function createArmorInfobox(armorData) {
     let infobox = '{{Infobox armor\n';
-    
-    for (const piece in armor) {
-        if (armor[piece].id.match('STARRED_')) {
+
+    for (const piece in armorData) {
+        if (armorData[piece].id.match('STARRED_')) {
             for (const item of itemsData) {
-                if (item.id.match(`^${armor[piece].id.replace('STARRED_', '')}$`)) {
-                    const starred = armor[piece];
-                    armor[piece] = item;
-                    armor[piece].starredItem = starred;
+                if (item.id.match(`^${armorData[piece].id.replace('STARRED_', '')}$`)) {
+                    const starred = armorData[piece];
+                    armorData[piece] = item;
+                    armorData[piece].starredItem = starred;
                     break;
                 }
-            }   
+            }
         } else {
             for (const item of itemsData) {
-                if (item.id.match(`^STARRED_${armor[piece].id}$`)) {
-                    armor[piece].starredItem = item;
+                if (item.id.match(`^STARRED_${armorData[piece].id}$`)) {
+                    armorData[piece].starredItem = item;
                     break;
                 }
             }
         }
     }
-    
-    const itemData = armor[Object.keys(armor)[0]];
-    let armorFullNames = {helmet: 'Helmet', chest: 'Chestplate', legs: 'Leggings', boots: 'Boots'};
-    const setName = armor[Object.keys(armor)[0]].name.replace(new RegExp(` ${armorFullNames[Object.keys(armor)[0]]}$`), ' Armor');
+
+    const itemData = armorData[Object.keys(armorData)[0]];
+    const setName = armorData[Object.keys(armorData)[0]].name.replace(/ (?:Helmet|Hat|Cap|Chestplate|Tunic|Shirt|Leggings|Pants|Boots|Shoes|Sandals)$/, ' Armor');
     if (includeExtra) {
-        infobox += [
-            `|title = ${setName}`,
-            `|image = ${setName}.png\n`,
-        ].join('\n');
-        for (const piece in armor) {
-            infobox += `|slot_${piece} = ${armor[piece].name}\n`;
+        infobox += [`|title = ${setName}`, `|image = ${setName}.png\n`].join('\n');
+        for (const piece in armorData) {
+            infobox += `|slot_${piece} = ${armorData[piece].name}\n`;
         }
     }
-    
-    for (const piece in armor) {
-        infobox += `|${piece}_id = ${armor[piece].id}`;
-        if (armor[piece].starredItem) infobox += `<br>${armor[piece].starredItem.id}`;
+
+    for (const piece in armorData) {
+        infobox += `|${piece}_id = ${armorData[piece].id}`;
+        if (armorData[piece].starredItem) infobox += `<br>${armorData[piece].starredItem.id}`;
         infobox += '\n';
     }
-    
-    let rarities = [];
-    for (const piece in armor) {
-        if (!armor[piece].tier) armor[piece].tier = "COMMON";
-        rarities.push(armor[piece].tier);
+
+    const rarities = [];
+    for (const piece in armorData) {
+        if (!armorData[piece].tier) armorData[piece].tier = 'COMMON';
+        rarities.push(armorData[piece].tier);
     }
     if (allAreEqual(rarities)) {
         if (!itemData.starredItem) infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
-        else {
-            if (itemData.starredItem.tier != itemData.tier) infobox += `|rarity = {{r|${itemData.tier.toLowerCase()}}} ({{r|${itemData.starredItem.tier.toLowerCase()}}} with frags)\n`;
-            else infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
-        }
-    }
-    else infobox += '|rarity = Various\n';
-    
+        else if (itemData.starredItem.tier !== itemData.tier) infobox += `|rarity = {{r|${itemData.tier.toLowerCase()}}} ({{r|${itemData.starredItem.tier.toLowerCase()}}} with frags)\n`;
+        else infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
+    } else infobox += '|rarity = Various\n';
+
     const percentages = { attack_speed: true, critical_chance: true, critical_damage: true, sea_creature_chance: true }; // eslint-disable-line camelcase
-    let totalStats = {};
-    for (const piece in armor) {
-        const pieceData = armor[piece];
-        
+    const totalStats = {};
+    for (const piece in armorData) {
+        const pieceData = armorData[piece];
+
         if (pieceData.stats) {
             const statKeys = Object.keys(pieceData.stats);
             for (const key of statKeys) {
                 if (key === 'WEAPON_ABILITY_DAMAGE') continue;
                 else infobox += `|${piece}_${replace[key] || key.toLowerCase()} = ${pieceData.stats[key]}${percentages[key.toLowerCase()] ? '%' : ''}`;
-                
-                if (!totalStats[key]) totalStats[key] = {min: 0, max: 0};
+
+                if (!totalStats[key]) totalStats[key] = { min: 0, max: 0 };
                 totalStats[key].min += pieceData.stats[key];
                 totalStats[key].max += pieceData.stats[key];
                 if (pieceData.starredItem) {
                     if (!totalStats[key].starred) totalStats[key].starred = 0;
                     totalStats[key].starred += pieceData.starredItem.stats[key];
-                    if (pieceData.starredItem.stats[key] != pieceData.stats[key]) infobox += ` (${pieceData.starredItem.stats[key]} with frags)`;
+                    if (pieceData.starredItem.stats[key] !== pieceData.stats[key]) infobox += ` (${pieceData.starredItem.stats[key]} with frags)`;
                 }
-                
+
                 infobox += '\n';
             }
         }
-        
+
         if (pieceData.tiered_stats) {
             const statKeys = Object.keys(pieceData.tiered_stats);
             for (const key of statKeys) {
@@ -569,17 +565,16 @@ function createArmorInfobox(armor) {
 
                 if (key === 'WEAPON_ABILITY_DAMAGE') continue;
                 else infobox += `|${piece}_${replace[key] || key.toLowerCase()} = ${stat}${percentages[key.toLowerCase()] ? '%' : ''}\n`;
-                
-                if (!totalStats[key]) totalStats[key] = {min: 0, max: 0};
+
+                if (!totalStats[key]) totalStats[key] = { min: 0, max: 0 };
                 totalStats[key].min += min;
                 totalStats[key].max += max;
             }
-        } 
+        }
     }
-    
+
     for (const key in totalStats) {
-        const min = totalStats[key].min;
-        const max = totalStats[key].max;
+        const { min, max } = totalStats[key];
 
         let stat;
         if (min === max) stat = min.toString();
@@ -588,42 +583,40 @@ function createArmorInfobox(armor) {
 
         if (key === 'WEAPON_ABILITY_DAMAGE') continue;
         else infobox += `|${replace[key] || key.toLowerCase()} = ${stat}${percentages[key.toLowerCase()] ? '%' : ''}`;
-                
-        if (totalStats[key].starred) {
-            if (totalStats[key].starred != min) infobox += ` (${totalStats[key].starred} with frags)`;
-        }
+
+        if (totalStats[key].starred && totalStats[key].starred !== min) if (totalStats[key].starred !== min) infobox += ` (${totalStats[key].starred} with frags)`;
         infobox += '\n';
     }
-    
+
     let gemsSame = true;
     let starredGemsSame = true;
-    let gemsArray = [];
-    let starredGemsArray = []
-    for (const piece in armor) {
-        if (armor[piece].gemstone_slots) gemsArray.push(armor[piece].gemstone_slots);
+    const gemsArray = [];
+    const starredGemsArray = [];
+    for (const piece in armorData) {
+        if (armorData[piece].gemstone_slots) gemsArray.push(armorData[piece].gemstone_slots);
         else gemsSame = false;
-        if (armor[piece].starredItem && armor[piece].starredItem.gemstone_slots) starredGemsArray.push(armor[piece].starredItem.gemstone_slots);
+        if (armorData[piece].starredItem && armorData[piece].starredItem.gemstone_slots) starredGemsArray.push(armorData[piece].starredItem.gemstone_slots);
         else starredGemsSame = false;
     }
-    
+
     if (gemsArray[0] && gemsSame) {
         for (let i; i < gemsArray.length; i++) {
-            if (gemsArray[i] != gemsArray[0]) {
+            if (gemsArray[i] !== gemsArray[0]) {
                 gemsSame = false;
                 break;
             }
         }
-        
+
         if (starredGemsArray[0] && starredGemsSame) {
             for (let i; i < starredGemsArray.length; i++) {
-                if (starredGemsArray[i] != starredGemsArray[0]) {
+                if (starredGemsArray[i] !== starredGemsArray[0]) {
                     starredGemsSame = false;
                     break;
                 }
             }
         }
     }
-    
+
     if (gemsSame) {
         infobox += '|gemstone_slots = \n';
 
@@ -643,9 +636,9 @@ function createArmorInfobox(armor) {
             }
             infobox += '\n';
         }
-        
-        if (itemData.starredItem && itemData.starredItem.gemstone_slots != itemData.gemstone_slots && starredGemsSame) {
-        infobox += '|gemstone_slots_fragged = \n';
+
+        if (itemData.starredItem && itemData.starredItem.gemstone_slots !== itemData.gemstone_slots && starredGemsSame) {
+            infobox += '|gemstone_slots_fragged = \n';
 
             for (const gemstone of itemData.starredItem.gemstone_slots) {
                 infobox += '*1 ' + toTitleCase(gemstone.slot_type);
@@ -665,17 +658,14 @@ function createArmorInfobox(armor) {
             }
         }
     }
-    
+
     if (itemData.requirements || itemData.catacombs_requirements) {
         const requirements = { ...itemData.requirements, ...itemData.catacombs_requirements };
 
         if ('skill' in requirements) {
             const skillLvl = requirements.skill;
-            if (skillLvl.type.toLowerCase() === 'combat') {
-                infobox += '|combat_level_requirement = {{Skl|combat|' + skillLvl.level + '}}\n';
-            } else {
-                infobox += '|other_level_requirement = {{Skl|' + skillLvl.type.toLowerCase() + '|' + skillLvl.level + '}}\n';
-            }
+            if (skillLvl.type.toLowerCase() === 'combat') infobox += '|combat_level_requirement = {{Skl|combat|' + skillLvl.level + '}}\n';
+            else infobox += '|other_level_requirement = {{Skl|' + skillLvl.type.toLowerCase() + '|' + skillLvl.level + '}}\n';
         }
 
         if ('slayer' in requirements) {
@@ -686,108 +676,93 @@ function createArmorInfobox(armor) {
         if ('dungeon' in requirements) {
             const dungeonLvl = requirements.dungeon;
             infobox += '|dungeon_level_requirement = {{Skl|' + dungeonLvl.type.toLowerCase() + '|' + dungeonLvl.level + '}}';
-            if (itemData.dungeon_item_conversion_cost) {
-                infobox += ' (when dungeonized)';
-            }
+            if (itemData.dungeon_item_conversion_cost) infobox += ' (when dungeonized)';
+
             infobox += '\n';
         }
 
         if ('dungeon_completion' in requirements) {
             const dungeonComp = requirements.dungeon_completion;
             infobox += '|dungeon_floor_clearing_requirement = ' + toTitleCase(dungeonComp.type.replace('_', ' ')) + ' Floor ' + romanize(dungeonComp.tier);
-            if (itemData.dungeon_item_conversion_cost) {
-                infobox += ' (when dungeonized)';
-            }
+            if (itemData.dungeon_item_conversion_cost) infobox += ' (when dungeonized)';
+
             infobox += '\n';
         }
     }
-    
+
     infobox += '|enchant = yes\n|reforge = yes\n';
-   
+
     if (itemData.soulbound) infobox += '|auctionable = no\n';
     else infobox += '|auctionable = unknown\n';
-    
+
     if (itemData.soulbound) {
-        if (itemData.soulbound.toLowerCase() === 'coop') {
-            infobox += '|tradeable = {{No|text=y}}\n(Except to Co-op members)\n|soulbound = Co-op\n';
-        } else {
-            infobox += '|tradeable = no\n|soulbound = Player\n';
-        }
-    } else {
-        infobox += '|tradeable = unknown\n';
-    }
-    
+        if (itemData.soulbound.toLowerCase() === 'coop') infobox += '|tradeable = {{No|text=y}}\n(Except to Co-op members)\n|soulbound = Co-op\n';
+        else infobox += '|tradeable = no\n|soulbound = Player\n';
+    } else infobox += '|tradeable = unknown\n';
+
     let sellPrice = 0;
-    for (const piece in armor) {
-        if (armor[piece].npc_sell_price) {
-            sellPrice += armor[piece].npc_sell_price;
-        }
+    for (const piece in armorData) {
+        if (armorData[piece].npc_sell_price) sellPrice += armorData[piece].npc_sell_price;
     }
-    
-    if (sellPrice != 0) {
+
+    if (sellPrice !== 0) {
         infobox += '|salable = yes\n';
         infobox += `|sell = ${sellPrice}\n`;
-    } else {
-        infobox += '|salable = no\n';
-    }
-    
-    let colors = [];
-    for (const piece in armor) {
-        if ('color' in armor[piece]) {
-            const hex = armor[piece].color
+    } else infobox += '|salable = no\n';
+
+    const colors = [];
+    for (const piece in armorData) {
+        if ('color' in armorData[piece]) {
+            const hex = armorData[piece].color
                 .split(',')
                 .map((color) => (Number(color).toString(16).length === 1 ? '0' : '') + Number(color).toString(16))
                 .join('');
 
             colors.push(hex);
-        } else {
-            colors.push(' ');
-        }
+        } else colors.push(' ');
     }
     if (colors.length > 0 && !(colors[0] === ' ' && allAreEqual(colors))) {
-        const colorsWithout = colors.filter(function(x) {
-            return x !== ' ';
-        });
-        if (allAreEqual(colors)) {
-            infobox += `|color = ${colors[0]}\n|all_colors_the_same = true\n`;
-        } else if (allAreEqual(colorsWithout)) {
-            infobox += `|color = ${colorsWithout[0]}\n|all_colors_the_same = true\n`;
-        } else {
-            infobox += `|color = ${colors.join(',').replace(' ','')}\n`;
-        }
+        const colorsWithout = colors.filter((x) => x !== ' ');
+        if (allAreEqual(colors)) infobox += `|color = ${colors[0]}\n|all_colors_the_same = true\n`;
+        else if (allAreEqual(colorsWithout)) infobox += `|color = ${colorsWithout[0]}\n|all_colors_the_same = true\n`;
+        else infobox += `|color = ${colors.join(',').replace(' ', '')}\n`;
     }
-    
+
     infobox += '}}';
-    
+
     copyInfoboxButton.disabled = false;
     infoboxElement.parentElement.classList.remove('unselectable');
     infoboxElement.value = infobox;
     infoboxElement.style.height = infoboxElement.scrollHeight + 3 + 'px';
-    
-    if (itemData.upgrade_costs) createArmorEssenceTable(armor);
+
+    if (itemData.upgrade_costs) createArmorEssenceTable(armorData);
     else essenceTableElement.value = '';
 }
 
-function createArmorEssenceTable(armor) {
+/**
+ * Creates the essence table for the armor
+ * @param {object} armorData the armor data
+ */
+function createArmorEssenceTable(armorData) {
     let essenceTable = '{{Essence Crafting\n|type = armor\n';
-    
+
     let allPiecesSameStats = true;
-    const itemData = armor[Object.keys(armor)[0]];
-    for (const piece in armor) {
-        if (armor[piece].upgrade_costs) {
-            if (JSON.stringify(itemData.upgrade_costs) != JSON.stringify(armor[piece].upgrade_costs)) {
+    const itemData = armorData[Object.keys(armorData)[0]];
+    for (const piece in armorData) {
+        if (armorData[piece].upgrade_costs) {
+            if (JSON.stringify(itemData.upgrade_costs) !== JSON.stringify(armorData[piece].upgrade_costs)) {
                 allPiecesSameStats = false;
                 break;
             }
         }
-        if (armor[piece].dungeon_item_conversion_cost) {
-            if (JSON.stringify(itemData.dungeon_item_conversion_cost) != JSON.stringify(armor[piece].dungeon_item_conversion_cost)) {
+        if (armorData[piece].dungeon_item_conversion_cost) {
+            if (JSON.stringify(itemData.dungeon_item_conversion_cost) !== JSON.stringify(armorData[piece].dungeon_item_conversion_cost)) {
                 allPiecesSameStats = false;
                 break;
             }
         }
-        if (armor[piece].prestige) {
-            if (JSON.stringify(itemData.prestige.costs) != JSON.stringify(armor[piece].prestige.costs)) {
+        if (armorData[piece].prestige) {
+            if (JSON.stringify(itemData.prestige.costs) !== JSON.stringify(armorData[piece].prestige.costs)) {
                 allPiecesSameStats = false;
                 break;
             }
@@ -805,11 +780,11 @@ function createArmorEssenceTable(armor) {
         if ('dungeon_item_conversion_cost' in itemData) essenceTable += `|convert = ${itemData.dungeon_item_conversion_cost.amount} Essence\n`;
 
         for (const costs of itemData.upgrade_costs) {
-            let costs_copy = costs.map((x) => x);
-            costs_copy.sort(compare);
+            const costsCopy = costs;
+            costsCopy.sort(compare);
             essenceTable += '|';
 
-            for (const tierCost of costs_copy) {
+            for (const tierCost of costsCopy) {
                 essenceTable += tierCost.amount.toString() + ' ';
                 if ('essence_type' in tierCost) essenceTable += 'Essence';
                 else if ('item_id' in tierCost) {
@@ -823,7 +798,7 @@ function createArmorEssenceTable(armor) {
                     essenceTable += itemName;
                 }
 
-                if (tierCost === costs_copy[costs_copy.length - 1]) essenceTable += '\n';
+                if (tierCost === costsCopy[costsCopy.length - 1]) essenceTable += '\n';
                 else essenceTable += '; ';
             }
         }
@@ -851,19 +826,19 @@ function createArmorEssenceTable(armor) {
             }
         }
     } else {
-        for (const piece in armor) {
-            const itemData = armor[piece];
+        for (const piece in armorData) {
+            const itemData = armorData[piece];
             const prefix = piece[0];
 
             if ('dungeon_item_conversion_cost' in itemData) essenceTable += `|${prefix}_convert = ${itemData.dungeon_item_conversion_cost.amount} Essence\n`;
-            
+
             let i = 0;
             for (const costs of itemData.upgrade_costs) {
-                let costs_copy = costs.map((x) => x);
-                costs_copy.sort(compare);
+                const costsCopy = costs;
+                costsCopy.sort(compare);
                 essenceTable += `|${prefix}${i}=`;
 
-                for (const tierCost of costs_copy) {
+                for (const tierCost of costsCopy) {
                     essenceTable += tierCost.amount.toString() + ' ';
                     if ('essence_type' in tierCost) essenceTable += 'Essence';
                     else if ('item_id' in tierCost) {
@@ -877,7 +852,7 @@ function createArmorEssenceTable(armor) {
                         essenceTable += itemName;
                     }
 
-                    if (tierCost === costs_copy[costs_copy.length - 1]) essenceTable += '\n';
+                    if (tierCost === costsCopy[costsCopy.length - 1]) essenceTable += '\n';
                     else essenceTable += '; ';
                 }
                 i++;
@@ -900,14 +875,14 @@ function createArmorEssenceTable(armor) {
                         }
                         essenceTable += itemName;
                     }
-                }
 
-                if (cost === itemData.prestige.costs[itemData.prestige.costs.length - 1]) essenceTable += '\n';
-                else essenceTable += '; ';
+                    if (cost === itemData.prestige.costs[itemData.prestige.costs.length - 1]) essenceTable += '\n';
+                    else essenceTable += '; ';
+                }
             }
         }
-        
-        for (const cost of armor[Object.keys(armor)[0]].upgrade_costs[0]) {
+
+        for (const cost of armorData[Object.keys(armorData)[0]].upgrade_costs[0]) {
             if ('essence_type' in cost) {
                 essenceTable += `|essence = ${toTitleCase(cost.essence_type)}\n`;
                 break;
