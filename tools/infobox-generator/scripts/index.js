@@ -26,17 +26,7 @@ nameInput.addEventListener('keyup', (event) => {
 });
 
 nameSubmitButton.addEventListener('click', () => {
-    if (!itemsData) {
-        new Toast({ message: 'The item list has not yet loaded. Please wait or try refreshing the page!', type: 'disallow', time: 2000 }).show();
-    } else {
-        for (const item of itemsData) {
-            if (nameInput.value.toLowerCase() === item.name.toLowerCase()) {
-                idInput.value = '';
-                return createInfobox(item);
-            }
-        }
-        new Toast({ message: 'The item you entered does not exist!', type: 'disallow', time: 2000 }).show();
-    }
+    triggerCreation('name', nameInput.value);
 });
 
 nameClearButton.addEventListener('click', () => {
@@ -55,17 +45,7 @@ idInput.addEventListener('keyup', (event) => {
 });
 
 idSubmitButton.addEventListener('click', () => {
-    if (!itemsData) {
-        new Toast({ message: 'The item list has not yet loaded. Please wait or try refreshing the page!', type: 'disallow', time: 2000 }).show();
-    } else {
-        for (const item of itemsData) {
-            if (idInput.value.toLowerCase().replaceAll(' ', '_') === item.id.toLowerCase()) {
-                nameInput.value = '';
-                return createInfobox(item);
-            }
-        }
-        new Toast({ message: 'The item you entered does not exist!', type: 'disallow', time: 2000 }).show();
-    }
+    triggerCreation('id', idInput.value);
 });
 
 idClearButton.addEventListener('click', () => {
@@ -90,6 +70,66 @@ copyInfoboxButton.addEventListener('click', () => {
 copyEssenceTableButton.addEventListener('click', () => {
     copyText('essence-table');
 });
+
+/**
+ * Handles the creation input
+ * @param {'name'|'id'} inputType the type of input
+ * @param {string} inputValue the value of the input
+ * @returns {void}
+ */
+function triggerCreation(inputType, inputValue) {
+    if (!itemsData) {
+        new Toast({ message: 'The item list has not yet loaded. Please wait or try refreshing the page!', type: 'disallow', time: 2000 }).show();
+    } else {
+        const input = inputValue.toLowerCase();
+        for (const item of itemsData) {
+            if (input === item[inputType].toLowerCase()) return createInfobox(item);
+        }
+        // To do: add support for armor sets
+        if (input.substring(input.length-5) === 'armor') {
+            if (inputType === 'id' && input.substring(input.length-6) === '_armor') {
+                const armor = input.substring(0, input.length-6);
+                let armor_set = {};
+                let exists = false;
+                for (const item of itemsData) {
+                    if (item.id.toLowerCase().match(`^${armor}_(?:helmet|chestplate|leggings|boots)$`)) {
+                        exists = true;
+                        if (item.id.toLowerCase().match(`^${armor}_helmet$`)) armor_set = Object.assign(armor_set, {helmet: item});
+                        else if (item.id.toLowerCase().match(`^${armor}_chestplate$`)) armor_set = Object.assign(armor_set, {chest: item});
+                        else if (item.id.toLowerCase().match(`^${armor}_leggings$`)) armor_set = Object.assign(armor_set, {legs: item});
+                        else armor_set = Object.assign(armor_set, {boots: item});
+                    }
+                }
+                let sorted_armor = {}
+                if (armor_set.helmet) sorted_armor = Object.assign(sorted_armor, {helmet: armor_set.helmet});
+                if (armor_set.chest) sorted_armor = Object.assign(sorted_armor, {chest: armor_set.chest});
+                if (armor_set.legs) sorted_armor = Object.assign(sorted_armor, {legs: armor_set.legs});
+                if (armor_set.boots) sorted_armor = Object.assign(sorted_armor, {boots: armor_set.boots});
+                if (exists) return createArmorInfobox(sorted_armor);
+            } else if (inputType === 'name' && input.substring(input.length-6) === ' armor') {
+                const armor = input.substring(0, input.length-6);
+                let armor_set = {};
+                let exists = false;
+                for (const item of itemsData) {
+                    if (item.name.toLowerCase().match(`^${armor} (?:helmet|chestplate|leggings|boots)$`)) {
+                        exists = true;
+                        if (item.name.toLowerCase().match(`^${armor} helmet$`)) armor_set = Object.assign(armor_set, {helmet: item});
+                        else if (item.name.toLowerCase().match(`^${armor} chestplate$`)) armor_set = Object.assign(armor_set, {chest: item});
+                        else if (item.name.toLowerCase().match(`^${armor} leggings$`)) armor_set = Object.assign(armor_set, {legs: item});
+                        else armor_set = Object.assign(armor_set, {boots: item});
+                    }
+                }
+                let sorted_armor = {}
+                if (armor_set.helmet) sorted_armor = Object.assign(sorted_armor, {helmet: armor_set.helmet});
+                if (armor_set.chest) sorted_armor = Object.assign(sorted_armor, {chest: armor_set.chest});
+                if (armor_set.legs) sorted_armor = Object.assign(sorted_armor, {legs: armor_set.legs});
+                if (armor_set.boots) sorted_armor = Object.assign(sorted_armor, {boots: armor_set.boots});
+                if (exists) return createArmorInfobox(sorted_armor);
+            }
+        }
+        new Toast({ message: 'The item you entered does not exist!', type: 'disallow', time: 2000 }).show();
+    }
+}
 
 /**
  * Copies an element's innerHTML to the clipboard
@@ -133,7 +173,23 @@ function romanize(num) {
     return Array(+digits.join('') + 1).join('M') + roman;
 }
 
+function compare(a, b) {
+    if ('essence_type' in a) return -1;
+    else if ('essence_type' in b) return 1;
+    else return 0;
+}
+
+function allAreEqual(array) {
+    const result = array.every(element => {
+        if (element === array[0]) {
+            return true;
+        }
+    });
+    return result;
+}
+
 const categories = { SWORD: 'weapon', WAND: 'weapon', BOW: 'weapon', LONGSWORD: 'weapon', DEPLOYABLE: 'item', COSMETIC: 'item', TRAVEL_SCROLL: 'item', ACCESSORY: 'accessory', HELMET: 'armor', CHESTPLATE: 'armor', LEGGINGS: 'armor', BOOTS: 'boots', PET_ITEM: 'item', ARROW_POISON: 'item', GAUNTLET: 'item', BELT: 'item', BRACELET: 'item', CLOAK: 'item', GLOVES: 'item', NECKLACE: 'item', DUNGEON_PASS: 'item', REFORGE_STONE: 'reforge stone', BAIT: 'item', AXE: 'item', HOE: 'item', SPADE: 'item', SHEARS: 'item', PICKAXE: 'item', FISHING_ROD: 'fishing rod' };
+const replace = {CRITICAL_CHANCE: 'crit_chance', CRITICAL_DAMAGE: 'crit_damage', WALK_SPEED: 'speed'};
 
 /**
  * Creates the infobox for the item
@@ -149,23 +205,57 @@ function createInfobox(itemData) {
 
     if (includeExtra) {
         infobox += [
-            `|title = ${itemData.name}`, //
+            `|title = ${itemData.name}`,
             `|image = ${itemData.name}.png`,
             `|slot_item = ${itemData.name}\n`,
         ].join('\n');
     }
 
-    if (itemData.tier) infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
+    let starredItem = false;
+    if (itemData.id.match('STARRED_')) {
+        for (const item of itemsData) {
+            if (item.id.match(`^${itemData.id.replace('STARRED_', '')}$`)) {
+                starredItem = itemData;
+                itemData = item;
+                break;
+            }
+        }   
+    } else {
+        for (const item of itemsData) {
+            if (item.id.match(`^STARRED_${itemData.id}$`)) {
+                starredItem = item;
+                break;
+            }
+        }
+    }
+    
+    if (itemData.tier) {
+        if (!starredItem) infobox += `|rarity = ${itemData.tier.toLowerCase().replace('_',' ')}\n`;
+        else {
+            if (starredItem.tier != itemData.tier) infobox += `|rarity = {{r|${itemData.tier.toLowerCase()}}} ({{r|${starredItem.tier.toLowerCase()}}} with frags)\n`;
+            else infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
+        }
+    } else {
+        itemData.tier = "COMMON";
+        infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
+    }
 
-    infobox += '|id = ' + itemData.id + '\n';
+    infobox += `|id = ${itemData.id}`;
+    if (starredItem) infobox += `<br>${starredItem.id}`;
+    infobox += '\n';
     const percentages = { attack_speed: true, critical_chance: true, critical_damage: true, sea_creature_chance: true }; // eslint-disable-line camelcase
 
     if (itemData.stats) {
         const statKeys = Object.keys(itemData.stats);
         for (const key of statKeys) {
             if (key === 'WEAPON_ABILITY_DAMAGE') continue;
-            else if (key === 'WALK_SPEED') infobox += `|speed = ${itemData.stats[key]}\n`;
-            else infobox += `|${key.toLowerCase()} = ${itemData.stats[key]}${percentages[key.toLowerCase()] ? '%' : ''}\n`;
+            else infobox += `|${replace[key] || key.toLowerCase()} = ${itemData.stats[key]}${percentages[key.toLowerCase()] ? '%' : ''}`;
+            if (starredItem) {
+                if (starredItem.stats[key] && starredItem.stats[key] != itemData.stats[key]) {
+                    infobox += ` (${starredItem.stats[key]} with frags)`;
+                }
+            }
+            infobox += '\n';
         }
     }
 
@@ -181,8 +271,7 @@ function createInfobox(itemData) {
             else stat = max.toString() + '-' + min.toString();
 
             if (key === 'WEAPON_ABILITY_DAMAGE') continue;
-            else if (key === 'WALK_SPEED') infobox += '|speed = ' + stat + '\n';
-            else infobox += `|${key.toLowerCase()} = ${stat}${percentages[key.toLowerCase()] ? '%' : ''}\n`;
+            else infobox += `|${replace[key] || key.toLowerCase()} = ${stat}${percentages[key.toLowerCase()] ? '%' : ''}\n`;
         }
     }
 
@@ -205,7 +294,29 @@ function createInfobox(itemData) {
             }
             infobox += '\n';
         }
+        
+        if (starredItem && starredItem.gemstone_slots != itemData.gemstone_slots) {
+        infobox += '|gemstone_slots_fragged = \n';
+
+            for (const gemstone of starredItem.gemstone_slots) {
+                infobox += '*1 ' + toTitleCase(gemstone.slot_type);
+                if (gemstone.costs) {
+                    infobox += ' &';
+
+                    infobox += gemstone.costs
+                        .map((cost) => {
+                            if ('coins' in cost) return cost.coins.toString();
+                            else return cost.amount.toString() + ' ' + toTitleCase(cost.item_id.toLowerCase().replace('_gem', '').replace('_', ' '));
+                        })
+                        .join(', ');
+
+                    infobox += '&';
+                }
+                infobox += '\n';
+            }
+        }
     }
+
     if (itemData.requirements || itemData.catacombs_requirements) {
         const requirements = { ...itemData.requirements, ...itemData.catacombs_requirements };
 
@@ -311,10 +422,11 @@ function createEssenceTable(itemData) {
     if ('dungeon_item_conversion_cost' in itemData) essenceTable += `|convert = ${itemData.dungeon_item_conversion_cost.amount} Essence\n`;
 
     for (const costs of itemData.upgrade_costs) {
-        costs.reverse();
+        let costs_copy = costs.map((x) => x);
+        costs_copy.sort(compare);
         essenceTable += '|';
 
-        for (const tierCost of costs) {
+        for (const tierCost of costs_copy) {
             essenceTable += tierCost.amount.toString() + ' ';
             if ('essence_type' in tierCost) essenceTable += 'Essence';
             else if ('item_id' in tierCost) {
@@ -328,7 +440,7 @@ function createEssenceTable(itemData) {
                 essenceTable += itemName;
             }
 
-            if (tierCost === costs[costs.length - 1]) essenceTable += '\n';
+            if (tierCost === costs_copy[costs_copy.length - 1]) essenceTable += '\n';
             else essenceTable += '; ';
         }
     }
@@ -353,6 +465,455 @@ function createEssenceTable(itemData) {
 
             if (cost === itemData.prestige.costs[itemData.prestige.costs.length - 1]) essenceTable += '\n';
             else essenceTable += '; ';
+        }
+    }
+
+    essenceTable += '}}';
+
+    copyEssenceTableButton.disabled = false;
+    essenceTableElement.parentElement.classList.remove('unselectable');
+    essenceTableElement.value = essenceTable;
+    essenceTableElement.style.height = essenceTableElement.scrollHeight + 3 + 'px';
+}
+
+function createArmorInfobox(armor) {
+    console.log(armor);
+    let infobox = '{{Infobox armor\n';
+    
+    for (const piece in armor) {
+        if (armor[piece].id.match('STARRED_')) {
+            for (const item of itemsData) {
+                if (item.id.match(`^${armor[piece].id.replace('STARRED_', '')}$`)) {
+                    const starred = armor[piece];
+                    armor[piece] = item;
+                    armor[piece].starredItem = starred;
+                    break;
+                }
+            }   
+        } else {
+            for (const item of itemsData) {
+                if (item.id.match(`^STARRED_${armor[piece].id}$`)) {
+                    armor[piece].starredItem = item;
+                    break;
+                }
+            }
+        }
+    }
+    
+    const itemData = armor[Object.keys(armor)[0]];
+    let armorFullNames = {helmet: 'Helmet', chest: 'Chestplate', legs: 'Leggings', boots: 'Boots'};
+    const setName = armor[Object.keys(armor)[0]].name.replace(new RegExp(` ${armorFullNames[Object.keys(armor)[0]]}$`), ' Armor');
+    if (includeExtra) {
+        infobox += [
+            `|title = ${setName}`,
+            `|image = ${setName}.png\n`,
+        ].join('\n');
+        for (const piece in armor) {
+            infobox += `|slot_${piece} = ${armor[piece].name}\n`;
+        }
+    }
+    
+    for (const piece in armor) {
+        infobox += `|${piece}_id = ${armor[piece].id}`;
+        if (armor[piece].starredItem) infobox += `<br>${armor[piece].starredItem.id}`;
+        infobox += '\n';
+    }
+    
+    let rarities = [];
+    for (const piece in armor) {
+        if (!armor[piece].tier) armor[piece].tier = "COMMON";
+        rarities.push(armor[piece].tier);
+    }
+    if (allAreEqual(rarities)) {
+        if (!itemData.starredItem) infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
+        else {
+            if (itemData.starredItem.tier != itemData.tier) infobox += `|rarity = {{r|${itemData.tier.toLowerCase()}}} ({{r|${itemData.starredItem.tier.toLowerCase()}}} with frags)\n`;
+            else infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
+        }
+    }
+    else infobox += '|rarity = Various\n';
+    
+    const percentages = { attack_speed: true, critical_chance: true, critical_damage: true, sea_creature_chance: true }; // eslint-disable-line camelcase
+    let totalStats = {};
+    for (const piece in armor) {
+        const pieceData = armor[piece];
+        
+        if (pieceData.stats) {
+            const statKeys = Object.keys(pieceData.stats);
+            for (const key of statKeys) {
+                if (key === 'WEAPON_ABILITY_DAMAGE') continue;
+                else infobox += `|${piece}_${replace[key] || key.toLowerCase()} = ${pieceData.stats[key]}${percentages[key.toLowerCase()] ? '%' : ''}`;
+                
+                if (!totalStats[key]) totalStats[key] = {min: 0, max: 0};
+                totalStats[key].min += pieceData.stats[key];
+                totalStats[key].max += pieceData.stats[key];
+                if (pieceData.starredItem) {
+                    if (!totalStats[key].starred) totalStats[key].starred = 0;
+                    totalStats[key].starred += pieceData.starredItem.stats[key];
+                    if (pieceData.starredItem.stats[key] != pieceData.stats[key]) infobox += ` (${pieceData.starredItem.stats[key]} with frags)`;
+                }
+                
+                infobox += '\n';
+            }
+        }
+        
+        if (pieceData.tiered_stats) {
+            const statKeys = Object.keys(pieceData.tiered_stats);
+            for (const key of statKeys) {
+                const min = pieceData.tiered_stats[key][0];
+                const max = pieceData.tiered_stats[key][pieceData.tiered_stats[key].length - 1];
+
+                let stat;
+                if (min === max) stat = min.toString();
+                else if (min < max) stat = min.toString() + '-' + max.toString();
+                else stat = max.toString() + '-' + min.toString();
+
+                if (key === 'WEAPON_ABILITY_DAMAGE') continue;
+                else infobox += `|${piece}_${replace[key] || key.toLowerCase()} = ${stat}${percentages[key.toLowerCase()] ? '%' : ''}\n`;
+                
+                if (!totalStats[key]) totalStats[key] = {min: 0, max: 0};
+                totalStats[key].min += min;
+                totalStats[key].max += max;
+            }
+        } 
+    }
+    
+    for (const key in totalStats) {
+        const min = totalStats[key].min;
+        const max = totalStats[key].max;
+
+        let stat;
+        if (min === max) stat = min.toString();
+        else if (min < max) stat = min.toString() + '-' + max.toString();
+        else stat = max.toString() + '-' + min.toString();
+
+        if (key === 'WEAPON_ABILITY_DAMAGE') continue;
+        else infobox += `|${replace[key] || key.toLowerCase()} = ${stat}${percentages[key.toLowerCase()] ? '%' : ''}`;
+                
+        if (totalStats[key].starred) {
+            if (totalStats[key].starred != min) infobox += ` (${totalStats[key].starred} with frags)`;
+        }
+        infobox += '\n';
+    }
+    
+    let gemsSame = true;
+    let starredGemsSame = true;
+    let gemsArray = [];
+    let starredGemsArray = []
+    for (const piece in armor) {
+        if (armor[piece].gemstone_slots) gemsArray.push(armor[piece].gemstone_slots);
+        else gemsSame = false;
+        if (armor[piece].starredItem && armor[piece].starredItem.gemstone_slots) starredGemsArray.push(armor[piece].starredItem.gemstone_slots);
+        else starredGemsSame = false;
+    }
+    
+    if (gemsArray[0] && gemsSame) {
+        for (let i; i < gemsArray.length; i++) {
+            if (gemsArray[i] != gemsArray[0]) {
+                gemsSame = false;
+                break;
+            }
+        }
+        
+        if (starredGemsArray[0] && starredGemsSame) {
+            for (let i; i < starredGemsArray.length; i++) {
+                if (starredGemsArray[i] != starredGemsArray[0]) {
+                    starredGemsSame = false;
+                    break;
+                }
+            }
+        }
+    }
+    
+    if (gemsSame) {
+        infobox += '|gemstone_slots = \n';
+
+        for (const gemstone of itemData.gemstone_slots) {
+            infobox += '*1 ' + toTitleCase(gemstone.slot_type);
+            if (gemstone.costs) {
+                infobox += ' &';
+
+                infobox += gemstone.costs
+                    .map((cost) => {
+                        if ('coins' in cost) return cost.coins.toString();
+                        else return cost.amount.toString() + ' ' + toTitleCase(cost.item_id.toLowerCase().replace('_gem', '').replace('_', ' '));
+                    })
+                    .join(', ');
+
+                infobox += '&';
+            }
+            infobox += '\n';
+        }
+        
+        if (itemData.starredItem && itemData.starredItem.gemstone_slots != itemData.gemstone_slots && starredGemsSame) {
+        infobox += '|gemstone_slots_fragged = \n';
+
+            for (const gemstone of itemData.starredItem.gemstone_slots) {
+                infobox += '*1 ' + toTitleCase(gemstone.slot_type);
+                if (gemstone.costs) {
+                    infobox += ' &';
+
+                    infobox += gemstone.costs
+                        .map((cost) => {
+                            if ('coins' in cost) return cost.coins.toString();
+                            else return cost.amount.toString() + ' ' + toTitleCase(cost.item_id.toLowerCase().replace('_gem', '').replace('_', ' '));
+                        })
+                        .join(', ');
+
+                    infobox += '&';
+                }
+                infobox += '\n';
+            }
+        }
+    }
+    
+    if (itemData.requirements || itemData.catacombs_requirements) {
+        const requirements = { ...itemData.requirements, ...itemData.catacombs_requirements };
+
+        if ('skill' in requirements) {
+            const skillLvl = requirements.skill;
+            if (skillLvl.type.toLowerCase() === 'combat') {
+                infobox += '|combat_level_requirement = {{Skl|combat|' + skillLvl.level + '}}\n';
+            } else {
+                infobox += '|other_level_requirement = {{Skl|' + skillLvl.type.toLowerCase() + '|' + skillLvl.level + '}}\n';
+            }
+        }
+
+        if ('slayer' in requirements) {
+            const slayerLvl = requirements.slayer;
+            infobox += '|slayer_level_requirement = ' + toTitleCase(slayerLvl.slayer_boss_type) + ' Slayer ' + slayerLvl.level.toString() + '\n';
+        }
+
+        if ('dungeon' in requirements) {
+            const dungeonLvl = requirements.dungeon;
+            infobox += '|dungeon_level_requirement = {{Skl|' + dungeonLvl.type.toLowerCase() + '|' + dungeonLvl.level + '}}';
+            if (itemData.dungeon_item_conversion_cost) {
+                infobox += ' (when dungeonized)';
+            }
+            infobox += '\n';
+        }
+
+        if ('dungeon_completion' in requirements) {
+            const dungeonComp = requirements.dungeon_completion;
+            infobox += '|dungeon_floor_clearing_requirement = ' + toTitleCase(dungeonComp.type.replace('_', ' ')) + ' Floor ' + romanize(dungeonComp.tier);
+            if (itemData.dungeon_item_conversion_cost) {
+                infobox += ' (when dungeonized)';
+            }
+            infobox += '\n';
+        }
+    }
+    
+    infobox += '|enchant = yes\n|reforge = yes\n';
+   
+    if (itemData.soulbound) infobox += '|auctionable = no\n';
+    else infobox += '|auctionable = unknown\n';
+    
+    if (itemData.soulbound) {
+        if (itemData.soulbound.toLowerCase() === 'coop') {
+            infobox += '|tradeable = {{No|text=y}}\n(Except to Co-op members)\n|soulbound = Co-op\n';
+        } else {
+            infobox += '|tradeable = no\n|soulbound = Player\n';
+        }
+    } else {
+        infobox += '|tradeable = unknown\n';
+    }
+    
+    let sellPrice = 0;
+    for (const piece in armor) {
+        if (armor[piece].npc_sell_price) {
+            sellPrice += armor[piece].npc_sell_price;
+        }
+    }
+    
+    if (sellPrice != 0) {
+        infobox += '|salable = yes\n';
+        infobox += `|sell = ${sellPrice}\n`;
+    } else {
+        infobox += '|salable = no\n';
+    }
+    
+    let colors = [];
+    for (const piece in armor) {
+        if ('color' in armor[piece]) {
+            const hex = armor[piece].color
+                .split(',')
+                .map((color) => (Number(color).toString(16).length === 1 ? '0' : '') + Number(color).toString(16))
+                .join('');
+
+            colors.push(hex);
+        } else {
+            colors.push(' ');
+        }
+    }
+    if (colors.length > 0 && !(colors[0] === ' ' && allAreEqual(colors))) {
+        const colorsWithout = colors.filter(function(x) {
+            return x !== ' ';
+        });
+        if (allAreEqual(colors)) {
+            infobox += `|color = ${colors[0]}\n|all_colors_the_same = true\n`;
+        } else if (allAreEqual(colorsWithout)) {
+            infobox += `|color = ${colorsWithout[0]}\n|all_colors_the_same = true\n`;
+        } else {
+            infobox += `|color = ${colors.join(',').replace(' ','')}\n`;
+        }
+    }
+    
+    infobox += '}}';
+    
+    copyInfoboxButton.disabled = false;
+    infoboxElement.parentElement.classList.remove('unselectable');
+    infoboxElement.value = infobox;
+    infoboxElement.style.height = infoboxElement.scrollHeight + 3 + 'px';
+    
+    if (itemData.upgrade_costs) createArmorEssenceTable(armor);
+    else essenceTableElement.value = '';
+}
+
+function createArmorEssenceTable(armor) {
+    let essenceTable = '{{Essence Crafting\n|type = armor\n';
+    
+    let allPiecesSameStats = true;
+    const itemData = armor[Object.keys(armor)[0]];
+    for (const piece in armor) {
+        if (armor[piece].upgrade_costs) {
+            if (JSON.stringify(itemData.upgrade_costs) != JSON.stringify(armor[piece].upgrade_costs)) {
+                allPiecesSameStats = false;
+                break;
+            }
+        }
+        if (armor[piece].dungeon_item_conversion_cost) {
+            if (JSON.stringify(itemData.dungeon_item_conversion_cost) != JSON.stringify(armor[piece].dungeon_item_conversion_cost)) {
+                allPiecesSameStats = false;
+                break;
+            }
+        }
+        if (armor[piece].prestige) {
+            if (JSON.stringify(itemData.prestige.costs) != JSON.stringify(armor[piece].prestige.costs)) {
+                allPiecesSameStats = false;
+                break;
+            }
+        }
+    }
+
+    if (allPiecesSameStats) {
+        for (const cost of itemData.upgrade_costs[0]) {
+            if ('essence_type' in cost) {
+                essenceTable += `|essence = ${toTitleCase(cost.essence_type)}\n`;
+                break;
+            } else if (cost === itemData.upgrade_costs[itemData.upgrade_costs.length - 1]) essenceTable += '|essence = none\n';
+        }
+
+        if ('dungeon_item_conversion_cost' in itemData) essenceTable += `|convert = ${itemData.dungeon_item_conversion_cost.amount} Essence\n`;
+
+        for (const costs of itemData.upgrade_costs) {
+            let costs_copy = costs.map((x) => x);
+            costs_copy.sort(compare);
+            essenceTable += '|';
+
+            for (const tierCost of costs_copy) {
+                essenceTable += tierCost.amount.toString() + ' ';
+                if ('essence_type' in tierCost) essenceTable += 'Essence';
+                else if ('item_id' in tierCost) {
+                    let itemName;
+                    for (const item of itemsData) {
+                        if (tierCost.item_id === item.id) {
+                            itemName = item.name;
+                            break;
+                        }
+                    }
+                    essenceTable += itemName;
+                }
+
+                if (tierCost === costs_copy[costs_copy.length - 1]) essenceTable += '\n';
+                else essenceTable += '; ';
+            }
+        }
+
+        if ('prestige' in itemData) {
+            essenceTable += '|prestige = ';
+
+            for (const cost of itemData.prestige.costs) {
+                essenceTable += cost.amount + ' ';
+
+                if ('essence_type' in cost) essenceTable += 'Essence';
+                else if ('item_id' in cost) {
+                    let itemName;
+                    for (const item of itemsData) {
+                        if (cost.item_id === item.id) {
+                            itemName = item.name;
+                            break;
+                        }
+                    }
+                    essenceTable += itemName;
+                }
+
+                if (cost === itemData.prestige.costs[itemData.prestige.costs.length - 1]) essenceTable += '\n';
+                else essenceTable += '; ';
+            }
+        }
+    } else {
+        for (const piece in armor) {
+            const itemData = armor[piece];
+            const prefix = piece[0];
+            console.log(prefix);
+
+            if ('dungeon_item_conversion_cost' in itemData) essenceTable += `|${prefix}_convert = ${itemData.dungeon_item_conversion_cost.amount} Essence\n`;
+            
+            let i = 0;
+            for (const costs of itemData.upgrade_costs) {
+                let costs_copy = costs.map((x) => x);
+                costs_copy.sort(compare);
+                essenceTable += `|${prefix}${i}=`;
+
+                for (const tierCost of costs_copy) {
+                    essenceTable += tierCost.amount.toString() + ' ';
+                    if ('essence_type' in tierCost) essenceTable += 'Essence';
+                    else if ('item_id' in tierCost) {
+                        let itemName;
+                        for (const item of itemsData) {
+                            if (tierCost.item_id === item.id) {
+                                itemName = item.name;
+                                break;
+                            }
+                        }
+                        essenceTable += itemName;
+                    }
+
+                    if (tierCost === costs_copy[costs_copy.length - 1]) essenceTable += '\n';
+                    else essenceTable += '; ';
+                }
+                i++;
+            }
+
+            if ('prestige' in itemData) {
+                essenceTable += `|${prefix}_prestige = `;
+
+                for (const cost of itemData.prestige.costs) {
+                    essenceTable += cost.amount + ' ';
+
+                    if ('essence_type' in cost) essenceTable += 'Essence';
+                    else if ('item_id' in cost) {
+                        let itemName;
+                        for (const item of itemsData) {
+                            if (cost.item_id === item.id) {
+                                itemName = item.name;
+                                break;
+                            }
+                        }
+                        essenceTable += itemName;
+                    }
+                }
+
+                if (cost === itemData.prestige.costs[itemData.prestige.costs.length - 1]) essenceTable += '\n';
+                else essenceTable += '; ';
+            }
+        }
+        
+        for (const cost of armor[Object.keys(armor)[0]].upgrade_costs[0]) {
+            if ('essence_type' in cost) {
+                essenceTable += `|essence = ${toTitleCase(cost.essence_type)}\n`;
+                break;
+            } else if (cost === itemData.upgrade_costs[itemData.upgrade_costs.length - 1]) essenceTable += '|essence = none\n';
         }
     }
 
