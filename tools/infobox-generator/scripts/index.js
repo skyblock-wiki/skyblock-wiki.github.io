@@ -4,6 +4,7 @@ const itemsData = (await (await fetch('https://api.hypixel.net/resources/skybloc
 const bazaarData = (await (await fetch('https://api.hypixel.net/skyblock/bazaar')).json()).products;
 
 let includeExtra = false;
+let topQualityStats = false;
 
 const nameInput = document.getElementById('name');
 const nameSubmitButton = document.getElementById('name-submit');
@@ -14,6 +15,7 @@ const idSubmitButton = document.getElementById('id-submit');
 const idClearButton = document.getElementById('id-clear');
 
 const includeExtraCheckbox = document.getElementById('include-extra');
+const tqsCheckbox = document.getElementById('top-quality-stats');
 
 const infoboxElement = document.getElementById('infobox');
 const copyInfoboxButton = document.getElementById('copy-infobox');
@@ -63,6 +65,10 @@ includeExtraCheckbox.addEventListener('input', () => {
     includeExtra = includeExtraCheckbox.checked;
 });
 
+tqsCheckbox.addEventListener('input', () => {
+    topQualityStats = tqsCheckbox.checked;
+});
+
 copyInfoboxButton.addEventListener('click', () => {
     copyText('infobox');
 });
@@ -90,6 +96,7 @@ function triggerCreation(inputType, inputValue) {
                 const armor = input.substring(0, input.length - 6);
                 const armorSet = {};
                 let exists = false;
+                //To do: Add a list of all known matches, such as robes, oxfords, and more.
                 for (const item of itemsData) {
                     if (item.id.toLowerCase().match(`^${armor}_(?:helmet|chestplate|leggings|boots)$`)) {
                         exists = true;
@@ -109,6 +116,7 @@ function triggerCreation(inputType, inputValue) {
                 const armor = input.substring(0, input.length - 6);
                 const armorSet = {};
                 let exists = false;
+                //To do: Add a list of all known matches, such as robes, oxfords, and more.
                 for (const item of itemsData) {
                     if (item.name.toLowerCase().match(`^${armor} (?:helmet|hat|cap|chestplate|tunic|shirt|leggings|pants|boots|shoes|sandals)$`)) {
                         exists = true;
@@ -503,6 +511,7 @@ function createArmorInfobox(armorData) {
     }
 
     const itemData = armorData[Object.keys(armorData)[0]];
+    //To do: Add a list of all known matches, such as robes, oxfords, and more.
     const setName = armorData[Object.keys(armorData)[0]].name.replace(/ (?:Helmet|Hat|Cap|Chestplate|Tunic|Shirt|Leggings|Pants|Boots|Shoes|Sandals)$/, ' Armor');
     if (includeExtra) {
         infobox += [`|title = ${setName}`, `|image = ${setName}.png\n`].join('\n');
@@ -897,3 +906,5 @@ function createArmorEssenceTable(armorData) {
     essenceTableElement.value = essenceTable;
     essenceTableElement.style.height = essenceTableElement.scrollHeight + 3 + 'px';
 }
+
+//To do: Add a Top Quality Stats Template maker for armors with tiered stats.
