@@ -4,7 +4,6 @@ const itemsData = (await (await fetch('https://api.hypixel.net/resources/skybloc
 const bazaarData = (await (await fetch('https://api.hypixel.net/skyblock/bazaar')).json()).products;
 
 let includeExtra = false;
-let topQualityStats = false;
 
 const nameInput = document.getElementById('name');
 const nameSubmitButton = document.getElementById('name-submit');
@@ -15,7 +14,6 @@ const idSubmitButton = document.getElementById('id-submit');
 const idClearButton = document.getElementById('id-clear');
 
 const includeExtraCheckbox = document.getElementById('include-extra');
-const tqsCheckbox = document.getElementById('top-quality-stats');
 
 const infoboxElement = document.getElementById('infobox');
 const copyInfoboxButton = document.getElementById('copy-infobox');
@@ -63,10 +61,6 @@ idClearButton.addEventListener('click', () => {
 
 includeExtraCheckbox.addEventListener('input', () => {
     includeExtra = includeExtraCheckbox.checked;
-});
-
-tqsCheckbox.addEventListener('input', () => {
-    topQualityStats = tqsCheckbox.checked;
 });
 
 copyInfoboxButton.addEventListener('click', () => {
@@ -906,5 +900,3 @@ function createArmorEssenceTable(armorData) {
     essenceTableElement.value = essenceTable;
     essenceTableElement.style.height = essenceTableElement.scrollHeight + 3 + 'px';
 }
-
-//To do: Add a Top Quality Stats Template maker for armors with tiered stats.
