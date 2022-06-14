@@ -477,7 +477,6 @@ function createEssenceTable(itemData) {
 }
 
 function createArmorInfobox(armor) {
-    console.log(armor);
     let infobox = '{{Infobox armor\n';
     
     for (const piece in armor) {
@@ -855,7 +854,6 @@ function createArmorEssenceTable(armor) {
         for (const piece in armor) {
             const itemData = armor[piece];
             const prefix = piece[0];
-            console.log(prefix);
 
             if ('dungeon_item_conversion_cost' in itemData) essenceTable += `|${prefix}_convert = ${itemData.dungeon_item_conversion_cost.amount} Essence\n`;
             
