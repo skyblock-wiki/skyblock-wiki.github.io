@@ -11,7 +11,7 @@ const allElements = tools.map((tool) =>
         '<div class="links">',
         `<a class="link" href="${tool.link}"${tool.link.match(/^https?:\/\//) ? ' target=_blank' : ''}>Open</a>`,
         '</div>',
-        '</li>',
+        '</li>'
     ].join('')
 );
 

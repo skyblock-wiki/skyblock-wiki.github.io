@@ -16,13 +16,13 @@ export const allCanvas = {
     h: helmCanvas,
     c: chestCanvas,
     l: legsCanvas,
-    b: bootsCanvas,
+    b: bootsCanvas
 };
 export const allContexts = {
     h: helmCanvas.getContext('2d'),
     c: chestCanvas.getContext('2d'),
     l: legsCanvas.getContext('2d'),
-    b: bootsCanvas.getContext('2d'),
+    b: bootsCanvas.getContext('2d')
 };
 
 let color, suggestions, updateCooldown;
@@ -83,7 +83,7 @@ const images = {
     helmetOverlay: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAANElEQVQ4jWNgGN7ARFH0v4mi6H+yNRd56P0v8tAjz5CBNwBmCNma2VmY/yPjIWjAKCAeAAC9XiYhM+Id/gAAAABJRU5ErkJggg==',
     chestplateOverlay: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAEklEQVQ4jWNgGAWjYBSMAggAAAQQAAF/TXiOAAAAAElFTkSuQmCC',
     leggingsOverlay: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAOUlEQVQ4jWNgGAXDEZgoiv43URT9T6w4hqKpcdb/izz0/iuK8v4nJI7VgCIPPawGYBOnvhdGAXkAAA+nJbnHlRzjAAAAAElFTkSuQmCC',
-    bootsOverlay: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAASElEQVQ4jWNgGAWjgJrARFH0PzJbUZQXhY8uj6F5apz1f5jCIg89DAOKPPRwysMVwDCKJBQoivLiVgNzMgzj8iayGnzqhhgAAAgFNfwN37/qAAAAAElFTkSuQmCC',
+    bootsOverlay: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAASElEQVQ4jWNgGAWjgJrARFH0PzJbUZQXhY8uj6F5apz1f5jCIg89DAOKPPRwysMVwDCKJBQoivLiVgNzMgzj8iayGnzqhhgAAAgFNfwN37/qAAAAAElFTkSuQmCC'
 };
 
 const importsList = document.querySelector('.imports-list');
@@ -295,6 +295,6 @@ assets
         ['helmet_overlay', images.helmetOverlay],
         ['chestplate_overlay', images.chestplateOverlay],
         ['leggings_overlay', images.leggingsOverlay],
-        ['boots_overlay', images.bootsOverlay],
+        ['boots_overlay', images.bootsOverlay]
     ])
     .then(_allLoadingFinished);
