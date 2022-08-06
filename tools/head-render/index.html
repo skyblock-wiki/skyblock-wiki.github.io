@@ -69,7 +69,7 @@
             <aside>
                 <section>
                     <canvas id="canvas" width="64" height="64"></canvas>
-                    <canvas id="spriteCanvas" width="64" height="64"></canvas>
+                    <canvas id="sprite-canvas" width="64" height="64"></canvas>
                     <canvas id="render"></canvas>
                     <div class="head-box">
                         <table class="nbt-info">
@@ -77,7 +77,7 @@
                                 <tr>
                                     <th>Texture ID</th>
                                     <td class="unselectable">
-                                        <input type="text" id="textureID" readonly />
+                                        <input type="text" id="texture-id" readonly />
                                         <div>
                                             <button id="copy-id" class="copy" disabled>Copy</button>
                                             <button id="open-id" class="link" disabled>Open as link</button>
@@ -87,7 +87,7 @@
                                 <tr>
                                     <th>Texture Template</th>
                                     <td class="unselectable">
-                                        <input type="text" id="textureTemplate" readonly />
+                                        <input type="text" id="texture-template" readonly />
                                         <div>
                                             <button id="copy-template" class="copy" disabled>Copy</button>
                                             <button id="open-template" class="link soft-hidden" disabled>Open as link</button>
@@ -102,8 +102,8 @@
                         <div id="warning"></div>
                     </div>
                     <img id="loading" src="https://vignette.wikia.nocookie.net/dev/images/4/42/Loading.gif" style="display: none" />
-                    <a id="drawnLink" class="hidden"><img id="drawn" /></a>
-                    <a id="spriteLink" class="hidden"><img id="sprite" /></a>
+                    <a id="drawn-link" class="hidden"><img id="drawn" /></a>
+                    <a id="sprite-link" class="hidden"><img id="sprite" /></a>
                 </section>
             </aside>
         </div>
