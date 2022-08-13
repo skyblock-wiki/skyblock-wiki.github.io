@@ -17,7 +17,7 @@ export const tools = [
         link: './tools/infobox-generator/index.html',
         thumbnail: 'infobox-generator',
         name: 'Infobox Generator',
-        version: 'v1.1',
+        version: 'v1.2',
         description: "Creates basic infoboxes and essence crafting tables from an item's API data.",
     },
     {
