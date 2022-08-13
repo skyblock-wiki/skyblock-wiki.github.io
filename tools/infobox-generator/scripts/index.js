@@ -120,7 +120,7 @@ function triggerCreation(inputType, inputValue) {
                     if (item.name.toLowerCase().match(`^${armor} (helmet|hat|cap|fedora|hood|chestplate|tunic|shirt|polo|jacket|robes|leggings|pants|trousers|boots|shoes|sandals|slippers|galoshes|oxfords|shoes)$`)) {
                         console.log(item.name);
                         exists = true;
-                        if (item.name.toLowerCase().match(`^${armor} ${helmet_matches}$`)) armorSet.helmet = item;
+                        if (item.name.toLowerCase().match(new RegExp(`^${armor} ${helmet_matches}$`))) armorSet.helmet = item;
                         else if (item.name.toLowerCase().match(`^${armor} ${chestplate_matches}$`)) armorSet.chest = item;
                         else if (item.name.toLowerCase().match(`^${armor} ${leggings_matches}$`)) armorSet.legs = item;
                         else armorSet.boots = item;
