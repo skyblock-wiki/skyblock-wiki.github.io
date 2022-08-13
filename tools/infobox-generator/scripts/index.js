@@ -124,6 +124,7 @@ function triggerCreation(inputType, inputValue) {
                         else if (item.name.toLowerCase().match(`^${armor} ${chestplate_matches}$`)) armorSet.chest = item;
                         else if (item.name.toLowerCase().match(`^${armor} ${leggings_matches}$`)) armorSet.legs = item;
                         else armorSet.boots = item;
+                        console.log(armorSet);
                     }
                 }
                 const sortedArmor = {};
