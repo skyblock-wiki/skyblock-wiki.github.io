@@ -88,11 +88,13 @@ function triggerCreation(inputType, inputValue) {
         if (input.substring(input.length - 5) === 'armor') {
             if (inputType === 'id' && input.substring(input.length - 6) === '_armor') {
                 const armor = input.substring(0, input.length - 6);
+                console.log(armor);
                 const armorSet = {};
                 let exists = false;
                 //To do: Add a list of all known matches, such as robes, oxfords, and more.
                 for (const item of itemsData) {
                     if (item.id.toLowerCase().match(`^${armor}_(?:helmet|chestplate|leggings|boots)$`)) {
+                        console.log(item.id);
                         exists = true;
                         if (item.id.toLowerCase().match(`^${armor}_helmet$`)) armorSet.helmet = item;
                         else if (item.id.toLowerCase().match(`^${armor}_chestplate$`)) armorSet.chestplate = item;
@@ -105,6 +107,7 @@ function triggerCreation(inputType, inputValue) {
                 if (armorSet.chest) sortedArmor.chest = armorSet.chest;
                 if (armorSet.legs) sortedArmor.legs = armorSet.legs;
                 if (armorSet.boots) sortedArmor.boots = armorSet.boots;
+                console.log(sortedArmor);
                 if (exists) return createArmorInfobox(sortedArmor);
             } else if (inputType === 'name' && input.substring(input.length - 6) === ' armor') {
                 const armor = input.substring(0, input.length - 6);
