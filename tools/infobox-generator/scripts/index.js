@@ -25,6 +25,7 @@ const helmet_matches = /(helmet|hat|cap|fedora|hood)/;
 const chestplate_matches = /(chestplate|tunic|shirt|polo|jacket|robes)/;
 const leggings_matches = /(leggings|pants|trousers)/;
 const boots_matches = /(boots|shoes|sandals|slippers|galoshes|oxfords|shoes)/;
+const all_matches = new RegExp(`(${helmet_matches.source})|(${chestplate_matches.source})|(${leggings_matches.source})|(${boot_matches.source})`);
 
 nameInput.addEventListener('keyup', (event) => {
     if (event.key === 'Enter') nameSubmitButton.click();
@@ -116,7 +117,7 @@ function triggerCreation(inputType, inputValue) {
                 let exists = false;
                 //To do: Add a list of all known matches, such as robes, oxfords, and more.
                 for (const item of itemsData) {
-                    if (item.name.toLowerCase().match(`^${armor} (${helmet_matches}|${chestplate_matches}|${leggings_matches}|${boots_matches})$`)) {
+                    if (item.name.toLowerCase().match(`^${armor} ${all_matches}$`)) {
                         exists = true;
                         if (item.name.toLowerCase().match(`^${armor} ${helmet_matches}$`)) armorSet.helmet = item;
                         else if (item.name.toLowerCase().match(`^${armor} ${chestplate_matches}$`)) armorSet.chest = item;
