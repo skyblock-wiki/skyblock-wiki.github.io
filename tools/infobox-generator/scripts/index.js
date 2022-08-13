@@ -21,6 +21,18 @@ const copyInfoboxButton = document.getElementById('copy-infobox');
 const essenceTableElement = document.getElementById('essence-table');
 const copyEssenceTableButton = document.getElementById('copy-essence-table');
 
+/*
+Regex matches for all different item names. If someone is willing to try and has knowledge of regex, the 4 armor pieces should be made into variables,
+and the all matches should be the combination of all of those variables. Additionally, the variables would need to be implemented in the name (not id)
+section of the armor section in the triggerCreation function, and at the definition of the setname variable in the createArmorInfobox function.
+
+helmet matches = /(helmet|hat|cap|fedora|hood)/;
+chestplate matches = /(chestplate|tunic|shirt|polo|jacket|robes)/;
+leggings matches = /(leggings|pants|trousers)/;
+boots matches = /(boots|shoes|sandals|slippers|galoshes|oxfords|shoes)/;
+all matches = /(helmet|hat|cap|fedora|hood|chestplate|tunic|shirt|polo|jacket|robes|leggings|pants|trousers|boots|shoes|sandals|slippers|galoshes|oxfords|shoes)/;
+*/
+
 nameInput.addEventListener('keyup', (event) => {
     if (event.key === 'Enter') nameSubmitButton.click();
 });
@@ -91,11 +103,11 @@ function triggerCreation(inputType, inputValue) {
                 const armorSet = {};
                 let exists = false;
                 for (const item of itemsData) {
-                    if (item.id.toLowerCase().match(`^${armor}_(?:helmet|chestplate|leggings|boots)$`)) {
+                    if (item.id.toLowerCase().match(`^${armor}_(helmet|chestplate|leggings|boots)$`)) {
                         exists = true;
                         if (item.id.toLowerCase().match(`^${armor}_helmet$`)) armorSet.helmet = item;
-                        else if (item.id.toLowerCase().match(`^${armor}_chestplate$`)) armorSet.chestplate = item;
-                        else if (item.id.toLowerCase().match(`^${armor}_leggings$`)) armorSet.leggings = item;
+                        else if (item.id.toLowerCase().match(`^${armor}_chestplate$`)) armorSet.chest = item;
+                        else if (item.id.toLowerCase().match(`^${armor}_leggings$`)) armorSet.legs = item;
                         else armorSet.boots = item;
                     }
                 }
@@ -110,11 +122,11 @@ function triggerCreation(inputType, inputValue) {
                 const armorSet = {};
                 let exists = false;
                 for (const item of itemsData) {
-                    if (item.name.toLowerCase().match(`^${armor} (?:helmet|hat|cap|chestplate|tunic|shirt|leggings|pants|boots|shoes|sandals)$`)) {
+                    if (item.name.toLowerCase().match(`^${armor} (helmet|hat|cap|fedora|hood|chestplate|tunic|shirt|polo|jacket|robes|leggings|pants|trousers|boots|shoes|sandals|slippers|galoshes|oxfords|shoes)$`)) {
                         exists = true;
-                        if (item.name.toLowerCase().match(`^${armor} (helmet|hat|cap)$`)) armorSet.helmet = item;
-                        else if (item.name.toLowerCase().match(`^${armor} (chestplate|tunic|shirt)$`)) armorSet.chest = item;
-                        else if (item.name.toLowerCase().match(`^${armor} (leggings|pants)$`)) armorSet.legs = item;
+                        if (item.name.toLowerCase().match(`^${armor} (helmet|hat|cap|fedora|hood)$`)) armorSet.helmet = item;
+                        else if (item.name.toLowerCase().match(`^${armor} (chestplate|tunic|shirt|polo|jacket|robes)$`)) armorSet.chest = item;
+                        else if (item.name.toLowerCase().match(`^${armor} (leggings|pants|trousers)$`)) armorSet.legs = item;
                         else armorSet.boots = item;
                     }
                 }
@@ -503,7 +515,7 @@ function createArmorInfobox(armorData) {
     }
 
     const itemData = armorData[Object.keys(armorData)[0]];
-    const setName = armorData[Object.keys(armorData)[0]].name.replace(/ (?:Helmet|Hat|Cap|Chestplate|Tunic|Shirt|Leggings|Pants|Boots|Shoes|Sandals)$/, ' Armor');
+    const setName = armorData[Object.keys(armorData)[0]].name.replace(/ (Helmet|Hat|Cap|Fedora|Hood|Chestplate|Tunic|Shirt|Polo|Jacket|Robes|Leggings|Pants|Trousers|Boots|Shoes|Sandals|Slippers|Galoshes|Oxfords|Shoes)$/, ' Armor');
     if (includeExtra) {
         infobox += [`|title = ${setName}`, `|image = ${setName}.png\n`].join('\n');
         for (const piece in armorData) {
