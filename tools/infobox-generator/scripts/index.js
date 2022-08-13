@@ -25,7 +25,7 @@ const helmet_matches = /(helmet|hat|cap|fedora|hood)/;
 const chestplate_matches = /(chestplate|tunic|shirt|polo|jacket|robes)/;
 const leggings_matches = /(leggings|pants|trousers)/;
 const boots_matches = /(boots|shoes|sandals|slippers|galoshes|oxfords|shoes)/;
-const all_matches = new RegExp(`(${helmet_matches.source})|(${chestplate_matches.source})|(${leggings_matches.source})|(${boot_matches.source})`);
+const all_matches = new RegExp(`(${helmet_matches.source})|(${chestplate_matches.source})|(${leggings_matches.source})|(${boots_matches.source})`);
 
 nameInput.addEventListener('keyup', (event) => {
     if (event.key === 'Enter') nameSubmitButton.click();
