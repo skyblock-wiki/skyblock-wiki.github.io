@@ -21,11 +21,17 @@ const copyInfoboxButton = document.getElementById('copy-infobox');
 const essenceTableElement = document.getElementById('essence-table');
 const copyEssenceTableButton = document.getElementById('copy-essence-table');
 
-const helmet_matches = /(helmet|hat|cap|fedora|hood)/;
-const chestplate_matches = /(chestplate|tunic|shirt|polo|jacket|robes)/;
-const leggings_matches = /(leggings|pants|trousers)/;
-const boots_matches = /(boots|shoes|sandals|slippers|galoshes|oxfords|shoes)/;
-const all_matches = /(helmet|hat|cap|fedora|hood|chestplate|tunic|shirt|polo|jacket|robes|leggings|pants|trousers|boots|shoes|sandals|slippers|galoshes|oxfords|shoes)/;
+/*
+Regex matches for all different item names. If someone is willing to try and has knowledge of regex, the 4 armor pieces should be made into variables,
+and the all matches should be the combination of all of those variables. Additionally, the variables would need to be implemented in the name (not id)
+section of the armor section in the triggerCreation function, and at the definition of the setname variable in the createArmorInfobox function.
+
+helmet matches = /(helmet|hat|cap|fedora|hood)/;
+chestplate matches = /(chestplate|tunic|shirt|polo|jacket|robes)/;
+leggings matches = /(leggings|pants|trousers)/;
+boots matches = /(boots|shoes|sandals|slippers|galoshes|oxfords|shoes)/;
+all matches = /(helmet|hat|cap|fedora|hood|chestplate|tunic|shirt|polo|jacket|robes|leggings|pants|trousers|boots|shoes|sandals|slippers|galoshes|oxfords|shoes)/;
+*/
 
 nameInput.addEventListener('keyup', (event) => {
     if (event.key === 'Enter') nameSubmitButton.click();
@@ -115,7 +121,6 @@ function triggerCreation(inputType, inputValue) {
                 const armor = input.substring(0, input.length - 6);
                 const armorSet = {};
                 let exists = false;
-                //To do: Add a list of all known matches, such as robes, oxfords, and more.
                 for (const item of itemsData) {
                     if (item.name.toLowerCase().match(`^${armor} (helmet|hat|cap|fedora|hood|chestplate|tunic|shirt|polo|jacket|robes|leggings|pants|trousers|boots|shoes|sandals|slippers|galoshes|oxfords|shoes)$`)) {
                         exists = true;
@@ -510,8 +515,7 @@ function createArmorInfobox(armorData) {
     }
 
     const itemData = armorData[Object.keys(armorData)[0]];
-    //To do: Add a list of all known matches, such as robes, oxfords, and more.
-    const setName = armorData[Object.keys(armorData)[0]].name.replace(/ (?:Helmet|Hat|Cap|Chestplate|Tunic|Shirt|Leggings|Pants|Boots|Shoes|Sandals)$/, ' Armor');
+    const setName = armorData[Object.keys(armorData)[0]].name.replace(/ (Helmet|Hat|Cap|Fedora|Hood|Chestplate|Tunic|Shirt|Polo|Jacket|Robes|Leggings|Pants|Trousers|Boots|Shoes|Sandals|Slippers|Galoshes|Oxfords|Shoes)$/, ' Armor');
     if (includeExtra) {
         infobox += [`|title = ${setName}`, `|image = ${setName}.png\n`].join('\n');
         for (const piece in armorData) {
