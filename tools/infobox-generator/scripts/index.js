@@ -97,8 +97,8 @@ function triggerCreation(inputType, inputValue) {
                         console.log(item.id);
                         exists = true;
                         if (item.id.toLowerCase().match(`^${armor}_helmet$`)) armorSet.helmet = item;
-                        else if (item.id.toLowerCase().match(`^${armor}_chestplate$`)) armorSet.chestplate = item;
-                        else if (item.id.toLowerCase().match(`^${armor}_leggings$`)) armorSet.leggings = item;
+                        else if (item.id.toLowerCase().match(`^${armor}_chestplate$`)) armorSet.chest = item;
+                        else if (item.id.toLowerCase().match(`^${armor}_leggings$`)) armorSet.legs = item;
                         else armorSet.boots = item;
                         console.log(armorSet);
                     }
