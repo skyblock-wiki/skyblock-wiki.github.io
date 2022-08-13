@@ -4,14 +4,14 @@ import { createImageThenRender } from './draw.js';
 export const context = document.getElementById('canvas').getContext('2d');
 context.canvas.width = 64;
 context.canvas.height = 16;
-export const spriteCanvas = document.getElementById('spriteCanvas').getContext('2d');
+export const spriteCanvas = document.getElementById('sprite-canvas').getContext('2d');
 spriteCanvas.canvas.width = 64;
 spriteCanvas.canvas.height = 64;
 
 export const img = document.getElementById('drawn');
-export const imgLink = document.getElementById('drawnLink');
+export const imgLink = document.getElementById('drawn-link');
 export const sprite = document.getElementById('sprite');
-export const spriteLink = document.getElementById('spriteLink');
+export const spriteLink = document.getElementById('sprite-link');
 
 const loading = document.getElementById('loading');
 
@@ -58,23 +58,23 @@ fileUpload.addEventListener('change', () => {
 const mainElem = {
     nbt: document.getElementById('nbt'),
     val: document.getElementById('val'),
-    tid: document.getElementById('tid'),
+    tid: document.getElementById('tid')
 };
 
 const subElem = {
     nbt: document.getElementById('nbt-submit'),
     val: document.getElementById('val-submit'),
-    tid: document.getElementById('tid-submit'),
+    tid: document.getElementById('tid-submit')
 };
 
 const errElem = {
     nbt: document.getElementById('nbt-error'),
     val: document.getElementById('val-error'),
-    tid: document.getElementById('tid-error'),
+    tid: document.getElementById('tid-error')
 };
 
-const textureID = document.getElementById('textureID');
-const textureTemplate = document.getElementById('textureTemplate');
+const textureID = document.getElementById('texture-id');
+const textureTemplate = document.getElementById('texture-template');
 
 ['paste', 'input'].forEach((type) => mainElem.nbt.addEventListener(type, onNbtChanged));
 subElem.nbt.addEventListener('click', onNbtChanged);
@@ -302,4 +302,14 @@ function parseNBT(nbt) {
 export function toggleImageLoader() {
     if (loading.style.display === 'none') loading.style.display = 'unset';
     else loading.style.display = 'none';
+}
+
+// auto generation through search param
+const params = new URLSearchParams(window.location.search);
+
+if (params.has('texture-id')) {
+    const textureId = params.get('texture-id');
+
+    if (!/^[a-f0-9]{59,64}$/i.test(textureId)) nbtError('Provided texture ID is invalid!', 'tid');
+    else handleTidChange(`https://textures.minecraft.net/texture/${textureId}`, 'tid');
 }

@@ -5,8 +5,8 @@ export const downloads = [
         thumbnail: 'wikitools',
         links: [
             { type: 'download', link: 'wikitools-2.6.5.jar', border: true },
-            { type: 'github', link: 'https://github.com/Charzard4261/wikitools' },
-        ],
+            { type: 'github', link: 'https://github.com/Charzard4261/wikitools' }
+        ]
     },
     {
         name: 'Mineshot Mod',
@@ -15,8 +15,8 @@ export const downloads = [
         largeThumbnail: true,
         links: [
             { type: 'download', link: 'Mineshot-v1.7-1.8.9.jar', border: true },
-            { type: 'github', link: 'https://github.com/ata4/mineshot' },
-        ],
+            { type: 'github', link: 'https://github.com/ata4/mineshot' }
+        ]
     },
     {
         name: 'World Downloader Mod',
@@ -24,8 +24,8 @@ export const downloads = [
         thumbnail: 'world-downloader',
         links: [
             { type: 'text', text: 'Choose Version', link: 'https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/minecraft-mods/2520465-world-downloader-mod-create-backups-of-your-builds#Downloads', border: true },
-            { type: 'github', link: 'https://github.com/Pokechu22/WorldDownloader/releases' },
-        ],
+            { type: 'github', link: 'https://github.com/Pokechu22/WorldDownloader/releases' }
+        ]
     },
     {
         name: 'Enchanted Item Toolkit (PS)',
@@ -33,8 +33,8 @@ export const downloads = [
         thumbnail: 'enchanted-items-ps',
         links: [
             { type: 'download', link: 'Enchantment_Glint_ps.zip', border: true },
-            { type: 'text', text: 'Get Photoshop', link: 'https://www.photoshop.com/en' },
-        ],
+            { type: 'text', text: 'Get Photoshop', link: 'https://www.photoshop.com/en' }
+        ]
     },
     {
         name: 'Enchanted Item Toolkit (GIMP)',
@@ -42,8 +42,8 @@ export const downloads = [
         thumbnail: 'enchanted-items-gimp',
         links: [
             { type: 'download', link: 'Enchantment_Glint_gimp.zip', border: true },
-            { type: 'text', text: 'Get GIMP', link: 'https://www.gimp.org' },
-        ],
+            { type: 'text', text: 'Get GIMP', link: 'https://www.gimp.org' }
+        ]
     },
     {
         name: 'BlockRenderer Mod',
@@ -52,7 +52,7 @@ export const downloads = [
         links: [
             { type: 'download', link: 'BlockRenderer-0.3.3.jar', border: true },
             { type: 'curseForge', link: 'https://www.curseforge.com/minecraft/mc-mods/blockrenderer' },
-            { type: 'github', link: 'https://github.com/unascribed/BlockRenderer' },
-        ],
-    },
+            { type: 'github', link: 'https://github.com/unascribed/BlockRenderer' }
+        ]
+    }
 ];

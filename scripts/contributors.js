@@ -31,6 +31,6 @@ function createContributor(name, list) {
         '</ul>',
         '</span>',
         '</div>',
-        '</li>',
+        '</li>'
     ].join('');
 }

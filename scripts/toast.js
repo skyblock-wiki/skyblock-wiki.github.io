@@ -3,7 +3,7 @@ const icons = {
     warn: 'exclamation-circle',
     error: 'exclamation-circle',
     disallow: 'times-circle',
-    info: 'info-circle',
+    info: 'info-circle'
 };
 
 /*

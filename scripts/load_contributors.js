@@ -6,19 +6,12 @@ import { Toast } from './toast.js';
  * Processes discord tooltips
  */
 function processToDiscordTooltips() {
-    document.querySelectorAll('.discord-tooltip').forEach((el) => {
-        el.style.left = `${el.offsetWidth / -2 + el.parentElement.offsetHeight / 2}px`;
-        el.style.bottom = `${el.parentElement.offsetWidth + 3}px`;
-
-        el.addEventListener('click', () => {
-            const toCopy = el.getAttribute('copy-value');
+    document.querySelectorAll('.discord-tooltip').forEach((element) => {
+        element.addEventListener('click', () => {
+            const toCopy = element.getAttribute('copy-value');
             if (toCopy) {
                 navigator.clipboard.writeText(toCopy);
-                new Toast({
-                    message: 'Copied!',
-                    type: 'success',
-                    time: 2000,
-                }).show();
+                new Toast({ message: 'Copied!', type: 'success', time: 2000 }).show();
             }
         });
     });
@@ -54,7 +47,7 @@ function makeDiscordElement(userTag) {
         '<small class="copy-text">click to copy</small>',
         '<small class="copy-popup">copied!</small>',
         '</div>',
-        '</button>',
+        '</button>'
     ].join('');
 }
 
@@ -81,7 +74,7 @@ contributors.forEach((contrib) => {
         '<div class="links">',
         links.join(''),
         '</div>',
-        '</li>',
+        '</li>'
     ].join('');
 
     allCOntributorElements.push(element);

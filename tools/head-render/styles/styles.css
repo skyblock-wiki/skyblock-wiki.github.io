@@ -184,8 +184,8 @@ aside #loading {
     margin: 3rem;
     width: 95px;
 }
-aside #drawnLink,
-aside #spriteLink {
+aside #drawn-link,
+aside #sprite-link {
     align-self: center;
 }
 aside img#drawn,
@@ -203,59 +203,6 @@ aside img#drawn {
 aside img#sprite {
     height: 150px;
     width: 150px;
-}
-.tooltip {
-    border-bottom: 1px dotted white;
-    color: white;
-    display: inline-block;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 200;
-    position: relative;
-}
-.tooltip .tooltip-text {
-    background-color: var(--col-bg3);
-    border: 1px solid var(--col-acc2);
-    border-radius: 6px;
-    bottom: -5px;
-    color: #fff;
-    max-width: 300px;
-    opacity: 0;
-    padding: 5px 5px 5px 25px;
-    position: absolute;
-    right: 110%;
-    text-align: left;
-    /* fade animation */
-    transition: all 0.2s ease;
-    visibility: hidden;
-    width: max-content;
-    z-index: 1;
-}
-.tooltip > span:nth-child(1) {
-    cursor: help;
-}
-.tooltip .tooltip-text::after {
-    border-color: transparent transparent transparent var(--col-acc2);
-    border-style: solid;
-    border-width: 5px;
-    bottom: 10px;
-    content: '';
-    left: 100%;
-    margin-top: -5px;
-    position: absolute;
-}
-.tooltip:hover .tooltip-text,
-.tooltip:active .tooltip-text {
-    opacity: 1;
-    visibility: visible;
-}
-.tooltip .tooltip-text ul {
-    list-style-type: disc;
-}
-.tooltip .tooltip-text li span {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.8rem;
-    left: -7px;
-    position: relative;
 }
 
 /*  

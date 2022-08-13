@@ -206,6 +206,7 @@ body.has-hover .contributors .discord:active > .discord-tooltip {
     height: max-content;
     padding: 0.2rem 0.4rem;
     position: absolute;
+    transform: translate(-40%, -125%);
     visibility: hidden;
     width: max-content;
 }
