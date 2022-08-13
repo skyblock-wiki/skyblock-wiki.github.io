@@ -117,7 +117,7 @@ function triggerCreation(inputType, inputValue) {
                 let exists = false;
                 //To do: Add a list of all known matches, such as robes, oxfords, and more.
                 for (const item of itemsData) {
-                    if (item.name.toLowerCase().match(`^${armor} ${all_matches}$`)) {
+                    if (item.name.toLowerCase().match(`^${armor} (helmet|hat|cap|fedora|hood|chestplate|tunic|shirt|polo|jacket|robes|leggings|pants|trousers|boots|shoes|sandals|slippers|galoshes|oxfords|shoes)$`)) {
                         console.log(item.name);
                         exists = true;
                         if (item.name.toLowerCase().match(`^${armor} ${helmet_matches}$`)) armorSet.helmet = item;
