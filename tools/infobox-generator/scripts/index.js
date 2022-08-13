@@ -21,7 +21,7 @@ const copyInfoboxButton = document.getElementById('copy-infobox');
 const essenceTableElement = document.getElementById('essence-table');
 const copyEssenceTableButton = document.getElementById('copy-essence-table');
 
-const helmet_matches = new RegExp('(helmet|hat|cap|fedora|hood)');
+const helmet_matches = /(helmet|hat|cap|fedora|hood)/;
 const chestplate_matches = /(chestplate|tunic|shirt|polo|jacket|robes)/;
 const leggings_matches = /(leggings|pants|trousers)/;
 const boots_matches = /(boots|shoes|sandals|slippers|galoshes|oxfords|shoes)/;
@@ -118,13 +118,11 @@ function triggerCreation(inputType, inputValue) {
                 //To do: Add a list of all known matches, such as robes, oxfords, and more.
                 for (const item of itemsData) {
                     if (item.name.toLowerCase().match(`^${armor} (helmet|hat|cap|fedora|hood|chestplate|tunic|shirt|polo|jacket|robes|leggings|pants|trousers|boots|shoes|sandals|slippers|galoshes|oxfords|shoes)$`)) {
-                        console.log(item.name);
                         exists = true;
-                        if (item.name.toLowerCase().match(new RegExp(`^${armor} ${helmet_matches}$`))) armorSet.helmet = item;
-                        else if (item.name.toLowerCase().match(`^${armor} ${chestplate_matches}$`)) armorSet.chest = item;
-                        else if (item.name.toLowerCase().match(`^${armor} ${leggings_matches}$`)) armorSet.legs = item;
+                        if (item.name.toLowerCase().match(`^${armor} (helmet|hat|cap|fedora|hood)$`)) armorSet.helmet = item;
+                        else if (item.name.toLowerCase().match(`^${armor} (chestplate|tunic|shirt|polo|jacket|robes)$`)) armorSet.chest = item;
+                        else if (item.name.toLowerCase().match(`^${armor} (leggings|pants|trousers)$`)) armorSet.legs = item;
                         else armorSet.boots = item;
-                        console.log(armorSet);
                     }
                 }
                 const sortedArmor = {};
