@@ -96,7 +96,7 @@ function triggerCreation(inputType, inputValue) {
                 const armorSet = {};
                 let exists = false;
                 for (const item of itemsData) {
-                    if (item.id.toLowerCase().match(`^${armor}_(?:helmet|chestplate|leggings|boots)$`)) {
+                    if (item.id.toLowerCase().match(`^${armor}_(helmet|chestplate|leggings|boots)$`)) {
                         exists = true;
                         if (item.id.toLowerCase().match(`^${armor}_helmet$`)) armorSet.helmet = item;
                         else if (item.id.toLowerCase().match(`^${armor}_chestplate$`)) armorSet.chest = item;
@@ -116,7 +116,7 @@ function triggerCreation(inputType, inputValue) {
                 let exists = false;
                 //To do: Add a list of all known matches, such as robes, oxfords, and more.
                 for (const item of itemsData) {
-                    if (item.name.toLowerCase().match(`^${armor} (?:helmet|hat|cap|chestplate|tunic|shirt|leggings|pants|boots|shoes|sandals)$`)) {
+                    if (item.name.toLowerCase().match(`^${armor} (helmet|hat|cap|chestplate|tunic|shirt|leggings|pants|boots|shoes|sandals)$`)) {
                         exists = true;
                         if (item.name.toLowerCase().match(`^${armor} (helmet|hat|cap)$`)) armorSet.helmet = item;
                         else if (item.name.toLowerCase().match(`^${armor} (chestplate|tunic|shirt)$`)) armorSet.chest = item;
