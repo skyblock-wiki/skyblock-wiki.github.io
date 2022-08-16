@@ -844,7 +844,7 @@ function createArmorEssenceTable(armorData) {
 
             if ('dungeon_item_conversion_cost' in itemData) essenceTable += `|${prefix}_convert = ${itemData.dungeon_item_conversion_cost.amount} Essence\n`;
 
-            let i = 0;
+            let i = 1;
             for (const costs of itemData.upgrade_costs) {
                 const costsCopy = costs;
                 costsCopy.sort(compare);
