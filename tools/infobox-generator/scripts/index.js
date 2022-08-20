@@ -366,7 +366,7 @@ function createInfobox(itemData) {
         
         if (requirementTypes.includes('collection')) {
             const collectionRequirement = requirements.find(element => element.type.toLowerCase() === 'collection');
-            infobox += '|collection = ' + toTitleCase(collectionRequirement.collection.replace(/_/g,' ')) + romanize(collectionRequirement.tier);
+            infobox += '|collection = ' + toTitleCase(collectionRequirement.collection.replace(/_/g,' ')) + ' ' + romanize(collectionRequirement.tier);
             infobox += '\n';
         }
     }
@@ -716,7 +716,7 @@ function createArmorInfobox(armorData) {
         
         if (requirementTypes.includes('collection')) {
             const collectionRequirement = requirements.find(element => element.type.toLowerCase() === 'collection');
-            infobox += '|collection = ' + toTitleCase(collectionRequirement.collection.replace(/_/g,' ')) + romanize(collectionRequirement.tier);
+            infobox += '|collection = ' + toTitleCase(collectionRequirement.collection.replace(/_/g,' ')) + ' ' + romanize(collectionRequirement.tier);
             infobox += '\n';
         }
     }
