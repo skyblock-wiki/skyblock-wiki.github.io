@@ -363,6 +363,12 @@ function createInfobox(itemData) {
             }
             infobox += '\n';
         }
+        
+        if (requirementTypes.includes('collection')) {
+            const collectionRequirement = requirements.find(element => element.type.toLowerCase() === 'collection');
+            infobox += '|collection = ' + toTitleCase(collectionRequirement.collection.replace(/_/g,' ')) + romanize(collectionRequirement.tier);
+            infobox += '\n';
+        }
     }
 
     if (itemData.category !== 'REFORGE_STONE' && itemData.category !== 'ACCESSORY') infobox += '|enchant = unknown\n|reforge = unknown\n';
@@ -705,6 +711,12 @@ function createArmorInfobox(armorData) {
             if (itemData.dungeon_item_conversion_cost) {
                 infobox += ' (when dungeonized)';
             }
+            infobox += '\n';
+        }
+        
+        if (requirementTypes.includes('collection')) {
+            const collectionRequirement = requirements.find(element => element.type.toLowerCase() === 'collection');
+            infobox += '|collection = ' + toTitleCase(collectionRequirement.collection.replace(/_/g,' ')) + romanize(collectionRequirement.tier);
             infobox += '\n';
         }
     }
