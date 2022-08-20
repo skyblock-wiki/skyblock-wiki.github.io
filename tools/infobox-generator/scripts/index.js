@@ -329,34 +329,35 @@ function createInfobox(itemData) {
     }
 
     if (itemData.requirements || itemData.catacombs_requirements) {
-        const requirements = { ...itemData.requirements, ...itemData.catacombs_requirements };
-
-        if ('skill' in requirements) {
-            const skillLvl = requirements.skill;
-            if (skillLvl.type.toLowerCase() === 'combat') {
-                infobox += '|combat_level_requirement = {{Skl|combat|' + skillLvl.level + '}}\n';
+        const requirements = [ ...itemData.requirements || [], ...itemData.catacombs_requirements || []];
+        const requirementTypes = requirements.map((requirement) => requirement.type.toLowerCase());
+        
+        if (requirementTypes.includes('skill')) {
+            const skillRequirement = requirements.find(element => element.type.toLowerCase() === 'skill');
+            if (skillRequirement.skill.toLowerCase() === 'combat') {
+                infobox += '|combat_level_requirement = {{Skl|combat|' + skillRequirement.level + '}}\n';
             } else {
-                infobox += '|other_level_requirement = {{Skl|' + skillLvl.type.toLowerCase() + '|' + skillLvl.level + '}}\n';
+                infobox += '|other_level_requirement = {{Skl|' + skillRequirement.skill.toLowerCase() + '|' + skillRequirement.level + '}}\n';
             }
         }
 
-        if ('slayer' in requirements) {
-            const slayerLvl = requirements.slayer;
-            infobox += '|slayer_level_requirement = ' + toTitleCase(slayerLvl.slayer_boss_type) + ' Slayer ' + slayerLvl.level.toString() + '\n';
+        if (requirementTypes.includes('slayer')) {
+            const slayerRequirement = requirements.find(element => element.type.toLowerCase() === 'slayer');
+            infobox += '|slayer_level_requirement = ' + toTitleCase(slayerRequirement.slayer_boss_type) + ' Slayer ' + slayerRequirement.level + '\n';
         }
 
-        if ('dungeon' in requirements) {
-            const dungeonLvl = requirements.dungeon;
-            infobox += '|dungeon_level_requirement = {{Skl|' + dungeonLvl.type.toLowerCase() + '|' + dungeonLvl.level + '}}';
+        if (requirementTypes.includes('dungeon_skill')) {
+            const dungeonRequirement = requirements.find(element => element.type.toLowerCase() === 'dungeon_skill');
+            infobox += '|dungeon_level_requirement = {{Skl|' + dungeonRequirement.dungeon_type.toLowerCase() + '|' + dungeonRequirement.level + '}}';
             if (itemData.dungeon_item_conversion_cost) {
                 infobox += ' (when dungeonized)';
             }
             infobox += '\n';
         }
 
-        if ('dungeon_completion' in requirements) {
-            const dungeonComp = requirements.dungeon_completion;
-            infobox += '|dungeon_floor_clearing_requirement = ' + toTitleCase(dungeonComp.type.replace('_', ' ')) + ' Floor ' + romanize(dungeonComp.tier);
+        if (requirementTypes.includes('dungeon_tier')) {
+            const dungeonComp = requirements.find(element => element.type.toLowerCase() === 'dungeon_tier');
+            infobox += '|dungeon_floor_clearing_requirement = ' + toTitleCase(dungeonComp.dungeon_type) + ' Floor ' + romanize(dungeonComp.tier);
             if (itemData.dungeon_item_conversion_cost) {
                 infobox += ' (when dungeonized)';
             }
@@ -672,32 +673,38 @@ function createArmorInfobox(armorData) {
     }
 
     if (itemData.requirements || itemData.catacombs_requirements) {
-        const requirements = { ...itemData.requirements, ...itemData.catacombs_requirements };
-
-        if ('skill' in requirements) {
-            const skillLvl = requirements.skill;
-            if (skillLvl.type.toLowerCase() === 'combat') infobox += '|combat_level_requirement = {{Skl|combat|' + skillLvl.level + '}}\n';
-            else infobox += '|other_level_requirement = {{Skl|' + skillLvl.type.toLowerCase() + '|' + skillLvl.level + '}}\n';
+        const requirements = [ ...itemData.requirements || [], ...itemData.catacombs_requirements || []];
+        const requirementTypes = requirements.map((requirement) => requirement.type.toLowerCase());
+        
+        if (requirementTypes.includes('skill')) {
+            const skillRequirement = requirements.find(element => element.type.toLowerCase() === 'skill');
+            if (skillRequirement.skill.toLowerCase() === 'combat') {
+                infobox += '|combat_level_requirement = {{Skl|combat|' + skillRequirement.level + '}}\n';
+            } else {
+                infobox += '|other_level_requirement = {{Skl|' + skillRequirement.skill.toLowerCase() + '|' + skillRequirement.level + '}}\n';
+            }
         }
 
-        if ('slayer' in requirements) {
-            const slayerLvl = requirements.slayer;
-            infobox += '|slayer_level_requirement = ' + toTitleCase(slayerLvl.slayer_boss_type) + ' Slayer ' + slayerLvl.level.toString() + '\n';
+        if (requirementTypes.includes('slayer')) {
+            const slayerRequirement = requirements.find(element => element.type.toLowerCase() === 'slayer');
+            infobox += '|slayer_level_requirement = ' + toTitleCase(slayerRequirement.slayer_boss_type) + ' Slayer ' + slayerRequirement.level + '\n';
         }
 
-        if ('dungeon' in requirements) {
-            const dungeonLvl = requirements.dungeon;
-            infobox += '|dungeon_level_requirement = {{Skl|' + dungeonLvl.type.toLowerCase() + '|' + dungeonLvl.level + '}}';
-            if (itemData.dungeon_item_conversion_cost) infobox += ' (when dungeonized)';
-
+        if (requirementTypes.includes('dungeon_skill')) {
+            const dungeonRequirement = requirements.find(element => element.type.toLowerCase() === 'dungeon_skill');
+            infobox += '|dungeon_level_requirement = {{Skl|' + dungeonRequirement.dungeon_type.toLowerCase() + '|' + dungeonRequirement.level + '}}';
+            if (itemData.dungeon_item_conversion_cost) {
+                infobox += ' (when dungeonized)';
+            }
             infobox += '\n';
         }
 
-        if ('dungeon_completion' in requirements) {
-            const dungeonComp = requirements.dungeon_completion;
-            infobox += '|dungeon_floor_clearing_requirement = ' + toTitleCase(dungeonComp.type.replace('_', ' ')) + ' Floor ' + romanize(dungeonComp.tier);
-            if (itemData.dungeon_item_conversion_cost) infobox += ' (when dungeonized)';
-
+        if (requirementTypes.includes('dungeon_tier')) {
+            const dungeonComp = requirements.find(element => element.type.toLowerCase() === 'dungeon_tier');
+            infobox += '|dungeon_floor_clearing_requirement = ' + toTitleCase(dungeonComp.dungeon_type) + ' Floor ' + romanize(dungeonComp.tier);
+            if (itemData.dungeon_item_conversion_cost) {
+                infobox += ' (when dungeonized)';
+            }
             infobox += '\n';
         }
     }
