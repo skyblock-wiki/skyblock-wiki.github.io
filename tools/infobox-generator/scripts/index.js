@@ -369,6 +369,13 @@ function createInfobox(itemData) {
             infobox += '|collection = ' + toTitleCase(collectionRequirement.collection.replace(/_/g,' ')) + ' ' + romanize(collectionRequirement.tier);
             infobox += '\n';
         }
+        
+        if (requirementTypes.includes('heart_of_the_mountain')) {
+            const hotmRequirement = requirements.find(element => element.type.toLowerCase() === 'heart_of_the_mountain');
+            //Possibly change to use the hotm_requirement parameter.
+            infobox += '|collection = Heart of the Mountain ' + romanize(hotmRequirement.tier);
+            infobox += '\n';
+        }
     }
 
     if (itemData.category !== 'REFORGE_STONE' && itemData.category !== 'ACCESSORY') infobox += '|enchant = unknown\n|reforge = unknown\n';
@@ -717,6 +724,13 @@ function createArmorInfobox(armorData) {
         if (requirementTypes.includes('collection')) {
             const collectionRequirement = requirements.find(element => element.type.toLowerCase() === 'collection');
             infobox += '|collection = ' + toTitleCase(collectionRequirement.collection.replace(/_/g,' ')) + ' ' + romanize(collectionRequirement.tier);
+            infobox += '\n';
+        }
+        
+        if (requirementTypes.includes('heart_of_the_mountain')) {
+            const hotmRequirement = requirements.find(element => element.type.toLowerCase() === 'heart_of_the_mountain');
+            //Possibly change to use the hotm_requirement parameter.
+            infobox += '|collection = Heart of the Mountain ' + romanize(hotmRequirement.tier);
             infobox += '\n';
         }
     }
