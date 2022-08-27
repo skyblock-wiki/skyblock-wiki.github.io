@@ -26,11 +26,11 @@ Regex matches for all different item names. If someone is willing to try and has
 and the all matches should be the combination of all of those variables. Additionally, the variables would need to be implemented in the name (not id)
 section of the armor section in the triggerCreation function, and at the definition of the setname variable in the createArmorInfobox function.
 
-helmet matches = /(helmet|hat|cap|fedora|hood)/;
+helmet matches = /(helmet|hat|cap|fedora|hood|crown)/;
 chestplate matches = /(chestplate|tunic|shirt|polo|jacket|robes)/;
 leggings matches = /(leggings|pants|trousers)/;
 boots matches = /(boots|shoes|sandals|slippers|galoshes|oxfords|shoes)/;
-all matches = /(helmet|hat|cap|fedora|hood|chestplate|tunic|shirt|polo|jacket|robes|leggings|pants|trousers|boots|shoes|sandals|slippers|galoshes|oxfords|shoes)/;
+all matches = /(helmet|hat|cap|fedora|hood|crown|chestplate|tunic|shirt|polo|jacket|robes|leggings|pants|trousers|boots|shoes|sandals|slippers|galoshes|oxfords|shoes)/;
 */
 
 nameInput.addEventListener('keyup', (event) => {
@@ -122,9 +122,9 @@ function triggerCreation(inputType, inputValue) {
                 const armorSet = {};
                 let exists = false;
                 for (const item of itemsData) {
-                    if (item.name.toLowerCase().match(`^${armor} (helmet|hat|cap|fedora|hood|chestplate|tunic|shirt|polo|jacket|robes|leggings|pants|trousers|boots|shoes|sandals|slippers|galoshes|oxfords|shoes)$`)) {
+                    if (item.name.toLowerCase().match(`^${armor} (helmet|hat|cap|fedora|hood|crown|chestplate|tunic|shirt|polo|jacket|robes|leggings|pants|trousers|boots|shoes|sandals|slippers|galoshes|oxfords|shoes)$`)) {
                         exists = true;
-                        if (item.name.toLowerCase().match(`^${armor} (helmet|hat|cap|fedora|hood)$`)) armorSet.helmet = item;
+                        if (item.name.toLowerCase().match(`^${armor} (helmet|hat|cap|fedora|hood|crown)$`)) armorSet.helmet = item;
                         else if (item.name.toLowerCase().match(`^${armor} (chestplate|tunic|shirt|polo|jacket|robes)$`)) armorSet.chest = item;
                         else if (item.name.toLowerCase().match(`^${armor} (leggings|pants|trousers)$`)) armorSet.legs = item;
                         else armorSet.boots = item;
@@ -529,7 +529,7 @@ function createArmorInfobox(armorData) {
     }
 
     const itemData = armorData[Object.keys(armorData)[0]];
-    const setName = armorData[Object.keys(armorData)[0]].name.replace(/ (Helmet|Hat|Cap|Fedora|Hood|Chestplate|Tunic|Shirt|Polo|Jacket|Robes|Leggings|Pants|Trousers|Boots|Shoes|Sandals|Slippers|Galoshes|Oxfords|Shoes)$/, ' Armor');
+    const setName = armorData[Object.keys(armorData)[0]].name.replace(/ (Helmet|Hat|Cap|Fedora|Hood|Crown|Chestplate|Tunic|Shirt|Polo|Jacket|Robes|Leggings|Pants|Trousers|Boots|Shoes|Sandals|Slippers|Galoshes|Oxfords|Shoes)$/, ' Armor');
     if (includeExtra) {
         infobox += [`|title = ${setName}`, `|image = ${setName}.png\n`].join('\n');
         for (const piece in armorData) {
