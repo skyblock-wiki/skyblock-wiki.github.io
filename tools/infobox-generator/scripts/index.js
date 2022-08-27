@@ -329,11 +329,11 @@ function createInfobox(itemData) {
     }
 
     if (itemData.requirements || itemData.catacombs_requirements) {
-        const requirements = [ ...itemData.requirements || [], ...itemData.catacombs_requirements || []];
+        const requirements = [...(itemData.requirements || []), ...(itemData.catacombs_requirements || [])];
         const requirementTypes = requirements.map((requirement) => requirement.type.toLowerCase());
-        
+
         if (requirementTypes.includes('skill')) {
-            const skillRequirement = requirements.find(element => element.type.toLowerCase() === 'skill');
+            const skillRequirement = requirements.find((element) => element.type.toLowerCase() === 'skill');
             if (skillRequirement.skill.toLowerCase() === 'combat') {
                 infobox += '|combat_level_requirement = {{Skl|combat|' + skillRequirement.level + '}}\n';
             } else {
@@ -342,12 +342,12 @@ function createInfobox(itemData) {
         }
 
         if (requirementTypes.includes('slayer')) {
-            const slayerRequirement = requirements.find(element => element.type.toLowerCase() === 'slayer');
+            const slayerRequirement = requirements.find((element) => element.type.toLowerCase() === 'slayer');
             infobox += '|slayer_level_requirement = ' + toTitleCase(slayerRequirement.slayer_boss_type) + ' Slayer ' + slayerRequirement.level + '\n';
         }
 
         if (requirementTypes.includes('dungeon_skill')) {
-            const dungeonRequirement = requirements.find(element => element.type.toLowerCase() === 'dungeon_skill');
+            const dungeonRequirement = requirements.find((element) => element.type.toLowerCase() === 'dungeon_skill');
             infobox += '|dungeon_level_requirement = {{Skl|' + dungeonRequirement.dungeon_type.toLowerCase() + '|' + dungeonRequirement.level + '}}';
             if (itemData.dungeon_item_conversion_cost) {
                 infobox += ' (when dungeonized)';
@@ -356,22 +356,22 @@ function createInfobox(itemData) {
         }
 
         if (requirementTypes.includes('dungeon_tier')) {
-            const dungeonComp = requirements.find(element => element.type.toLowerCase() === 'dungeon_tier');
+            const dungeonComp = requirements.find((element) => element.type.toLowerCase() === 'dungeon_tier');
             infobox += '|dungeon_floor_clearing_requirement = ' + toTitleCase(dungeonComp.dungeon_type) + ' Floor ' + romanize(dungeonComp.tier);
             if (itemData.dungeon_item_conversion_cost) {
                 infobox += ' (when dungeonized)';
             }
             infobox += '\n';
         }
-        
+
         if (requirementTypes.includes('collection')) {
-            const collectionRequirement = requirements.find(element => element.type.toLowerCase() === 'collection');
-            infobox += '|collection = ' + toTitleCase(collectionRequirement.collection.replace(/_/g,' ')) + ' ' + romanize(collectionRequirement.tier);
+            const collectionRequirement = requirements.find((element) => element.type.toLowerCase() === 'collection');
+            infobox += '|collection = ' + toTitleCase(collectionRequirement.collection.replace(/_/g, ' ')) + ' ' + romanize(collectionRequirement.tier);
             infobox += '\n';
         }
-        
+
         if (requirementTypes.includes('heart_of_the_mountain')) {
-            const hotmRequirement = requirements.find(element => element.type.toLowerCase() === 'heart_of_the_mountain');
+            const hotmRequirement = requirements.find((element) => element.type.toLowerCase() === 'heart_of_the_mountain');
             //Possibly change to use the hotm_requirement parameter.
             infobox += '|collection = Heart of the Mountain ' + romanize(hotmRequirement.tier);
             infobox += '\n';
@@ -686,11 +686,11 @@ function createArmorInfobox(armorData) {
     }
 
     if (itemData.requirements || itemData.catacombs_requirements) {
-        const requirements = [ ...itemData.requirements || [], ...itemData.catacombs_requirements || []];
+        const requirements = [...(itemData.requirements || []), ...(itemData.catacombs_requirements || [])];
         const requirementTypes = requirements.map((requirement) => requirement.type.toLowerCase());
-        
+
         if (requirementTypes.includes('skill')) {
-            const skillRequirement = requirements.find(element => element.type.toLowerCase() === 'skill');
+            const skillRequirement = requirements.find((element) => element.type.toLowerCase() === 'skill');
             if (skillRequirement.skill.toLowerCase() === 'combat') {
                 infobox += '|combat_level_requirement = {{Skl|combat|' + skillRequirement.level + '}}\n';
             } else {
@@ -699,12 +699,12 @@ function createArmorInfobox(armorData) {
         }
 
         if (requirementTypes.includes('slayer')) {
-            const slayerRequirement = requirements.find(element => element.type.toLowerCase() === 'slayer');
+            const slayerRequirement = requirements.find((element) => element.type.toLowerCase() === 'slayer');
             infobox += '|slayer_level_requirement = ' + toTitleCase(slayerRequirement.slayer_boss_type) + ' Slayer ' + slayerRequirement.level + '\n';
         }
 
         if (requirementTypes.includes('dungeon_skill')) {
-            const dungeonRequirement = requirements.find(element => element.type.toLowerCase() === 'dungeon_skill');
+            const dungeonRequirement = requirements.find((element) => element.type.toLowerCase() === 'dungeon_skill');
             infobox += '|dungeon_level_requirement = {{Skl|' + dungeonRequirement.dungeon_type.toLowerCase() + '|' + dungeonRequirement.level + '}}';
             if (itemData.dungeon_item_conversion_cost) {
                 infobox += ' (when dungeonized)';
@@ -713,22 +713,22 @@ function createArmorInfobox(armorData) {
         }
 
         if (requirementTypes.includes('dungeon_tier')) {
-            const dungeonComp = requirements.find(element => element.type.toLowerCase() === 'dungeon_tier');
+            const dungeonComp = requirements.find((element) => element.type.toLowerCase() === 'dungeon_tier');
             infobox += '|dungeon_floor_clearing_requirement = ' + toTitleCase(dungeonComp.dungeon_type) + ' Floor ' + romanize(dungeonComp.tier);
             if (itemData.dungeon_item_conversion_cost) {
                 infobox += ' (when dungeonized)';
             }
             infobox += '\n';
         }
-        
+
         if (requirementTypes.includes('collection')) {
-            const collectionRequirement = requirements.find(element => element.type.toLowerCase() === 'collection');
-            infobox += '|collection = ' + toTitleCase(collectionRequirement.collection.replace(/_/g,' ')) + ' ' + romanize(collectionRequirement.tier);
+            const collectionRequirement = requirements.find((element) => element.type.toLowerCase() === 'collection');
+            infobox += '|collection = ' + toTitleCase(collectionRequirement.collection.replace(/_/g, ' ')) + ' ' + romanize(collectionRequirement.tier);
             infobox += '\n';
         }
-        
+
         if (requirementTypes.includes('heart_of_the_mountain')) {
-            const hotmRequirement = requirements.find(element => element.type.toLowerCase() === 'heart_of_the_mountain');
+            const hotmRequirement = requirements.find((element) => element.type.toLowerCase() === 'heart_of_the_mountain');
             //Possibly change to use the hotm_requirement parameter.
             infobox += '|collection = Heart of the Mountain ' + romanize(hotmRequirement.tier);
             infobox += '\n';

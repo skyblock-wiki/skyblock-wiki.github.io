@@ -52,8 +52,8 @@ function render() {
     const scene2 = new THREE.Scene();
     const mainObject = new THREE.Object3D();
     const backLayer = new THREE.Object3D();
-    const width = 512;
-    const height = 512;
+    const width = 300;
+    const height = 300;
 
     // Initialize camera
     const viewSize = 253;
