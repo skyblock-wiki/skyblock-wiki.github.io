@@ -32,7 +32,7 @@ export class Toast {
         this.messageDiv.className = 'toast-message';
         this.messageDiv.textContent = (typeof options === 'string' ? options : undefined) ?? options?.message ?? options?.msg ?? '';
         if (options && typeof options === 'object')
-            if (options.class && typeof options.class === 'array')
+            if (options.class && Array.isArray(options.class))
                 options.class.forEach((cl) => {
                     this.el.classList.add(cl);
                 });

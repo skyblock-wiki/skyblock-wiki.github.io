@@ -246,11 +246,11 @@ document.getElementById('tid-clear').addEventListener('click', () => {
  */
 async function readImageUrl(url) {
     try {
-        const response = await fetch(`https://eejitstools.com/cors-anywhere?url=http://${url.split('//')[1]}&image=true`);
+        const response = await fetch(`https://eejitstools.com/cors-anywhere?url=http://${url.split('//')[1]}`);
         if (!response.ok) throw new Error();
 
         createImageThenRender(URL.createObjectURL(await response.blob()));
-    } catch (error) {
+    } catch {
         new Toast({ message: 'Render Unsuccessful: Invalid Texture ID', type: 'error', time: 3500 }).show();
         toggleImageLoader();
     }
