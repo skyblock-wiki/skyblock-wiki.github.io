@@ -18,6 +18,10 @@ header img {
     margin-right: 1.5rem;
     width: 4rem;
 }
+header .switch-mode {
+    margin-left: auto;
+    animation: 1.5s infinite alternate anchorglow; 
+}
 header > span:nth-child(2) {
     display: flex;
 }
@@ -153,6 +157,9 @@ aside td {
 .warning-id td {
     background-color: rgb(59, 1, 11);
 }
+.warning-dup td:last-child {
+    background-color: rgb(1, 59, 1);
+}
 
 /*  
 =======================
@@ -208,12 +215,20 @@ p {
     #return-main {
         padding: 0.3rem 0.8rem;
     }
+    header .switch-mode {
+        display: none;
+    }
 }
 @media screen and (max-width: 380px) {
-    aside .nbt-info input {
-        width: 100%;
-    }
-    /* aside img#drawn {
-		width: 80%;
-	} */
+    
+}
+
+/*  
+=============================
+		Animations
+=============================
+*/
+@keyframes anchorglow {
+    from { filter: brightness(100%) }
+    to { filter: brightness(150%) }
 }

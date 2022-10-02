@@ -18,6 +18,10 @@ header img {
     margin-right: 1.5rem;
     width: 4rem;
 }
+header .switch-mode {
+    margin-left: auto;
+    animation: 1.5s infinite alternate anchorglow; 
+}
 header > span:nth-child(2) {
     display: flex;
 }
@@ -236,6 +240,9 @@ p {
     #return-main {
         padding: 0.3rem 0.8rem;
     }
+    header .switch-mode {
+        display: none;
+    }
 }
 @media screen and (max-width: 380px) {
     aside .nbt-info input {
@@ -244,4 +251,14 @@ p {
     /* aside img#drawn {
 		width: 80%;
 	} */
+}
+
+/*  
+=============================
+		Animations
+=============================
+*/
+@keyframes anchorglow {
+    from { filter: brightness(75%) }
+    to { filter: brightness(125%) }
 }

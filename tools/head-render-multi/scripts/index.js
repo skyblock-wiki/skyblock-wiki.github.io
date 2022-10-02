@@ -11,6 +11,7 @@ const genElem = document.getElementById('input-gen');
 const subElem = document.getElementById('input-submit');
 const errElem = document.getElementById('input-error');
 const clrElem = document.getElementById('input-clear');
+const dupElem = document.getElementById('input-dup');
 const listElem = document.getElementById('render-list');
 const validElem = document.getElementById('validator-input');
 const validBtnElem = document.getElementById('validator-button');
@@ -20,6 +21,7 @@ const validRstElem = document.getElementById('validator-result');
 mainElem.addEventListener('input', onInputChange);
 genElem.addEventListener('click', onInputChange);
 subElem.addEventListener('click', onRender);
+dupElem.addEventListener('click', markDuplicates);
 validElem.addEventListener('input', runValidator);
 validBtnElem.addEventListener('click', runValidator);
 clrElem.addEventListener('click', () => {
@@ -84,7 +86,6 @@ function onRender() {
     });
     // create log and save when all done
     Promise.allSettled([promiseAllHeads, promiseAllSprites]).then(() => {
-        console.log(failed)
         const badlist = parsedContent.filter((v, i) => failed.includes(i));
         const goodlist = parsedContent.filter((v, i) => !failed.includes(i));
         const header = `Head Render Multi Log on ${new Date().toString()}`;
@@ -103,6 +104,27 @@ function onRender() {
     });
 }
 
+function markDuplicates() {
+    let placeholder = 0;
+    const parsedContentIds = onInputChange().map(v => v.id || (--placeholder));
+    let ls = new Array();
+    for (let i = 0; i < parsedContentIds.length; i++) {
+        let j = parsedContentIds.indexOf(parsedContentIds[i]);
+        if (j !== i) {
+            ls.push(i, j);
+        }
+    }
+    ls = [...new Set(ls)];
+    let domRows = document.querySelectorAll("#render-list tr");
+    for (let row = 0; row < domRows.length; row++) {
+        if (ls.indexOf(row) > -1)
+            domRows[row].classList.add("warning-dup");
+        else
+            domRows[row].classList.remove("warning-dup");
+    }
+    new Toast({ message: `${ls.length} repeated values marked in green.`, type: 'info', time: 5000 }).show();
+}
+
 /**
  * Loads texture ID changes
  * @param {ClipboardEvent|MouseEvent|Event} event the event
@@ -110,7 +132,8 @@ function onRender() {
  */
 function onInputChange(event) {
     clear();
-    if (!mainElem.value) return;
+    if (!mainElem.value)
+        return [];
     const lines = mainElem.value.split("\n");
     const parsedContent = [];
     let storedName;
