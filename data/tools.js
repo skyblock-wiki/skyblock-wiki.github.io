@@ -7,6 +7,13 @@ export const tools = [
         description: 'Render custom player heads and NPC sprites from various different data models.'
     },
     {
+        link: './tools/head-render-multi/index.html',
+        thumbnail: 'head-render-multi',
+        name: 'Head Render Multi',
+        version: 'v4.0',
+        description: 'Render multiple heads or sprites from Texture IDs.'
+    },
+    {
         link: './tools/leather-armor/index.html',
         thumbnail: 'leather-armor',
         name: 'Leather Armor Generator',

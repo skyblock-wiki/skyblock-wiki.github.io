@@ -1,26 +1,54 @@
 /* global THREE */
 
-import { Toast } from '../../../scripts/toast.js';
-import { img, imgLink, sprite, spriteLink, context, spriteCanvas, toggleImageLoader } from './index.js';
+/**
+ * Fetches texture image and passes image to rendering
+ * @param {'url'|'textureId'} url url or texture ID
+ * @param {string} renderType render output type (HEAD/SPRITE)
+ */
+ export async function beginWebRender(url, renderType) {
+    return new Promise(async (resolve, reject) => {
+        if (!url.match("//textures\.minecraft\.net"))
+            url = `https://textures.minecraft.net/texture/${url}`;
+        try {
+            // fetch image from web
+            const response = await fetch(`https://eejitstools.com/cors-anywhere?url=http://${url.split('//')[1]}`);
+            if (!response.ok)
+                throw new Error();
+            beginImageRender(URL.createObjectURL(await response.blob()), renderType).then((result) => {
+                resolve(result);
+            }).catch((err) => {
+                reject(err);
+            });
+        } catch {
+            return reject('Render Unsuccessful: Invalid Texture ID');
+        }
+    });
+}
 
 /**
- * Creates and renders the image
+ * Creates image element and starts rendering
  * @param {string} imageSrc the image source
+ * @param {string} renderType render output type (HEAD/SPRITE)
  */
-export function createImageThenRender(imageSrc) {
-    const image = document.createElement('img');
-    image.src = imageSrc;
-
-    image.addEventListener('load', () => {
-        context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-        context.drawImage(image, 0, 0);
-
-        context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-        context.drawImage(image, 0, 0);
-
-        render();
-        makeSprite();
-        new Toast({ message: 'Rendering...', type: 'info', time: 1000 }).show();
+ export async function beginImageRender(imageSrc, renderType) {
+    return new Promise((resolve, reject) => {
+        if (!["HEAD", "SPRITE"].includes(renderType))
+            return reject('Unknown renderType to beginImageRender');
+        // create image element
+        const image = document.createElement('img');
+        image.src = imageSrc;
+        // start rendering
+        image.addEventListener('load', () => {
+            try {
+                let result = (renderType == "HEAD") ? renderHead(image) :
+                    (renderType == "SPRITE") ? renderSprite(image) :
+                    "";
+                return resolve(result);
+            }
+            catch (exceptionVar) {
+                return reject(exceptionVar);
+            }
+        });
     });
 }
 
@@ -41,8 +69,16 @@ const rightHat = [new THREE.Vector2(0.5, 0), new THREE.Vector2(0.625, 0), new TH
 /**
  * Renders the image
  */
-function render() {
-    const texture = new THREE.CanvasTexture(context.canvas);
+function renderHead(image) {
+    const canvas = document.createElement('canvas');
+    canvas.id = "drawjs-canvas-head";
+    const context = canvas.getContext('2d');
+    canvas.width = 64;
+    canvas.height = 16;
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(image, 0, 0);
+
+    const texture = new THREE.CanvasTexture(canvas);
 
     texture.magFilter = THREE.NearestFilter;
     texture.minFilter = THREE.NearestFilter;
@@ -70,7 +106,7 @@ function render() {
     camera.updateProjectionMatrix();
 
     // Initialize renderer
-    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('render'), antialias: false, alpha: true, preserveDrawingBuffer: true });
+    const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, preserveDrawingBuffer: true });
 
     renderer.setClearColor(0xffffff, 0);
     renderer.shadowMap.enabled = true;
@@ -238,43 +274,22 @@ function render() {
     };
 
     animate();
-    renderImageUrl(renderer.domElement.toDataURL());
-}
-
-/**
- * Renders the image url
- * @param {string} url the url of the image
- */
-function renderImageUrl(url) {
-    img.src = url;
-    imgLink.href = url;
-    imgLink.classList.remove('hidden');
-    toggleImageLoader();
+    return renderer.domElement.toDataURL();
 }
 
 /**
  * Makes the head sprite
  */
-function makeSprite() {
-    const scale = 8;
+function renderSprite(image) {
+    const canvas = document.createElement('canvas');
+    canvas.id = "drawjs-canvas-sprite";
+    const context = canvas.getContext('2d');
+    canvas.width = 64;
+    canvas.height = 64;
 
-    spriteCanvas.clearRect(0, 0, spriteCanvas.canvas.width, spriteCanvas.canvas.height);
+    context.imageSmoothingEnabled = false;
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(image, 8, 8, 8, 8, 0, 0, canvas.width, canvas.height);
 
-    const { canvas } = context;
-
-    spriteCanvas.imageSmoothingEnabled = false;
-    spriteCanvas.drawImage(canvas, -8 * scale, -8 * scale, canvas.width * scale, canvas.height * scale);
-    spriteCanvas.drawImage(canvas, -40 * scale, -8 * scale, canvas.width * scale, canvas.height * scale);
-
-    renderSpriteUrl(spriteCanvas.canvas.toDataURL('image/png'));
-}
-
-/**
- * Renders the sprite url
- * @param {string} url the url of the sprite
- */
-function renderSpriteUrl(url) {
-    sprite.src = url;
-    spriteLink.href = url.replace('image/png', 'image/octet-stream');
-    spriteLink.classList.remove('hidden');
+    return canvas.toDataURL('image/png');
 }

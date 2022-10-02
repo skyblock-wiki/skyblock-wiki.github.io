@@ -79,14 +79,18 @@ main {
     display: flex;
     flex-direction: column;
 }
-main section {
-    padding: 1rem 0.5rem;
+main section:last-of-type {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+main section:last-of-type textarea {
+    height: 100%;
+    min-height: 18rem;
+    max-height: none;
 }
 main section:not(:last-child) {
     border-bottom: 1px solid var(--col-bg3);
-}
-main section:nth-of-type(1) {
-    height: 7.5rem;
 }
 h3:not(.contributors h3) {
     color: white;
@@ -95,13 +99,10 @@ h3:not(.contributors h3) {
     font-weight: 300;
     margin-bottom: 0.5rem;
 }
-main input[type='file'] {
-    color: white;
-}
 /*  
-========================
-		Aside Col
-========================
+=============================
+		Aside
+=============================
 */
 canvas {
     display: none;
@@ -116,73 +117,41 @@ aside section {
     display: flex;
     flex-direction: column;
 }
-aside .nbt-info th {
+aside section:nth-of-type(2) {
+	justify-content: center;
+	align-items: center;
+    padding: 1rem 0;
+}
+aside section:last-of-type {
+    flex-grow: 1;
+}
+aside table {
+    table-layout: fixed;
+    width: 100%;
     color: white;
-    font-size: 0.9rem;
-    font-weight: 200;
-    padding-right: 1rem;
-    text-align: right;
+    font-size: 14px;
 }
-aside .nbt-info td div {
-    display: inline-block;
-    margin: 0.2rem 0;
+aside th,
+aside td {
+    overflow: clip;
+    border: 2px solid var(--box-border);
+    padding: 7px;
 }
-aside .nbt-info input {
-    background-color: var(--col-bg2);
-    border: 1px solid var(--col-acc);
-    border-radius: 4px;
-    color: #aaa;
-    cursor: pointer;
-    font-family: 'Fira Code', monospace;
-    font-size: 0.75rem;
-    padding: 0.2rem 0.3rem;
-    transition: all 0.2s ease;
-    width: 15rem;
+aside th {
+    background-color: #333;
 }
-aside section > *:not(a) {
-    padding: 0 0.5rem;
+aside td {
+    background-color: #111;
 }
-aside .head-box {
-    border-bottom: 1px solid var(--col-bg3);
-    height: fit-content;
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
+.warning-name td {
+    background-color: rgb(1, 35, 59);
 }
-aside .title-box {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
+.warning-name td:nth-of-type(1),
+.warning-id td:nth-of-type(2) {
+    color: rgb(255, 173, 173);
 }
-aside .title-box h3 {
-    margin-right: 2rem;
-}
-aside #loading {
-    align-self: center;
-    border: none;
-    display: none;
-    height: 20px;
-    margin: 3rem;
-    width: 95px;
-}
-aside #drawn-link,
-aside #sprite-link {
-    align-self: center;
-}
-aside img#drawn,
-aside img#sprite {
-    background-color: var(--col-bg2);
-    border: 1px solid var(--col-acc);
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 0.5rem 0 0;
-}
-aside img#drawn {
-    height: 350px;
-    width: 350px;
-}
-aside img#sprite {
-    height: 150px;
-    width: 150px;
+.warning-id td {
+    background-color: rgb(59, 1, 11);
 }
 
 /*  
@@ -227,6 +196,9 @@ p {
     aside {
         border: none;
         width: 100%;
+    }
+    main section:nth-of-type(1) {
+        height: fit-content;
     }
     aside {
         border-top: 2px solid var(--col-acc2);

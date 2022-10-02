@@ -2,7 +2,7 @@ const headRender = {
     joker876: ['Created the NBT Data parser', 'Converted the tool from JSFiddle to a standalone website', 'Revamped the design'],
     Fewfre: ['Created the renderer from NBT Data', 'Created the texture ID info on the right'],
     Pwign: ['Created the head rendering algorithm', 'Created the renderer from uploaded file'],
-    MonkeysHK: ['Created the renderer from NameMC and texture ID', 'Integrated the sprite renderer into this tool']
+    MonkeysHK: ['Created the renderer from NameMC and texture ID', 'Added sprite renderer', 'Added multi-rendering mode']
 };
 
 const infoboxGenerator = {
@@ -17,6 +17,7 @@ const leatherArmor = {
 
 export const contributors = {
     'head-render': headRender,
+    'head-render-multi': headRender,
     'infobox-generator': infoboxGenerator,
     'leather-armor': leatherArmor
 };

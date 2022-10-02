@@ -22,7 +22,7 @@ export const contributors = [
         ]
     },
     {
-        name: 'MonkeysHK (AKA mhk)',
+        name: 'MonkeysHK',
         thumbnail: '',
         member: true,
         tasks: ['Helped create the Head Render Thingy', 'Helped create the Leather Armor Renderer'],
