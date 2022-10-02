@@ -7,23 +7,19 @@ const loading = document.getElementById('loading');
 const warning = document.getElementById("warning");
 
 const mainElem = document.getElementById('input');
-const genElem = document.getElementById('input-gen');
-const subElem = document.getElementById('input-submit');
 const errElem = document.getElementById('input-error');
 const clrElem = document.getElementById('input-clear');
-const dupElem = document.getElementById('input-dup');
 const listElem = document.getElementById('render-list');
 const validElem = document.getElementById('validator-input');
-const validBtnElem = document.getElementById('validator-button');
 const validRstElem = document.getElementById('validator-result');
 
 /* Set Event Listeners */
 mainElem.addEventListener('input', onInputChange);
-genElem.addEventListener('click', onInputChange);
-subElem.addEventListener('click', onRender);
-dupElem.addEventListener('click', markDuplicates);
+document.getElementById('input-gen').addEventListener('click', onInputChange);
+document.getElementById('input-submit').addEventListener('click', onRender);
+document.getElementById('input-dup').addEventListener('click', markDuplicates);
 validElem.addEventListener('input', runValidator);
-validBtnElem.addEventListener('click', runValidator);
+document.getElementById('validator-button').addEventListener('click', runValidator);
 clrElem.addEventListener('click', () => {
     mainElem.value = '';
     clear();

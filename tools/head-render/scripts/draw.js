@@ -106,13 +106,13 @@ function renderHead(image) {
     camera.updateProjectionMatrix();
 
     // Initialize renderer
-    const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, preserveDrawingBuffer: true });
+    const rendererCv = document.createElement("canvas");
+    const renderer = new THREE.WebGLRenderer({ canvas: rendererCv, antialias: false, alpha: true, preserveDrawingBuffer: true });
 
     renderer.setClearColor(0xffffff, 0);
     renderer.shadowMap.enabled = true;
     renderer.setSize(width, height);
     renderer.autoClear = false;
-    document.body.append(renderer.domElement);
 
     const headAspectRatio = 14.67; // In-game item (15.9 on Minecraft Wiki)
 
