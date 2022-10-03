@@ -104,6 +104,9 @@ header .hamburger {
 		Main CSS
 ========================
 */
+body {
+    overflow-x: hidden;
+}
 main {
     display: flex;
     flex-direction: column;

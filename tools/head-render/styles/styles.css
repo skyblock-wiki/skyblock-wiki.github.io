@@ -20,7 +20,11 @@ header img {
 }
 header .switch-mode {
     margin-left: auto;
-    animation: 1.5s infinite alternate anchorglow; 
+    margin-right: 0.5rem;
+}
+header .switch-mode img {
+    margin: 0 1.5rem;
+    padding: 0.3rem;
 }
 header > span:nth-child(2) {
     display: flex;
@@ -29,7 +33,7 @@ header .name {
     color: white;
     font-size: 1.5rem;
     font-weight: 500;
-    white-space: nowrap;
+    /* white-space: nowrap; */
 }
 header .version {
     align-self: flex-end;
@@ -213,6 +217,17 @@ p {
     font-size: 0.8rem;
     font-weight: 200;
 }
+a:not(#return-main, .link) {
+    transition: all 0.2s ease;
+}
+a:not(#return-main, .link):hover {
+    filter: brightness(80%);
+}
+a:not(#return-main, .link):active {
+    background: var(--link-bgcolor);
+    border-radius: 3px;
+    box-shadow: var(--link-shadow);
+}
 
 /*  
 =============================
@@ -251,14 +266,4 @@ p {
     /* aside img#drawn {
 		width: 80%;
 	} */
-}
-
-/*  
-=============================
-		Animations
-=============================
-*/
-@keyframes anchorglow {
-    from { filter: brightness(75%) }
-    to { filter: brightness(125%) }
 }

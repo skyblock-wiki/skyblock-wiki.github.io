@@ -4,9 +4,12 @@ import { beginWebRender } from '../../head-render/scripts/draw.js';
 /* Declare Elements */
 
 const loading = document.getElementById('loading');
+const loadingC = document.getElementById('loading-count');
+const loadingT = document.getElementById('loading-total');
 const warning = document.getElementById("warning");
 
 const mainElem = document.getElementById('input');
+const subElem = document.getElementById('input-submit');
 const errElem = document.getElementById('input-error');
 const clrElem = document.getElementById('input-clear');
 const listElem = document.getElementById('render-list');
@@ -16,7 +19,7 @@ const validRstElem = document.getElementById('validator-result');
 /* Set Event Listeners */
 mainElem.addEventListener('input', onInputChange);
 document.getElementById('input-gen').addEventListener('click', onInputChange);
-document.getElementById('input-submit').addEventListener('click', onRender);
+subElem.addEventListener('click', onRender);
 document.getElementById('input-dup').addEventListener('click', markDuplicates);
 validElem.addEventListener('input', runValidator);
 document.getElementById('validator-button').addEventListener('click', runValidator);
@@ -30,74 +33,81 @@ clrElem.addEventListener('click', () => {
 /**
  * Parse list and start render
  */
-function onRender() {
+async function onRender() {
+    subElem.disabled = true;
     clearErrors();
     let parsedContent = onInputChange();
     parsedContent = parsedContent.filter(r => !!r.id);
     if (parsedContent.length < 1)
         return;
 
+    loadingC.innerText = String(0);
+    loadingT.innerText = String(parsedContent.length);
     toggleImageLoader();
     new Toast({ message: 'Rendering...', type: 'info', time: 1000 }).show();
 
-    // run tasks and generate promises
+    // run tasks - render 20 images at a time
     const failed = [];
-    const promisesHead = parsedContent.map((r, i) => {
-        return beginWebRender(r.id, "HEAD").catch(err => {
-            new Toast({ message: err, type: 'error', time: 3500 }).show();
-            console.error(err);
-            parsedContent[i].error = err.toString();
-            failed.push(i);
-        });
-    });
-    const promisesSprite = parsedContent.map((r, i) => {
-        return beginWebRender(r.id, "SPRITE").catch(err => {
-            new Toast({ message: err, type: 'error', time: 3500 }).show();
-            console.error(err);
-            parsedContent[i].error = err.toString();
-            failed.push(i);
-        });
+    await new Promise(async (resolve) => {
+        for (let i = 0; i < parsedContent.length; i += 20) {
+            let segment = parsedContent.slice(i, Math.min(i + 20, parsedContent.length));
+            let promisesHead = segment.map((r, j) => {
+                return beginWebRender(r.id, "HEAD").then(result => {
+                    parsedContent[i + j].head = result;
+                }).catch(err => {
+                    new Toast({ message: err, type: 'error', time: 3500 }).show();
+                    console.error(err);
+                    parsedContent[i + j].error = err.toString();
+                    failed.push(i + j);
+                });
+            });
+            await Promise.allSettled(promisesHead);
+            let promisesSprite = segment.map((r, j) => {
+                return beginWebRender(r.id, "SPRITE").then(result => {
+                    parsedContent[i + j].sprite = result;
+                }).catch(err => {
+                    new Toast({ message: err, type: 'error', time: 3500 }).show();
+                    console.error(err);
+                    parsedContent[i + j].error = err.toString();
+                    failed.push(i + j);
+                });
+            });
+            await Promise.allSettled(promisesSprite);
+            loadingC.innerText = String(Math.min(i + 20, parsedContent.length));
+        }
+        resolve();
     });
     // create files when all done
     const zip = new JSZip();
     const headsFolder = zip.folder("heads");
     const spritesFolder = zip.folder("sprites");
-    const promiseAllHeads = Promise.allSettled(promisesHead).then(results => {
-        // construct heads folder
-        for (let i in results) {
-            if (results[i].status != "rejected") {
-                const filename = parsedContent[i].name || (parsedContent[i].id + " Head Render.png");
-                headsFolder.file(filename, results[i].value.split("base64,")[1], { base64: true });
-            }
+    for (let i = 0; i < parsedContent.length; i++) {
+        if (parsedContent[i].head) {
+            let filename = parsedContent[i].name || (parsedContent[i].id + " Head Render.png");
+            headsFolder.file(filename, parsedContent[i].head.split("base64,")[1], { base64: true });
         }
-    });
-    const promiseAllSprites = Promise.allSettled(promisesSprite).then(results => {
-        // construct sprites folder
-        for (let i in results) {
-            if (results[i].status != "rejected") {
-                const filename = parsedContent[i].name && (parsedContent[i].name.match("^(.*)\.png$")[1] + " Sprite.png") || (parsedContent[i].id + " Sprite Render.png");
-                spritesFolder.file(filename, results[i].value.split("base64,")[1], { base64: true });
-            }
+        if (parsedContent[i].sprite) {
+            let filename = parsedContent[i].name && (parsedContent[i].name.match("^(.*)\.png$")[1] + " Sprite.png") || (parsedContent[i].id + " Sprite Render.png");
+            spritesFolder.file(filename, parsedContent[i].sprite.split("base64,")[1], { base64: true });
         }
-    });
+    }
     // create log and save when all done
-    Promise.allSettled([promiseAllHeads, promiseAllSprites]).then(() => {
-        const badlist = parsedContent.filter((v, i) => failed.includes(i));
-        const goodlist = parsedContent.filter((v, i) => !failed.includes(i));
-        const header = `Head Render Multi Log on ${new Date().toString()}`;
-        const logContent = `${"=".repeat(header.length)}\n${header}\n${"=".repeat(header.length)}\n\n` +
-            `FAILED (${badlist.length}):\n` +
-            badlist.map(v => `${v.name || ""}\n${v.id || ""}\nError: ${v.error || ""}`).join("\n") +
-            "\n\n" +
-            `SUCCESS (${goodlist.length}):\n` +
-            goodlist.map(v => `${v.name || ""}\n${v.id || ""}`).join("\n");
-        zip.file("log.txt", logContent);
-        zip.generateAsync({type:"blob"})
-        .then(function(content) {
-            saveAs(content, "Render Output.zip");
-        });
-        toggleImageLoader();
+    const badlist = parsedContent.filter((v, i) => failed.includes(i));
+    const goodlist = parsedContent.filter((v, i) => !failed.includes(i));
+    const header = `Head Render Multi Log on ${new Date().toString()}`;
+    const logContent = `${"=".repeat(header.length)}\n${header}\n${"=".repeat(header.length)}\n\n` +
+        `FAILED (${badlist.length}):\n` +
+        badlist.map(v => `${v.name || ""}\n${v.id || ""}\nError: ${v.error || ""}`).join("\n") +
+        "\n\n" +
+        `SUCCESS (${goodlist.length}):\n` +
+        goodlist.map(v => `${v.name || ""}\n${v.id || ""}`).join("\n");
+    zip.file("log.txt", logContent);
+    zip.generateAsync({type:"blob"})
+    .then(function(content) {
+        saveAs(content, "Render Output.zip");
     });
+    toggleImageLoader();
+    subElem.disabled = false;
 }
 
 function markDuplicates() {
@@ -207,13 +217,13 @@ function runValidator() {
     if (l < 1)
         validRstElem.value = "";
     else if (/^[a-f0-9]{56,64}$/i.test(v))
-        validRstElem.value = "Yes";
+        validRstElem.value = "Valid";
     else if (/[^a-f0-9]/i.test(v))
         validRstElem.value = "Bad character (Allow: A-F and 0-9)";
     else if (l < 56 || l > 64)
         validRstElem.value = `Bad length ${l} (Allow: 59-64)`;
     else
-        validRstElem.value = "No";
+        validRstElem.value = "Invalid";
 }
 
 // check if webGL enabled

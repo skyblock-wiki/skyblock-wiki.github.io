@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Head Render</title>
+        <title>Head Render Multi</title>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
         <script src="/scripts/jszip.min.js"></script>
@@ -38,7 +38,7 @@
                 <section>
                     <h3>Render from texture ID</h3>
                     <p id="warning"></p>
-                    <p>For each item, put a file name on one line (optional) then a texture ID on another line. Put each item on separate lines.</p>
+                    <p>For each item, put a file name on one line (optional) then a texture ID on the next line. Declare items on two lines each.</p>
                     <p>Press Generate List to see parse results. When satisfied, press Render ZIP to start rendering.</p>
                     <div class="sec-err" id="input-error"></div>
                     <textarea id="input"></textarea>
@@ -66,7 +66,10 @@
                     </div>
                 </section>
                 <section>
-                    <img id="loading" src="https://vignette.wikia.nocookie.net/dev/images/4/42/Loading.gif" style="display: none" />
+                    <div id="loading" style="display: none;">
+                        <p><span id="loading-count">0</span>/<span id="loading-total">0</span></p>
+                        <img src="https://vignette.wikia.nocookie.net/dev/images/4/42/Loading.gif" />
+                    </div>
                 </section>
                 <section>
                     <h3>Parse Results</h3>

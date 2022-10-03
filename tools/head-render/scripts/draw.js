@@ -107,7 +107,7 @@ function renderHead(image) {
 
     // Initialize renderer
     const rendererCv = document.createElement("canvas");
-    const renderer = new THREE.WebGLRenderer({ canvas: rendererCv, antialias: false, alpha: true, preserveDrawingBuffer: true });
+    let renderer = new THREE.WebGLRenderer({ canvas: rendererCv, antialias: false, alpha: true, preserveDrawingBuffer: true });
 
     renderer.setClearColor(0xffffff, 0);
     renderer.shadowMap.enabled = true;
@@ -261,19 +261,14 @@ function renderHead(image) {
     renderHead();
     renderFrontHat();
 
-    const animate = () => {
-        requestAnimationFrame(animate);
+    renderer.clear();
+    renderer.setViewport(0, 0, width, height);
+    renderer.render(scene2, camera);
 
-        renderer.clear();
-        renderer.setViewport(0, 0, width, height);
-        renderer.render(scene2, camera);
+    renderer.clearDepth();
+    renderer.setViewport(0, 0, width, height);
+    renderer.render(scene, camera);
 
-        renderer.clearDepth();
-        renderer.setViewport(0, 0, width, height);
-        renderer.render(scene, camera);
-    };
-
-    animate();
     return renderer.domElement.toDataURL();
 }
 
