@@ -11,7 +11,7 @@ export function beginWebRender(url, renderType) {
         if (!url.match('//textures.minecraft.net')) url = `https://textures.minecraft.net/texture/${url}`;
         try {
             // fetch image from web
-            const response = await fetch(`https://www.eejitstools.com/cors-anywhere?url=http://${url.split('//')[1]}`);
+            const response = await fetch(`https://eejitstools.com/cors-anywhere?url=http://${url.split('//')[1]}`);
             if (!response.ok) throw new Error();
             beginImageRender(URL.createObjectURL(await response.blob()), renderType)
                 .then((result) => resolve(result))
