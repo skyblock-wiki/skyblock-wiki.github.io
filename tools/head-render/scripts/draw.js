@@ -5,20 +5,17 @@
  * @param {'url'|'textureId'} url url or texture ID
  * @param {string} renderType render output type (HEAD/SPRITE)
  */
- export async function beginWebRender(url, renderType) {
+export function beginWebRender(url, renderType) {
+    // eslint-disable-next-line no-async-promise-executor
     return new Promise(async (resolve, reject) => {
-        if (!url.match("//textures\.minecraft\.net"))
-            url = `https://textures.minecraft.net/texture/${url}`;
+        if (!url.match('//textures.minecraft.net')) url = `https://textures.minecraft.net/texture/${url}`;
         try {
             // fetch image from web
             const response = await fetch(`https://www.eejitstools.com/cors-anywhere?url=http://${url.split('//')[1]}`);
-            if (!response.ok)
-                throw new Error();
-            beginImageRender(URL.createObjectURL(await response.blob()), renderType).then((result) => {
-                resolve(result);
-            }).catch((err) => {
-                reject(err);
-            });
+            if (!response.ok) throw new Error();
+            beginImageRender(URL.createObjectURL(await response.blob()), renderType)
+                .then((result) => resolve(result))
+                .catch((err) => reject(err));
         } catch {
             return reject('Render Unsuccessful: Invalid Texture ID');
         }
@@ -28,24 +25,21 @@
 /**
  * Creates image element and starts rendering
  * @param {string} imageSrc the image source
- * @param {string} renderType render output type (HEAD/SPRITE)
+ * @param {'HEAD'|'SPRITE'} renderType render output type (HEAD/SPRITE)
+ * @returns {Promise<string>|Error} the data url of the rendered image, or an error
  */
- export async function beginImageRender(imageSrc, renderType) {
+export function beginImageRender(imageSrc, renderType) {
     return new Promise((resolve, reject) => {
-        if (!["HEAD", "SPRITE"].includes(renderType))
-            return reject('Unknown renderType to beginImageRender');
+        if (!['HEAD', 'SPRITE'].includes(renderType)) return reject('Unknown renderType to beginImageRender');
         // create image element
         const image = document.createElement('img');
         image.src = imageSrc;
         // start rendering
         image.addEventListener('load', () => {
             try {
-                let result = (renderType == "HEAD") ? renderHead(image) :
-                    (renderType == "SPRITE") ? renderSprite(image) :
-                    "";
+                const result = renderType === 'HEAD' ? renderHead(image) : renderType === 'SPRITE' ? renderSprite(image) : '';
                 return resolve(result);
-            }
-            catch (exceptionVar) {
+            } catch (exceptionVar) {
                 return reject(exceptionVar);
             }
         });
@@ -67,11 +61,13 @@ const topHat = [new THREE.Vector2(0.625, 0.5), new THREE.Vector2(0.75, 0.5), new
 const rightHat = [new THREE.Vector2(0.5, 0), new THREE.Vector2(0.625, 0), new THREE.Vector2(0.625, 0.5), new THREE.Vector2(0.5, 0.5)];
 
 /**
- * Renders the image
+ * Renders the head
+ * @param {HTMLImageElement} image The image to render
+ * @returns {string} The data url of the sprite
  */
 function renderHead(image) {
     const canvas = document.createElement('canvas');
-    canvas.id = "drawjs-canvas-head";
+    canvas.id = 'drawjs-canvas-head';
     const context = canvas.getContext('2d');
     canvas.width = 64;
     canvas.height = 16;
@@ -106,8 +102,8 @@ function renderHead(image) {
     camera.updateProjectionMatrix();
 
     // Initialize renderer
-    const rendererCv = document.createElement("canvas");
-    let renderer = new THREE.WebGLRenderer({ canvas: rendererCv, antialias: false, alpha: true, preserveDrawingBuffer: true });
+    const rendererCv = document.createElement('canvas');
+    const renderer = new THREE.WebGLRenderer({ canvas: rendererCv, antialias: false, alpha: true, preserveDrawingBuffer: true });
 
     renderer.setClearColor(0xffffff, 0);
     renderer.shadowMap.enabled = true;
@@ -273,11 +269,13 @@ function renderHead(image) {
 }
 
 /**
- * Makes the head sprite
+ * Renders the head sprite
+ * @param {HTMLImageElement} image The image to render
+ * @returns {string} The data url of the sprite
  */
 function renderSprite(image) {
     const canvas = document.createElement('canvas');
-    canvas.id = "drawjs-canvas-sprite";
+    canvas.id = 'drawjs-canvas-sprite';
     const context = canvas.getContext('2d');
     canvas.width = 64;
     canvas.height = 64;

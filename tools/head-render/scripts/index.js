@@ -9,7 +9,7 @@ const sprite = document.getElementById('sprite');
 const spriteLink = document.getElementById('sprite-link');
 
 const loading = document.getElementById('loading');
-const warning = document.getElementById("warning");
+const warning = document.getElementById('warning');
 
 const fileUpload = document.getElementById('file-upload');
 
@@ -83,27 +83,35 @@ document.getElementById('tid-clear').addEventListener('click', () => {
 
 /* Functions */
 
-// Renders both head and sprite with a corresponding renderFunction
+/**
+ * Renders both head and sprite with a corresponding renderFunction
+ * @param {Function} renderFunction the function to render the head and sprite
+ * @param {object} obj the object to pass to the render function
+ */
 function renderDispatcher(renderFunction, obj) {
     toggleImageLoader();
     new Toast({ message: 'Rendering...', type: 'info', time: 1000 }).show();
     const promises = new Array(2);
-    promises[0] = renderFunction(obj, "HEAD").then((result) => {
-        img.src = result;
-        imgLink.href = result;
-        imgLink.classList.remove('hidden');
-    }).catch(err => {
-        new Toast({ message: err, type: 'error', time: 3500 }).show();
-        console.error(err)
-    });
-    promises[1] = renderFunction(obj, "SPRITE").then((result) => {
-        sprite.src = result;
-        spriteLink.href = result.replace('image/png', 'image/octet-stream');
-        spriteLink.classList.remove('hidden');
-    }).catch(err => {
-        new Toast({ message: err, type: 'error', time: 3500 }).show();
-        console.error(err)
-    });
+    promises[0] = renderFunction(obj, 'HEAD')
+        .then((result) => {
+            img.src = result;
+            imgLink.href = result;
+            imgLink.classList.remove('hidden');
+        })
+        .catch((err) => {
+            new Toast({ message: err, type: 'error', time: 3500 }).show();
+            console.error(err); // eslint-disable-line no-console
+        });
+    promises[1] = renderFunction(obj, 'SPRITE')
+        .then((result) => {
+            sprite.src = result;
+            spriteLink.href = result.replace('image/png', 'image/octet-stream');
+            spriteLink.classList.remove('hidden');
+        })
+        .catch((err) => {
+            new Toast({ message: err, type: 'error', time: 3500 }).show();
+            console.error(err); // eslint-disable-line no-console
+        });
     Promise.allSettled(promises).then(() => {
         toggleImageLoader();
     });
@@ -146,8 +154,7 @@ function updateTextureIdOutputs(id) {
  * @param {string} [fileName=null] the name of the file
  */
 function renderWithId(textureId, element, fileName = null) {
-    if (textureId.match("//textures\.minecraft\.net"))
-        textureId = textureId.split('/texture/')[1];
+    if (textureId.match('//textures.minecraft.net')) textureId = textureId.split('/texture/')[1];
 
     imgLink.download = `${fileName ? fileName.trim() : textureId} Head Render.png`.trim();
     spriteLink.download = `${fileName ? fileName.trim() : textureId} Sprite Render.png`.trim();
@@ -308,13 +315,15 @@ function toggleImageLoader() {
     else loading.style.display = 'none';
 }
 
-// check if webGL enabled
+/**
+ * Checks if WebGL is enabled
+ * @returns {boolean} Whether or not WebGL is enabled
+ */
 function checkWebGL() {
     try {
-        var canvas = document.createElement('canvas'); 
-        return !!window.WebGLRenderingContext &&
-            (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'));
-    } catch(e) {
+        const canvas = document.createElement('canvas');
+        return !!window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'));
+    } catch (e) {
         return false;
     }
 }

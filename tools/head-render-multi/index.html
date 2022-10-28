@@ -62,11 +62,11 @@
                             <input type="text" id="validator-input" />
                             <button id="validator-button" class="validator-button">Validate</button>
                         </div>
-                        <input type="text" id="validator-result" class="validator-result" readonly/>
+                        <input type="text" id="validator-result" class="validator-result" readonly />
                     </div>
                 </section>
                 <section>
-                    <div id="loading" style="display: none;">
+                    <div id="loading" style="display: none">
                         <p><span id="loading-count">0</span>/<span id="loading-total">0</span></p>
                         <img src="https://vignette.wikia.nocookie.net/dev/images/4/42/Loading.gif" />
                     </div>
@@ -74,7 +74,12 @@
                 <section>
                     <h3>Parse Results</h3>
                     <table>
-                        <thead><tr><th>Name</th><th>ID</th></tr></thead>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>ID</th>
+                            </tr>
+                        </thead>
                         <tbody id="render-list"></tbody>
                     </table>
                 </section>

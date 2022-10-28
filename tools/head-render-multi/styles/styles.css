@@ -126,8 +126,8 @@ aside section {
     flex-direction: column;
 }
 aside section:nth-of-type(2) {
-	justify-content: center;
-	align-items: center;
+    justify-content: center;
+    align-items: center;
     padding: 1rem 0;
 }
 aside section:nth-of-type(2) > div {
@@ -238,5 +238,4 @@ a:not(#return-main, .link):active {
     }
 }
 @media screen and (max-width: 380px) {
-    
 }

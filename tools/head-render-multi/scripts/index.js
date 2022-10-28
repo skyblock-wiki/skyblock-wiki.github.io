@@ -1,3 +1,5 @@
+/* global JSZip, saveAs */
+
 import { Toast } from '../../../scripts/toast.js';
 import { beginWebRender } from '../../head-render/scripts/draw.js';
 
@@ -6,7 +8,7 @@ import { beginWebRender } from '../../head-render/scripts/draw.js';
 const loading = document.getElementById('loading');
 const loadingC = document.getElementById('loading-count');
 const loadingT = document.getElementById('loading-total');
-const warning = document.getElementById("warning");
+const warning = document.getElementById('warning');
 
 const mainElem = document.getElementById('input');
 const subElem = document.getElementById('input-submit');
@@ -37,9 +39,8 @@ async function onRender() {
     subElem.disabled = true;
     clearErrors();
     let parsedContent = onInputChange();
-    parsedContent = parsedContent.filter(r => !!r.id);
-    if (parsedContent.length < 1)
-        return;
+    parsedContent = parsedContent.filter((r) => !!r.id);
+    if (parsedContent.length < 1) return;
 
     loadingC.innerText = String(0);
     loadingT.innerText = String(parsedContent.length);
@@ -48,141 +49,124 @@ async function onRender() {
 
     // run tasks - render 20 images at a time
     const failed = [];
+    // eslint-disable-next-line no-async-promise-executor
     await new Promise(async (resolve) => {
         for (let i = 0; i < parsedContent.length; i += 20) {
-            let segment = parsedContent.slice(i, Math.min(i + 20, parsedContent.length));
-            let promisesHead = segment.map((r, j) => {
-                return beginWebRender(r.id, "HEAD").then(result => {
-                    parsedContent[i + j].head = result;
-                }).catch(err => {
-                    new Toast({ message: err, type: 'error', time: 3500 }).show();
-                    console.error(err);
-                    parsedContent[i + j].error = err.toString();
-                    failed.push(i + j);
-                });
+            const segment = parsedContent.slice(i, Math.min(i + 20, parsedContent.length));
+            const promisesHead = segment.map((r, j) => {
+                return beginWebRender(r.id, 'HEAD')
+                    .then((result) => {
+                        parsedContent[i + j].head = result;
+                    })
+                    .catch((err) => {
+                        new Toast({ message: err, type: 'error', time: 3500 }).show();
+                        console.error(err); // eslint-disable-line no-console
+                        parsedContent[i + j].error = err.toString();
+                        failed.push(i + j);
+                    });
             });
-            await Promise.allSettled(promisesHead);
-            let promisesSprite = segment.map((r, j) => {
-                return beginWebRender(r.id, "SPRITE").then(result => {
-                    parsedContent[i + j].sprite = result;
-                }).catch(err => {
-                    new Toast({ message: err, type: 'error', time: 3500 }).show();
-                    console.error(err);
-                    parsedContent[i + j].error = err.toString();
-                    failed.push(i + j);
-                });
+            await Promise.allSettled(promisesHead); // eslint-disable-line no-await-in-loop
+            const promisesSprite = segment.map((r, j) => {
+                return beginWebRender(r.id, 'SPRITE')
+                    .then((result) => {
+                        parsedContent[i + j].sprite = result;
+                    })
+                    .catch((err) => {
+                        new Toast({ message: err, type: 'error', time: 3500 }).show();
+                        console.error(err); // eslint-disable-line no-console
+                        parsedContent[i + j].error = err.toString();
+                        failed.push(i + j);
+                    });
             });
-            await Promise.allSettled(promisesSprite);
+            await Promise.allSettled(promisesSprite); // eslint-disable-line no-await-in-loop
             loadingC.innerText = String(Math.min(i + 20, parsedContent.length));
         }
         resolve();
     });
     // create files when all done
     const zip = new JSZip();
-    const headsFolder = zip.folder("heads");
-    const spritesFolder = zip.folder("sprites");
+    const headsFolder = zip.folder('heads');
+    const spritesFolder = zip.folder('sprites');
     for (let i = 0; i < parsedContent.length; i++) {
         if (parsedContent[i].head) {
-            let filename = parsedContent[i].name || (parsedContent[i].id + " Head Render.png");
-            headsFolder.file(filename, parsedContent[i].head.split("base64,")[1], { base64: true });
+            const filename = parsedContent[i].name || parsedContent[i].id + ' Head Render.png';
+            headsFolder.file(filename, parsedContent[i].head.split('base64,')[1], { base64: true });
         }
         if (parsedContent[i].sprite) {
-            let filename = parsedContent[i].name && (parsedContent[i].name.match("^(.*)\.png$")[1] + " Sprite.png") || (parsedContent[i].id + " Sprite Render.png");
-            spritesFolder.file(filename, parsedContent[i].sprite.split("base64,")[1], { base64: true });
+            const filename = (parsedContent[i].name && parsedContent[i].name.match('^(.*).png$')[1] + ' Sprite.png') || parsedContent[i].id + ' Sprite Render.png';
+            spritesFolder.file(filename, parsedContent[i].sprite.split('base64,')[1], { base64: true });
         }
     }
     // create log and save when all done
     const badlist = parsedContent.filter((v, i) => failed.includes(i));
     const goodlist = parsedContent.filter((v, i) => !failed.includes(i));
     const header = `Head Render Multi Log on ${new Date().toString()}`;
-    const logContent = `${"=".repeat(header.length)}\n${header}\n${"=".repeat(header.length)}\n\n` +
-        `FAILED (${badlist.length}):\n` +
-        badlist.map(v => `${v.name || ""}\n${v.id || ""}\nError: ${v.error || ""}`).join("\n") +
-        "\n\n" +
-        `SUCCESS (${goodlist.length}):\n` +
-        goodlist.map(v => `${v.name || ""}\n${v.id || ""}`).join("\n");
-    zip.file("log.txt", logContent);
-    zip.generateAsync({type:"blob"})
-    .then(function(content) {
-        saveAs(content, "Render Output.zip");
-    });
+    const logContent = `${'='.repeat(header.length)}\n${header}\n${'='.repeat(header.length)}\n\n` + `FAILED (${badlist.length}):\n` + badlist.map((v) => `${v.name || ''}\n${v.id || ''}\nError: ${v.error || ''}`).join('\n') + '\n\n' + `SUCCESS (${goodlist.length}):\n` + goodlist.map((v) => `${v.name || ''}\n${v.id || ''}`).join('\n');
+    zip.file('log.txt', logContent);
+    zip.generateAsync({ type: 'blob' }).then((content) => saveAs(content, 'Render Output.zip'));
     toggleImageLoader();
     subElem.disabled = false;
 }
 
+/**
+ * Marks duplicate texture IDs
+ */
 function markDuplicates() {
     let placeholder = 0;
-    const parsedContentIds = onInputChange().map(v => v.id || (--placeholder));
+    const parsedContentIds = onInputChange().map((v) => v.id || --placeholder);
     let ls = new Array();
     for (let i = 0; i < parsedContentIds.length; i++) {
-        let j = parsedContentIds.indexOf(parsedContentIds[i]);
-        if (j !== i) {
-            ls.push(i, j);
-        }
+        const j = parsedContentIds.indexOf(parsedContentIds[i]);
+        if (j !== i) ls.push(i, j);
     }
     ls = [...new Set(ls)];
-    let domRows = document.querySelectorAll("#render-list tr");
+    const domRows = document.querySelectorAll('#render-list tr');
     for (let row = 0; row < domRows.length; row++) {
-        if (ls.indexOf(row) > -1)
-            domRows[row].classList.add("warning-dup");
-        else
-            domRows[row].classList.remove("warning-dup");
+        if (ls.indexOf(row) > -1) domRows[row].classList.add('warning-dup');
+        else domRows[row].classList.remove('warning-dup');
     }
     new Toast({ message: `${ls.length} repeated values marked in green.`, type: 'info', time: 5000 }).show();
 }
 
 /**
  * Loads texture ID changes
- * @param {ClipboardEvent|MouseEvent|Event} event the event
- * @returns {Array} an array of { id, name }
+ * @returns {Array<{ id: string, name: string }>}
  */
-function onInputChange(event) {
+function onInputChange() {
     clear();
-    if (!mainElem.value)
-        return [];
-    const lines = mainElem.value.split("\n");
+    if (!mainElem.value) return [];
+    const lines = mainElem.value.split('\n');
     const parsedContent = [];
     let storedName;
-    for (let i in lines) {
-        let line = lines[i].trim();
-        if (line != "") {
+    for (const i in lines) {
+        const line = lines[i].trim();
+        if (line !== '') {
             if (/^[a-f0-9]{56,64}$/i.test(line)) {
                 if (storedName) {
                     parsedContent.push({ id: line, name: storedName });
                     storedName = null;
-                }
-                else
-                    parsedContent.push({ id: line });
-            }
-            else {
+                } else parsedContent.push({ id: line });
+            } else {
                 if (storedName) {
                     parsedContent.push({ name: storedName });
                 }
-                storedName = line.match("\.png$") ? line : line + ".png";
+                storedName = line.match('.png$') ? line : line + '.png';
             }
         }
     }
     // leftover storedName
-    if (storedName)
-        parsedContent.push({ name: storedName });
+    if (storedName) parsedContent.push({ name: storedName });
 
-    listElem.innerHTML = parsedContent.map(r => {
-        return `<tr class="${!r.name ? "warning-name" : !r.id ? "warning-id" : ""}">
-        <td>${r.name || "No name: will use ID as name"}</td>
-        <td>${r.id && r.id.substr(0, 24) + "..." + r.id.substr(-2) || "Missing ID: will ignore entry"}</td>
+    listElem.innerHTML = parsedContent
+        .map((r) => {
+            return `<tr class="${!r.name ? 'warning-name' : !r.id ? 'warning-id' : ''}">
+        <td>${r.name || 'No name: will use ID as name'}</td>
+        <td>${(r.id && r.id.substr(0, 24) + '...' + r.id.substr(-2)) || 'Missing ID: will ignore entry'}</td>
         </tr>`;
-    }).join("");
+        })
+        .join('');
 
     return parsedContent;
-}
-
-/**
- * Shows error
- * @param {string} error the error to show
- * @param {'nbt'|'val'|'input'} element the element to show to error in
- */
-function showError(error) {
-    errElem.innerHTML = error;
 }
 
 /**
@@ -196,7 +180,7 @@ function clearErrors() {
  * Clears all outputs and errors
  */
 function clear() {
-    listElem.innerHTML = "";
+    listElem.innerHTML = '';
     clearErrors();
 }
 
@@ -214,25 +198,22 @@ function toggleImageLoader() {
 function runValidator() {
     const v = validElem.value.trim();
     const l = v.length;
-    if (l < 1)
-        validRstElem.value = "";
-    else if (/^[a-f0-9]{56,64}$/i.test(v))
-        validRstElem.value = "Valid";
-    else if (/[^a-f0-9]/i.test(v))
-        validRstElem.value = "Bad character (Allow: A-F and 0-9)";
-    else if (l < 56 || l > 64)
-        validRstElem.value = `Bad length ${l} (Allow: 59-64)`;
-    else
-        validRstElem.value = "Invalid";
+    if (l < 1) validRstElem.value = '';
+    else if (/^[a-f0-9]{56,64}$/i.test(v)) validRstElem.value = 'Valid';
+    else if (/[^a-f0-9]/i.test(v)) validRstElem.value = 'Bad character (Allow: A-F and 0-9)';
+    else if (l < 56 || l > 64) validRstElem.value = `Bad length ${l} (Allow: 59-64)`;
+    else validRstElem.value = 'Invalid';
 }
 
-// check if webGL enabled
+/**
+ * Checks if WebGL is enabled
+ * @returns {boolean} Whether or not WebGL is enabled
+ */
 function checkWebGL() {
     try {
-        var canvas = document.createElement('canvas'); 
-        return !!window.WebGLRenderingContext &&
-            (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'));
-    } catch(e) {
+        const canvas = document.createElement('canvas');
+        return !!window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'));
+    } catch (e) {
         return false;
     }
 }
