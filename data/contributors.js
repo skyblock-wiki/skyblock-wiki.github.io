@@ -40,7 +40,7 @@ export const contributors = [
         links: [
             { type: 'wiki', value: 'https://hypixel-skyblock.fandom.com/wiki/User:TheTrueShaman', border: true },
             { type: 'discord', value: 'TheTrueShaman#9445' },
-            { type: 'github', value: 'https://github.com/The-Shaman' }
+            { type: 'github', value: 'https://github.com/TheTrueShaman' }
         ]
     },
     {
