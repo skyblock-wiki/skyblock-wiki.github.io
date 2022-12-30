@@ -62,7 +62,7 @@ document.getElementById('copy-id').addEventListener('click', () => {
     copyText(textureID);
 });
 document.getElementById('copy-template').addEventListener('click', () => {
-    copyText(document.getElementById('textureTemplate'));
+    copyText(textureTemplate);
 });
 document.getElementById('open-id').addEventListener('click', () => {
     openTexture(textureID.value);
