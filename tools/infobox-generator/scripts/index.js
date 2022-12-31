@@ -372,8 +372,7 @@ function createInfobox(itemData) {
 
         if (requirementTypes.includes('heart_of_the_mountain')) {
             const hotmRequirement = requirements.find((element) => element.type.toLowerCase() === 'heart_of_the_mountain');
-            //Possibly change to use the hotm_requirement parameter.
-            infobox += '|collection = Heart of the Mountain ' + romanize(hotmRequirement.tier);
+            infobox += '|hotm_requirement = Heart of the Mountain ' + romanize(hotmRequirement.tier);
             infobox += '\n';
         }
     }
@@ -729,8 +728,7 @@ function createArmorInfobox(armorData) {
 
         if (requirementTypes.includes('heart_of_the_mountain')) {
             const hotmRequirement = requirements.find((element) => element.type.toLowerCase() === 'heart_of_the_mountain');
-            //Possibly change to use the hotm_requirement parameter.
-            infobox += '|collection = Heart of the Mountain ' + romanize(hotmRequirement.tier);
+            infobox += '|hotm_requirement = Heart of the Mountain ' + romanize(hotmRequirement.tier);
             infobox += '\n';
         }
     }
