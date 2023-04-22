@@ -4,7 +4,7 @@ export const downloads = [
         description: 'A mod that lets you render any entity (mob, player, NPC, item, anything) with a single click of a button. Requires Forge for Minecraft 1.8.x.',
         thumbnail: 'wikitools',
         links: [
-            { type: 'download', link: 'wikitools-2.6.5.jar', border: true },
+            { type: 'download', link: 'wikitools-2.6.6.jar', border: true },
             { type: 'github', link: 'https://github.com/Charzard4261/wikitools' }
         ]
     },
