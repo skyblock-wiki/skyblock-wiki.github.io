@@ -16,7 +16,7 @@ const params = new URL(document.location).searchParams;
 const colorParam = params.get('color');
 
 if (colorParam) {
-    colorInput.value = params.get(colorParam);
+    colorInput.value = colorParam;
 }
 
 export const allCanvas = {
