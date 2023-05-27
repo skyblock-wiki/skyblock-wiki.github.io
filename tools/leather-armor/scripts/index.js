@@ -234,7 +234,7 @@ function _allLoadingFinished() {
         draw();
     });
     
-    if (colorParam) {
+    if (colorParam && colorParam.match(/^[A-F0-9]{6}$/)) {
         updateColor(colorParam);
     } else {
         updateColor('FF0000');
