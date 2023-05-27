@@ -235,8 +235,10 @@ function _allLoadingFinished() {
     });
     updateColor('FF0000');
     
+    console.log("Color Parameter: " + colorParam);
     // There should probably be verification of the validity of the color parameter.
     if (colorParam) {
+        console.log("This has loaded");
         updateColor(colorParam);
     }
 
