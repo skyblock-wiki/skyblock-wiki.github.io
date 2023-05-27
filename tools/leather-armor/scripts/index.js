@@ -15,10 +15,6 @@ const colorInput = document.getElementById('color');
 const params = new URL(document.location).searchParams;
 const colorParam = params.get('color');
 
-if (colorParam) {
-    colorInput.value = colorParam;
-}
-
 export const allCanvas = {
     h: helmCanvas,
     c: chestCanvas,
@@ -238,6 +234,11 @@ function _allLoadingFinished() {
         draw();
     });
     updateColor('FF0000');
+    
+    // There should probably be verification of the validity of the color parameter.
+    if (colorParam) {
+        updateColor(colorParam);
+    }
 
     const selectedColorModel = Number(loadFromLocalStorage('cur-color-model'));
 
