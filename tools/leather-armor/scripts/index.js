@@ -233,13 +233,11 @@ function _allLoadingFinished() {
         state = 'active';
         draw();
     });
-    updateColor('FF0000');
     
-    console.log("Color Parameter: " + colorParam);
-    // There should probably be verification of the validity of the color parameter.
     if (colorParam) {
-        console.log("This has loaded");
         updateColor(colorParam);
+    } else {
+        updateColor('FF0000');
     }
 
     const selectedColorModel = Number(loadFromLocalStorage('cur-color-model'));
