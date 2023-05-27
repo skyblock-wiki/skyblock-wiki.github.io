@@ -12,6 +12,9 @@ const bootsCanvas = document.getElementById('boots');
 
 const colorInput = document.getElementById('color');
 
+const params = new URL(document.location).searchParams;
+const colorParam = params.get('color');
+
 export const allCanvas = {
     h: helmCanvas,
     c: chestCanvas,
@@ -230,7 +233,12 @@ function _allLoadingFinished() {
         state = 'active';
         draw();
     });
-    updateColor('FF0000');
+    
+    if (colorParam && colorParam.match(/^[A-F0-9]{6}$/)) {
+        updateColor(colorParam);
+    } else {
+        updateColor('FF0000');
+    }
 
     const selectedColorModel = Number(loadFromLocalStorage('cur-color-model'));
 
