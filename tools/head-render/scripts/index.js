@@ -44,11 +44,11 @@ fileUpload.addEventListener('change', () => {
             renderDispatcher(beginImageRender, image);
         });
         fileReader.readAsDataURL(fileUpload.files[0]);
-    }
 
-    const filename = fileUpload.files[0].name.replace(/\.[a-z]{2,4}$/, '').trim();
-    imgLink.download = `${filename} Head Render.png`.trim();
-    spriteLink.download = `${filename} Sprite Render.png`.trim();
+        const filename = fileUpload.files[0].name.replace(/\.[a-z]{2,4}$/, '').trim();
+        imgLink.download = `${filename} Head Render.png`.trim();
+        spriteLink.download = `${filename} Sprite Render.png`.trim();
+    }
 });
 
 ['paste', 'input'].forEach((type) => mainElem.nbt.addEventListener(type, onNbtChange));

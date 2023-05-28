@@ -45,7 +45,7 @@ export const allContexts = {
 
 let color, suggestions, updateCooldown;
 
-export let colorPicker, state, colorHash, assets, assetsLatest;
+export let colorPicker, state, colorHash, assets;
 
 /**
  * Updates the displayed color
@@ -263,7 +263,7 @@ function _allLoadingFinished() {
     if (colorParam && colorParam.match(/^[A-F0-9]{6}$/)) {
         updateColor(colorParam);
     } else {
-        updateColor('FF0000');
+        updateColor('A06540');
     }
 
     const selectedColorModel = Number(loadFromLocalStorage('cur-color-model'));
@@ -316,7 +316,6 @@ const assetManager = (() => {
 })();
 
 assets = new assetManager(); // eslint-disable-line prefer-const
-assetsLatest = new assetManager(); // eslint-disable-line prefer-const
 
 state = 'loading';
 

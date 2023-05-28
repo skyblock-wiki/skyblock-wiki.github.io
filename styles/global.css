@@ -41,6 +41,7 @@ html {
 
 body {
     background: var(--col-bg);
+    color: white;
     display: flex;
     flex-direction: column;
     font-family: 'Montserrat', sans-serif;

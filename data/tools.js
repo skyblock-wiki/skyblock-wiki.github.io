@@ -4,28 +4,40 @@ export const tools = [
         thumbnail: 'head-render',
         name: 'Head Render Thingy',
         version: 'v4.0',
-        description: 'Render custom player heads and NPC sprites from various different data models.'
+        description: 'Render custom player heads and NPC sprites from various different data models.',
+        issitetool: true
     },
     {
         link: './tools/head-render-multi/index.html',
         thumbnail: 'head-render-multi',
         name: 'Head Render Multi',
         version: 'v4.0',
-        description: 'Render multiple heads or sprites from Texture IDs.'
+        description: 'Render multiple heads or sprites from Texture IDs.',
+        issitetool: true
     },
     {
         link: './tools/leather-armor/index.html',
         thumbnail: 'leather-armor',
         name: 'Leather Armor Generator',
         version: 'v3.0',
-        description: 'Render colored leather armor images. Requires no assets.'
+        description: 'Render colored leather armor images. Requires no assets.',
+        issitetool: true
     },
     {
         link: './tools/infobox-generator/index.html',
         thumbnail: 'infobox-generator',
         name: 'Infobox Generator',
         version: 'v1.2',
-        description: "Creates basic infoboxes and essence crafting tables from an item's API data."
+        description: "Create basic infoboxes and essence crafting tables from an item's API data.",
+        issitetool: true
+    },
+    {
+        link: './tools/enchantment-glint/index.html',
+        thumbnail: 'enchantment-glint',
+        name: 'Enchantment Glint Tool',
+        version: 'v1.0',
+        description: "Apply standard static enchantment glint.",
+        issitetool: true
     },
     {
         link: 'https://jsfiddle.net/MonkeysHK/nb2csh1a/',

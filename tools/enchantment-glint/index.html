@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Head Render Multi</title>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+        <script src="./scripts/index.js" type="module"></script>
+        <script src="/scripts/contributors.js" type="module"></script>
+
+        <link rel="stylesheet" href="./styles/styles.css" />
+        <link rel="icon" href="/files/images/return-icon.png" />
+        <link rel="icon" href="/files/images/tool-icons/enchantment-glint.png" />
+    </head>
+
+    <body>
+        <header>
+            <a href="/index.html" id="return-main">
+                <span>
+                    <img src="/files/images/return-icon.png" alt="back" />
+                </span>
+            </a>
+            <img src="/files/images/tool-icons/enchantment-glint.png" alt="logo" />
+            <span>
+                <span class="name">Enchantment Glint Tool</span>
+                <span class="version">v1.0</span>
+            </span>
+        </header>
+        <div id="wrapper">
+            <main>
+                <div>Upload a file to start rendering:</div>
+                <form id="options-form">
+                    <input type="radio" name="glint-format" id="blocks-300" value="blocks-300" checked />
+                    <label for="blocks-300">Blocks 300px</label>
+                    <input type="radio" name="glint-format" id="items-160" value="items-160" />
+                    <label for="items-160">Items 160px</label>
+                </form>
+                <form id="upload-form">
+                    <input type="file" id="file-upload" />
+                </form>
+            </main>
+            <aside>
+                <div>Render:</div>
+                <canvas id="drawn-cvs" width="300" height="300"></canvas>
+                <a id="drawn-lnk"><img id="drawn-img" /></a>
+            </aside>
+        </div>
+        <div class="page-contributors">
+            <div id="contrib-list-div" class="list hidden" style="height: auto"><ul id="contrib-list"></ul></div>
+            <h3>
+                <button id="show-contributors"><span>Contributors</span><i class="fas fa-chevron-down"></i></button>
+            </h3>
+        </div>
+        <footer>
+            <div class="github-button-wrapper unselectable">
+                <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/tree/main/tools/enchantment-glint" target="_blank">
+                    <div class="icon"><i class="fas fa-code"></i></div>
+                    <span>View Code</span>
+                </a>
+                <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/issues" target="_blank">
+                    <div class="icon"><i class="fas fa-bug"></i></div>
+                    <span>Report Bug</span>
+                </a>
+                <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/pulls" target="_blank">
+                    <div class="icon"><i class="fas fa-code-branch"></i></div>
+                    <span>Contribute</span>
+                </a>
+            </div>
+        </footer>
+    </body>
+</html>

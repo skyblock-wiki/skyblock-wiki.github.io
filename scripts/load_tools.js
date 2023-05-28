@@ -2,7 +2,7 @@ import { tools } from '../data/tools.js';
 
 const allElements = tools.map((tool) =>
     [
-        '<li>', //
+        `<li class="${tool.issitetool ? "sitetool" : ""}">`, //
         `<img src="/files/images/tool-icons/${tool.thumbnail}.png" alt="tool logo">`,
         '<hr>',
         `<h4>${tool.name}</h4>`,

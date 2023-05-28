@@ -36,6 +36,7 @@ section.contributors {
     box-shadow: 0 0 8px 3px #0008;
     display: flex;
     flex-direction: column;
+    position: relative;
     /* height: 320px; */
     margin: 0.5rem 0.5rem;
     padding: 0.5rem;
@@ -122,7 +123,6 @@ section.contributors {
 .contributors li .links .link:focus {
     background: #fff1;
 }
-
 .tools li .links .line,
 .downloads li .links .line,
 .contributors li .links .line {
@@ -130,6 +130,18 @@ section.contributors {
     display: inline-block;
     height: 100%;
 }
+.tools > ul > li.sitetool::after {
+    content: "★ Site Tool";
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: .4rem;
+    padding: .2rem;
+    font-size: small;
+    background-color: var(--col-bg2);
+    border-radius: 8px;
+}
+
 /*  
 ============================
 		Contributors

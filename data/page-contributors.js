@@ -1,23 +1,28 @@
 const headRender = {
-    joker876: ['Created the NBT Data parser', 'Converted the tool from JSFiddle to a standalone website', 'Revamped the design'],
-    Fewfre: ['Created the renderer from NBT Data', 'Created the texture ID info on the right'],
-    Pwign: ['Created the head rendering algorithm', 'Created the renderer from uploaded file'],
-    MonkeysHK: ['Created the renderer from NameMC and texture ID', 'Added sprite renderer', 'Added multi-rendering mode']
+    joker876: ['Parser for NBT data', 'Tool porting from JSFiddle to this site', 'Design rework'],
+    Fewfre: ['Support for rendering from NBT data', 'Texture information display'],
+    Pwign: ['Head rendering algorithm', 'Support for rendering from uploaded file'],
+    MonkeysHK: ['Support for rendering from NameMC, texture ID', 'Sprite renderer integration', 'Multi-rendering mode']
 };
 
 const infoboxGenerator = {
-    TheTrueShaman: ['Created this tool']
+    TheTrueShaman: ['Tool creation']
 };
 
 const leatherArmor = {
-    joker876: ['Converted the tool from JSFiddle to a standalone website', 'Revamped the design', 'Created the color imports menu'],
-    MonkeysHK: ['Added the fancy color picker', 'Made the output images update automatically'],
-    Fewfre: ['Created armor base and overlay images', 'Created the original script for drawing armor pieces with specific color']
+    joker876: ['Tool porting from JSFiddle to this site', 'Design rework', 'Color imports menu'],
+    MonkeysHK: ['Fancy color picker', 'Automatic image update from picker', 'Support for latest texture'],
+    Fewfre: ['Tool creation', 'Rendering algorithm']
+};
+
+const enchantmentGlint = {
+    MonkeysHK: ['Tool creation', 'Rendering algorithm']
 };
 
 export const contributors = {
     'head-render': headRender,
     'head-render-multi': headRender,
     'infobox-generator': infoboxGenerator,
-    'leather-armor': leatherArmor
+    'leather-armor': leatherArmor,
+    'enchantment-glint': enchantmentGlint
 };
