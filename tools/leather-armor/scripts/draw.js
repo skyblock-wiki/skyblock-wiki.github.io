@@ -6,10 +6,15 @@ import { allCanvas, allContexts, assets, colorHash, itemScale, state } from './i
 export function draw() {
     if (state !== 'active') return;
 
-    drawPiece(allCanvas.h, allContexts.h, 'helmet', colorHash);
-    drawPiece(allCanvas.c, allContexts.c, 'chestplate', colorHash);
-    drawPiece(allCanvas.l, allContexts.l, 'leggings', colorHash);
-    drawPiece(allCanvas.b, allContexts.b, 'boots', colorHash);
+    drawPiece(allCanvas.h, allContexts.h, 'helmet', assets, false, colorHash);
+    drawPiece(allCanvas.c, allContexts.c, 'chestplate', assets, false, colorHash);
+    drawPiece(allCanvas.l, allContexts.l, 'leggings', assets, false, colorHash);
+    drawPiece(allCanvas.b, allContexts.b, 'boots', assets, false, colorHash);
+
+    drawPiece(allCanvas.h, allContexts.h, 'helmet', assets, true, colorHash);
+    drawPiece(allCanvas.c, allContexts.c, 'chestplate', assets, true, colorHash);
+    drawPiece(allCanvas.l, allContexts.l, 'leggings', assets, true, colorHash);
+    drawPiece(allCanvas.b, allContexts.b, 'boots', assets, true, colorHash);
 }
 
 /**
@@ -19,8 +24,8 @@ export function draw() {
  * @param {string} name the name of the armor piece
  * @param {string} color the color to set the armor piece
  */
-function drawPiece(canvas, ctx, name, color) {
-    const { file, x, y, scale } = { file: assets.files[name], x: 0, y: 0, scale: itemScale };
+function drawPiece(canvas, ctx, name, assets, isLatest, color) {
+    const { file, x, y, scale } = { file: assets.files[`${name[0]}${isLatest ? '_latest' : ''}`], x: 0, y: 0, scale: itemScale };
     const { asset, width, height } = file;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -47,12 +52,12 @@ function drawPiece(canvas, ctx, name, color) {
     // step 5: reset comp mode to default
     ctx.globalCompositeOperation = 'source-over';
 
-    const { file2, x2, y2, scale2 } = { x2: 0, y2: 0, scale2: itemScale, file2: assets.files[`${name}_overlay`] };
+    const { file2, x2, y2, scale2 } = { x2: 0, y2: 0, scale2: itemScale, file2: assets.files[`${name[0]}${isLatest ? '_latest' : ''}_overlay`] };
     const { asset: asset2, width: width2, height: height2 } = file2;
 
     ctx.drawImage(asset2, x2, y2, width2 * scale2, height2 * scale2);
 
-    document.getElementById(`${name}_img`).src = canvas.toDataURL('image/png');
-    document.getElementById(`${name}_lnk`).href = canvas.toDataURL('image/png');
-    document.getElementById(`${name}_lnk`).download = `Dyed ${name} ${color}.png`;
+    document.querySelector(`.minecraft${isLatest ? '-latest' : ''} .${name}_img`).src = canvas.toDataURL('image/png');
+    document.querySelector(`.minecraft${isLatest ? '-latest' : ''} .${name}_lnk`).href = canvas.toDataURL('image/png');
+    document.querySelector(`.minecraft${isLatest ? '-latest' : ''} .${name}_lnk`).download = `Dyed ${name} ${color}.png`;
 }

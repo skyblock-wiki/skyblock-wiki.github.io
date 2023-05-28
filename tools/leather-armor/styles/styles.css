@@ -371,11 +371,22 @@ main > section {
 }
 /* outputs */
 #outputs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+#outputs .minecraft,
+#outputs .minecraft-latest {
     align-items: center;
     display: flex;
     flex-direction: column;
     position: relative;
     top: -1.5rem;
+}
+#outputs .label {
+    color: white;
+    font-size: 18px;
+    font-style: italic;
 }
 #outputs a {
     height: max-content;
