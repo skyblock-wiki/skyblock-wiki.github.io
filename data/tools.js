@@ -35,7 +35,7 @@ export const tools = [
         link: './tools/enchantment-glint/index.html',
         thumbnail: 'enchantment-glint',
         name: 'Enchantment Glint Tool',
-        version: 'v1.0',
+        version: 'v1.1',
         description: "Apply standard static enchantment glint.",
         issitetool: true
     },

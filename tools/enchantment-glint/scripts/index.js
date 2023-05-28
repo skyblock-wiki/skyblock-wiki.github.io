@@ -56,7 +56,8 @@ function programReady() {
         // Obtain texture from upload
         if (fileUpload.files[0]) {
             const filename = fileUpload.files[0].name.replace(/\.[a-z]{2,4}$/, '').trim();
-            renderingDispatcher(filename, await getBase64(filename, fileUpload.files[0]));
+            new Toast({ message: 'Rendering...', type: 'info', time: 1000 }).show();
+            renderingDispatcher(filename, fileUpload.files[0]);
         }
     });
 
@@ -80,7 +81,7 @@ function programReady() {
     fileForm.addEventListener("submit", async (e) => {
         e.preventDefault();
         const formdata = new FormData(fileForm);
-        const filename = formdata.get("file-input").trim().replace(/file:/i, '');
+        const filename = formdata.get("file-input").trim().replace(/^file:/i, '');
         const basefilename = filename.replace(/\.[a-z]{2,4}$/, '').trim();
 
         const url = `http://hypixel-skyblock.fandom.com/api.php?${new URLSearchParams({
@@ -91,66 +92,66 @@ function programReady() {
 			titles: 'File:' + filename
 		})}`;
 		const req = `https://eejitstools.com/cors-anywhere?url=${url}`;
-        
+
+        new Toast({ message: 'Rendering...', type: 'info', time: 1000 }).show();
+        fileFormSubmit.disabled = true;
         let res = (await (await fetch(req)).json())?.query?.pages;
         let imageurl = res ? (res?.[Object.keys(res)[0]]?.imageinfo?.[0]?.url) : null;
         if (imageurl) {
             let blob = await (await fetch(`https://eejitstools.com/cors-anywhere?url=${imageurl}`)).blob();
-            renderingDispatcher(basefilename, await getBase64(blob));
+            renderingDispatcher(basefilename, blob);
         }
         else {
             new Toast({ message: 'Image not found', type: 'error', time: 3500 }).show();
+            fileFormSubmit.disabled = false;
         }
     })
 }
 
 // Rendering
-function renderingDispatcher(filename, imageFile) {
+async function renderingDispatcher(filename, baseImageBlob) {
     switch(Number(loadFromLocalStorage('glint-format') || 0)) {
         case 0:
-            startRendering(filename, imageFile, overlayBlocks300Image, 300, 300);
+            startRendering(filename, await getImage(await getBase64(baseImageBlob)), overlayBlocks300Image, 300, 300);
             break;
         case 1:
-            startRendering(filename, imageFile, overlayItems160Image, 160, 160);
+            startRendering(filename, await getImage(await getBase64(baseImageBlob)), overlayItems160Image, 160, 160);
             break;
     }
 }
-function startRendering(name, originalFile, overlayImage, width, height) {
-    getImage(originalFile).then((image) => {
-        const x = 0,
-            y = 0;
+function startRendering(name, image, overlayImage, width, height) {
+    const x = 0, y = 0;
 
-        // Set canvas width and height
-        canvas.width = width;
-        canvas.height = height;
+    // Set canvas width and height
+    canvas.width = width;
+    canvas.height = height;
 
-        // Clear canvas
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Clear canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Prevents blur
-        ctx.imageSmoothingEnabled = false;
+    // Prevents blur
+    ctx.imageSmoothingEnabled = false;
 
-        // Draw original image
-        ctx.globalCompositeOperation = 'source-over';
-        ctx.drawImage(image, x, y, width, height);
+    // Draw original image
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.drawImage(image, x, y, width, height);
 
-        // Set multiply and add glint
-        ctx.globalCompositeOperation = 'screen';
-        ctx.drawImage(overlayImage, x, y, width, height);
+    // Set multiply and add glint
+    ctx.globalCompositeOperation = 'screen';
+    ctx.drawImage(overlayImage, x, y, width, height);
 
-        // Destination-in the original image (i.e. crop to original image)
-        ctx.globalCompositeOperation = 'destination-in';
-        ctx.drawImage(image, x, y, width, height);
+    // Destination-in the original image (i.e. crop to original image)
+    ctx.globalCompositeOperation = 'destination-in';
+    ctx.drawImage(image, x, y, width, height);
 
-        // Reset comp mode to default
-        ctx.globalCompositeOperation = 'source-over';
+    // Reset comp mode to default
+    ctx.globalCompositeOperation = 'source-over';
 
-        // Finalize image output
-        drawnImage.src = canvas.toDataURL('image/png');
-        drawnLink.href = canvas.toDataURL('image/png');
-        drawnLink.download = `Enchanted ${name}.png`;
+    // Finalize image output
+    drawnImage.src = canvas.toDataURL('image/png');
+    drawnLink.href = canvas.toDataURL('image/png');
+    drawnLink.download = `Enchanted ${name}.png`;
 
-        // Re-enable submit button
-        fileFormSubmit.disabled = false;
-    });
+    // Re-enable submit button
+    fileFormSubmit.disabled = false;
 }
