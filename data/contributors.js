@@ -3,7 +3,7 @@ export const contributors = [
         name: 'joker876',
         thumbnail: 'joker876',
         owner: true,
-        tasks: ['Created the main page', 'Helped create the Head Render Thingy', 'Helped create the Leather Armor Renderer'],
+        tasks: ['Created the main page', 'Contributor of Head Render Thingy', 'Contributor of Leather Armor Renderer'],
         links: [
             { type: 'wiki', value: 'https://hypixel-skyblock.fandom.com/wiki/User:Joker876', border: true },
             { type: 'discord', value: 'joker876#8914' },
@@ -14,7 +14,7 @@ export const contributors = [
     {
         name: 'Fewfre',
         thumbnail: 'fewfre',
-        tasks: ['Helped create the Head Render Thingy', 'Helped create the Leather Armor Renderer', 'Helped with many other issues'],
+        tasks: ['Contributor of Head Render Thingy', 'Contributor of Leather Armor Renderer', 'Helped with many other issues'],
         links: [
             { type: 'wiki', value: 'https://hypixel-skyblock.fandom.com/wiki/User:Fewfre', border: true },
             { type: 'discord', value: 'fewfre#9549' },
@@ -25,7 +25,7 @@ export const contributors = [
         name: 'MonkeysHK',
         thumbnail: '',
         member: true,
-        tasks: ['Helped create the Head Render Thingy', 'Helped create the Leather Armor Renderer'],
+        tasks: ['Specializes at tool creation and improvements'],
         links: [
             { type: 'wiki', value: 'https://hypixel-skyblock.fandom.com/wiki/User:MonkeysHK', border: true },
             { type: 'github', value: 'https://github.com/MonkeysHK' },
@@ -36,7 +36,7 @@ export const contributors = [
         name: 'TheTrueShaman',
         thumbnail: 'shaman',
         member: true,
-        tasks: ['Helped create the Infobox Generator'],
+        tasks: ['Contributor of Infobox Generator'],
         links: [
             { type: 'wiki', value: 'https://hypixel-skyblock.fandom.com/wiki/User:TheTrueShaman', border: true },
             { type: 'discord', value: 'TheTrueShaman#9445' },
@@ -47,7 +47,7 @@ export const contributors = [
         name: 'Eejit43 (AKA Eejit)',
         thumbnail: 'eejit',
         member: true,
-        tasks: ['Helped with various things in the site', 'Contributed to the Hypixel SkyBlock Wiki Bot'],
+        tasks: ['Helped with various things in the site', 'Contributor of Hypixel SkyBlock Wiki Bot'],
         links: [
             { type: 'wiki', value: 'https://hypixel-skyblock.fandom.com/wiki/User:Eejit43', border: true },
             { type: 'discord', value: 'eejit#7578' },
@@ -58,7 +58,7 @@ export const contributors = [
         name: 'Thundercraft5 (AKA Ruby)',
         thumbnail: 'ruby',
         member: true,
-        tasks: ['Owner of the GitHub repository and organization', 'Contributed to the Hypixel SkyBlock Wiki Bot', 'Added various enhancements to the site'],
+        tasks: ['Owner of the GitHub repository and organization', 'Contributor of Hypixel SkyBlock Wiki Bot', 'Added various enhancements to the site'],
         inactive: true,
         links: [
             { type: 'wiki', value: 'https://hypixel-skyblock.fandom.com/wiki/User:Thundercraft5', border: true },
@@ -69,7 +69,7 @@ export const contributors = [
     {
         name: 'Pwign',
         thumbnail: 'pwign',
-        tasks: ['Helped create the Head Render Thingy'],
+        tasks: ['Contributor of the Head Render Thingy'],
         inactive: true,
         links: [{ type: 'wiki', value: 'https://hypixel-skyblock.fandom.com/wiki/User:Pwign' }]
     }

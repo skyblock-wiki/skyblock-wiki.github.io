@@ -75,6 +75,26 @@ aside {
 }
 
 /*  
+=======================
+		Main Col
+=======================
+*/
+main {
+    border-right: 1px solid var(--col-bg3);
+    display: flex;
+    flex-direction: column;
+}
+main section {
+    padding: 1rem 0.5rem;
+}
+main section:not(:last-child) {
+    border-bottom: 1px solid var(--col-bg3);
+}
+#file-input {
+    width: 100%;
+}
+
+/*  
 ======================
 		Outputs
 ======================

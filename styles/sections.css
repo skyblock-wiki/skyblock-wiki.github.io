@@ -133,7 +133,7 @@ section.contributors {
 .tools > ul > li.sitetool::after {
     content: "★ Site Tool";
     position: absolute;
-    top: 0;
+    bottom: 0;
     right: 0;
     margin: .4rem;
     padding: .2rem;

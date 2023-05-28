@@ -51,20 +51,20 @@ export const tools = [
         thumbnail: 'mcstacker',
         name: '1.8 Command Generator',
         version: null,
-        description: 'Generate any 1.8 command effortlessly.'
+        description: 'Generate any 1.8 command with this tool from MCStacker.'
     },
     {
         link: 'https://sky.shiiyu.moe/',
         thumbnail: 'sky-shiiyu-moe',
         name: 'Sky Shiiyu Moe',
         version: null,
-        description: 'Obtain texture IDs for heads normally not obtainable (from player inventories).'
+        description: 'Obtain texture IDs for heads normally not obtainable with this tool from the SkyCrypt community.'
     },
     {
         link: 'https://github.com/Moulberry/NotEnoughUpdates-REPO/find/master',
         thumbnail: 'neu',
-        name: '<abbr title="Not Enough Updates">NEU</abbr> Repository',
+        name: 'NEU Repository',
         version: null,
-        description: 'Repository for information about public SkyBlock items.'
+        description: 'Repository for information about public SkyBlock items from the Not Enough Updates (NEU) community.'
     }
 ];

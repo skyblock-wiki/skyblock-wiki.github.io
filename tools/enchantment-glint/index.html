@@ -30,16 +30,28 @@
         </header>
         <div id="wrapper">
             <main>
-                <div>Upload a file to start rendering:</div>
-                <form id="options-form">
-                    <input type="radio" name="glint-format" id="blocks-300" value="blocks-300" checked />
-                    <label for="blocks-300">Blocks 300px</label>
-                    <input type="radio" name="glint-format" id="items-160" value="items-160" />
-                    <label for="items-160">Items 160px</label>
-                </form>
-                <form id="upload-form">
-                    <input type="file" id="file-upload" />
-                </form>
+                <section>
+                    <div>Select Mode</div>
+                    <form id="options-form">
+                        <input type="radio" name="glint-format" id="blocks-300" value="blocks-300" checked />
+                        <label for="blocks-300">Blocks 300px</label>
+                        <input type="radio" name="glint-format" id="items-160" value="items-160" />
+                        <label for="items-160">Items 160px</label>
+                    </form>
+                </section>
+                <section>
+                    <div>Render from File Upload:</div>
+                    <form id="upload-form">
+                        <input type="file" id="file-upload" />
+                    </form>
+                </section>
+                <section>
+                    <div>Render from Existing File on HSW:</div>
+                    <form id="file-form" action="#">
+                        <input type="text" name="file-input" id="file-input" placeholder="Put file name on Hypixel SkyBlock Wiki"></input>
+                        <input type="submit" value="Render" />
+                    </form>
+                </section>
             </main>
             <aside>
                 <div>Render:</div>
