@@ -1,60 +1,5 @@
 @import '/styles/global.css';
-
-/*  
-======================
-		Header
-======================
-*/
-header {
-    align-items: center;
-    background: var(--col-bg3);
-    display: flex;
-    height: 5.5rem;
-    padding: 0.3rem 0;
-    position: static;
-    width: 100%;
-}
-
-header img {
-    margin-right: 1.5rem;
-    width: 4rem;
-}
-
-header > span {
-    display: flex;
-}
-
-header .name {
-    color: white;
-    font-size: 1.5rem;
-    font-weight: 500;
-    /* white-space: nowrap; */
-}
-
-header .version {
-    align-self: flex-end;
-    color: #ffffffa0;
-    font-size: 1rem;
-    font-weight: 300;
-    margin-left: 0.5rem;
-}
-#return-main {
-    align-items: center;
-    border-right: 3px solid #666;
-    cursor: pointer;
-    display: flex;
-    margin: auto 0.5rem;
-    padding: 0.6rem 1rem;
-    transition: all 0.2s ease;
-}
-#return-main img {
-    margin-right: 0;
-    vertical-align: middle;
-}
-#return-main:hover {
-    background: #fff1;
-    box-shadow: 0 0 10px 0 #fff1;
-}
+@import '/tools/common.css';
 
 /*  
 =======================
@@ -72,7 +17,6 @@ header .version {
     background: none;
     border: none;
     border-radius: 4px;
-    color: white;
     font-size: 2rem;
     padding: 0.4rem 0;
     transition: all 0.2s ease;
@@ -118,18 +62,16 @@ header .version {
     opacity: 0;
     z-index: -99;
 }
-.imports h1 {
-    color: white;
+.imports h2 {
     font-size: 1.2rem;
     margin-bottom: 1rem;
 }
-.imports h2 {
-    color: white;
+.imports h3 {
     font-size: 1rem;
     font-weight: 300;
     margin-bottom: 0.6rem;
 }
-.imports h2 .tip {
+.imports h3 .tip {
     border: 1px solid var(--col-acc);
     border-radius: 999px;
     cursor: help;
@@ -147,7 +89,6 @@ header .version {
     border: 1px solid var(--col-acc);
     border-radius: 3px;
     box-shadow: none;
-    color: white;
     height: 100%;
     padding: 0.2rem 0.4rem;
 }
@@ -237,49 +178,33 @@ header .version {
 		Main
 ====================
 */
-main {
+main > div {
+    align-items: center;
     display: flex;
-    flex-grow: 1;
-    height: 100%;
-    margin: 1rem 0;
-}
-main > section {
-    display: flex;
-    padding: 2rem 1rem 0;
-    width: 50%;
+    flex-direction: column;
 }
 /* inputs */
 #inputs {
     align-items: center;
-    border-right: 1px solid var(--col-acc);
     flex-direction: column;
+    gap: 1.6rem;
 }
-.text-input {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-}
-.text-input span {
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
+.text-input #color {
+    margin-top: 0;
 }
 .text-input input {
     border: 2px dotted black;
     box-shadow: var(--state-shadow);
-    display: block;
-    font-family: Consolas, 'Times New Roman', Times, serif;
     font-size: 2em;
     padding: 8px;
     text-align: center;
     width: 5em;
 }
 .text-input .suggestions {
-    height: 50px;
-    margin-top: 0.5rem;
+    margin-top: .5rem;
+    min-height: 2.4rem;
 }
 .text-input .suggestions-label {
-    color: white;
     font-family: 'Montserrat', sans-serif;
     font-size: 0.9rem;
     font-weight: 200;
@@ -332,10 +257,6 @@ main > section {
 /* color values */
 .other-values {
     margin: 3.5rem 0 1rem 0;
-}
-.other-values * {
-    color: white;
-    font-family: 'Montserrat', sans-serif;
     font-weight: 300;
 }
 .other-values th {
@@ -347,9 +268,6 @@ main > section {
 }
 .other-values tr td:nth-of-type(2) {
     width: 220px;
-}
-.other-values tr td:nth-of-type(2) * {
-    font-family: 'Fira Code', monospace;
 }
 .other-values tr td:nth-of-type(2) span:not([class]) {
     color: gray;
@@ -372,19 +290,17 @@ main > section {
 /* outputs */
 #outputs {
     display: flex;
+    flex-direction: row;
     justify-content: center;
-    gap: 1rem;
+    gap: 2rem;
 }
 #outputs .minecraft,
 #outputs .minecraft-latest {
     align-items: center;
     display: flex;
     flex-direction: column;
-    position: relative;
-    top: -1.5rem;
 }
 #outputs .label {
-    color: white;
     font-size: 18px;
     font-style: italic;
 }
@@ -402,37 +318,20 @@ canvas {
 =============================
 */
 @media screen and (max-width: 630px) {
-    header {
-        height: 3.4rem;
-    }
-    header img {
-        margin-right: 0.5rem;
-        width: 3rem;
-    }
-    header .name {
-        font-size: 1.25rem;
-    }
-    header .version {
-        font-size: 0.8rem;
-    }
-    main {
-        flex-direction: column;
-        margin-top: 2rem;
-    }
-    .imports {
-        top: 4.5rem;
-    }
-    main > section {
-        padding: 3rem 1rem;
-        width: 100%;
-    }
     #inputs {
-        border: none;
+        gap: 0;
     }
     #outputs a,
     #outputs a img {
         height: 130px;
         width: 130px;
+    }
+    .text-input,
+    .text-input input {
+        width: 130px;
+    }
+    .text-input input {
+        font-size: 1.7rem;
     }
     .text-input .suggestions-label {
         font-size: 0.8rem;
@@ -441,37 +340,8 @@ canvas {
     .text-input .suggestions li a {
         font-size: 0.8rem;
     }
-    .text-input,
-    .text-input input {
-        width: 130px !important;
-    }
-    .text-input span {
-        font-size: 1rem;
-        text-align: center;
-    }
-    .text-input input {
-        font-size: 1.7rem;
-    }
-    .text-input .suggestions {
-        height: 30px;
-        margin-top: 0.5rem;
-    }
     .other-values {
         font-size: 0.9rem;
         margin: 2.5rem 0 1rem 0;
-    }
-    .other-values tr td:nth-of-type(2) {
-        width: 160px;
-    }
-    #return-main {
-        padding: 0.3rem 0.8rem;
-    }
-}
-@media screen and (max-width: 380px) {
-    header .name {
-        font-size: 1rem;
-    }
-    header .version {
-        font-size: 0.6rem;
     }
 }

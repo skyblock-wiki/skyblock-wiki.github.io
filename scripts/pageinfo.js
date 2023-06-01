@@ -1,15 +1,27 @@
 import { contributors } from '../data/page-contributors.js';
+import { tools } from '../data/tools.js';
 
-const tool = window.location.pathname.replace(/\/tools\/|\/|index\.html/g, '');
-
-if (tool in contributors) {
-    const contributorsList = Object.keys(contributors[tool]).map((name) => createContributor(name, contributors[tool][name]));
+/* Add Contributors */
+const thistoolname = window.location.pathname.replace(/\/tools\/|\/|index\.html|^\./g, '');
+if (thistoolname in contributors) {
+    const contributorsList = Object.keys(contributors[thistoolname]).map((name) => createContributor(name, contributors[thistoolname][name]));
 
     document.getElementById('contrib-list').innerHTML = contributorsList.join('');
 
     document.getElementById('show-contributors').addEventListener('click', () => {
         document.getElementById('contrib-list-div').classList.toggle('hidden');
     });
+}
+
+/* Add Version Number */
+const versionElm = document.querySelector("header .version");
+if (versionElm) {
+    for (const tool of tools) {
+        if (tool.version && (tool.link.replace(/\/tools\/|\/|index\.html|^\./g, '') == thistoolname)) {
+            versionElm.innerText = tool.version;
+            break;
+        }
+    }
 }
 
 /**

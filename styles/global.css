@@ -76,7 +76,7 @@ body {
     background: rgba(0, 0, 0, 0.2);
     border: 1px solid var(--col-acc);
     border-radius: 4px;
-    font-family: 'Fira Mono', monospace;
+    font-family: 'Fira Mono', Consolas, monospace;
     padding: 0px 0.3rem;
 }
 
@@ -114,10 +114,10 @@ abbr {
 
 /* Inputs */
 button, input[type='submit'] {
+    color: white;
     background-color: var(--col-bg2);
     border: 1px solid var(--col-acc);
     border-radius: 4px;
-    color: white;
     cursor: pointer;
     height: max-content;
     padding: 0.2rem 0.3rem;
@@ -183,7 +183,6 @@ textarea:focus {
     font-size: 20px;
     font-weight: 300;
     transition: none;
-    color: white;
 }
 
 .page-contributors .list {
@@ -230,7 +229,6 @@ footer {
     background: var(--col-bg);
     border-radius: 50px;
     box-shadow: 0 3px 5px black;
-    color: white;
     cursor: pointer;
     display: inline-block;
     height: 40px;
@@ -246,7 +244,6 @@ footer {
 .github-button-wrapper a:focus,
 .github-button-wrapper a:active {
     background: var(--col-bg3);
-    color: white;
     width: 200px;
 }
 
@@ -275,7 +272,6 @@ footer {
 
 .tooltip {
     border-bottom: 1px dotted white;
-    color: white;
     display: inline-block;
     font-family: 'Montserrat', sans-serif;
     font-weight: 200;

@@ -7,7 +7,7 @@
         <title>Infobox Generator</title>
 
         <script src="./scripts/index.js" type="module"></script>
-        <script src="/scripts/contributors.js" type="module"></script>
+        <script src="/scripts/pageinfo.js" type="module"></script>
 
         <link rel="stylesheet" href="./styles/styles.css" />
         <link rel="icon" href="/files/images/return-icon.png" />
@@ -24,13 +24,13 @@
                 </a>
                 <img src="/files/images/tool-icons/infobox-generator.png" alt="logo" />
                 <span>
-                    <span class="name">Infobox Generator</span>
-                    <span class="version">v1.2</span>
+                    <h1 class="name">Infobox Generator</h1>
+                    <span class="version"></span>
                 </span>
             </header>
-            <div id="grid-wrapper">
-                <div>
-                    <div class="input">
+            <div id="wrapper">
+                <main>
+                    <section class="input">
                         <h3>Create from item name</h3>
                         <input type="text" id="name" placeholder="Item name" />
                         <br />
@@ -38,8 +38,8 @@
                             <button class="sec-subm" id="name-submit">Create</button>
                             <button class="sec-clr" id="name-clear">Clear</button>
                         </span>
-                    </div>
-                    <div class="input">
+                    </section>
+                    <section class="input">
                         <h3>Create from item ID</h3>
                         <input type="text" id="id" placeholder="Item ID" />
                         <br />
@@ -47,38 +47,34 @@
                             <button class="sec-subm" id="id-submit">Create</button>
                             <button class="sec-clr" id="id-clear">Clear</button>
                         </span>
-                    </div>
-                    <div class="input">
+                    </section>
+                    <section class="input">
                         <h3>Options</h3>
                         <input type="checkbox" id="include-extra" />
                         <label for="include-extra">Enable the title, image, and slot tags.</label><br />
+                    </section>
+                </main>
+                <aside>
+                    <h3>Results:</h3>
+                    <div class="templates">
+                        <div class="label">Infobox</div>
+                        <div class="unselectable">
+                            <textarea id="infobox" style="height: unset" disabled></textarea>
+                        </div>
+                        <div></div>
+                        <div class="copy-result">
+                            <button id="copy-infobox" class="copy" disabled>Copy</button>
+                        </div>
+                        <div class="label">Essence Table</div>
+                        <div class="unselectable">
+                            <textarea id="essence-table" style="height: unset" disabled></textarea>
+                        </div>
+                        <div></div>
+                        <div class="copy-result">
+                            <button id="copy-essence-table" class="copy" disabled>Copy</button>
+                        </div>
                     </div>
-                </div>
-                <div style="margin-bottom: 60px">
-                    <h2>Results:</h2>
-                    <table class="templates">
-                        <tbody>
-                            <tr>
-                                <th>Infobox</th>
-                                <td class="unselectable">
-                                    <textarea id="infobox" style="height: unset" disabled></textarea>
-                                    <div class="copy-result">
-                                        <button id="copy-infobox" class="copy" disabled>Copy</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Essence Table</th>
-                                <td class="unselectable">
-                                    <textarea id="essence-table" style="height: unset" disabled></textarea>
-                                    <div class="copy-result">
-                                        <button id="copy-essence-table" class="copy" disabled>Copy</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                </aside>
             </div>
         </div>
         <div class="page-contributors">

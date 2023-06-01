@@ -52,7 +52,6 @@ header .logo > span {
 
 header .logo .name,
 header .logo .name-short {
-    color: white;
     font-size: 1.5rem;
     font-weight: 500;
     white-space: nowrap;

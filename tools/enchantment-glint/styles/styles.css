@@ -1,95 +1,11 @@
 @import '/styles/global.css';
-
-/*  
-======================
-		Header
-======================
-*/
-header {
-    align-items: center;
-    background: var(--col-bg3);
-    display: flex;
-    height: 5.5rem;
-    padding: 0.3rem 0;
-    position: static;
-    width: 100%;
-}
-
-header img {
-    margin-right: 1.5rem;
-    width: 4rem;
-}
-
-header > span {
-    display: flex;
-}
-
-header .name {
-    color: white;
-    font-size: 1.5rem;
-    font-weight: 500;
-    /* white-space: nowrap; */
-}
-
-header .version {
-    align-self: flex-end;
-    color: #ffffffa0;
-    font-size: 1rem;
-    font-weight: 300;
-    margin-left: 0.5rem;
-}
-#return-main {
-    align-items: center;
-    border-right: 3px solid #666;
-    cursor: pointer;
-    display: flex;
-    margin: auto 0.5rem;
-    padding: 0.6rem 1rem;
-    transition: all 0.2s ease;
-}
-#return-main img {
-    margin-right: 0;
-    vertical-align: middle;
-}
-#return-main:hover {
-    background: #fff1;
-    box-shadow: 0 0 10px 0 #fff1;
-}
-
-/*  
-=======================
-		Columns
-=======================
-*/
-#wrapper {
-    clear: both;
-    display: flex;
-    flex-grow: 1;
-    margin-top: 1rem;
-    width: 100%;
-}
-main,
-aside {
-    padding: 2rem;
-    width: 50%;
-}
+@import '/tools/common.css';
 
 /*  
 =======================
 		Main Col
 =======================
 */
-main {
-    border-right: 1px solid var(--col-bg3);
-    display: flex;
-    flex-direction: column;
-}
-main section {
-    padding: 1rem 0.5rem;
-}
-main section:not(:last-child) {
-    border-bottom: 1px solid var(--col-bg3);
-}
 #file-input {
     width: 100%;
 }
@@ -105,32 +21,4 @@ main section:not(:last-child) {
 }
 canvas {
     display: none;
-}
-
-/*  
-=============================
-		Responsivenes
-=============================
-*/
-@media screen and (max-width: 830px) {
-    body {
-        overflow-x: hidden;
-    }
-    #wrapper {
-        align-items: flex-end;
-        flex-direction: column;
-    }
-    main,
-    aside {
-        border: none;
-        width: 100%;
-    }
-    aside {
-        border-top: 2px solid var(--col-acc2);
-    }
-}
-@media screen and (max-width: 630px) {
-    #return-main {
-        padding: 0.3rem 0.8rem;
-    }
 }

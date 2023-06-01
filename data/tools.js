@@ -19,7 +19,7 @@ export const tools = [
         link: './tools/leather-armor/index.html',
         thumbnail: 'leather-armor',
         name: 'Leather Armor Generator',
-        version: 'v3.0',
+        version: 'v3.1',
         description: 'Render colored leather armor images. Requires no assets.',
         issitetool: true
     },
