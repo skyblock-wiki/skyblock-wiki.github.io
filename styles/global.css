@@ -226,6 +226,7 @@ footer {
 }
 
 .github-button-wrapper a {
+    color: white;
     background: var(--col-bg);
     border-radius: 50px;
     box-shadow: 0 3px 5px black;
