@@ -1,5 +1,5 @@
 import { Toast } from '../../../scripts/toast.js';
-import { loadFromLocalStorage, saveToLocalStorage } from './local-storage.js';
+import { loadFromLocalStorage, saveToLocalStorage } from '../../../scripts/local-storage.js';
 
 const fileUpload = document.getElementById('file-upload');
 const drawnImage = document.getElementById('drawn-img');
@@ -10,7 +10,7 @@ const ctx = canvas.getContext('2d');
 
 const uploadForm = document.getElementById('upload-form');
 const fileForm = document.getElementById('file-form');
-const fileFormSubmit = fileForm.querySelector('input[type="submit"]')
+const fileFormSubmit = fileForm.querySelector('input[type="submit"]');
 
 // Assets
 let overlayBlocks300Image, overlayItems160Image;

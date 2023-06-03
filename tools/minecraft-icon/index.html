@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Enchantment Glint Tool</title>
+    <title>Minecraft Icon Image Generator</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
     <script src="./scripts/index.js" type="module"></script>
@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="./styles/styles.css" />
     <link rel="icon" href="/files/images/return-icon.png" />
-    <link rel="icon" href="/files/images/tool-icons/enchantment-glint.png" />
+    <link rel="icon" href="/files/images/tool-icons/minecraft-icon.png" />
 </head>
 
 <body>
@@ -23,44 +23,54 @@
                 <img src="/files/images/return-icon.png" alt="back" />
             </span>
         </a>
-        <img src="/files/images/tool-icons/enchantment-glint.png" alt="logo" />
+        <img src="/files/images/tool-icons/minecraft-icon.png" alt="logo" />
         <span>
-            <h1 class="name">Enchantment Glint Tool</h1>
+            <h1 class="name">Minecraft Icon Image Maker</h1>
             <span class="version"></span>
         </span>
     </header>
     <div id="wrapper">
         <main>
             <section>
-                <div>Select Mode</div>
+                <div>Select Color</div>
                 <form id="options-form">
-                    <input type="radio" name="glint-format" id="blocks-300" value="blocks-300" checked />
-                    <label for="blocks-300">Blocks 300px</label>
-                    <input type="radio" name="glint-format" id="items-160" value="items-160" />
-                    <label for="items-160">Items 160px</label>
                 </form>
             </section>
             <section>
-                <div>Render from File Upload:</div>
-                <form id="upload-form">
-                    <input type="file" id="file-upload" />
-                </form>
-            </section>
-            <section>
-                <div>Render from Existing File on HSW:</div>
-                <form id="file-form" action="#">
-                    <input type="text" name="file-input" id="file-input"
-                        placeholder="Put file name on Hypixel SkyBlock Wiki"></input>
+                <div>Render using unicode symbol:</div>
+                <form id="symbol-form" action="#">
+                    <input type="text" name="symbol-input" id="symbol-input"
+                        placeholder="Put symbol"></input>
                     <input type="submit" value="Render" />
                 </form>
             </section>
+            <section>
+                <div>Render using unicode code point (HEX):</div>
+                <form id="code-form" action="#">
+                    <input type="text" name="code-input" id="code-input"
+                        placeholder="Put code point"></input>
+                    <input type="submit" value="Render" />
+                </form>
+            </section>
+            <section>
+                <div>If the result is not in the desired font, try rendering again.</div>
+            </section>
         </main>
         <aside>
-            <div>
-                <div>Render:</div>
-                <canvas id="drawn-cvs" width="300" height="300"></canvas>
-                <a id="drawn-lnk"><img id="drawn-img" /></a>
-            </div>
+            <section>
+                <div>Render (MINECRAFT):</div>
+                <div id="render-area">
+                    <canvas class="drawn-cvs" width="300" height="300"></canvas>
+                    <a class="drawn-lnk"><img class="drawn-img" /></a>
+                </div>
+            </section>
+            <section>
+                <div>Render (UNIFONT):</div>
+                <div id="render-area2">
+                    <canvas class="drawn-cvs" width="300" height="300"></canvas>
+                    <a class="drawn-lnk"><img class="drawn-img" /></a>
+                </div>
+            </section>
         </aside>
     </div>
     <div class="page-contributors">
@@ -73,7 +83,7 @@
     </div>
     <footer>
         <div class="github-button-wrapper unselectable">
-            <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/tree/main/tools/enchantment-glint"
+            <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/tree/main/tools/minecraft-icon"
                 target="_blank">
                 <div class="icon"><i class="fas fa-code"></i></div>
                 <span>View Code</span>

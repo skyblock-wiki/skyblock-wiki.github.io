@@ -40,6 +40,14 @@ export const tools = [
         issitetool: true
     },
     {
+        link: './tools/minecraft-icon/index.html',
+        thumbnail: 'minecraft-icon',
+        name: 'Minecraft Icon Image Maker',
+        version: 'v1.0',
+        description: 'Render 1.8 Minecraft icon images.',
+        issitetool: true
+    },
+    {
         link: 'https://jsfiddle.net/MonkeysHK/nb2csh1a/',
         thumbnail: 'ui-parser',
         name: 'UI Generator',

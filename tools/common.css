@@ -118,12 +118,7 @@ p {
 aside {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     padding-bottom: 0.5rem;
-}
-aside section {
-    display: flex;
-    flex-direction: column;
 }
 
 /*  

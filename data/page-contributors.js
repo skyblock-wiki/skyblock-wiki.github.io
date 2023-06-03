@@ -19,10 +19,15 @@ const enchantmentGlint = {
     MonkeysHK: ['Tool creation', 'Rendering algorithm']
 };
 
+const minecraftIcon = {
+    MonkeysHK: ['Tool creation', 'Rendering algorithm']
+};
+
 export const contributors = {
     'head-render': headRender,
     'head-render-multi': headRender,
     'infobox-generator': infoboxGenerator,
     'leather-armor': leatherArmor,
-    'enchantment-glint': enchantmentGlint
+    'enchantment-glint': enchantmentGlint,
+    'minecraft-icon': minecraftIcon
 };
