@@ -50,7 +50,6 @@
         "require-await": ["warn"],
         "semi": ["warn", "always"],
         "yoda": ["warn", "never"],
-        "jsdoc/newline-after-description": ["warn", "never"],
         "jsdoc/no-undefined-types": ["warn"],
         "jsdoc/require-returns-description": ["off"],
         "jsdoc/valid-types": ["off"]
