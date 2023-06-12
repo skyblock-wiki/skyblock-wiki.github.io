@@ -36,7 +36,7 @@ export const tools = [
         thumbnail: 'enchantment-glint',
         name: 'Enchantment Glint Tool',
         version: 'v1.1',
-        description: "Apply standard static enchantment glint.",
+        description: 'Apply standard static enchantment glint.',
         issitetool: true
     },
     {
