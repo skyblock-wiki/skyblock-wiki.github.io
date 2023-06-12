@@ -37,10 +37,22 @@ section.contributors {
     display: flex;
     flex-direction: column;
     position: relative;
-    /* height: 320px; */
     margin: 0.5rem 0.5rem;
     padding: 0.5rem;
     width: 300px;
+}
+.tools > ul > li > a,
+.downloads > ul > li > a {
+    align-self: center;
+    border-radius: 999px;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+}
+.tools > ul > li > a > img,
+.downloads > ul > li > a > img {
+    cursor: pointer;
+    width: 100%;
 }
 .contributors > ul > li {
     height: unset;
@@ -131,12 +143,12 @@ section.contributors {
     height: 100%;
 }
 .tools > ul > li.sitetool::after {
-    content: "★ Site Tool";
+    content: '★ Site Tool';
     position: absolute;
     bottom: 0;
     right: 0;
-    margin: .4rem;
-    padding: .2rem;
+    margin: 0.4rem;
+    padding: 0.2rem;
     font-size: small;
     background-color: var(--col-bg2);
     border-radius: 8px;
@@ -158,29 +170,6 @@ section.contributors {
     border-radius: 999px;
     cursor: pointer;
     width: 100%;
-}
-.contributors .akabox {
-    align-items: flex-end;
-    align-self: flex-end;
-    display: flex;
-    flex-direction: column;
-}
-.contributors .aka {
-    color: #aaa;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.4px;
-}
-.contributors .akalist {
-    display: flex;
-}
-.contributors .akalist > * {
-    color: #808080;
-    font-size: 0.75rem;
-}
-.contributors .akalist > *:not(:last-of-type)::after {
-    content: ',';
-    margin-right: 5px;
 }
 .contributors .task-list {
     list-style-type: disc;

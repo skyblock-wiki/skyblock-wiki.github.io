@@ -1,4 +1,4 @@
-import { contributors } from '../data/contributors.js';
+import contributors from '../data/contributors.js';
 import { linkImages, linkTitles } from '../data/other.js';
 import { Toast } from './toast.js';
 
@@ -21,20 +21,22 @@ const allCOntributorElements = [];
 
 /**
  * Creates a link
- * @param {object} link the link object to create
+ * @param {string} type the type of link
+ * @param {string} value the value of the link
  * @returns {string} the HTML string for the link
  */
-function makeLink(link) {
-    if (link.type === 'discord') return makeDiscordElement(link.value);
+function makeLink(type, value) {
+    if (type === 'discord') return makeDiscordElement(value);
 
-    const image = linkImages[link.type];
-    const title = linkTitles[link.type];
+    if (type === 'wiki') value = `https://hypixel-skyblock.fandom.com/wiki/User:${value}`;
+    else if (type === 'github') value = `https://github.com/${value}`;
+    else if (type === 'curseForge') value = `https://www.curseforge.com/members/${value}`;
 
-    return `<a class="link" href="${link.value}"${link.value.match(/^https?:\/\//) ? ' target=_blank' : ''} title="${title}">${image}</a>`;
+    return `<a class="link" href="${value}"${value.match(/^https?:\/\//) ? ' target=_blank' : ''} title="${linkTitles[type]}">${linkImages[type]}</a>`;
 }
 
 /**
- * Creates a discord element
+ * Creates a Discord element
  * @param {string} userTag the tag of the user to create
  * @returns {string} the HTML string for the user
  */
@@ -51,25 +53,25 @@ function makeDiscordElement(userTag) {
     ].join('');
 }
 
-contributors.forEach((contrib) => {
+contributors.forEach((contributor) => {
     const links = [];
 
-    contrib.links.forEach((link) => {
-        links.push(makeLink(link));
-        if (link.border) links.push('<span class="line"></span>');
+    Object.entries(contributor.links).forEach(([type, value], index) => {
+        links.push(makeLink(type, value));
+        if (index === 0 && Object.keys(contributor.links).length > 1) links.push('<span class="line"></span>');
     });
     const element = [
         '<li>', //
-        `<a href="${contrib.links[0].value}">`,
-        `<img src="/files/images/user-icons/${contrib.thumbnail || 'default_icon'}.png" alt="${contrib.name} logo">`,
+        `<a href="https://hypixel-skyblock.fandom.com/wiki/User:${contributor.links.wiki}">`,
+        `<img src="/files/images/user-icons/${contributor.thumbnail || 'default_icon'}.png" alt="${contributor.name} logo">`,
         '</a>',
         '<hr>',
-        `<h4>${contrib.name}</h4>`,
+        `<h4>${contributor.name}</h4>`,
         '<ul class="task-list">',
-        contrib.owner ? '<li>Owner of the GitHub repository and organization</li>' : '',
-        contrib.member ? '<li>Member of the GitHub repository and organization</li>' : '',
-        contrib.tasks.map((task) => `<li>${task}</li>`).join(''),
-        contrib.inactive ? '<li><span style="color: #f33; margin-left: 4px;">No longer active!</span></li>' : '',
+        contributor.githubOwner ? '<li>Owner of the GitHub repository and organization</li>' : '',
+        contributor.githubMember ? '<li>Member of the GitHub repository and organization</li>' : '',
+        contributor.tasks.map((task) => `<li>${task}</li>`).join(''),
+        contributor.inactive ? '<li><span style="color: #f33; margin-left: 4px;">No longer active!</span></li>' : '',
         '</ul>',
         '<div class="links">',
         links.join(''),

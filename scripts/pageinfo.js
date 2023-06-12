@@ -1,10 +1,10 @@
-import { contributors } from '../data/page-contributors.js';
-import { tools } from '../data/tools.js';
+import contributors from '../data/page-contributors.js';
+import tools from '../data/tools.js';
 
 /* Add Contributors */
-const thistoolname = window.location.pathname.replace(/\/tools\/|\/|index\.html|^\./g, '');
-if (thistoolname in contributors) {
-    const contributorsList = Object.keys(contributors[thistoolname]).map((name) => createContributor(name, contributors[thistoolname][name]));
+const thisToolName = window.location.pathname.replace(/\/tools\/|\/|index\.html|^\./g, '');
+if (thisToolName in contributors) {
+    const contributorsList = Object.keys(contributors[thisToolName]).map((name) => createContributor(name, contributors[thisToolName][name]));
 
     document.getElementById('contrib-list').innerHTML = contributorsList.join('');
 
@@ -14,10 +14,10 @@ if (thistoolname in contributors) {
 }
 
 /* Add Version Number */
-const versionElm = document.querySelector("header .version");
+const versionElm = document.querySelector('header .version');
 if (versionElm) {
     for (const tool of tools) {
-        if (tool.version && (tool.link.replace(/\/tools\/|\/|index\.html|^\./g, '') == thistoolname)) {
+        if (tool.version && tool.link.replace(/\/tools\/|\/|index\.html|^\./g, '') === thisToolName) {
             versionElm.innerText = tool.version;
             break;
         }

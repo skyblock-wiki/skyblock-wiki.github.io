@@ -1,76 +1,50 @@
-export const contributors = [
+export default [
     {
         name: 'joker876',
         thumbnail: 'joker876',
-        owner: true,
-        tasks: ['Created the main page', 'Contributor of Head Render Thingy', 'Contributor of Leather Armor Renderer'],
-        links: [
-            { type: 'wiki', value: 'https://hypixel-skyblock.fandom.com/wiki/User:Joker876', border: true },
-            { type: 'discord', value: 'joker876#8914' },
-            { type: 'github', value: 'https://github.com/joker876' },
-            { type: 'curseForge', value: 'https://www.curseforge.com/members/joker876xd8' }
-        ]
+        githubOwner: true,
+        tasks: ['Created the main page', 'Contributor to the Head Render Thingy', 'Contributor to the Leather Armor Renderer'],
+        links: { wiki: 'Joker876', discord: 'joker876#8914', github: 'joker876', curseForge: 'joker876xd8' }
     },
     {
         name: 'Fewfre',
         thumbnail: 'fewfre',
-        tasks: ['Contributor of Head Render Thingy', 'Contributor of Leather Armor Renderer', 'Helped with many other issues'],
-        links: [
-            { type: 'wiki', value: 'https://hypixel-skyblock.fandom.com/wiki/User:Fewfre', border: true },
-            { type: 'discord', value: 'fewfre#9549' },
-            { type: 'github', value: 'https://github.com/fewfre' }
-        ]
+        githubMember: true,
+        tasks: ['Contributor to the Head Render Thingy', 'Contributor to the Leather Armor Renderer', 'Helped with many other issues'],
+        links: { wiki: 'Fewfre', discord: 'fewfre#9549', github: 'fewfre' }
     },
     {
         name: 'MonkeysHK',
-        thumbnail: '',
-        member: true,
+        githubMember: true,
         tasks: ['Specializes at tool creation and improvements'],
-        links: [
-            { type: 'wiki', value: 'https://hypixel-skyblock.fandom.com/wiki/User:MonkeysHK', border: true },
-            { type: 'github', value: 'https://github.com/MonkeysHK' },
-            { type: 'curseForge', value: 'https://www.curseforge.com/members/MonkeysHK' }
-        ]
+        links: { wiki: 'MonkeysHK', github: 'MonkeysHK', curseForge: 'MonkeysHK' }
     },
     {
         name: 'TheTrueShaman',
         thumbnail: 'shaman',
-        member: true,
-        tasks: ['Contributor of Infobox Generator'],
-        links: [
-            { type: 'wiki', value: 'https://hypixel-skyblock.fandom.com/wiki/User:TheTrueShaman', border: true },
-            { type: 'discord', value: 'TheTrueShaman#9445' },
-            { type: 'github', value: 'https://github.com/TheTrueShaman' }
-        ]
+        githubMember: true,
+        tasks: ['Contributor to the Infobox Generator'],
+        links: { wiki: 'TheTrueShaman', discord: 'TheTrueShaman#9445', github: 'TheTrueShaman' }
     },
     {
         name: 'Eejit43 (AKA Eejit)',
         thumbnail: 'eejit',
-        member: true,
-        tasks: ['Helped with various things in the site', 'Contributor of Hypixel SkyBlock Wiki Bot'],
-        links: [
-            { type: 'wiki', value: 'https://hypixel-skyblock.fandom.com/wiki/User:Eejit43', border: true },
-            { type: 'discord', value: 'eejit#7578' },
-            { type: 'github', value: 'https://github.com/Eejit43' }
-        ]
+        githubOwner: true,
+        tasks: ['Helped with various things in the site', 'Contributor to the Hypixel SkyBlock Wiki Bot'],
+        links: { wiki: 'Eejit43', discord: 'eejit#7578', github: 'Eejit43' }
     },
     {
         name: 'Thundercraft5 (AKA Ruby)',
         thumbnail: 'ruby',
-        member: true,
-        tasks: ['Owner of the GitHub repository and organization', 'Contributor of Hypixel SkyBlock Wiki Bot', 'Added various enhancements to the site'],
+        tasks: ['Contributor to the Hypixel SkyBlock Wiki Bot', 'Added various enhancements to the site'],
         inactive: true,
-        links: [
-            { type: 'wiki', value: 'https://hypixel-skyblock.fandom.com/wiki/User:Thundercraft5', border: true },
-            { type: 'discord', value: '💻Ruby#3280' },
-            { type: 'github', value: 'https://github.com/Thundercraft5' }
-        ]
+        links: { wiki: 'Thundercraft5', discord: '💻Ruby#3280', github: 'Thundercraft5' }
     },
     {
         name: 'Pwign',
         thumbnail: 'pwign',
-        tasks: ['Contributor of the Head Render Thingy'],
+        tasks: ['Contributor to the Head Render Thingy'],
         inactive: true,
-        links: [{ type: 'wiki', value: 'https://hypixel-skyblock.fandom.com/wiki/User:Pwign' }]
+        links: { wiki: 'Pwign' }
     }
 ];
