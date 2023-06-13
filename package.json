@@ -1,5 +1,6 @@
 {
     "name": "skyblock-wiki.github.io",
+    "private": true,
     "dependencies": {
         "eslint": "^8.42.0",
         "eslint-plugin-jsdoc": "^46.2.6"
