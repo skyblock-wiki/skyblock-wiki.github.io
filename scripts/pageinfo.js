@@ -16,10 +16,8 @@ if (thisToolName in contributors) {
 /* Add Version Number */
 const versionElm = document.querySelector('header .version');
 if (versionElm) {
-    console.log(tools);
     for (const tool of tools) {
-        console.log(tool);
-        if (tool.version && tool.link.replace(/\/tools\/|\/|index\.html|^\./g, '') === thisToolName) {
+        if (tool.version && tool.id === thisToolName) {
             versionElm.innerText = tool.version;
             break;
         }
