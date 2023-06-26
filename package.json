@@ -3,6 +3,6 @@
     "private": true,
     "dependencies": {
         "eslint": "^8.43.0",
-        "eslint-plugin-jsdoc": "^46.2.6"
+        "eslint-plugin-jsdoc": "^46.3.0"
     }
 }
