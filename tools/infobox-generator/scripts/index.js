@@ -400,6 +400,16 @@ function createInfobox(itemData) {
         infobox += '|museum = unknown\n';
     }
 
+    // Only mention rift transferrability, if it's false or not present, when item is related to the rift.
+    if ('rift_transferrable' in itemData) {
+        if (itemData.rift_transferrable) infobox += '|rift_transferrable = yes\n';
+        else if (itemData.origin === 'RIFT') {
+            infobox += '|rift_transferrable = no\n';
+        }
+    } else if (itemData.origin === 'RIFT') {
+        infobox += '|rift_transferrable = no\n';    
+    }
+
     if (itemData.npc_sell_price) {
         infobox += '|salable = yes\n';
         infobox += `|sell = ${itemData.npc_sell_price}\n`;
