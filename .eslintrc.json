@@ -1,14 +1,8 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
+    "env": { "browser": true, "es2021": true },
     "plugins": ["jsdoc"],
     "extends": ["eslint:recommended", "plugin:jsdoc/recommended"],
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
+    "parserOptions": { "ecmaVersion": "latest", "sourceType": "module" },
     "rules": {
         "camelcase": ["warn"],
         "default-case-last": ["warn"],
@@ -50,7 +44,6 @@
         "require-await": ["warn"],
         "semi": ["warn", "always"],
         "yoda": ["warn", "never"],
-        "jsdoc/newline-after-description": ["warn", "never"],
         "jsdoc/no-undefined-types": ["warn"],
         "jsdoc/require-returns-description": ["off"],
         "jsdoc/valid-types": ["off"]
