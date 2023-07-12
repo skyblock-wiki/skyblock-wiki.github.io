@@ -57,21 +57,21 @@ export class Toast {
             this.el.appendChild(this.closeBtn);
         }
 
-        if (options?.type) this.el.classList.add(`toast--${options.type}`);
+        if (options?.type) this.el.classList.add(`toast-${options.type}`);
 
         document.body.appendChild(this.el);
     }
 
     show(time) {
         clearTimeout(this.hideTimeout);
-        this.el.classList.add('toast--visible');
+        this.el.classList.add('toast-visible');
         this.hideTimeout = setTimeout(() => {
-            this.el.classList.remove('toast--visible');
+            this.el.classList.remove('toast-visible');
         }, time ?? this.time);
     }
 
     hide() {
         clearTimeout(this.hideTimeout);
-        this.el.classList.remove('toast--visible');
+        this.el.classList.remove('toast-visible');
     }
 }

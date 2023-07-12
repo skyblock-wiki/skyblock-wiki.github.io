@@ -16,12 +16,11 @@
     --col-acc: #444;
     --col-acc2: #4a4a4a;
     --orange: #ed5f00;
-    --hover-color: #cc9933;
+    --hover-color: #c93;
     --state-shadow: 0 0 3px 2px var(--hover-color);
     --dot-border: #999;
     --box-border: #666;
     --imports-selected: white;
-
     --link-shadow: 0 0 10px 0 #fff1;
     --link-bgcolor: #fff1;
 }
@@ -44,14 +43,14 @@ body {
     color: white;
     display: flex;
     flex-direction: column;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Montserrat, sans-serif;
     min-height: 100vh;
     width: 100%;
 }
 
 .hidden {
     display: none;
-    opacity: 0%;
+    opacity: 0;
 }
 
 .soft-hidden {
@@ -65,19 +64,15 @@ body {
 
 .unselectable {
     -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
 }
 
 .code {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgb(0 0 0 / 20%);
     border: 1px solid var(--col-acc);
     border-radius: 4px;
     font-family: 'Fira Mono', Consolas, monospace;
-    padding: 0px 0.3rem;
+    padding: 0 0.3rem;
 }
 
 abbr {
@@ -113,7 +108,8 @@ abbr {
 }
 
 /* Inputs */
-button, input[type='submit'] {
+button,
+input[type='submit'] {
     color: white;
     background-color: var(--col-bg2);
     border: 1px solid var(--col-acc);
@@ -125,10 +121,11 @@ button, input[type='submit'] {
     width: max-content;
 }
 
-button:disabled, input[type='submit']:disabled {
+button:disabled,
+input[type='submit']:disabled {
     color: #aaa;
     cursor: default;
-    opacity: 50%;
+    opacity: 0.5;
 }
 
 textarea {
@@ -179,7 +176,7 @@ textarea:focus {
 .page-contributors button {
     background: none;
     border: none;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Montserrat, sans-serif;
     font-size: 20px;
     font-weight: 300;
     transition: none;
@@ -274,7 +271,7 @@ footer {
 .tooltip {
     border-bottom: 1px dotted white;
     display: inline-block;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Montserrat, sans-serif;
     font-weight: 200;
     position: relative;
 }
@@ -284,13 +281,14 @@ footer {
     border: 1px solid var(--col-acc2);
     border-radius: 6px;
     bottom: -5px;
-    color: #fff;
+    color: white;
     max-width: 300px;
     opacity: 0;
     padding: 5px 5px 5px 25px;
     position: absolute;
     right: 110%;
     text-align: left;
+
     /* fade animation */
     transition: all 0.2s ease;
     visibility: hidden;
@@ -324,7 +322,7 @@ footer {
 }
 
 .tooltip .tooltip-text li span {
-    font-family: 'Montserrat', sans-serif;
+    font-family: Montserrat, sans-serif;
     font-size: 0.8rem;
     left: -4px;
     position: relative;

@@ -8,6 +8,7 @@ section.downloads,
 section.contributors {
     padding: 1.5rem 2rem;
 }
+
 .tools h1,
 .downloads h1,
 .contributors h1 {
@@ -19,15 +20,16 @@ section.contributors {
     position: relative;
     top: 200px;
 }
+
 .tools > ul,
 .downloads > ul,
 .contributors > ul {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     justify-content: flex-start;
     margin: 0 1.5rem;
 }
+
 .tools > ul > li,
 .downloads > ul > li,
 .contributors > ul > li {
@@ -37,10 +39,11 @@ section.contributors {
     display: flex;
     flex-direction: column;
     position: relative;
-    margin: 0.5rem 0.5rem;
+    margin: 0.5rem;
     padding: 0.5rem;
     width: 300px;
 }
+
 .tools > ul > li > a,
 .downloads > ul > li > a {
     align-self: center;
@@ -49,27 +52,32 @@ section.contributors {
     justify-content: center;
     width: 50%;
 }
+
 .tools > ul > li > a > img,
 .downloads > ul > li > a > img {
     cursor: pointer;
     width: 100%;
 }
+
 .contributors > ul > li {
     height: unset;
     min-height: max-content;
 }
+
 .tools li img,
 .downloads li img,
 .contributors li img {
     align-self: center;
     width: 50%;
 }
+
 .tools li hr,
 .downloads li hr,
 .contributors li hr {
     border-color: var(--col-acc);
     margin: 1rem 0;
 }
+
 .tools li h4,
 .downloads li h4,
 .contributors li h4 {
@@ -79,6 +87,7 @@ section.contributors {
     margin-bottom: 0.3rem;
     text-align: center;
 }
+
 .tools li .version,
 .downloads li .version,
 .contributors li .version {
@@ -87,13 +96,15 @@ section.contributors {
     font-size: 0.825rem;
     margin-right: 0.5rem;
 }
+
 .tools li p,
 .downloads li p {
     color: white;
     font-size: 0.8rem;
     font-weight: 200;
-    margin: 0.5rem 0 0.5rem;
+    margin: 0.5rem 0;
 }
+
 .tools li .links,
 .downloads li .links,
 .contributors li .links {
@@ -101,11 +112,13 @@ section.contributors {
     display: flex;
     margin: auto 0 0.3rem 0.2rem;
 }
+
 .tools li .links > *:not(:first-child),
 .downloads li .links > *:not(:first-child),
 .contributors li .links > *:not(:first-child) {
     margin-left: 0.5rem;
 }
+
 .tools li .links .link,
 .downloads li .links .link,
 .contributors li .links .link {
@@ -121,12 +134,14 @@ section.contributors {
     text-decoration: none;
     transition: background-color 0.2s ease;
 }
+
 .tools li .links .link img,
 .downloads li .links .link img,
 .contributors li .links .link img {
     height: 20px;
     width: 20px;
 }
+
 .tools li .links .link:hover,
 .tools li .links .link:focus,
 .downloads li .links .link:hover,
@@ -135,6 +150,7 @@ section.contributors {
 .contributors li .links .link:focus {
     background: #fff1;
 }
+
 .tools li .links .line,
 .downloads li .links .line,
 .contributors li .links .line {
@@ -142,6 +158,7 @@ section.contributors {
     display: inline-block;
     height: 100%;
 }
+
 .tools > ul > li.sitetool::after {
     content: '★ Site Tool';
     position: absolute;
@@ -166,36 +183,43 @@ section.contributors {
     justify-content: center;
     width: 50%;
 }
+
 .contributors > ul > li > a > img {
     border-radius: 999px;
     cursor: pointer;
     width: 100%;
 }
+
 .contributors .task-list {
     list-style-type: disc;
     margin-bottom: 0.5rem;
     margin-left: 1rem;
 }
+
 .contributors .task-list li {
     color: white;
     font-size: 0.8rem;
     font-weight: 200;
     margin: 0.2rem 0;
 }
+
 .contributors .task-list li * {
     left: -4px;
     position: relative;
 }
+
 .contributors .discord {
     cursor: pointer;
     display: inline-block;
     position: relative;
 }
+
 body.has-hover .contributors .discord:hover > .discord-tooltip,
 body.has-hover .contributors .discord:focus > .discord-tooltip,
 body.has-hover .contributors .discord:active > .discord-tooltip {
     visibility: visible;
 }
+
 .contributors .discord-tooltip {
     align-items: center;
     background: var(--col-bg);
@@ -211,6 +235,7 @@ body.has-hover .contributors .discord:active > .discord-tooltip {
     visibility: hidden;
     width: max-content;
 }
+
 .contributors .discord-tooltip::after {
     border-color: var(--col-acc2) transparent transparent transparent;
     border-style: solid;
@@ -220,78 +245,93 @@ body.has-hover .contributors .discord:active > .discord-tooltip {
     left: calc(50% - 0.4rem);
     position: absolute;
 }
+
 .contributors .discord-tooltip span {
     font-family: monospace;
 }
+
 .contributors .discord-tooltip .copy-text,
 .contributors .discord-tooltip .copy-popup {
     font-size: 0.65rem;
-    opacity: 75%;
+    opacity: 0.75;
 }
+
 .contributors .discord-tooltip .copy-popup {
     color: limegreen;
     display: none;
 }
+
 .contributors .discord-tooltip.copied .copy-text {
     display: none;
 }
+
 .contributors .discord-tooltip.copied .copy-popup {
     display: block;
 }
+
 /*  
 =============================
-		Responsivenes
+		Responsiveness
 =============================
 */
-@media screen and (max-width: 1000px) {
+@media screen and (width <= 1000px) {
     section.tools,
     section.downloads,
     section.contributors {
         padding: 1.5rem 3rem;
     }
+
     .tools ul,
     .downloads ul,
     .contributors ul {
         margin: 0 1.2rem;
     }
 }
-@media screen and (max-width: 730px) {
+
+@media screen and (width <= 730px) {
     section.tools,
     section.downloads,
     section.contributors {
         padding: 0.75rem 1rem;
     }
+
     .tools > ul,
     .downloads > ul,
     .contributors > ul {
         margin: 0 1.2rem;
     }
+
     .tools > ul > li,
     .downloads > ul > li {
         /* height: 300px; */
         width: 220px;
     }
+
     .contributors > ul > li {
         /* height: 300px; */
         width: 220px;
     }
+
     .tools li h4,
     .downloads li h4,
     .contributors li h4 {
         font-size: 0.9rem;
     }
+
     .tools li .version,
     .downloads li .version,
     .contributors li .version {
         font-size: 0.8rem;
         margin-right: 0.45rem;
     }
+
     .tools li p,
     .downloads li p,
     .contributors li ul {
         font-size: 0.75rem;
-        margin: 0.5rem 0 0.5rem;
+        margin: 0.5rem 0;
     }
+
     .tools li .links .link,
     .downloads li .links .link,
     .contributors li .links .link {
@@ -299,43 +339,51 @@ body.has-hover .contributors .discord:active > .discord-tooltip {
         padding: 0.135rem 0.27rem;
     }
 }
-@media screen and (max-width: 600px) {
+
+@media screen and (width <= 600px) {
     section.tools,
     section.downloads,
     section.contributors {
         padding: 0.75rem 1.5rem;
     }
+
     .tools > ul,
     .downloads > ul,
     .contributors > ul {
         margin: 0 1.1rem;
     }
+
     .tools > ul > li,
     .downloads > ul > li {
         /* height: 280px; */
         width: 190px;
     }
+
     .contributors > ul > li {
         /* height: 280px; */
         width: 190px;
     }
+
     .tools li h4,
     .downloads li h4,
     .contributors li h4 {
         font-size: 0.85rem;
     }
+
     .tools li .version,
     .downloads li .version,
     .contributors li .version {
         font-size: 0.74rem;
         margin-right: 0.45rem;
     }
+
     .tools li p,
     .downloads li p,
     .contributors li ul {
         font-size: 0.7rem;
-        margin: 0.5rem 0 0.5rem;
+        margin: 0.5rem 0;
     }
+
     .tools li .links .link,
     .downloads li .links .link,
     .contributors li .links .link {
@@ -343,43 +391,51 @@ body.has-hover .contributors .discord:active > .discord-tooltip {
         padding: 0.125rem 0.25rem;
     }
 }
-@media screen and (max-width: 500px) {
+
+@media screen and (width <= 500px) {
     section.tools,
     section.downloads,
     section.contributors {
         padding: 0.5rem 1rem;
     }
+
     .tools > ul,
     .downloads > ul,
     .contributors > ul {
         margin: 0 1rem;
     }
+
     .tools > ul > li,
     .downloads > ul > li {
         /* height: 250px; */
         width: 180px;
     }
+
     .contributors > ul > li {
         /* height: 250px; */
         width: 180px;
     }
+
     .tools li h4,
     .downloads li h4,
     .contributors li h4 {
         font-size: 0.8rem;
     }
+
     .tools li .version,
     .downloads li .version,
     .contributors li .version {
         font-size: 0.7rem;
         margin-right: 0.4rem;
     }
+
     .tools li p,
     .downloads li p,
     .contributors li ul {
         font-size: 0.65rem;
-        margin: 0.5rem 0 0.5rem;
+        margin: 0.5rem 0;
     }
+
     .tools li .links .link,
     .downloads li .links .link,
     .contributors li .links .link {

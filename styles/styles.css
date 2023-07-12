@@ -42,6 +42,7 @@ header .logo {
     align-items: center;
     display: flex;
 }
+
 header .logo img {
     margin-right: 1.5rem;
     width: 4rem;
@@ -57,6 +58,7 @@ header .logo .name-short {
     font-weight: 500;
     white-space: nowrap;
 }
+
 header .logo .name-short {
     display: none;
 }
@@ -68,6 +70,7 @@ header .logo .version {
     font-weight: 300;
     margin-left: 0.5rem;
 }
+
 header nav {
     display: flex;
     height: 100%;
@@ -76,13 +79,14 @@ header nav {
     padding-left: 4rem;
     width: 100%;
 }
+
 header nav a {
     align-items: center;
     border-radius: 999px;
     color: white;
     display: flex;
     flex-grow: 1;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Montserrat, sans-serif;
     height: calc(100% - 1rem);
     justify-content: center;
     margin: 0.5rem 1rem;
@@ -90,6 +94,7 @@ header nav a {
     text-decoration: none;
     transition: all 0.2s ease;
 }
+
 header nav a:hover,
 header nav a:focus {
     background: #fff1;
@@ -99,6 +104,7 @@ header nav a:focus {
 header .hamburger {
     display: none;
 }
+
 /*  
 ========================
 		Main CSS
@@ -107,6 +113,7 @@ header .hamburger {
 body {
     overflow-x: hidden;
 }
+
 main {
     display: flex;
     flex-direction: column;
@@ -123,39 +130,47 @@ source file: ROOT/styles/sections.css
 		Responsivenes
 =============================
 */
-@media screen and (max-width: 1000px) {
+@media screen and (width <= 1000px) {
     header {
         height: 3.6rem;
         padding-left: 1rem;
         padding-right: 1rem;
     }
+
     header .logo img {
         margin: 0.5rem;
         width: 2.4rem;
     }
+
     header .logo .name {
         font-size: 1.15rem;
     }
+
     header .logo .version {
         font-size: 0.8rem;
     }
+
     header nav {
         padding-left: 1rem;
     }
+
     header nav a {
         height: calc(100% - 0.4rem);
         margin: 0.2rem 0.5rem;
     }
 }
-@media screen and (max-width: 730px) {
+
+@media screen and (width <= 730px) {
     header .logo .name {
         display: none;
     }
+
     header .logo .name-short {
         display: inline;
     }
 }
-@media screen and (max-width: 600px) {
+
+@media screen and (width <= 600px) {
     header nav {
         background: #0005;
         flex-direction: column;
@@ -167,15 +182,18 @@ source file: ROOT/styles/sections.css
         transition: right 0.4s ease;
         width: 55%;
     }
+
     header nav.active {
         right: 0;
     }
+
     header nav a {
         height: 2.5rem;
         justify-content: flex-start;
         margin: 0.5rem 3rem 0.5rem 0.5rem;
         padding: 0.3rem;
     }
+
     header .hamburger {
         align-items: center;
         cursor: pointer;
@@ -190,20 +208,24 @@ source file: ROOT/styles/sections.css
         top: 0;
         width: 2.6rem;
     }
+
     header .hamburger span {
         border-top: 1px solid white;
         margin: 0.4rem 0;
         transition: all 0.2s ease, opacity 0.1s ease;
         width: 2.6rem;
     }
+
     .hamburger.active span:nth-of-type(1) {
         position: relative;
         top: 13px;
         transform: rotate(45deg);
     }
+
     .hamburger.active span:nth-of-type(2) {
-        opacity: 0%;
+        opacity: 0;
     }
+
     .hamburger.active span:nth-of-type(3) {
         position: relative;
         top: -13px;
