@@ -1,5 +1,5 @@
-@import '/styles/global.css';
-@import '/tools/common.css';
+@import url("/styles/global.css");
+@import url("/tools/common.css");
 
 /*  
 =======================
@@ -23,6 +23,7 @@ label {
     grid-template-columns: auto 1fr;
     align-items: end;
 }
+
 .templates .label {
     font-size: 0.9rem;
     font-weight: 200;
@@ -30,11 +31,13 @@ label {
     text-align: right;
     margin-block: 5px;
 }
+
 .templates td .copy-result {
     display: inline-block;
     margin-bottom: 1.5rem;
     margin-top: 0.2rem;
 }
+
 textarea#infobox,
 textarea#essence-table {
     max-height: 15rem;
@@ -47,10 +50,10 @@ textarea#essence-table {
 
 /*  
 =============================
-		Responsivenes
+		Responsiveness
 =============================
 */
-@media screen and (max-width: 830px) {
+@media screen and (width <= 830px) {
     textarea#infobox,
     textarea#essence-table {
         width: 100%;

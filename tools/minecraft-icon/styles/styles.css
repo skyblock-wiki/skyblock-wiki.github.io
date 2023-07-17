@@ -1,6 +1,6 @@
-@import url('https://cdn.jsdelivr.net/gh/skyblock-wiki/wiki-assets@1.0/fonts/font-import/lib/mc1.8.9-full.css');
-@import '/styles/global.css';
-@import '/tools/common.css';
+@import url("https://cdn.jsdelivr.net/gh/skyblock-wiki/wiki-assets@1.0/fonts/font-import/lib/mc1.8.9-full.css");
+@import url("/styles/global.css");
+@import url("/tools/common.css");
 
 /*  
 =======================
@@ -21,9 +21,11 @@ aside a {
     height: max-content;
     width: max-content;
 }
+
 aside a img {
     border: 1px solid var(--col-acc);
 }
+
 canvas {
     display: none;
 }

@@ -36,7 +36,7 @@ export const allContexts = {
     c: chestCanvas.getContext('2d'),
     l: legsCanvas.getContext('2d'),
     b: bootsCanvas.getContext('2d'),
-    
+
     h_latest: helmCanvas.getContext('2d'),
     c_latest: chestCanvas.getContext('2d'),
     l_latest: legsCanvas.getContext('2d'),
@@ -113,7 +113,7 @@ const images = {
     c_latest_overlay: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAEUlEQVQ4EWMYBaNgFIwCKAAABBAAAVYyfTgAAAAASUVORK5CYII=',
     l_latest_overlay: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAANUlEQVQ4y2NgGAXDEZgoiv4HYWLFMRRNjbP+X+Sh919RlPc/IXGsBoAUYTMAmzj1vTAKyAMAD6cluRieScUAAAAASUVORK5CYII=',
     b_latest_overlay: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAVElEQVQ4y2NgGAWjgJrARFH0P4xd5KH3X1GU9z+yHEgMxkeWgyuYGmcNxiCFoaaKGAaAxEByMDUohsBsQNaMrADGR1eDYgBMEYbzkACyGnzqhhgAAJntOuWFWA43AAAAAElFTkSuQmCC'
-}
+};
 
 const importsList = document.querySelector('.imports-list');
 
@@ -259,7 +259,7 @@ function _allLoadingFinished() {
         state = 'active';
         draw();
     });
-    
+
     if (colorParam && colorParam.match(/^[A-F0-9]{6}$/)) {
         updateColor(colorParam);
     } else {

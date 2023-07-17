@@ -1,5 +1,5 @@
-@import '/styles/global.css';
-@import '/tools/common.css';
+@import url("/styles/global.css");
+@import url("/tools/common.css");
 
 /*  
 =======================
@@ -11,6 +11,7 @@ main section:last-of-type {
     display: flex;
     flex-direction: column;
 }
+
 main section:last-of-type textarea {
     height: 100%;
     min-height: 18rem;
@@ -25,46 +26,57 @@ main section:last-of-type textarea {
 canvas {
     display: none;
 }
+
 aside section:nth-of-type(2) {
     justify-content: center;
     align-items: center;
     padding: 1rem 0;
 }
+
 aside section:nth-of-type(2) > div {
     text-align: center;
 }
+
 aside section:last-of-type {
     flex-grow: 1;
 }
+
 aside table {
     table-layout: fixed;
     width: 100%;
     font-size: 14px;
 }
+
 aside th,
 aside td {
     overflow: clip;
     border: 2px solid var(--box-border);
     padding: 7px;
 }
+
 aside th {
     background-color: #333;
 }
+
 aside td {
     background-color: #111;
 }
+
 .warning-name td {
-    background-color: rgb(1, 35, 59);
+    background-color: rgb(1 35 59);
 }
+
 .warning-name td:nth-of-type(1),
 .warning-id td:nth-of-type(2) {
-    color: rgb(255, 173, 173);
+    color: rgb(255 173 173);
 }
+
 .warning-id td {
-    background-color: rgb(59, 1, 11);
+    background-color: rgb(59 1 11);
 }
+
 .warning-dup td:last-child {
-    background-color: rgb(1, 59, 1);
+    background-color: rgb(1 59 1);
 }
 
 /*  
@@ -77,12 +89,15 @@ aside td {
     font-size: 0.8rem;
     font-weight: 200;
 }
+
 a:not(#return-main, .link) {
     transition: all 0.2s ease;
 }
+
 a:not(#return-main, .link):hover {
     filter: brightness(80%);
 }
+
 a:not(#return-main, .link):active {
     background: var(--link-bgcolor);
     border-radius: 3px;

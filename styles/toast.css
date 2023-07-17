@@ -23,7 +23,10 @@
     right: 0;
     text-align: center;
     top: 0;
-    transition: opacity 0.2s, top 0.2s, visibility 0.2s;
+    transition:
+        opacity 0.2s,
+        top 0.2s,
+        visibility 0.2s;
     visibility: hidden;
 }
 

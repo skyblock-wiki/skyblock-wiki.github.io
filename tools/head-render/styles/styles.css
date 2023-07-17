@@ -1,5 +1,5 @@
-@import '/styles/global.css';
-@import '/tools/common.css';
+@import url("/styles/global.css");
+@import url("/tools/common.css");
 
 /*  
 ========================
@@ -7,7 +7,7 @@
 ========================
 */
 main section:nth-of-type(1) {
-	height: 7.5rem;
+    height: 7.5rem;
 }
 
 /*  
@@ -18,45 +18,53 @@ main section:nth-of-type(1) {
 canvas {
     display: none;
 }
+
 aside .nbt-info th {
     font-size: 0.9rem;
     font-weight: 200;
     padding-right: 1rem;
     text-align: right;
 }
+
 aside .nbt-info td div {
     display: inline-block;
     margin: 0.2rem 0;
 }
+
 aside .nbt-info input {
     background-color: var(--col-bg2);
     border: 1px solid var(--col-acc);
     border-radius: 4px;
     color: #aaa;
     cursor: pointer;
-    font-family: 'Fira Code', monospace;
+    font-family: "Fira Code", monospace;
     font-size: 0.75rem;
     padding: 0.2rem 0.3rem;
     transition: all 0.2s ease;
     width: 15rem;
 }
+
 aside section > *:not(a) {
     padding: 0 0.5rem;
 }
+
 aside .head-box {
     border-bottom: 1px solid var(--col-bg3);
     height: fit-content;
-    padding-bottom: 1rem;
     margin-bottom: 1rem;
+    padding-bottom: 1rem;
 }
+
 aside .title-box {
     align-items: center;
     display: flex;
     justify-content: space-between;
 }
+
 aside .title-box h3 {
     margin-right: 2rem;
 }
+
 aside #loading {
     align-self: center;
     border: none;
@@ -65,10 +73,12 @@ aside #loading {
     margin: 3rem;
     width: 95px;
 }
+
 aside #drawn-link,
 aside #sprite-link {
     align-self: center;
 }
+
 aside img#drawn,
 aside img#sprite {
     background-color: var(--col-bg2);
@@ -77,10 +87,12 @@ aside img#sprite {
     cursor: pointer;
     margin: 0.5rem 0 0;
 }
+
 aside img#drawn {
     height: 350px;
     width: 350px;
 }
+
 aside img#sprite {
     height: 150px;
     width: 150px;
@@ -96,19 +108,22 @@ aside img#sprite {
     font-size: 0.8rem;
     font-weight: 200;
 }
+
 a:not(#return-main, .link) {
     transition: all 0.2s ease;
 }
+
 a:not(#return-main, .link):hover {
     filter: brightness(80%);
 }
+
 a:not(#return-main, .link):active {
     background: var(--link-bgcolor);
     border-radius: 3px;
     box-shadow: var(--link-shadow);
 }
 
-@media screen and (max-width: 380px) {
+@media screen and (width <= 380px) {
     aside .nbt-info input {
         width: 100%;
     }

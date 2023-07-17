@@ -12,25 +12,31 @@ header {
     position: static;
     width: 100%;
 }
+
 header > span {
     display: flex;
 }
+
 header img {
     margin-right: 1.5rem;
     width: 4rem;
 }
+
 header .switch-mode {
     margin-left: auto;
     margin-right: 0.5rem;
 }
+
 header .switch-mode img {
     margin: 0 1.5rem;
     padding: 0.3rem;
 }
+
 header .name {
     font-size: 1.5rem;
     font-weight: 500;
 }
+
 header .version {
     align-self: flex-end;
     color: #ffffffa0;
@@ -38,6 +44,7 @@ header .version {
     font-weight: 300;
     margin-left: 0.5rem;
 }
+
 #return-main {
     align-items: center;
     border-right: 3px solid #666;
@@ -47,10 +54,12 @@ header .version {
     padding: 0.6rem 1rem;
     transition: all 0.2s ease;
 }
+
 #return-main img {
     margin-right: 0;
     vertical-align: middle;
 }
+
 #return-main:hover {
     background: #fff1;
     box-shadow: 0 0 10px 0 #fff1;
@@ -68,6 +77,7 @@ header .version {
     margin-top: 1rem;
     width: 100%;
 }
+
 main,
 aside {
     padding: 2rem;
@@ -84,24 +94,29 @@ main {
     display: flex;
     flex-direction: column;
 }
+
 main section {
     padding: 1rem 0.5rem;
 }
+
 main section:not(:last-child) {
     border-bottom: 1px solid var(--col-bg3);
 }
+
 h3:not(.contributors h3) {
-    font-family: 'Montserrat', sans-serif;
+    font-family: Montserrat, sans-serif;
     font-size: 1.25rem;
     font-weight: 300;
     margin-bottom: 0.5rem;
 }
+
 p {
-    font-family: 'Montserrat', sans-serif;
+    font-family: Montserrat, sans-serif;
     font-size: 0.9rem;
     font-weight: 200;
     margin-bottom: 0.8rem;
 }
+
 #warning {
     color: red;
     display: none;
@@ -123,27 +138,31 @@ aside {
 
 /*  
 =============================
-		Responsivenes
+		Responsiveness
 =============================
 */
-@media screen and (max-width: 830px) {
+@media screen and (width <= 830px) {
     body {
         overflow-x: hidden;
     }
+
     #wrapper {
         align-items: flex-end;
         flex-direction: column;
     }
+
     main,
     aside {
         border: none;
         width: 100%;
     }
+
     aside {
         border-top: 2px solid var(--col-acc2);
     }
 }
-@media screen and (max-width: 630px) {
+
+@media screen and (width <= 630px) {
     /*
     main {
         flex-direction: column;
@@ -166,10 +185,12 @@ aside {
     header .switch-mode {
         display: none;
     }
+
     #return-main {
         padding: 0.3rem 0.8rem;
     }
 }
+
 /*
 @media screen and (max-width: 380px) {
     header .name {

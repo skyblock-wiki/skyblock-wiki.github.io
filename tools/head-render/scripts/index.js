@@ -1,5 +1,5 @@
 import { Toast } from '../../../scripts/toast.js';
-import { beginWebRender, beginImageRender } from './draw.js';
+import { beginImageRender, beginWebRender } from './draw.js';
 
 /* Declare Elements */
 

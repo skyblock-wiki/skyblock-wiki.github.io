@@ -1,5 +1,5 @@
-@import url('./sections.css');
-@import url('./global.css');
+@import url("./sections.css");
+@import url("./global.css");
 
 /* logo link styles */
 .logo a,
@@ -127,7 +127,7 @@ source file: ROOT/styles/sections.css
 
 /*  
 =============================
-		Responsivenes
+		Responsiveness
 =============================
 */
 @media screen and (width <= 1000px) {
@@ -212,7 +212,9 @@ source file: ROOT/styles/sections.css
     header .hamburger span {
         border-top: 1px solid white;
         margin: 0.4rem 0;
-        transition: all 0.2s ease, opacity 0.1s ease;
+        transition:
+            all 0.2s ease,
+            opacity 0.1s ease;
         width: 2.6rem;
     }
 

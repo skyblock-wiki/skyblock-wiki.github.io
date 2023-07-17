@@ -160,7 +160,7 @@ section.contributors {
 }
 
 .tools > ul > li.sitetool::after {
-    content: '★ Site Tool';
+    content: "★ Site Tool";
     position: absolute;
     bottom: 0;
     right: 0;
@@ -241,7 +241,7 @@ body.has-hover .contributors .discord:active > .discord-tooltip {
     border-style: solid;
     border-width: 5px;
     bottom: -10px;
-    content: '';
+    content: "";
     left: calc(50% - 0.4rem);
     position: absolute;
 }

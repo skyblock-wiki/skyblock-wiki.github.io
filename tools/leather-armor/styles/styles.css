@@ -1,5 +1,5 @@
-@import '/styles/global.css';
-@import '/tools/common.css';
+@import url("/styles/global.css");
+@import url("/tools/common.css");
 
 /*  
 =======================
@@ -13,6 +13,7 @@
     position: absolute;
     transition: all 0.2s ease;
 }
+
 #show-imports {
     background: none;
     border: none;
@@ -23,15 +24,19 @@
     width: 3rem;
     z-index: 2;
 }
+
 #show-imports:hover {
     background: #fff1;
 }
+
 #show-imports i {
     transition: transform 0.2s ease;
 }
+
 .imports-list:not(.hidden) + #show-imports i {
     transform: scale(-1, 1);
 }
+
 .imports-list {
     background: var(--col-bg);
     border: 1px solid var(--col-acc);
@@ -41,13 +46,15 @@
     transition: all 0.2s ease;
     z-index: 2;
 }
+
 .imports-list.hidden {
     display: block;
-    opacity: 0%;
+    opacity: 0;
     transform: translateX(-100%);
 }
+
 .dimmer {
-    background-color: #000;
+    background-color: black;
     height: 100%;
     left: 0;
     opacity: 0.6;
@@ -57,20 +64,24 @@
     width: 100%;
     z-index: 1;
 }
+
 .dimmer.disallow-focusing {
     display: block !important;
     opacity: 0;
     z-index: -99;
 }
+
 .imports h2 {
     font-size: 1.2rem;
     margin-bottom: 1rem;
 }
+
 .imports h3 {
     font-size: 1rem;
     font-weight: 300;
     margin-bottom: 0.6rem;
 }
+
 .imports h3 .tip {
     border: 1px solid var(--col-acc);
     border-radius: 999px;
@@ -78,12 +89,14 @@
     font-size: 0.6rem;
     padding: 0 0.2rem;
 }
+
 .imports .input-form {
     align-items: center;
     display: flex;
     justify-content: space-between;
     margin: 0.6rem 0 0 8px;
 }
+
 .imports .input-form input {
     background: var(--col-bg2);
     border: 1px solid var(--col-acc);
@@ -92,6 +105,7 @@
     height: 100%;
     padding: 0.2rem 0.4rem;
 }
+
 .imports .input-form #color-import-submit {
     background: var(--col-bg2);
     border: 1px solid var(--col-acc);
@@ -103,14 +117,17 @@
     padding: 0.2rem 0.3rem;
     transition: all 0.2s ease;
 }
+
 .imports .input-form #color-import-submit:hover {
     background: var(--col-bg3);
 }
+
 .imports .color-model {
     align-items: center;
     display: flex;
     justify-content: flex-start;
 }
+
 .imports .color-model .btn-option {
     background: none;
     border: none;
@@ -119,6 +136,7 @@
     padding: 0.2rem 0.3rem;
     width: min-content;
 }
+
 .imports .color-model .option {
     align-items: center;
     background: var(--col-bg3);
@@ -131,9 +149,11 @@
     transition: all 0.3s ease;
     width: 6rem;
 }
+
 .imports .color-model .option span {
     color: var(--box-border);
 }
+
 .imports .color-model .option .dot {
     border: 2px solid var(--dot-border);
     border-radius: 999px;
@@ -141,10 +161,11 @@
     transition: all 0.3s ease;
     width: 1rem;
 }
+
 .imports .color-model .option .dot::before {
     background: var(--orange);
     border-radius: 999px;
-    content: '';
+    content: "";
     height: 0.5rem;
     margin-left: 0.125rem;
     margin-top: 0.125rem;
@@ -152,23 +173,28 @@
     position: absolute;
     width: 0.5rem;
 }
+
 .imports .color-model #option1:checked ~ .btn-option1 .option,
 .imports .color-model #option2:checked ~ .btn-option2 .option {
     background: var(--orange);
 }
+
 .imports .color-model #option1:checked ~ .btn-option1 .option .dot,
 .imports .color-model #option2:checked ~ .btn-option2 .option .dot {
     background: var(--imports-selected);
     border-color: var(--imports-selected);
 }
+
 .imports .color-model #option1:checked ~ .btn-option1 .option .dot::before,
 .imports .color-model #option2:checked ~ .btn-option2 .option .dot::before {
     opacity: 1;
 }
+
 .imports .color-model #option1:checked ~ .btn-option1 .option span,
 .imports .color-model #option2:checked ~ .btn-option2 .option span {
     color: var(--imports-selected);
 }
+
 .imports .color-model input {
     display: none;
 }
@@ -183,15 +209,18 @@ main > div {
     display: flex;
     flex-direction: column;
 }
+
 /* inputs */
 #inputs {
     align-items: center;
     flex-direction: column;
     gap: 1.6rem;
 }
+
 .text-input #color {
     margin-top: 0;
 }
+
 .text-input input {
     border: 2px dotted black;
     box-shadow: var(--state-shadow);
@@ -200,24 +229,29 @@ main > div {
     text-align: center;
     width: 5em;
 }
+
 .text-input .suggestions {
-    margin-top: .5rem;
+    margin-top: 0.5rem;
     min-height: 2.4rem;
 }
+
 .text-input .suggestions-label {
-    font-family: 'Montserrat', sans-serif;
+    font-family: Montserrat, sans-serif;
     font-size: 0.9rem;
     font-weight: 200;
     text-align: center;
 }
+
 .text-input .suggestions ul {
     display: flex;
 }
+
 .text-input .suggestions li {
     margin-left: 1.4rem;
 }
+
 .text-input .suggestions li a {
-    border-bottom: 1px dotted currentColor;
+    border-bottom: 1px dotted currentcolor;
     color: darkgray;
     cursor: help;
     font-family: monospace;
@@ -225,123 +259,150 @@ main > div {
     left: -6px;
     position: relative;
 }
+
 .text-input .suggestions ::marker {
     color: darkgray;
     font-size: smaller;
 }
+
 #picker {
     margin: 0;
 }
+
 /* color wheel fixes */
+/* stylelint-disable selector-class-pattern */
 .IroWheel,
 .IroSlider {
     border: 1px solid black;
     border-radius: 999px;
 }
+
 .IroWheel {
     cursor: move;
 }
-.IroSlider {
-    cursor: ew-resize;
-}
+
 .IroWheelLightness {
     height: 101% !important;
     left: -1px !important;
     top: -1px !important;
     width: 101% !important;
 }
+
 .IroSlider {
+    cursor: ew-resize;
     background: black !important;
     box-sizing: unset;
 }
+/* stylelint-enable selector-class-pattern */
+
 /* color values */
 .other-values {
-    margin: 3.5rem 0 1rem 0;
     font-weight: 300;
+    margin: 3.5rem 0 1rem;
 }
+
 .other-values th {
     font-size: 1.2rem;
     font-weight: 500;
 }
+
 .other-values tr td:first-of-type span {
     margin-right: 1rem;
 }
+
 .other-values tr td:nth-of-type(2) {
     width: 220px;
 }
+
 .other-values tr td:nth-of-type(2) span:not([class]) {
     color: gray;
 }
+
 .other-values .red {
     color: red;
 }
+
 .other-values .green {
-    color: #0f0;
+    color: lime;
 }
+
 .other-values .blue {
     color: blue;
 }
+
 .other-values .gray {
     color: darkgray;
 }
+
 .other-values .white {
     color: #eee;
 }
+
 /* outputs */
 #outputs {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     gap: 2rem;
+    justify-content: center;
 }
+
 #outputs .minecraft,
 #outputs .minecraft-latest {
     align-items: center;
     display: flex;
     flex-direction: column;
 }
+
 #outputs .label {
     font-size: 18px;
     font-style: italic;
 }
+
 #outputs a {
     height: max-content;
     width: max-content;
 }
+
 canvas {
     display: none;
 }
 
 /*  
 =============================
-		Responsivenes
+		Responsiveness
 =============================
 */
-@media screen and (max-width: 630px) {
+@media screen and (width <= 630px) {
     #inputs {
         gap: 0;
     }
+
     #outputs a,
     #outputs a img {
         height: 130px;
         width: 130px;
     }
+
     .text-input,
     .text-input input {
         width: 130px;
     }
+
     .text-input input {
         font-size: 1.7rem;
     }
+
     .text-input .suggestions-label {
         font-size: 0.8rem;
         line-height: 0.4rem;
     }
+
     .text-input .suggestions li a {
         font-size: 0.8rem;
     }
+
     .other-values {
         font-size: 0.9rem;
-        margin: 2.5rem 0 1rem 0;
+        margin: 2.5rem 0 1rem;
     }
 }

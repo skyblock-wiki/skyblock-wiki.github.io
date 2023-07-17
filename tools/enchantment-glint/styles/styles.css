@@ -1,5 +1,5 @@
-@import '/styles/global.css';
-@import '/tools/common.css';
+@import url("/styles/global.css");
+@import url("/tools/common.css");
 
 /*  
 =======================
@@ -19,6 +19,7 @@ aside a {
     height: max-content;
     width: max-content;
 }
+
 canvas {
     display: none;
 }

@@ -6,5 +6,11 @@
     "singleQuote": true,
     "tabWidth": 4,
     "trailingComma": "none",
+    "overrides": [
+        {
+            "files": ["*.css"],
+            "options": { "singleQuote": false }
+        }
+    ],
     "plugins": ["prettier-plugin-organize-imports"]
 }

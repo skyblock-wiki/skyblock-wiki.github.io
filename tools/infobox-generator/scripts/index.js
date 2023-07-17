@@ -407,7 +407,7 @@ function createInfobox(itemData) {
             infobox += '|rift_transferrable = no\n';
         }
     } else if (itemData.origin === 'RIFT') {
-        infobox += '|rift_transferrable = no\n';    
+        infobox += '|rift_transferrable = no\n';
     }
 
     if (itemData.npc_sell_price) {
