@@ -18,8 +18,8 @@
 ======================
 */
 aside a {
-    height: max-content;
     width: max-content;
+    height: max-content;
 }
 
 aside a img {

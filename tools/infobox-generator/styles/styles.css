@@ -7,9 +7,9 @@
 =======================
 */
 label {
-    font-size: 0.9rem;
-    font-weight: 200;
     padding-left: 0.25rem;
+    font-weight: 200;
+    font-size: 0.9rem;
     text-align: right;
 }
 
@@ -25,27 +25,27 @@ label {
 }
 
 .templates .label {
-    font-size: 0.9rem;
-    font-weight: 200;
-    padding-right: 1rem;
-    text-align: right;
     margin-block: 5px;
+    padding-right: 1rem;
+    font-weight: 200;
+    font-size: 0.9rem;
+    text-align: right;
 }
 
 .templates td .copy-result {
     display: inline-block;
-    margin-bottom: 1.5rem;
     margin-top: 0.2rem;
+    margin-bottom: 1.5rem;
 }
 
 textarea#infobox,
 textarea#essence-table {
-    max-height: 15rem;
-    width: 25rem;
-    resize: none;
     display: block;
     margin-block: 5px;
+    width: 25rem;
     max-width: 90%;
+    max-height: 15rem;
+    resize: none;
 }
 
 /*  

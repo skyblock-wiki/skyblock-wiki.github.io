@@ -4,13 +4,13 @@
 ======================
 */
 header {
+    display: flex;
+    position: static;
     align-items: center;
     background: var(--col-bg3);
-    display: flex;
-    height: 5.5rem;
     padding: 0.3rem 0;
-    position: static;
     width: 100%;
+    height: 5.5rem;
 }
 
 header > span {
@@ -23,8 +23,8 @@ header img {
 }
 
 header .switch-mode {
-    margin-left: auto;
     margin-right: 0.5rem;
+    margin-left: auto;
 }
 
 header .switch-mode img {
@@ -33,36 +33,36 @@ header .switch-mode img {
 }
 
 header .name {
-    font-size: 1.5rem;
     font-weight: 500;
+    font-size: 1.5rem;
 }
 
 header .version {
     align-self: flex-end;
-    color: #ffffffa0;
-    font-size: 1rem;
-    font-weight: 300;
     margin-left: 0.5rem;
+    color: #ffffffa0;
+    font-weight: 300;
+    font-size: 1rem;
 }
 
 #return-main {
-    align-items: center;
-    border-right: 3px solid #666;
-    cursor: pointer;
     display: flex;
-    margin: auto 0.5rem;
-    padding: 0.6rem 1rem;
+    align-items: center;
     transition: all 0.2s ease;
+    cursor: pointer;
+    margin: auto 0.5rem;
+    border-right: 3px solid #666;
+    padding: 0.6rem 1rem;
 }
 
 #return-main img {
-    margin-right: 0;
     vertical-align: middle;
+    margin-right: 0;
 }
 
 #return-main:hover {
-    background: #fff1;
     box-shadow: 0 0 10px 0 #fff1;
+    background: #fff1;
 }
 
 /*  
@@ -71,9 +71,9 @@ header .version {
 =======================
 */
 #wrapper {
-    clear: both;
     display: flex;
     flex-grow: 1;
+    clear: both;
     margin-top: 1rem;
     width: 100%;
 }
@@ -90,9 +90,9 @@ aside {
 =======================
 */
 main {
-    border-right: 1px solid var(--col-bg3);
     display: flex;
     flex-direction: column;
+    border-right: 1px solid var(--col-bg3);
 }
 
 main section {
@@ -104,24 +104,24 @@ main section:not(:last-child) {
 }
 
 h3:not(.contributors h3) {
-    font-family: Montserrat, sans-serif;
-    font-size: 1.25rem;
-    font-weight: 300;
     margin-bottom: 0.5rem;
+    font-weight: 300;
+    font-size: 1.25rem;
+    font-family: Montserrat, sans-serif;
 }
 
 p {
-    font-family: Montserrat, sans-serif;
-    font-size: 0.9rem;
-    font-weight: 200;
     margin-bottom: 0.8rem;
+    font-weight: 200;
+    font-size: 0.9rem;
+    font-family: Montserrat, sans-serif;
 }
 
 #warning {
-    color: red;
     display: none;
-    font-size: 0.8rem;
+    color: red;
     font-weight: 200;
+    font-size: 0.8rem;
     text-align: justify;
 }
 
@@ -147,8 +147,8 @@ aside {
     }
 
     #wrapper {
-        align-items: flex-end;
         flex-direction: column;
+        align-items: flex-end;
     }
 
     main,

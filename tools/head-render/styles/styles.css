@@ -20,9 +20,9 @@ canvas {
 }
 
 aside .nbt-info th {
-    font-size: 0.9rem;
-    font-weight: 200;
     padding-right: 1rem;
+    font-weight: 200;
+    font-size: 0.9rem;
     text-align: right;
 }
 
@@ -32,16 +32,16 @@ aside .nbt-info td div {
 }
 
 aside .nbt-info input {
-    background-color: var(--col-bg2);
+    transition: all 0.2s ease;
+    cursor: pointer;
     border: 1px solid var(--col-acc);
     border-radius: 4px;
-    color: #aaa;
-    cursor: pointer;
-    font-family: "Fira Code", monospace;
-    font-size: 0.75rem;
+    background-color: var(--col-bg2);
     padding: 0.2rem 0.3rem;
-    transition: all 0.2s ease;
     width: 15rem;
+    color: #aaa;
+    font-size: 0.75rem;
+    font-family: "Fira Code", monospace;
 }
 
 aside section > *:not(a) {
@@ -49,16 +49,16 @@ aside section > *:not(a) {
 }
 
 aside .head-box {
-    border-bottom: 1px solid var(--col-bg3);
-    height: fit-content;
     margin-bottom: 1rem;
+    border-bottom: 1px solid var(--col-bg3);
     padding-bottom: 1rem;
+    height: fit-content;
 }
 
 aside .title-box {
-    align-items: center;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 aside .title-box h3 {
@@ -66,12 +66,12 @@ aside .title-box h3 {
 }
 
 aside #loading {
-    align-self: center;
-    border: none;
     display: none;
-    height: 20px;
+    align-self: center;
     margin: 3rem;
+    border: none;
     width: 95px;
+    height: 20px;
 }
 
 aside #drawn-link,
@@ -81,21 +81,21 @@ aside #sprite-link {
 
 aside img#drawn,
 aside img#sprite {
-    background-color: var(--col-bg2);
-    border: 1px solid var(--col-acc);
-    border-radius: 4px;
     cursor: pointer;
     margin: 0.5rem 0 0;
+    border: 1px solid var(--col-acc);
+    border-radius: 4px;
+    background-color: var(--col-bg2);
 }
 
 aside img#drawn {
-    height: 350px;
     width: 350px;
+    height: 350px;
 }
 
 aside img#sprite {
-    height: 150px;
     width: 150px;
+    height: 150px;
 }
 
 /*  
@@ -105,8 +105,8 @@ aside img#sprite {
 */
 .sec-err {
     color: red;
-    font-size: 0.8rem;
     font-weight: 200;
+    font-size: 0.8rem;
 }
 
 a:not(#return-main, .link) {
@@ -118,9 +118,9 @@ a:not(#return-main, .link):hover {
 }
 
 a:not(#return-main, .link):active {
-    background: var(--link-bgcolor);
-    border-radius: 3px;
     box-shadow: var(--link-shadow);
+    border-radius: 3px;
+    background: var(--link-bgcolor);
 }
 
 @media screen and (width <= 380px) {

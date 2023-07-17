@@ -34,18 +34,18 @@
 
 /* General */
 html {
-    scroll-behavior: smooth;
     width: 100%;
+    scroll-behavior: smooth;
 }
 
 body {
-    background: var(--col-bg);
-    color: white;
     display: flex;
     flex-direction: column;
-    font-family: Montserrat, sans-serif;
-    min-height: 100vh;
+    background: var(--col-bg);
     width: 100%;
+    min-height: 100vh;
+    color: white;
+    font-family: Montserrat, sans-serif;
 }
 
 .hidden {
@@ -54,8 +54,8 @@ body {
 }
 
 .soft-hidden {
-    cursor: default;
     visibility: hidden;
+    cursor: default;
 }
 
 .disallow-focusing {
@@ -68,11 +68,11 @@ body {
 }
 
 .code {
-    background: rgb(0 0 0 / 20%);
     border: 1px solid var(--col-acc);
     border-radius: 4px;
-    font-family: "Fira Mono", Consolas, monospace;
+    background: rgb(0 0 0 / 20%);
     padding: 0 0.3rem;
+    font-family: "Fira Mono", Consolas, monospace;
 }
 
 abbr {
@@ -81,13 +81,13 @@ abbr {
 
 /* checkboxes */
 .checkbox-custom {
-    opacity: 0;
     position: absolute;
+    opacity: 0;
 }
 
 .checkbox-label {
-    align-items: center;
     display: flex;
+    align-items: center;
     gap: 4px;
 }
 
@@ -110,82 +110,82 @@ abbr {
 /* Inputs */
 button,
 input[type="submit"] {
-    color: white;
-    background-color: var(--col-bg2);
+    transition: all 0.2s ease;
+    cursor: pointer;
     border: 1px solid var(--col-acc);
     border-radius: 4px;
-    cursor: pointer;
-    height: max-content;
+    background-color: var(--col-bg2);
     padding: 0.2rem 0.3rem;
-    transition: all 0.2s ease;
     width: max-content;
+    height: max-content;
+    color: white;
 }
 
 button:disabled,
 input[type="submit"]:disabled {
-    color: #aaa;
-    cursor: default;
     opacity: 0.5;
+    cursor: default;
+    color: #aaa;
 }
 
 textarea {
-    background-color: var(--col-bg2);
+    transition: box-shadow 0.1s ease;
+    margin: 0.5rem 0;
     border: 1px solid var(--col-acc);
     border-radius: 4px;
+    background-color: var(--col-bg2);
+    padding: 0.2rem;
+    width: 100%;
+    height: 5rem;
+    min-height: 4rem;
+    max-height: 16rem;
+    resize: none;
     color: #aaa;
     font-family: "Fira Mono", monospace;
-    height: 5rem;
-    margin: 0.5rem 0;
-    max-height: 16rem;
-    min-height: 4rem;
-    padding: 0.2rem;
-    resize: none;
-    transition: box-shadow 0.1s ease;
-    width: 100%;
 }
 
 input[type="text"] {
-    background-color: var(--col-bg2);
+    transition: box-shadow 0.1s ease;
+    margin: 0.5rem 0;
     border: 1px solid var(--col-acc);
     border-radius: 4px;
+    background-color: var(--col-bg2);
+    padding: 0.2rem;
+    width: 16rem;
+    resize: none;
     color: #aaa;
     font-family: "Fira Mono", monospace;
-    margin: 0.5rem 0;
-    padding: 0.2rem;
-    resize: none;
-    transition: box-shadow 0.1s ease;
-    width: 16rem;
 }
 
 input:focus,
 textarea:focus {
-    box-shadow: var(--state-shadow);
     outline: none;
+    box-shadow: var(--state-shadow);
 }
 
 /* Contributors */
 .page-contributors {
-    bottom: 0;
     display: flex;
-    flex-direction: column;
-    margin: 5px 10px;
     position: fixed;
     right: 0;
+    bottom: 0;
+    flex-direction: column;
+    margin: 5px 10px;
 }
 
 .page-contributors button {
-    background: none;
-    border: none;
-    font-family: Montserrat, sans-serif;
-    font-size: 20px;
-    font-weight: 300;
     transition: none;
+    border: none;
+    background: none;
+    font-weight: 300;
+    font-size: 20px;
+    font-family: Montserrat, sans-serif;
 }
 
 .page-contributors .list {
-    background: var(--col-bg2) none repeat scroll 0% 0%;
     border: 1px solid var(--col-acc2);
     border-radius: 4px;
+    background: var(--col-bg2) none repeat scroll 0% 0%;
 }
 
 .page-contributors button i {
@@ -203,8 +203,8 @@ textarea:focus {
 }
 
 .page-contributors #contrib-list {
-    list-style: none;
     margin: 0 1rem;
+    list-style: none;
 }
 
 .page-contributors #contrib-list > li {
@@ -213,29 +213,29 @@ textarea:focus {
 
 /* Footer */
 footer {
-    background: var(--col-bg3);
     display: flex;
     justify-content: center;
     justify-self: flex-end;
     margin-top: 1rem;
+    background: var(--col-bg3);
     padding: 0.4rem 2rem;
     width: 100%;
 }
 
 .github-button-wrapper a {
-    color: white;
-    background: var(--col-bg);
-    border-radius: 50px;
-    box-shadow: 0 3px 5px black;
-    cursor: pointer;
     display: inline-block;
-    height: 40px;
+    transition: all 0.3s ease;
+    cursor: pointer;
     margin: 0 5px;
     outline: none;
-    overflow: hidden;
-    text-decoration: none;
-    transition: all 0.3s ease;
+    box-shadow: 0 3px 5px black;
+    border-radius: 50px;
+    background: var(--col-bg);
     width: 40px;
+    height: 40px;
+    overflow: hidden;
+    color: white;
+    text-decoration: none;
 }
 
 .github-button-wrapper a:hover,
@@ -246,14 +246,14 @@ footer {
 }
 
 .github-button-wrapper a .icon {
-    border-radius: 50px;
-    box-sizing: border-box;
     display: inline-block;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+    border-radius: 50px;
+    width: 40px;
     height: 40px;
     line-height: 40px;
     text-align: center;
-    transition: all 0.2s ease;
-    width: 40px;
 }
 
 .github-button-wrapper a .icon i {
@@ -269,31 +269,31 @@ footer {
 /* Tooltips */
 
 .tooltip {
-    border-bottom: 1px dotted white;
     display: inline-block;
-    font-family: Montserrat, sans-serif;
-    font-weight: 200;
     position: relative;
+    border-bottom: 1px dotted white;
+    font-weight: 200;
+    font-family: Montserrat, sans-serif;
 }
 
 .tooltip .tooltip-text {
-    background-color: var(--col-bg3);
-    border: 1px solid var(--col-acc2);
-    border-radius: 6px;
-    bottom: -5px;
-    color: white;
-    max-width: 300px;
-    opacity: 0;
-    padding: 5px 5px 5px 25px;
     position: absolute;
     right: 110%;
-    text-align: left;
+    bottom: -5px;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 1;
 
     /* fade animation */
     transition: all 0.2s ease;
-    visibility: hidden;
+    border: 1px solid var(--col-acc2);
+    border-radius: 6px;
+    background-color: var(--col-bg3);
+    padding: 5px 5px 5px 25px;
     width: max-content;
-    z-index: 1;
+    max-width: 300px;
+    color: white;
+    text-align: left;
 }
 
 .tooltip > span:nth-child(1) {
@@ -301,20 +301,20 @@ footer {
 }
 
 .tooltip .tooltip-text::after {
-    border-color: transparent transparent transparent var(--col-acc2);
-    border-style: solid;
-    border-width: 5px;
+    position: absolute;
     bottom: 10px;
-    content: "";
     left: 100%;
     margin-top: -5px;
-    position: absolute;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent var(--col-acc2);
+    content: "";
 }
 
 .tooltip:hover .tooltip-text,
 .tooltip:active .tooltip-text {
-    opacity: 1;
     visibility: visible;
+    opacity: 1;
 }
 
 .tooltip .tooltip-text ul {
@@ -322,8 +322,8 @@ footer {
 }
 
 .tooltip .tooltip-text li span {
-    font-family: Montserrat, sans-serif;
-    font-size: 0.8rem;
-    left: -4px;
     position: relative;
+    left: -4px;
+    font-size: 0.8rem;
+    font-family: Montserrat, sans-serif;
 }

@@ -7,9 +7,9 @@
 =======================
 */
 main section:last-of-type {
-    height: 100%;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 main section:last-of-type textarea {
@@ -42,16 +42,16 @@ aside section:last-of-type {
 }
 
 aside table {
-    table-layout: fixed;
     width: 100%;
+    table-layout: fixed;
     font-size: 14px;
 }
 
 aside th,
 aside td {
-    overflow: clip;
     border: 2px solid var(--box-border);
     padding: 7px;
+    overflow: clip;
 }
 
 aside th {
@@ -86,8 +86,8 @@ aside td {
 */
 .sec-err {
     color: red;
-    font-size: 0.8rem;
     font-weight: 200;
+    font-size: 0.8rem;
 }
 
 a:not(#return-main, .link) {
@@ -99,7 +99,7 @@ a:not(#return-main, .link):hover {
 }
 
 a:not(#return-main, .link):active {
-    background: var(--link-bgcolor);
-    border-radius: 3px;
     box-shadow: var(--link-shadow);
+    border-radius: 3px;
+    background: var(--link-bgcolor);
 }
