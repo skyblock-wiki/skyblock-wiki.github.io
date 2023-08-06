@@ -5,8 +5,8 @@ export default [
         description: 'A mod that lets you render any entity (mob, player, NPC, item, anything) with a single click of a button. Requires Forge for Minecraft 1.8.x.',
         links: [
             { type: 'download', link: 'wikitools-2.6.6.jar' },
-            { type: 'github', link: 'https://github.com/Charzard4261/wikitools' }
-        ]
+            { type: 'github', link: 'https://github.com/Charzard4261/wikitools' },
+        ],
     },
     {
         name: 'Mineshot Mod',
@@ -15,17 +15,21 @@ export default [
         largeThumbnail: true,
         links: [
             { type: 'download', link: 'Mineshot-v1.7-1.8.9.jar' },
-            { type: 'github', link: 'https://github.com/ata4/mineshot' }
-        ]
+            { type: 'github', link: 'https://github.com/ata4/mineshot' },
+        ],
     },
     {
         name: 'World Downloader Mod',
         thumbnail: 'world-downloader',
         description: 'A mod that lets you download a world from multiplayer to singleplayer.',
         links: [
-            { type: 'text', text: 'Choose Version', link: 'https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/minecraft-mods/2520465-world-downloader-mod-create-backups-of-your-builds#Downloads' },
-            { type: 'github', link: 'https://github.com/Pokechu22/WorldDownloader/releases' }
-        ]
+            {
+                type: 'text',
+                text: 'Choose Version',
+                link: 'https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/minecraft-mods/2520465-world-downloader-mod-create-backups-of-your-builds#Downloads',
+            },
+            { type: 'github', link: 'https://github.com/Pokechu22/WorldDownloader/releases' },
+        ],
     },
     {
         name: 'Enchanted Item Toolkit (PS)',
@@ -33,8 +37,8 @@ export default [
         description: 'A set of <span class="code">.psd</span> templates used to make images for enchanted items and blocks.',
         links: [
             { type: 'download', link: 'Enchantment_Glint_ps.zip' },
-            { type: 'text', text: 'Get Photoshop', link: 'https://www.photoshop.com/en' }
-        ]
+            { type: 'text', text: 'Get Photoshop', link: 'https://www.photoshop.com/en' },
+        ],
     },
     {
         name: 'Enchanted Item Toolkit (GIMP)',
@@ -42,8 +46,8 @@ export default [
         description: 'A set of <span class="code">.xcf</span> templates used to make images for enchanted items and blocks.',
         links: [
             { type: 'download', link: 'Enchantment_Glint_gimp.zip' },
-            { type: 'text', text: 'Get GIMP', link: 'https://www.gimp.org' }
-        ]
+            { type: 'text', text: 'Get GIMP', link: 'https://www.gimp.org' },
+        ],
     },
     {
         name: 'BlockRenderer Mod',
@@ -52,7 +56,7 @@ export default [
         links: [
             { type: 'download', link: 'BlockRenderer-0.3.3.jar' },
             { type: 'curseForge', link: 'https://www.curseforge.com/minecraft/mc-mods/blockrenderer' },
-            { type: 'github', link: 'https://github.com/unascribed/BlockRenderer' }
-        ]
-    }
+            { type: 'github', link: 'https://github.com/unascribed/BlockRenderer' },
+        ],
+    },
 ];

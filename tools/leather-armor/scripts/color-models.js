@@ -69,8 +69,12 @@ export function updateColorsList() {
     const [h, s, l] = rgbToHsl(r, g, b);
 
     document.getElementById('color-hex').innerHTML = `<span>#</span><span class="red">${rr}</span><span class="green">${gg}</span><span class="blue">${bb}</span>`;
-    document.getElementById('color-rgb').innerHTML = `<span>rgb(</span><span class="red">${r}</span><span>, </span><span class="green">${g}</span><span>, </span><span class="blue">${b}</span><span>)</span>`;
-    document.getElementById('color-hsl').innerHTML = `<span>hsl(</span><span class="red">${h}</span><span>, </span><span class="gray">${s}%</span><span>, </span><span class="white">${l}%</span><span>)</span>`;
+    document.getElementById(
+        'color-rgb',
+    ).innerHTML = `<span>rgb(</span><span class="red">${r}</span><span>, </span><span class="green">${g}</span><span>, </span><span class="blue">${b}</span><span>)</span>`;
+    document.getElementById(
+        'color-hsl',
+    ).innerHTML = `<span>hsl(</span><span class="red">${h}</span><span>, </span><span class="gray">${s}%</span><span>, </span><span class="white">${l}%</span><span>)</span>`;
     document.getElementById('color-int').innerHTML = `<span class="gray">${parseInt(rr.concat(gg, bb), 16)}</span>`;
 
     document.documentElement.style.setProperty('--hover-color', colorInput.value);

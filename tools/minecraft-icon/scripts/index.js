@@ -6,98 +6,98 @@ const colorCodeInfo = [
         code: '0',
         name: 'black',
         foreground: '#000000',
-        background: '#000000'
+        background: '#000000',
     },
     {
         code: '1',
         name: 'dark_blue',
         foreground: '#0000AA',
-        background: '#00002A'
+        background: '#00002A',
     },
     {
         code: '2',
         name: 'dark_green',
         foreground: '#00AA00',
-        background: '#002A00'
+        background: '#002A00',
     },
     {
         code: '3',
         name: 'dark_aqua',
         foreground: '#00AAAA',
-        background: '#002A2A'
+        background: '#002A2A',
     },
     {
         code: '4',
         name: 'dark_red',
         foreground: '#AA0000',
-        background: '#2A0000'
+        background: '#2A0000',
     },
     {
         code: '5',
         name: 'dark_purple',
         foreground: '#AA00AA',
-        background: '#2A002A'
+        background: '#2A002A',
     },
     {
         code: '6',
         name: 'gold',
         foreground: '#FFAA00',
-        background: '#2A2A00'
+        background: '#2A2A00',
     },
     {
         code: '7',
         name: 'gray',
         foreground: '#AAAAAA',
-        background: '#2A2A2A'
+        background: '#2A2A2A',
     },
     {
         code: '8',
         name: 'dark_gray',
         foreground: '#555555',
-        background: '#151515'
+        background: '#151515',
     },
     {
         code: '9',
         name: 'blue',
         foreground: '#5555FF',
-        background: '#15153F'
+        background: '#15153F',
     },
     {
         code: 'a',
         name: 'green',
         foreground: '#55FF55',
-        background: '#153F15'
+        background: '#153F15',
     },
     {
         code: 'b',
         name: 'aqua',
         foreground: '#55FFFF',
-        background: '#153F3F'
+        background: '#153F3F',
     },
     {
         code: 'c',
         name: 'red',
         foreground: '#FF5555',
-        background: '#3F1515'
+        background: '#3F1515',
     },
     {
         code: 'd',
         name: 'light_purple',
         foreground: '#FF55FF',
-        background: '#3F153F'
+        background: '#3F153F',
     },
     {
         code: 'e',
         name: 'yellow',
         foreground: '#FFFF55',
-        background: '#3F3F15'
+        background: '#3F3F15',
     },
     {
         code: 'f',
         name: 'white',
         foreground: '#FFFFFF',
-        background: '#3F3F3F'
-    }
+        background: '#3F3F3F',
+    },
 ];
 
 const renderAreaMc = document.getElementById('render-area');

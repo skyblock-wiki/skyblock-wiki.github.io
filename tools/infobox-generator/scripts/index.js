@@ -122,7 +122,11 @@ function triggerCreation(inputType, inputValue) {
                 const armorSet = {};
                 let exists = false;
                 for (const item of itemsData) {
-                    if (item.name.toLowerCase().match(`^${armor} (helmet|hat|cap|fedora|hood|crown|chestplate|tunic|shirt|polo|jacket|robes|leggings|pants|trousers|boots|shoes|sandals|slippers|galoshes|oxfords|shoes)$`)) {
+                    if (
+                        item.name
+                            .toLowerCase()
+                            .match(`^${armor} (helmet|hat|cap|fedora|hood|crown|chestplate|tunic|shirt|polo|jacket|robes|leggings|pants|trousers|boots|shoes|sandals|slippers|galoshes|oxfords|shoes)$`)
+                    ) {
                         exists = true;
                         if (item.name.toLowerCase().match(`^${armor} (helmet|hat|cap|fedora|hood|crown)$`)) armorSet.helmet = item;
                         else if (item.name.toLowerCase().match(`^${armor} (chestplate|tunic|shirt|polo|jacket|robes)$`)) armorSet.chest = item;
@@ -205,7 +209,37 @@ function allAreEqual(array) {
     return array.every((element) => element === array[0]);
 }
 
-const categories = { SWORD: 'weapon', WAND: 'weapon', BOW: 'weapon', LONGSWORD: 'weapon', DEPLOYABLE: 'item', COSMETIC: 'item', TRAVEL_SCROLL: 'item', ACCESSORY: 'accessory', HELMET: 'armor', CHESTPLATE: 'armor', LEGGINGS: 'armor', BOOTS: 'boots', PET_ITEM: 'item', ARROW_POISON: 'item', GAUNTLET: 'item', BELT: 'item', BRACELET: 'item', CLOAK: 'item', GLOVES: 'item', NECKLACE: 'item', DUNGEON_PASS: 'item', REFORGE_STONE: 'reforge stone', BAIT: 'item', AXE: 'item', HOE: 'item', SPADE: 'item', SHEARS: 'item', PICKAXE: 'item', FISHING_ROD: 'fishing rod' };
+const categories = {
+    SWORD: 'weapon',
+    WAND: 'weapon',
+    BOW: 'weapon',
+    LONGSWORD: 'weapon',
+    DEPLOYABLE: 'item',
+    COSMETIC: 'item',
+    TRAVEL_SCROLL: 'item',
+    ACCESSORY: 'accessory',
+    HELMET: 'armor',
+    CHESTPLATE: 'armor',
+    LEGGINGS: 'armor',
+    BOOTS: 'boots',
+    PET_ITEM: 'item',
+    ARROW_POISON: 'item',
+    GAUNTLET: 'item',
+    BELT: 'item',
+    BRACELET: 'item',
+    CLOAK: 'item',
+    GLOVES: 'item',
+    NECKLACE: 'item',
+    DUNGEON_PASS: 'item',
+    REFORGE_STONE: 'reforge stone',
+    BAIT: 'item',
+    AXE: 'item',
+    HOE: 'item',
+    SPADE: 'item',
+    SHEARS: 'item',
+    PICKAXE: 'item',
+    FISHING_ROD: 'fishing rod',
+};
 const replace = { CRITICAL_CHANCE: 'crit_chance', CRITICAL_DAMAGE: 'crit_damage', WALK_SPEED: 'speed' };
 
 /**
@@ -538,7 +572,10 @@ function createArmorInfobox(armorData) {
     }
 
     const itemData = armorData[Object.keys(armorData)[0]];
-    const setName = armorData[Object.keys(armorData)[0]].name.replace(/ (Helmet|Hat|Cap|Fedora|Hood|Crown|Chestplate|Tunic|Shirt|Polo|Jacket|Robes|Leggings|Pants|Trousers|Boots|Shoes|Sandals|Slippers|Galoshes|Oxfords|Shoes)$/, ' Armor');
+    const setName = armorData[Object.keys(armorData)[0]].name.replace(
+        / (Helmet|Hat|Cap|Fedora|Hood|Crown|Chestplate|Tunic|Shirt|Polo|Jacket|Robes|Leggings|Pants|Trousers|Boots|Shoes|Sandals|Slippers|Galoshes|Oxfords|Shoes)$/,
+        ' Armor',
+    );
     if (includeExtra) {
         infobox += [`|title = ${setName}`, `|image = ${setName}.png\n`].join('\n');
         for (const piece in armorData) {

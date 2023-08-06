@@ -101,7 +101,13 @@ async function onRender() {
     const badlist = parsedContent.filter((v, i) => failed.includes(i));
     const goodlist = parsedContent.filter((v, i) => !failed.includes(i));
     const header = `Head Render Multi Log on ${new Date().toString()}`;
-    const logContent = `${'='.repeat(header.length)}\n${header}\n${'='.repeat(header.length)}\n\n` + `FAILED (${badlist.length}):\n` + badlist.map((v) => `${v.name || ''}\n${v.id || ''}\nError: ${v.error || ''}`).join('\n') + '\n\n' + `SUCCESS (${goodlist.length}):\n` + goodlist.map((v) => `${v.name || ''}\n${v.id || ''}`).join('\n');
+    const logContent =
+        `${'='.repeat(header.length)}\n${header}\n${'='.repeat(header.length)}\n\n` +
+        `FAILED (${badlist.length}):\n` +
+        badlist.map((v) => `${v.name || ''}\n${v.id || ''}\nError: ${v.error || ''}`).join('\n') +
+        '\n\n' +
+        `SUCCESS (${goodlist.length}):\n` +
+        goodlist.map((v) => `${v.name || ''}\n${v.id || ''}`).join('\n');
     zip.file('log.txt', logContent);
     zip.generateAsync({ type: 'blob' }).then((content) => saveAs(content, 'Render Output.zip'));
     toggleImageLoader();

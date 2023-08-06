@@ -11,12 +11,18 @@ downloads.forEach((download) => {
 
         if (content === 'text') content = link.text;
 
-        links.push(`<a class="link" href="${link.type === 'download' ? '/files/downloads/' : ''}${link.link}"${link.link.match(/^https?:\/\//) ? ' target=_blank' : ''}${link.type === 'download' ? ' download' : ''}>${content}</a>`);
+        links.push(
+            `<a class="link" href="${link.type === 'download' ? '/files/downloads/' : ''}${link.link}"${link.link.match(/^https?:\/\//) ? ' target=_blank' : ''}${
+                link.type === 'download' ? ' download' : ''
+            }>${content}</a>`,
+        );
         if (index === 0) links.push('<span class="line"></span>');
     });
     const element = [
         '<li>', //
-        `<a ${download.largeThumbnail ? ' style="width: 100%"' : ''} href="${download.links[0].type === 'download' ? '/files/downloads/' : ''}${download.links[0].link}"${download.links[0].link.match(/^https?:\/\//) ? ' target=_blank' : ''}${download.links[0].type === 'download' ? ' download' : ''}>`,
+        `<a ${download.largeThumbnail ? ' style="width: 100%"' : ''} href="${download.links[0].type === 'download' ? '/files/downloads/' : ''}${download.links[0].link}"${
+            download.links[0].link.match(/^https?:\/\//) ? ' target=_blank' : ''
+        }${download.links[0].type === 'download' ? ' download' : ''}>`,
         `<img src="/files/images/download-thumbnails/${download.thumbnail}.png" alt="${download.name} logo">`,
         '</a>',
         '<hr>',
@@ -25,7 +31,7 @@ downloads.forEach((download) => {
         '<div class="links">',
         links.join(''),
         '</div>',
-        '</li>'
+        '</li>',
     ].join('');
 
     allDownloadElements.push(element);

@@ -14,7 +14,7 @@ const allElements = tools.map((tool) => {
         '<div class="links">',
         `<a class="link" href="${tool.link}"${!tool.isSiteTool ? ' target=_blank' : ''}>Open</a>`,
         '</div>',
-        '</li>'
+        '</li>',
     ].join('');
 });
 

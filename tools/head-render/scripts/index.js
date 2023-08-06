@@ -16,17 +16,17 @@ const fileUpload = document.getElementById('file-upload');
 const mainElem = {
     nbt: document.getElementById('nbt'),
     val: document.getElementById('val'),
-    tid: document.getElementById('tid')
+    tid: document.getElementById('tid'),
 };
 const subElem = {
     nbt: document.getElementById('nbt-submit'),
     val: document.getElementById('val-submit'),
-    tid: document.getElementById('tid-submit')
+    tid: document.getElementById('tid-submit'),
 };
 const errElem = {
     nbt: document.getElementById('nbt-error'),
     val: document.getElementById('val-error'),
-    tid: document.getElementById('tid-error')
+    tid: document.getElementById('tid-error'),
 };
 
 const textureID = document.getElementById('texture-id');

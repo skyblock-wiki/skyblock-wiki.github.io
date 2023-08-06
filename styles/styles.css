@@ -210,7 +210,9 @@ source file: ROOT/styles/sections.css
     }
 
     header .hamburger span {
-        transition: all 0.2s ease, opacity 0.1s ease;
+        transition:
+            all 0.2s ease,
+            opacity 0.1s ease;
         margin: 0.4rem 0;
         border-top: 1px solid white;
         width: 2.6rem;

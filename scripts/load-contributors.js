@@ -49,7 +49,7 @@ function makeDiscordElement(userTag) {
         '<small class="copy-text">click to copy</small>',
         '<small class="copy-popup">copied!</small>',
         '</div>',
-        '</button>'
+        '</button>',
     ].join('');
 }
 
@@ -76,7 +76,7 @@ contributors.forEach((contributor) => {
         '<div class="links">',
         links.join(''),
         '</div>',
-        '</li>'
+        '</li>',
     ].join('');
 
     allCOntributorElements.push(element);

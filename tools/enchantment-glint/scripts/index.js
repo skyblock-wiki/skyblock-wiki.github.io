@@ -91,7 +91,7 @@ function programReady() {
             format: 'json',
             prop: 'imageinfo',
             iiprop: 'url',
-            titles: 'File:' + filename
+            titles: 'File:' + filename,
         })}`;
         const req = `https://eejitstools.com/cors-anywhere?url=${url}`;
 

@@ -1,163 +1,160 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Colored Armor Generator</title>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Colored Armor Generator</title>
+        <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
+        <script src="./scripts/index.js" type="module"></script>
+        <script src="/scripts/pageinfo.js" type="module"></script>
 
-    <script src="./scripts/index.js" type="module"></script>
-    <script src="/scripts/pageinfo.js" type="module"></script>
+        <link rel="stylesheet" href="./styles/styles.css" />
+        <link rel="icon" href="/files/images/return-icon.png" />
+        <link rel="icon" href="/files/images/tool-icons/leather-armor.png" />
+    </head>
 
-    <link rel="stylesheet" href="./styles/styles.css" />
-    <link rel="icon" href="/files/images/return-icon.png" />
-    <link rel="icon" href="/files/images/tool-icons/leather-armor.png" />
-</head>
-
-<body>
-    <header>
-        <a href="/index.html" id="return-main">
+    <body>
+        <header>
+            <a href="/index.html" id="return-main">
+                <span>
+                    <img src="/files/images/return-icon.png" alt="back" />
+                </span>
+            </a>
+            <img src="/files/images/tool-icons/leather-armor.png" alt="logo" />
             <span>
-                <img src="/files/images/return-icon.png" alt="back" />
+                <h1 class="name">Colored Armor Generator</h1>
+                <span class="version"></span>
             </span>
-        </a>
-        <img src="/files/images/tool-icons/leather-armor.png" alt="logo" />
-        <span>
-            <h1 class="name">Colored Armor Generator</h1>
-            <span class="version"></span>
-        </span>
-    </header>
+        </header>
 
-    <div id="wrapper">
-        <div class="imports">
-            <div class="imports-list hidden disallow-focusing">
-                <h2>Import Color</h2>
-                <h3>
-                    Choose input color model
-                    <span class="tip" title="The color that should be converted to HEX.">?</span>
-                </h3>
-                <div class="color-model">
-                    <input type="radio" name="select" id="option1" />
-                    <input type="radio" name="select" id="option2" checked />
-                    <label for="option1" id="button-model-rgb" class="btn-option btn-option1">
-                        <div class="option">
-                            <div class="dot"></div>
-                            <span class="unselectable">RGB</span>
-                        </div>
-                    </label>
-                    <label for="option2" id="button-model-int" class="btn-option btn-option2">
-                        <div class="option">
-                            <div class="dot"></div>
-                            <span class="unselectable">Integer</span>
-                        </div>
-                    </label>
+        <div id="wrapper">
+            <div class="imports">
+                <div class="imports-list hidden disallow-focusing">
+                    <h2>Import Color</h2>
+                    <h3>
+                        Choose input color model
+                        <span class="tip" title="The color that should be converted to HEX.">?</span>
+                    </h3>
+                    <div class="color-model">
+                        <input type="radio" name="select" id="option1" />
+                        <input type="radio" name="select" id="option2" checked />
+                        <label for="option1" id="button-model-rgb" class="btn-option btn-option1">
+                            <div class="option">
+                                <div class="dot"></div>
+                                <span class="unselectable">RGB</span>
+                            </div>
+                        </label>
+                        <label for="option2" id="button-model-int" class="btn-option btn-option2">
+                            <div class="option">
+                                <div class="dot"></div>
+                                <span class="unselectable">Integer</span>
+                            </div>
+                        </label>
+                    </div>
+                    <form class="input-form">
+                        <input type="text" name="color-import" id="color-import" />
+                        <button type="submit" id="color-import-submit">Load</button>
+                    </form>
                 </div>
-                <form class="input-form">
-                    <input type="text" name="color-import" id="color-import" />
-                    <button type="submit" id="color-import-submit">Load</button>
-                </form>
+                <button id="show-imports"><i class="fas fa-exchange-alt"></i></button>
             </div>
-            <button id="show-imports"><i class="fas fa-exchange-alt"></i></button>
-        </div>
 
-        <main id="inputs">
-            <div class="text-input">
-                <h3>HEX Color</h3>
-                <input id="color" type="text" value="#A06540" maxlength="7" />
-                <div class="suggestions">
-                    <h4 class="suggestions-label hidden">Suggestions:</h4>
-                    <ul>
-                        <li class="hidden"><a class="suggestion"></a></li>
-                        <li class="hidden"><a class="suggestion"></a></li>
-                    </ul>
+            <main id="inputs">
+                <div class="text-input">
+                    <h3>HEX Color</h3>
+                    <input id="color" type="text" value="#A06540" maxlength="7" />
+                    <div class="suggestions">
+                        <h4 class="suggestions-label hidden">Suggestions:</h4>
+                        <ul>
+                            <li class="hidden"><a class="suggestion"></a></li>
+                            <li class="hidden"><a class="suggestion"></a></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div class="color-picker">
-                <h3>Color Picker</h3>
-                <div id="picker"></div>
-            </div>
-            <div class="other-values">
-                <h3>Other Color Values</h3>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td><span>HEX</span></td>
-                            <td id="color-hex" class="code"></td>
-                        </tr>
-                        <tr>
-                            <td><span>RGB</span></td>
-                            <td id="color-rgb" class="code"></td>
-                        </tr>
-                        <tr>
-                            <td><span>HSL</span></td>
-                            <td id="color-hsl" class="code"></td>
-                        </tr>
-                        <tr>
-                            <td><span>Int</span></td>
-                            <td id="color-int" class="code"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </main>
+                <div class="color-picker">
+                    <h3>Color Picker</h3>
+                    <div id="picker"></div>
+                </div>
+                <div class="other-values">
+                    <h3>Other Color Values</h3>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td><span>HEX</span></td>
+                                <td id="color-hex" class="code"></td>
+                            </tr>
+                            <tr>
+                                <td><span>RGB</span></td>
+                                <td id="color-rgb" class="code"></td>
+                            </tr>
+                            <tr>
+                                <td><span>HSL</span></td>
+                                <td id="color-hsl" class="code"></td>
+                            </tr>
+                            <tr>
+                                <td><span>Int</span></td>
+                                <td id="color-int" class="code"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
 
-        <aside id="outputs">
-            <div class="minecraft">
-                <h3>Minecraft: 1.8.9</h3>
-                <canvas class="helmet" width="160" height="160"></canvas>
-                <canvas class="chestplate" width="160" height="160"></canvas>
-                <canvas class="leggings" width="160" height="160"></canvas>
-                <canvas class="boots" width="160" height="160"></canvas>
+            <aside id="outputs">
+                <div class="minecraft">
+                    <h3>Minecraft: 1.8.9</h3>
+                    <canvas class="helmet" width="160" height="160"></canvas>
+                    <canvas class="chestplate" width="160" height="160"></canvas>
+                    <canvas class="leggings" width="160" height="160"></canvas>
+                    <canvas class="boots" width="160" height="160"></canvas>
 
-                <a class="helmet_lnk"><img class="helmet_img" width="160" height="160" /> </a>
-                <a class="chestplate_lnk"><img class="chestplate_img" width="160" height="160" /> </a>
-                <a class="leggings_lnk"><img class="leggings_img" width="160" height="160" /> </a>
-                <a class="boots_lnk"><img class="boots_img" width="160" height="160" /> </a>
-            </div>
-            <div class="minecraft-latest">
-                <h3>Minecraft: Latest</h3>
-                <canvas class="helmet" width="160" height="160"></canvas>
-                <canvas class="chestplate" width="160" height="160"></canvas>
-                <canvas class="leggings" width="160" height="160"></canvas>
-                <canvas class="boots" width="160" height="160"></canvas>
+                    <a class="helmet_lnk"><img class="helmet_img" width="160" height="160" /> </a>
+                    <a class="chestplate_lnk"><img class="chestplate_img" width="160" height="160" /> </a>
+                    <a class="leggings_lnk"><img class="leggings_img" width="160" height="160" /> </a>
+                    <a class="boots_lnk"><img class="boots_img" width="160" height="160" /> </a>
+                </div>
+                <div class="minecraft-latest">
+                    <h3>Minecraft: Latest</h3>
+                    <canvas class="helmet" width="160" height="160"></canvas>
+                    <canvas class="chestplate" width="160" height="160"></canvas>
+                    <canvas class="leggings" width="160" height="160"></canvas>
+                    <canvas class="boots" width="160" height="160"></canvas>
 
-                <a class="helmet_lnk"><img class="helmet_img" width="160" height="160" /> </a>
-                <a class="chestplate_lnk"><img class="chestplate_img" width="160" height="160" /> </a>
-                <a class="leggings_lnk"><img class="leggings_img" width="160" height="160" /> </a>
-                <a class="boots_lnk"><img class="boots_img" width="160" height="160" /> </a>
-            </div>
-        </aside>
-    </div>
-
-    <div class="page-contributors" style="margin: 12px 10px">
-        <div id="contrib-list-div" class="list hidden" style="height: auto">
-            <ul id="contrib-list"></ul>
+                    <a class="helmet_lnk"><img class="helmet_img" width="160" height="160" /> </a>
+                    <a class="chestplate_lnk"><img class="chestplate_img" width="160" height="160" /> </a>
+                    <a class="leggings_lnk"><img class="leggings_img" width="160" height="160" /> </a>
+                    <a class="boots_lnk"><img class="boots_img" width="160" height="160" /> </a>
+                </div>
+            </aside>
         </div>
-        <h3>
-            <button id="show-contributors"><span>Contributors</span><i class="fas fa-chevron-down"></i></button>
-        </h3>
-    </div>
-    <footer>
-        <div class="github-button-wrapper unselectable">
-            <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/tree/main/tools/leather-armor"
-                target="_blank">
-                <div class="icon"><i class="fas fa-code"></i></div>
-                <span>View Code</span>
-            </a>
-            <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/issues" target="_blank">
-                <div class="icon"><i class="fas fa-bug"></i></div>
-                <span>Report Bug</span>
-            </a>
-            <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/pulls" target="_blank">
-                <div class="icon"><i class="fas fa-code-branch"></i></div>
-                <span>Contribute</span>
-            </a>
-        </div>
-    </footer>
-    <div class="dimmer disallow-focusing"></div>
-</body>
 
+        <div class="page-contributors" style="margin: 12px 10px">
+            <div id="contrib-list-div" class="list hidden" style="height: auto">
+                <ul id="contrib-list"></ul>
+            </div>
+            <h3>
+                <button id="show-contributors"><span>Contributors</span><i class="fas fa-chevron-down"></i></button>
+            </h3>
+        </div>
+        <footer>
+            <div class="github-button-wrapper unselectable">
+                <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/tree/main/tools/leather-armor" target="_blank">
+                    <div class="icon"><i class="fas fa-code"></i></div>
+                    <span>View Code</span>
+                </a>
+                <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/issues" target="_blank">
+                    <div class="icon"><i class="fas fa-bug"></i></div>
+                    <span>Report Bug</span>
+                </a>
+                <a href="https://github.com/skyblock-wiki/skyblock-wiki.github.io/pulls" target="_blank">
+                    <div class="icon"><i class="fas fa-code-branch"></i></div>
+                    <span>Contribute</span>
+                </a>
+            </div>
+        </footer>
+        <div class="dimmer disallow-focusing"></div>
+    </body>
 </html>
