@@ -6,8 +6,8 @@ settings:
 
 devDependencies:
   '@eejit/prettier-config':
-    specifier: ^2.0.0
-    version: 2.0.0(postcss@8.4.25)(typescript@5.1.6)
+    specifier: ^2.0.1
+    version: 2.0.1(postcss@8.4.25)(typescript@5.1.6)
   eslint:
     specifier: ^8.47.0
     version: 8.47.0
@@ -83,13 +83,13 @@ packages:
       postcss-selector-parser: 6.0.13
     dev: true
 
-  /@eejit/prettier-config@2.0.0(postcss@8.4.25)(typescript@5.1.6):
-    resolution: {integrity: sha512-GEPZBeHDMMioPaXlgTDOlA7CRFI7HOjg1qckchOD4qWHLgFTSjkkLj52XzaJxlEgItC/W/gwwzRbMVDYzjBUeg==}
+  /@eejit/prettier-config@2.0.1(postcss@8.4.25)(typescript@5.1.6):
+    resolution: {integrity: sha512-DdF05sDGU+IRBziee/5GNEOpaNP3gAW9BwCFZG433/gLrdDouYUtmeuNNSZJGGEX1OcxKMmWp8ziUczeeN00+A==}
     dependencies:
-      prettier: 3.0.1
-      prettier-plugin-css-order: 2.0.0(postcss@8.4.25)(prettier@3.0.1)
-      prettier-plugin-organize-imports: 3.2.3(prettier@3.0.1)(typescript@5.1.6)
-      prettier-plugin-packagejson: 2.4.5(prettier@3.0.1)
+      prettier: 3.0.2
+      prettier-plugin-css-order: 2.0.0(postcss@8.4.25)(prettier@3.0.2)
+      prettier-plugin-organize-imports: 3.2.3(prettier@3.0.2)(typescript@5.1.6)
+      prettier-plugin-packagejson: 2.4.5(prettier@3.0.2)
     transitivePeerDependencies:
       - '@volar/vue-language-plugin-pug'
       - '@volar/vue-typescript'
@@ -1407,7 +1407,7 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-css-order@2.0.0(postcss@8.4.25)(prettier@3.0.1):
+  /prettier-plugin-css-order@2.0.0(postcss@8.4.25)(prettier@3.0.2):
     resolution: {integrity: sha512-BCstZZ78G6FH/Ms1hl5ZLnSMso3ModM+SEZY8QrJzgyxjuCjSrS2bveeLq9wJMn20h9tAb6+C2FZPh5qdZ2qsw==}
     engines: {node: '>=16'}
     peerDependencies:
@@ -1416,12 +1416,12 @@ packages:
       css-declaration-sorter: 7.0.3(postcss@8.4.25)
       postcss-less: 6.0.0(postcss@8.4.25)
       postcss-scss: 4.0.6(postcss@8.4.25)
-      prettier: 3.0.1
+      prettier: 3.0.2
     transitivePeerDependencies:
       - postcss
     dev: true
 
-  /prettier-plugin-organize-imports@3.2.3(prettier@3.0.1)(typescript@5.1.6):
+  /prettier-plugin-organize-imports@3.2.3(prettier@3.0.2)(typescript@5.1.6):
     resolution: {integrity: sha512-KFvk8C/zGyvUaE3RvxN2MhCLwzV6OBbFSkwZ2OamCrs9ZY4i5L77jQ/w4UmUr+lqX8qbaqVq6bZZkApn+IgJSg==}
     peerDependencies:
       '@volar/vue-language-plugin-pug': ^1.0.4
@@ -1434,11 +1434,11 @@ packages:
       '@volar/vue-typescript':
         optional: true
     dependencies:
-      prettier: 3.0.1
+      prettier: 3.0.2
       typescript: 5.1.6
     dev: true
 
-  /prettier-plugin-packagejson@2.4.5(prettier@3.0.1):
+  /prettier-plugin-packagejson@2.4.5(prettier@3.0.2):
     resolution: {integrity: sha512-glG71jE1gO3y5+JNAhC8X+4yrlN28rub6Aj461SKbaPie9RgMiHKcInH2Moi2VGOfkTXaEHBhg4uVMBqa+kBUA==}
     peerDependencies:
       prettier: '>= 1.16.0'
@@ -1446,13 +1446,13 @@ packages:
       prettier:
         optional: true
     dependencies:
-      prettier: 3.0.1
+      prettier: 3.0.2
       sort-package-json: 2.5.1
       synckit: 0.8.5
     dev: true
 
-  /prettier@3.0.1:
-    resolution: {integrity: sha512-fcOWSnnpCrovBsmFZIGIy9UqK2FaI7Hqax+DIO0A9UxeVoY4iweyaFjS5TavZN97Hfehph0nhsZnjlVKzEQSrQ==}
+  /prettier@3.0.2:
+    resolution: {integrity: sha512-o2YR9qtniXvwEZlOKbveKfDQVyqxbEIWn48Z8m3ZJjBjcCmUy3xZGIv+7AkaeuaTr6yPXJjwv07ZWlsWbEy1rQ==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
