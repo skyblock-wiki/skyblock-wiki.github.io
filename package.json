@@ -5,7 +5,7 @@
         "@eejit/prettier-config": "^2.0.1",
         "eslint": "^8.47.0",
         "eslint-plugin-jsdoc": "^46.4.6",
-        "stylelint": "^15.10.2",
+        "stylelint": "^15.10.3",
         "stylelint-config-standard": "^34.0.0"
     }
 }
