@@ -7,13 +7,13 @@ settings:
 devDependencies:
   '@eejit/prettier-config':
     specifier: ^2.0.1
-    version: 2.0.1(postcss@8.4.25)(typescript@5.1.6)
+    version: 2.0.1(postcss@8.4.28)(typescript@5.1.6)
   eslint:
     specifier: ^8.47.0
     version: 8.47.0
   eslint-plugin-jsdoc:
-    specifier: ^46.4.6
-    version: 46.4.6(eslint@8.47.0)
+    specifier: ^46.5.0
+    version: 46.5.0(eslint@8.47.0)
   stylelint:
     specifier: ^15.10.3
     version: 15.10.3
@@ -83,11 +83,11 @@ packages:
       postcss-selector-parser: 6.0.13
     dev: true
 
-  /@eejit/prettier-config@2.0.1(postcss@8.4.25)(typescript@5.1.6):
+  /@eejit/prettier-config@2.0.1(postcss@8.4.28)(typescript@5.1.6):
     resolution: {integrity: sha512-DdF05sDGU+IRBziee/5GNEOpaNP3gAW9BwCFZG433/gLrdDouYUtmeuNNSZJGGEX1OcxKMmWp8ziUczeeN00+A==}
     dependencies:
       prettier: 3.0.2
-      prettier-plugin-css-order: 2.0.0(postcss@8.4.25)(prettier@3.0.2)
+      prettier-plugin-css-order: 2.0.0(postcss@8.4.28)(prettier@3.0.2)
       prettier-plugin-organize-imports: 3.2.3(prettier@3.0.2)(typescript@5.1.6)
       prettier-plugin-packagejson: 2.4.5(prettier@3.0.2)
     transitivePeerDependencies:
@@ -415,13 +415,13 @@ packages:
       which: 2.0.2
     dev: true
 
-  /css-declaration-sorter@7.0.3(postcss@8.4.25):
+  /css-declaration-sorter@7.0.3(postcss@8.4.28):
     resolution: {integrity: sha512-/PHObPdiAXf0H3LOZCyXgBLt5fiS5XGCml/Ylpkmr7ADgq94GffvdGxJEmsSLDo0XGzItJY79dusRka0e4UVLw==}
     engines: {node: ^14 || ^16 || >=18}
     peerDependencies:
       postcss: ^8.0.9
     dependencies:
-      postcss: 8.4.25
+      postcss: 8.4.28
     dev: true
 
   /css-functions-list@3.2.0:
@@ -544,8 +544,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /eslint-plugin-jsdoc@46.4.6(eslint@8.47.0):
-    resolution: {integrity: sha512-z4SWYnJfOqftZI+b3RM9AtWL1vF/sLWE/LlO9yOKDof9yN2+n3zOdOJTGX/pRE/xnPsooOLG2Rq6e4d+XW3lNw==}
+  /eslint-plugin-jsdoc@46.5.0(eslint@8.47.0):
+    resolution: {integrity: sha512-aulXdA4I1dyWpzyS1Nh/GNoS6PavzeucxEapnMR4JUERowWvaEk2Y4A5irpHAcdXtBBHLVe8WIhdXNjoAlGQgA==}
     engines: {node: '>=16'}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0
@@ -1361,13 +1361,13 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
-  /postcss-less@6.0.0(postcss@8.4.25):
+  /postcss-less@6.0.0(postcss@8.4.28):
     resolution: {integrity: sha512-FPX16mQLyEjLzEuuJtxA8X3ejDLNGGEG503d2YGZR5Ask1SpDN8KmZUMpzCvyalWRywAn1n1VOA5dcqfCLo5rg==}
     engines: {node: '>=12'}
     peerDependencies:
       postcss: ^8.3.5
     dependencies:
-      postcss: 8.4.25
+      postcss: 8.4.28
     dev: true
 
   /postcss-resolve-nested-selector@0.1.1:
@@ -1383,13 +1383,13 @@ packages:
       postcss: 8.4.28
     dev: true
 
-  /postcss-scss@4.0.6(postcss@8.4.25):
+  /postcss-scss@4.0.6(postcss@8.4.28):
     resolution: {integrity: sha512-rLDPhJY4z/i4nVFZ27j9GqLxj1pwxE80eAzUNRMXtcpipFYIeowerzBgG3yJhMtObGEXidtIgbUpQ3eLDsf5OQ==}
     engines: {node: '>=12.0'}
     peerDependencies:
       postcss: ^8.4.19
     dependencies:
-      postcss: 8.4.25
+      postcss: 8.4.28
     dev: true
 
   /postcss-selector-parser@6.0.13:
@@ -1402,15 +1402,6 @@ packages:
 
   /postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
-    dev: true
-
-  /postcss@8.4.25:
-    resolution: {integrity: sha512-7taJ/8t2av0Z+sQEvNzCkpDynl0tX3uJMCODi6nT3PfASC7dYCWV9aQ+uiCf+KBD4SEFcu+GvJdGdwzQ6OSjCw==}
-    engines: {node: ^10 || ^12 || >=14}
-    dependencies:
-      nanoid: 3.3.6
-      picocolors: 1.0.0
-      source-map-js: 1.0.2
     dev: true
 
   /postcss@8.4.28:
@@ -1427,15 +1418,15 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-css-order@2.0.0(postcss@8.4.25)(prettier@3.0.2):
+  /prettier-plugin-css-order@2.0.0(postcss@8.4.28)(prettier@3.0.2):
     resolution: {integrity: sha512-BCstZZ78G6FH/Ms1hl5ZLnSMso3ModM+SEZY8QrJzgyxjuCjSrS2bveeLq9wJMn20h9tAb6+C2FZPh5qdZ2qsw==}
     engines: {node: '>=16'}
     peerDependencies:
       prettier: 3.x
     dependencies:
-      css-declaration-sorter: 7.0.3(postcss@8.4.25)
-      postcss-less: 6.0.0(postcss@8.4.25)
-      postcss-scss: 4.0.6(postcss@8.4.25)
+      css-declaration-sorter: 7.0.3(postcss@8.4.28)
+      postcss-less: 6.0.0(postcss@8.4.28)
+      postcss-scss: 4.0.6(postcss@8.4.28)
       prettier: 3.0.2
     transitivePeerDependencies:
       - postcss
