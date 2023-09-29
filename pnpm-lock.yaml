@@ -6,8 +6,8 @@ settings:
 
 devDependencies:
   '@eejit/prettier-config':
-    specifier: ^2.0.2
-    version: 2.0.2(postcss@8.4.28)(typescript@5.1.6)
+    specifier: ^2.0.3
+    version: 2.0.3(postcss@8.4.28)(typescript@5.1.6)
   eslint:
     specifier: ^8.50.0
     version: 8.50.0
@@ -83,13 +83,13 @@ packages:
       postcss-selector-parser: 6.0.13
     dev: true
 
-  /@eejit/prettier-config@2.0.2(postcss@8.4.28)(typescript@5.1.6):
-    resolution: {integrity: sha512-9mM7OllQtWEhAI1ogGOhSf/1hbPxc2lZ2NkX8uQHA6yYx0fvKp8RTmPV4Vb/cTEDf1JpuhvrM1Ca/TbyYmU4XQ==}
+  /@eejit/prettier-config@2.0.3(postcss@8.4.28)(typescript@5.1.6):
+    resolution: {integrity: sha512-EIalz1aGWIoUtq+KulOX/jQmcLs6TDh6HMXlpN/qdwz5J9Plvi7Dv0cCuz505lQZwqY2v0kjLVYRppr8/uYtLw==}
     dependencies:
       prettier: 3.0.3
       prettier-plugin-css-order: 2.0.0(postcss@8.4.28)(prettier@3.0.3)
       prettier-plugin-organize-imports: 3.2.3(prettier@3.0.3)(typescript@5.1.6)
-      prettier-plugin-packagejson: 2.4.5(prettier@3.0.3)
+      prettier-plugin-packagejson: 2.4.6(prettier@3.0.3)
     transitivePeerDependencies:
       - '@volar/vue-language-plugin-pug'
       - '@volar/vue-typescript'
@@ -1438,8 +1438,8 @@ packages:
       typescript: 5.1.6
     dev: true
 
-  /prettier-plugin-packagejson@2.4.5(prettier@3.0.3):
-    resolution: {integrity: sha512-glG71jE1gO3y5+JNAhC8X+4yrlN28rub6Aj461SKbaPie9RgMiHKcInH2Moi2VGOfkTXaEHBhg4uVMBqa+kBUA==}
+  /prettier-plugin-packagejson@2.4.6(prettier@3.0.3):
+    resolution: {integrity: sha512-5JGfzkJRL0DLNyhwmiAV9mV0hZLHDwddFCs2lc9CNxOChpoWUQVe8K4qTMktmevmDlMpok2uT10nvHUyU59sNw==}
     peerDependencies:
       prettier: '>= 1.16.0'
     peerDependenciesMeta:
@@ -1447,7 +1447,7 @@ packages:
         optional: true
     dependencies:
       prettier: 3.0.3
-      sort-package-json: 2.5.1
+      sort-package-json: 2.6.0
       synckit: 0.8.5
     dev: true
 
@@ -1590,8 +1590,8 @@ packages:
     resolution: {integrity: sha512-855pvK+VkU7PaKYPc+Jjnmt4EzejQHyhhF33q31qG8x7maDzkeFhAAThdCYay11CISO+qAMwjOBP+fPZe0IPyg==}
     dev: true
 
-  /sort-package-json@2.5.1:
-    resolution: {integrity: sha512-vx/KoZxm8YNMUqdlw7SGTfqR5pqZ/sUfgOuRtDILiOy/3AvzhAibyUe2cY3OpLs3oRSow9up4yLVtQaM24rbDQ==}
+  /sort-package-json@2.6.0:
+    resolution: {integrity: sha512-XSQ+lY9bAYA8ZsoChcEoPlgcSMaheziEp1beox1JVxy1SV4F2jSq9+h2rJ+3mC/Dhu9Ius1DLnInD5AWcsDXZw==}
     hasBin: true
     dependencies:
       detect-indent: 7.0.1
