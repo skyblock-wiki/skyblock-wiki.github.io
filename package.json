@@ -2,7 +2,7 @@
     "name": "skyblock-wiki.github.io",
     "prettier": "@eejit/prettier-config",
     "devDependencies": {
-        "@eejit/prettier-config": "^2.0.2",
+        "@eejit/prettier-config": "^2.0.3",
         "eslint": "^8.50.0",
         "eslint-plugin-jsdoc": "^46.8.2",
         "stylelint": "^15.10.3",
