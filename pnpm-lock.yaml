@@ -6,8 +6,8 @@ settings:
 
 devDependencies:
   '@eejit/prettier-config':
-    specifier: ^2.1.0
-    version: 2.1.0(postcss@8.4.31)(typescript@5.1.6)
+    specifier: ^2.1.1
+    version: 2.1.1(postcss@8.4.31)(typescript@5.1.6)
   eslint:
     specifier: ^8.54.0
     version: 8.54.0
@@ -83,8 +83,8 @@ packages:
       postcss-selector-parser: 6.0.13
     dev: true
 
-  /@eejit/prettier-config@2.1.0(postcss@8.4.31)(typescript@5.1.6):
-    resolution: {integrity: sha512-BJudkKWoReVLkri4tdrjk9QeszqsfNj/9LCJKGh7Ez1wtKBTIy4LFnYtRhsA6pA48tAtZEvKvH5mxbVLI1cTFA==}
+  /@eejit/prettier-config@2.1.1(postcss@8.4.31)(typescript@5.1.6):
+    resolution: {integrity: sha512-rITdbSzBo/TrtXuJPwHHEJBdO3BkYXZC2xVjWUh1rT8/q2FGqmMEOCDGORvX6qaarr+fA4ZEPWFpGj7k02NlIg==}
     dependencies:
       prettier: 3.1.0
       prettier-plugin-css-order: 2.0.1(postcss@8.4.31)(prettier@3.1.0)
