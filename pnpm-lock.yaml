@@ -12,17 +12,17 @@ importers:
         specifier: ^2.2.3
         version: 2.2.3(postcss@8.4.38)(typescript@5.1.6)
       eslint:
-        specifier: ^9.1.0
-        version: 9.1.0
+        specifier: ^9.1.1
+        version: 9.1.1
       eslint-plugin-jsdoc:
         specifier: ^48.2.3
-        version: 48.2.3(eslint@9.1.0)
+        version: 48.2.3(eslint@9.1.1)
       stylelint:
-        specifier: ^16.3.1
-        version: 16.3.1(typescript@5.1.6)
+        specifier: ^16.4.0
+        version: 16.4.0(typescript@5.1.6)
       stylelint-config-standard:
         specifier: ^36.0.0
-        version: 36.0.0(stylelint@16.3.1(typescript@5.1.6))
+        version: 36.0.0(stylelint@16.4.0(typescript@5.1.6))
 
 packages:
 
@@ -59,8 +59,8 @@ packages:
       '@csstools/css-parser-algorithms': ^2.6.1
       '@csstools/css-tokenizer': ^2.2.4
 
-  '@csstools/selector-specificity@3.0.2':
-    resolution: {integrity: sha512-RpHaZ1h9LE7aALeQXmXrJkRG84ZxIsctEN2biEUmFyKpzFM3zZ35eUMcIzZFsw/2olQE6v69+esEqU2f1MKycg==}
+  '@csstools/selector-specificity@3.0.3':
+    resolution: {integrity: sha512-KEPNw4+WW5AVEIyzC80rTbWEUatTW2lXpN8+8ILC8PiPeWPjwUzrPZDIOZ2wwqDmeqOYTdSGyL3+vE5GC3FB3Q==}
     engines: {node: ^14 || ^16 || >=18}
     peerDependencies:
       postcss-selector-parser: ^6.0.13
@@ -257,8 +257,8 @@ packages:
     peerDependencies:
       postcss: ^8.0.9
 
-  css-functions-list@3.2.1:
-    resolution: {integrity: sha512-Nj5YcaGgBtuUmn1D7oHqPW0c9iui7xsTsj5lIX8ZgevdfhmjFfKB3r8moHJtNJnctnYXJyYX5I1pp90HM4TPgQ==}
+  css-functions-list@3.2.2:
+    resolution: {integrity: sha512-c+N0v6wbKVxTu5gOBBFkr9BEdBWaqqjQeiJ8QvSRIJOf+UxlJh930m8e6/WNeODIK0mYLFkoONrnj16i2EcvfQ==}
     engines: {node: '>=12 || >=16'}
 
   css-tree@2.3.1:
@@ -336,8 +336,8 @@ packages:
     resolution: {integrity: sha512-OtIRv/2GyiF6o/d8K7MYKKbXrOUBIK6SfkIRM4Z0dY3w+LiQ0vy3F57m0Z71bjbyeiWFiHJ8brqnmE6H6/jEuw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  eslint@9.1.0:
-    resolution: {integrity: sha512-1TCBecGFQtItia2o39P7Z4BK1X7ByNPxAiWJvwiyTGcOwYnTiiASgMpNA6a+beu8cFPhEDWvPf6mIlYUJv6sgA==}
+  eslint@9.1.1:
+    resolution: {integrity: sha512-b4cRQ0BeZcSEzPpY2PjFY70VbO32K7BStTGtBsnIGdTSEEQzBi8hPBcGQmTG2zUvFr9uLe0TK42bw8YszuHEqg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     hasBin: true
 
@@ -844,8 +844,8 @@ packages:
     peerDependencies:
       stylelint: ^16.1.0
 
-  stylelint@16.3.1:
-    resolution: {integrity: sha512-/JOwQnBvxEKOT2RtNgGpBVXnCSMBgKOL2k7w0K52htwCyJls4+cHvc4YZgXlVoAZS9QJd2DgYAiRnja96pTgxw==}
+  stylelint@16.4.0:
+    resolution: {integrity: sha512-uSx7VMuXwLuYcNSIg+0/fFNv0WinsfLAqsVVy7h7p80clKOHiGE8pfY6UjqwylTHiJrRIahTl6a8FPxGezhWoA==}
     engines: {node: '>=18.12.0'}
     hasBin: true
 
@@ -868,8 +868,8 @@ packages:
     resolution: {integrity: sha512-7RnqIMq572L8PeEzKeBINYEJDDxpcH8JEgLwUqBd3TkofhFRbkq4QLR0u+36avGAhCRbk2nnmjcW9SE531hPDg==}
     engines: {node: ^14.18.0 || >=16.0.0}
 
-  table@6.8.1:
-    resolution: {integrity: sha512-Y4X9zqrCftUhMeH2EptSSERdVKt/nEdijTOacGD/97EKjhQ/Qs8RTlEGABSJNNN8lac9kheH+af7yAkEWlgneA==}
+  table@6.8.2:
+    resolution: {integrity: sha512-w2sfv80nrAh2VCbqR5AK27wswXhqcck2AhfnNW76beQXskGZ1V12GwS//yYVa3d3fcvAip2OUnbDAjW2k3v9fA==}
     engines: {node: '>=10.0.0'}
 
   text-table@0.2.0:
@@ -952,7 +952,7 @@ snapshots:
       '@csstools/css-parser-algorithms': 2.6.1(@csstools/css-tokenizer@2.2.4)
       '@csstools/css-tokenizer': 2.2.4
 
-  '@csstools/selector-specificity@3.0.2(postcss-selector-parser@6.0.16)':
+  '@csstools/selector-specificity@3.0.3(postcss-selector-parser@6.0.16)':
     dependencies:
       postcss-selector-parser: 6.0.16
 
@@ -976,9 +976,9 @@ snapshots:
       esquery: 1.5.0
       jsdoc-type-pratt-parser: 4.0.0
 
-  '@eslint-community/eslint-utils@4.4.0(eslint@9.1.0)':
+  '@eslint-community/eslint-utils@4.4.0(eslint@9.1.1)':
     dependencies:
-      eslint: 9.1.0
+      eslint: 9.1.1
       eslint-visitor-keys: 3.4.3
 
   '@eslint-community/regexpp@4.6.2': {}
@@ -1150,7 +1150,7 @@ snapshots:
     dependencies:
       postcss: 8.4.38
 
-  css-functions-list@3.2.1: {}
+  css-functions-list@3.2.2: {}
 
   css-tree@2.3.1:
     dependencies:
@@ -1189,14 +1189,14 @@ snapshots:
 
   escape-string-regexp@4.0.0: {}
 
-  eslint-plugin-jsdoc@48.2.3(eslint@9.1.0):
+  eslint-plugin-jsdoc@48.2.3(eslint@9.1.1):
     dependencies:
       '@es-joy/jsdoccomment': 0.42.0
       are-docs-informative: 0.0.2
       comment-parser: 1.4.1
       debug: 4.3.4
       escape-string-regexp: 4.0.0
-      eslint: 9.1.0
+      eslint: 9.1.1
       esquery: 1.5.0
       is-builtin-module: 3.2.1
       semver: 7.6.0
@@ -1213,9 +1213,9 @@ snapshots:
 
   eslint-visitor-keys@4.0.0: {}
 
-  eslint@9.1.0:
+  eslint@9.1.1:
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@9.1.0)
+      '@eslint-community/eslint-utils': 4.4.0(eslint@9.1.1)
       '@eslint-community/regexpp': 4.6.2
       '@eslint/eslintrc': 3.0.2
       '@eslint/js': 9.1.1
@@ -1674,26 +1674,26 @@ snapshots:
 
   strip-json-comments@3.1.1: {}
 
-  stylelint-config-recommended@14.0.0(stylelint@16.3.1(typescript@5.1.6)):
+  stylelint-config-recommended@14.0.0(stylelint@16.4.0(typescript@5.1.6)):
     dependencies:
-      stylelint: 16.3.1(typescript@5.1.6)
+      stylelint: 16.4.0(typescript@5.1.6)
 
-  stylelint-config-standard@36.0.0(stylelint@16.3.1(typescript@5.1.6)):
+  stylelint-config-standard@36.0.0(stylelint@16.4.0(typescript@5.1.6)):
     dependencies:
-      stylelint: 16.3.1(typescript@5.1.6)
-      stylelint-config-recommended: 14.0.0(stylelint@16.3.1(typescript@5.1.6))
+      stylelint: 16.4.0(typescript@5.1.6)
+      stylelint-config-recommended: 14.0.0(stylelint@16.4.0(typescript@5.1.6))
 
-  stylelint@16.3.1(typescript@5.1.6):
+  stylelint@16.4.0(typescript@5.1.6):
     dependencies:
       '@csstools/css-parser-algorithms': 2.6.1(@csstools/css-tokenizer@2.2.4)
       '@csstools/css-tokenizer': 2.2.4
       '@csstools/media-query-list-parser': 2.1.9(@csstools/css-parser-algorithms@2.6.1(@csstools/css-tokenizer@2.2.4))(@csstools/css-tokenizer@2.2.4)
-      '@csstools/selector-specificity': 3.0.2(postcss-selector-parser@6.0.16)
+      '@csstools/selector-specificity': 3.0.3(postcss-selector-parser@6.0.16)
       '@dual-bundle/import-meta-resolve': 4.0.0
       balanced-match: 2.0.0
       colord: 2.9.3
       cosmiconfig: 9.0.0(typescript@5.1.6)
-      css-functions-list: 3.2.1
+      css-functions-list: 3.2.2
       css-tree: 2.3.1
       debug: 4.3.4
       fast-glob: 3.3.2
@@ -1722,7 +1722,7 @@ snapshots:
       strip-ansi: 7.1.0
       supports-hyperlinks: 3.0.0
       svg-tags: 1.0.0
-      table: 6.8.1
+      table: 6.8.2
       write-file-atomic: 5.0.1
     transitivePeerDependencies:
       - supports-color
@@ -1748,7 +1748,7 @@ snapshots:
       '@pkgr/core': 0.1.0
       tslib: 2.6.2
 
-  table@6.8.1:
+  table@6.8.2:
     dependencies:
       ajv: 8.12.0
       lodash.truncate: 4.4.2
