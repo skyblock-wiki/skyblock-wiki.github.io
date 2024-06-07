@@ -26,9 +26,9 @@ export default [
             {
                 type: 'text',
                 text: 'Choose Version',
-                link: 'https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/minecraft-mods/2520465-world-downloader-mod-create-backups-of-your-builds#Downloads',
+                link: 'https://modrinth.com/mod/worlddownloaderlegacy/versions',
             },
-            { type: 'github', link: 'https://github.com/Pokechu22/WorldDownloader/releases' },
+            { type: 'github', link: 'https://github.com/Nixuge/WorldDownloaderForge' },
         ],
     },
     {
