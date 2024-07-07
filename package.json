@@ -4,9 +4,9 @@
     "devDependencies": {
         "@eejit/prettier-config": "^2.3.0",
         "eslint": "^9.6.0",
-        "eslint-plugin-jsdoc": "^48.5.0",
+        "eslint-plugin-jsdoc": "^48.5.2",
         "stylelint": "^16.6.1",
         "stylelint-config-standard": "^36.0.1"
     },
-    "packageManager": "pnpm@9.4.0"
+    "packageManager": "pnpm@9.5.0"
 }
