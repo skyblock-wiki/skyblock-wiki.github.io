@@ -9,14 +9,14 @@ importers:
   .:
     devDependencies:
       '@eejit/prettier-config':
-        specifier: ^2.3.1
-        version: 2.3.1(postcss@8.4.39)(typescript@5.1.6)
+        specifier: ^3.0.0
+        version: 3.0.0(postcss@8.4.39)(typescript@5.1.6)
       eslint:
         specifier: ^9.7.0
         version: 9.7.0
       eslint-plugin-jsdoc:
-        specifier: ^48.7.0
-        version: 48.7.0(eslint@9.7.0)
+        specifier: ^48.8.3
+        version: 48.8.3(eslint@9.7.0)
       stylelint:
         specifier: ^16.7.0
         version: 16.7.0(typescript@5.1.6)
@@ -68,8 +68,8 @@ packages:
   '@dual-bundle/import-meta-resolve@4.1.0':
     resolution: {integrity: sha512-+nxncfwHM5SgAtrVzgpzJOI1ol0PkumhVo469KCf9lUi21IGcY90G98VuHm9VRrUypmAzawAHO9bs6hqeADaVg==}
 
-  '@eejit/prettier-config@2.3.1':
-    resolution: {integrity: sha512-sbwQjfg0mdES5jyzfjZ8bsrQS8DUmV0HO5hLY79w/iU3JZsELt+bKbU1byqivp4prh3u5HdkiESR8tPs+LHFcg==}
+  '@eejit/prettier-config@3.0.0':
+    resolution: {integrity: sha512-eTp3LnMhh65iDRZeTuLCtf1H7Bvqs18rQ/EyaIoJfiBrlyEW+8T9vjBJlZzZFFuiT+8mQIh312Q5jVMYfs7txQ==}
 
   '@es-joy/jsdoccomment@0.46.0':
     resolution: {integrity: sha512-C3Axuq1xd/9VqFZpW4YAzOx5O9q/LP46uIQy/iNDpHG3fmPa6TBtvfglMCs3RBiBxAIi0Go97r8+jvTt55XMyQ==}
@@ -318,8 +318,8 @@ packages:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
 
-  eslint-plugin-jsdoc@48.7.0:
-    resolution: {integrity: sha512-5oiVf7Y+ZxGYQTlLq81X72n+S+hjvS/u0upAdbpPEeaIZILK3MKN8lm/6QqKioBjm/qZ0B5XpMQUtc2fUkqXAg==}
+  eslint-plugin-jsdoc@48.8.3:
+    resolution: {integrity: sha512-AtIvwwW9D17MRkM0Z0y3/xZYaa9mdAvJrkY6fU/HNUwGbmMtHVvK4qRM9CDixGVtfNrQitb8c6zQtdh6cTOvLg==}
     engines: {node: '>=18'}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0 || ^9.0.0
@@ -776,6 +776,11 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
+  semver@7.6.3:
+    resolution: {integrity: sha512-oVekP1cKtI+CTDvHWYFUcMtsK/00wmAEfyqKfNdARm8u1wNVhSgaX7A8d4UuIlUI5e84iEwOhs7ZPYRmzU9U6A==}
+    engines: {node: '>=10'}
+    hasBin: true
+
   shebang-command@2.0.0:
     resolution: {integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==}
     engines: {node: '>=8'}
@@ -879,6 +884,10 @@ packages:
     resolution: {integrity: sha512-7RnqIMq572L8PeEzKeBINYEJDDxpcH8JEgLwUqBd3TkofhFRbkq4QLR0u+36avGAhCRbk2nnmjcW9SE531hPDg==}
     engines: {node: ^14.18.0 || >=16.0.0}
 
+  synckit@0.9.1:
+    resolution: {integrity: sha512-7gr8p9TQP6RAHusBOSLs46F4564ZrjV8xFmw5zCmgmhGUcw2hxsShhJ6CEiHQMgPDwAQ1fWHPM0ypc4RMAig4A==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+
   table@6.8.2:
     resolution: {integrity: sha512-w2sfv80nrAh2VCbqR5AK27wswXhqcck2AhfnNW76beQXskGZ1V12GwS//yYVa3d3fcvAip2OUnbDAjW2k3v9fA==}
     engines: {node: '>=10.0.0'}
@@ -966,7 +975,7 @@ snapshots:
 
   '@dual-bundle/import-meta-resolve@4.1.0': {}
 
-  '@eejit/prettier-config@2.3.1(postcss@8.4.39)(typescript@5.1.6)':
+  '@eejit/prettier-config@3.0.0(postcss@8.4.39)(typescript@5.1.6)':
     dependencies:
       prettier: 3.3.3
       prettier-plugin-css-order: 2.1.2(postcss@8.4.39)(prettier@3.3.3)
@@ -1197,7 +1206,7 @@ snapshots:
 
   escape-string-regexp@4.0.0: {}
 
-  eslint-plugin-jsdoc@48.7.0(eslint@9.7.0):
+  eslint-plugin-jsdoc@48.8.3(eslint@9.7.0):
     dependencies:
       '@es-joy/jsdoccomment': 0.46.0
       are-docs-informative: 0.0.2
@@ -1207,9 +1216,9 @@ snapshots:
       eslint: 9.7.0
       esquery: 1.6.0
       parse-imports: 2.1.1
-      semver: 7.6.2
+      semver: 7.6.3
       spdx-expression-parse: 4.0.0
-      synckit: 0.9.0
+      synckit: 0.9.1
     transitivePeerDependencies:
       - supports-color
 
@@ -1628,6 +1637,8 @@ snapshots:
 
   semver@7.6.2: {}
 
+  semver@7.6.3: {}
+
   shebang-command@2.0.0:
     dependencies:
       shebang-regex: 3.0.0
@@ -1764,6 +1775,11 @@ snapshots:
   svg-tags@1.0.0: {}
 
   synckit@0.9.0:
+    dependencies:
+      '@pkgr/core': 0.1.0
+      tslib: 2.6.2
+
+  synckit@0.9.1:
     dependencies:
       '@pkgr/core': 0.1.0
       tslib: 2.6.2
