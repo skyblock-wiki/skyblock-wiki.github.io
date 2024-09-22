@@ -3,10 +3,10 @@
     "prettier": "@eejit/prettier-config",
     "devDependencies": {
         "@eejit/prettier-config": "^3.0.0",
-        "eslint": "^9.10.0",
-        "eslint-plugin-jsdoc": "^50.2.3",
+        "eslint": "^9.11.0",
+        "eslint-plugin-jsdoc": "^50.2.4",
         "stylelint": "^16.9.0",
         "stylelint-config-standard": "^36.0.1"
     },
-    "packageManager": "pnpm@9.10.0"
+    "packageManager": "pnpm@9.11.0"
 }
