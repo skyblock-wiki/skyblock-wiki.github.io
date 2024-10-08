@@ -52,7 +52,12 @@ function drawPiece(canvas, ctx, name, assets, isLatest, color) {
     // step 5: reset comp mode to default
     ctx.globalCompositeOperation = 'source-over';
 
-    const { file2, x2, y2, scale2 } = { x2: 0, y2: 0, scale2: itemScale, file2: assets.files[`${name[0]}${isLatest ? '_latest' : ''}_overlay`] };
+    const { file2, x2, y2, scale2 } = {
+        x2: 0,
+        y2: 0,
+        scale2: itemScale,
+        file2: assets.files[`${name[0]}${isLatest ? '_latest' : ''}_overlay`],
+    };
     const { asset: asset2, width: width2, height: height2 } = file2;
 
     ctx.drawImage(asset2, x2, y2, width2 * scale2, height2 * scale2);

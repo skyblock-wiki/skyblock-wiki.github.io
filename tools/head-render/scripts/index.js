@@ -205,7 +205,9 @@ function onTidChange(event) {
     clear();
     if (!mainElem.tid.value) return;
 
-    const textureId = ((event.clipboardData || window.clipboardData)?.getData('text') || mainElem.tid.value).replace(/\W/g, '').toLowerCase();
+    const textureId = ((event.clipboardData || window.clipboardData)?.getData('text') || mainElem.tid.value)
+        .replace(/\W/g, '')
+        .toLowerCase();
 
     if (!/^[a-f0-9]{56,64}$/i.test(textureId)) return showError('Provided texture ID is invalid!', 'tid');
 
@@ -223,7 +225,8 @@ function onValChange(event) {
 
     let textureData = (event.clipboardData || window.clipboardData)?.getData('text') || mainElem.val.value;
 
-    if (textureData.match(/Value\s*:\s*"\s*([A-Za-z0-9]*)=*\s*"/g)) textureData = textureData.match(/(?<=Value\s*:\s*"\s*)([A-Za-z0-9]*)(?==*\s*")/g);
+    if (textureData.match(/Value\s*:\s*"\s*([A-Za-z0-9]*)=*\s*"/g))
+        textureData = textureData.match(/(?<=Value\s*:\s*"\s*)([A-Za-z0-9]*)(?==*\s*")/g);
     else textureData = textureData.match(/(?<=\s*)([A-Za-z0-9]*)(?==*\s*)/g);
 
     if (textureData.length < 1) return showError('Not a valid Texture Value', 'val');
@@ -329,7 +332,8 @@ function checkWebGL() {
 }
 if (!checkWebGL()) {
     warning.style.display = 'inline';
-    warning.innerText = 'WebGL is not supported on this browser. To make sure there is no unexpected error, please enable WebGL before using this tool.';
+    warning.innerText =
+        'WebGL is not supported on this browser. To make sure there is no unexpected error, please enable WebGL before using this tool.';
 }
 
 // auto generation through search param

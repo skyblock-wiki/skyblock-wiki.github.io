@@ -91,7 +91,11 @@ copyEssenceTableButton.addEventListener('click', () => {
  */
 function triggerCreation(inputType, inputValue) {
     if (!itemsData) {
-        new Toast({ message: 'The item list has not yet loaded. Please wait or try refreshing the page!', type: 'disallow', time: 2000 }).show();
+        new Toast({
+            message: 'The item list has not yet loaded. Please wait or try refreshing the page!',
+            type: 'disallow',
+            time: 2000,
+        }).show();
     } else {
         const input = inputValue.toLowerCase();
         for (const item of itemsData) {
@@ -125,11 +129,14 @@ function triggerCreation(inputType, inputValue) {
                     if (
                         item.name
                             .toLowerCase()
-                            .match(`^${armor} (helmet|hat|cap|fedora|hood|crown|chestplate|tunic|shirt|polo|jacket|robes|leggings|pants|trousers|boots|shoes|sandals|slippers|galoshes|oxfords|shoes)$`)
+                            .match(
+                                `^${armor} (helmet|hat|cap|fedora|hood|crown|chestplate|tunic|shirt|polo|jacket|robes|leggings|pants|trousers|boots|shoes|sandals|slippers|galoshes|oxfords|shoes)$`,
+                            )
                     ) {
                         exists = true;
                         if (item.name.toLowerCase().match(`^${armor} (helmet|hat|cap|fedora|hood|crown)$`)) armorSet.helmet = item;
-                        else if (item.name.toLowerCase().match(`^${armor} (chestplate|tunic|shirt|polo|jacket|robes)$`)) armorSet.chest = item;
+                        else if (item.name.toLowerCase().match(`^${armor} (chestplate|tunic|shirt|polo|jacket|robes)$`))
+                            armorSet.chest = item;
                         else if (item.name.toLowerCase().match(`^${armor} (leggings|pants|trousers)$`)) armorSet.legs = item;
                         else armorSet.boots = item;
                     }
@@ -181,7 +188,38 @@ function toTitleCase(str) {
 function romanize(num) {
     if (isNaN(num)) return NaN;
     const digits = String(+num).split('');
-    const key = ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM', '', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC', '', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'];
+    const key = [
+        '',
+        'C',
+        'CC',
+        'CCC',
+        'CD',
+        'D',
+        'DC',
+        'DCC',
+        'DCCC',
+        'CM',
+        '',
+        'X',
+        'XX',
+        'XXX',
+        'XL',
+        'L',
+        'LX',
+        'LXX',
+        'LXXX',
+        'XC',
+        '',
+        'I',
+        'II',
+        'III',
+        'IV',
+        'V',
+        'VI',
+        'VII',
+        'VIII',
+        'IX',
+    ];
     let roman = '';
     let i = 3;
     while (i--) roman = (key[+digits.pop() + i * 10] || '') + roman;
@@ -278,7 +316,8 @@ function createInfobox(itemData) {
 
     if (itemData.tier) {
         if (!starredItem) infobox += `|rarity = ${itemData.tier.toLowerCase().replace('_', ' ')}\n`;
-        else if (starredItem.tier !== itemData.tier) infobox += `|rarity = {{r|${itemData.tier.toLowerCase()}}} ({{r|${starredItem.tier.toLowerCase()}}} with frags)\n`;
+        else if (starredItem.tier !== itemData.tier)
+            infobox += `|rarity = {{r|${itemData.tier.toLowerCase()}}} ({{r|${starredItem.tier.toLowerCase()}}} with frags)\n`;
         else infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
     } else {
         itemData.tier = 'COMMON';
@@ -331,7 +370,10 @@ function createInfobox(itemData) {
                 infobox += gemstone.costs
                     .map((cost) => {
                         if ('coins' in cost) return cost.coins.toString();
-                        else return cost.amount.toString() + ' ' + toTitleCase(cost.item_id.toLowerCase().replace('_gem', '').replace('_', ' '));
+                        else
+                            return (
+                                cost.amount.toString() + ' ' + toTitleCase(cost.item_id.toLowerCase().replace('_gem', '').replace('_', ' '))
+                            );
                     })
                     .join(', ');
 
@@ -351,7 +393,12 @@ function createInfobox(itemData) {
                     infobox += gemstone.costs
                         .map((cost) => {
                             if ('coins' in cost) return cost.coins.toString();
-                            else return cost.amount.toString() + ' ' + toTitleCase(cost.item_id.toLowerCase().replace('_gem', '').replace('_', ' '));
+                            else
+                                return (
+                                    cost.amount.toString() +
+                                    ' ' +
+                                    toTitleCase(cost.item_id.toLowerCase().replace('_gem', '').replace('_', ' '))
+                                );
                         })
                         .join(', ');
 
@@ -371,18 +418,29 @@ function createInfobox(itemData) {
             if (skillRequirement.skill.toLowerCase() === 'combat') {
                 infobox += '|combat_level_requirement = {{Skl|combat|' + skillRequirement.level + '}}\n';
             } else {
-                infobox += '|other_level_requirement = {{Skl|' + skillRequirement.skill.toLowerCase() + '|' + skillRequirement.level + '}}\n';
+                infobox +=
+                    '|other_level_requirement = {{Skl|' + skillRequirement.skill.toLowerCase() + '|' + skillRequirement.level + '}}\n';
             }
         }
 
         if (requirementTypes.includes('slayer')) {
             const slayerRequirement = requirements.find((element) => element.type.toLowerCase() === 'slayer');
-            infobox += '|slayer_level_requirement = ' + toTitleCase(slayerRequirement.slayer_boss_type) + ' Slayer ' + slayerRequirement.level + '\n';
+            infobox +=
+                '|slayer_level_requirement = ' +
+                toTitleCase(slayerRequirement.slayer_boss_type) +
+                ' Slayer ' +
+                slayerRequirement.level +
+                '\n';
         }
 
         if (requirementTypes.includes('dungeon_skill')) {
             const dungeonRequirement = requirements.find((element) => element.type.toLowerCase() === 'dungeon_skill');
-            infobox += '|dungeon_level_requirement = {{Skl|' + dungeonRequirement.dungeon_type.toLowerCase() + '|' + dungeonRequirement.level + '}}';
+            infobox +=
+                '|dungeon_level_requirement = {{Skl|' +
+                dungeonRequirement.dungeon_type.toLowerCase() +
+                '|' +
+                dungeonRequirement.level +
+                '}}';
             if (itemData.dungeon_item_conversion_cost) {
                 infobox += ' (when dungeonized)';
             }
@@ -391,7 +449,8 @@ function createInfobox(itemData) {
 
         if (requirementTypes.includes('dungeon_tier')) {
             const dungeonComp = requirements.find((element) => element.type.toLowerCase() === 'dungeon_tier');
-            infobox += '|dungeon_floor_clearing_requirement = ' + toTitleCase(dungeonComp.dungeon_type) + ' Floor ' + romanize(dungeonComp.tier);
+            infobox +=
+                '|dungeon_floor_clearing_requirement = ' + toTitleCase(dungeonComp.dungeon_type) + ' Floor ' + romanize(dungeonComp.tier);
             if (itemData.dungeon_item_conversion_cost) {
                 infobox += ' (when dungeonized)';
             }
@@ -400,7 +459,11 @@ function createInfobox(itemData) {
 
         if (requirementTypes.includes('collection')) {
             const collectionRequirement = requirements.find((element) => element.type.toLowerCase() === 'collection');
-            infobox += '|collection = ' + toTitleCase(collectionRequirement.collection.replace(/_/g, ' ')) + ' ' + romanize(collectionRequirement.tier);
+            infobox +=
+                '|collection = ' +
+                toTitleCase(collectionRequirement.collection.replace(/_/g, ' ')) +
+                ' ' +
+                romanize(collectionRequirement.tier);
             infobox += '\n';
         }
 
@@ -596,7 +659,8 @@ function createArmorInfobox(armorData) {
     }
     if (allAreEqual(rarities)) {
         if (!itemData.starredItem) infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
-        else if (itemData.starredItem.tier !== itemData.tier) infobox += `|rarity = {{r|${itemData.tier.toLowerCase()}}} ({{r|${itemData.starredItem.tier.toLowerCase()}}} with frags)\n`;
+        else if (itemData.starredItem.tier !== itemData.tier)
+            infobox += `|rarity = {{r|${itemData.tier.toLowerCase()}}} ({{r|${itemData.starredItem.tier.toLowerCase()}}} with frags)\n`;
         else infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
     } else infobox += '|rarity = Various\n';
 
@@ -609,7 +673,8 @@ function createArmorInfobox(armorData) {
             const statKeys = Object.keys(pieceData.stats);
             for (const key of statKeys) {
                 if (key === 'WEAPON_ABILITY_DAMAGE') continue;
-                else infobox += `|${piece}_${replace[key] || key.toLowerCase()} = ${pieceData.stats[key]}${percentages[key.toLowerCase()] ? '%' : ''}`;
+                else
+                    infobox += `|${piece}_${replace[key] || key.toLowerCase()} = ${pieceData.stats[key]}${percentages[key.toLowerCase()] ? '%' : ''}`;
 
                 if (!totalStats[key]) totalStats[key] = { min: 0, max: 0 };
                 totalStats[key].min += pieceData.stats[key];
@@ -617,7 +682,8 @@ function createArmorInfobox(armorData) {
                 if (pieceData.starredItem) {
                     if (!totalStats[key].starred) totalStats[key].starred = 0;
                     totalStats[key].starred += pieceData.starredItem.stats[key];
-                    if (pieceData.starredItem.stats[key] !== pieceData.stats[key]) infobox += ` (${pieceData.starredItem.stats[key]} with frags)`;
+                    if (pieceData.starredItem.stats[key] !== pieceData.stats[key])
+                        infobox += ` (${pieceData.starredItem.stats[key]} with frags)`;
                 }
 
                 infobox += '\n';
@@ -656,7 +722,8 @@ function createArmorInfobox(armorData) {
         if (key === 'WEAPON_ABILITY_DAMAGE') continue;
         else infobox += `|${replace[key] || key.toLowerCase()} = ${stat}${percentages[key.toLowerCase()] ? '%' : ''}`;
 
-        if (totalStats[key].starred && totalStats[key].starred !== min) if (totalStats[key].starred !== min) infobox += ` (${totalStats[key].starred} with frags)`;
+        if (totalStats[key].starred && totalStats[key].starred !== min)
+            if (totalStats[key].starred !== min) infobox += ` (${totalStats[key].starred} with frags)`;
         infobox += '\n';
     }
 
@@ -667,7 +734,8 @@ function createArmorInfobox(armorData) {
     for (const piece in armorData) {
         if (armorData[piece].gemstone_slots) gemsArray.push(armorData[piece].gemstone_slots);
         else gemsSame = false;
-        if (armorData[piece].starredItem && armorData[piece].starredItem.gemstone_slots) starredGemsArray.push(armorData[piece].starredItem.gemstone_slots);
+        if (armorData[piece].starredItem && armorData[piece].starredItem.gemstone_slots)
+            starredGemsArray.push(armorData[piece].starredItem.gemstone_slots);
         else starredGemsSame = false;
     }
 
@@ -700,7 +768,10 @@ function createArmorInfobox(armorData) {
                 infobox += gemstone.costs
                     .map((cost) => {
                         if ('coins' in cost) return cost.coins.toString();
-                        else return cost.amount.toString() + ' ' + toTitleCase(cost.item_id.toLowerCase().replace('_gem', '').replace('_', ' '));
+                        else
+                            return (
+                                cost.amount.toString() + ' ' + toTitleCase(cost.item_id.toLowerCase().replace('_gem', '').replace('_', ' '))
+                            );
                     })
                     .join(', ');
 
@@ -720,7 +791,12 @@ function createArmorInfobox(armorData) {
                     infobox += gemstone.costs
                         .map((cost) => {
                             if ('coins' in cost) return cost.coins.toString();
-                            else return cost.amount.toString() + ' ' + toTitleCase(cost.item_id.toLowerCase().replace('_gem', '').replace('_', ' '));
+                            else
+                                return (
+                                    cost.amount.toString() +
+                                    ' ' +
+                                    toTitleCase(cost.item_id.toLowerCase().replace('_gem', '').replace('_', ' '))
+                                );
                         })
                         .join(', ');
 
@@ -740,18 +816,29 @@ function createArmorInfobox(armorData) {
             if (skillRequirement.skill.toLowerCase() === 'combat') {
                 infobox += '|combat_level_requirement = {{Skl|combat|' + skillRequirement.level + '}}\n';
             } else {
-                infobox += '|other_level_requirement = {{Skl|' + skillRequirement.skill.toLowerCase() + '|' + skillRequirement.level + '}}\n';
+                infobox +=
+                    '|other_level_requirement = {{Skl|' + skillRequirement.skill.toLowerCase() + '|' + skillRequirement.level + '}}\n';
             }
         }
 
         if (requirementTypes.includes('slayer')) {
             const slayerRequirement = requirements.find((element) => element.type.toLowerCase() === 'slayer');
-            infobox += '|slayer_level_requirement = ' + toTitleCase(slayerRequirement.slayer_boss_type) + ' Slayer ' + slayerRequirement.level + '\n';
+            infobox +=
+                '|slayer_level_requirement = ' +
+                toTitleCase(slayerRequirement.slayer_boss_type) +
+                ' Slayer ' +
+                slayerRequirement.level +
+                '\n';
         }
 
         if (requirementTypes.includes('dungeon_skill')) {
             const dungeonRequirement = requirements.find((element) => element.type.toLowerCase() === 'dungeon_skill');
-            infobox += '|dungeon_level_requirement = {{Skl|' + dungeonRequirement.dungeon_type.toLowerCase() + '|' + dungeonRequirement.level + '}}';
+            infobox +=
+                '|dungeon_level_requirement = {{Skl|' +
+                dungeonRequirement.dungeon_type.toLowerCase() +
+                '|' +
+                dungeonRequirement.level +
+                '}}';
             if (itemData.dungeon_item_conversion_cost) {
                 infobox += ' (when dungeonized)';
             }
@@ -760,7 +847,8 @@ function createArmorInfobox(armorData) {
 
         if (requirementTypes.includes('dungeon_tier')) {
             const dungeonComp = requirements.find((element) => element.type.toLowerCase() === 'dungeon_tier');
-            infobox += '|dungeon_floor_clearing_requirement = ' + toTitleCase(dungeonComp.dungeon_type) + ' Floor ' + romanize(dungeonComp.tier);
+            infobox +=
+                '|dungeon_floor_clearing_requirement = ' + toTitleCase(dungeonComp.dungeon_type) + ' Floor ' + romanize(dungeonComp.tier);
             if (itemData.dungeon_item_conversion_cost) {
                 infobox += ' (when dungeonized)';
             }
@@ -769,7 +857,11 @@ function createArmorInfobox(armorData) {
 
         if (requirementTypes.includes('collection')) {
             const collectionRequirement = requirements.find((element) => element.type.toLowerCase() === 'collection');
-            infobox += '|collection = ' + toTitleCase(collectionRequirement.collection.replace(/_/g, ' ')) + ' ' + romanize(collectionRequirement.tier);
+            infobox +=
+                '|collection = ' +
+                toTitleCase(collectionRequirement.collection.replace(/_/g, ' ')) +
+                ' ' +
+                romanize(collectionRequirement.tier);
             infobox += '\n';
         }
 
@@ -786,7 +878,8 @@ function createArmorInfobox(armorData) {
     else infobox += '|auctionable = unknown\n';
 
     if (itemData.soulbound) {
-        if (itemData.soulbound.toLowerCase() === 'coop') infobox += '|tradeable = {{No|text=y}}\n(Except to Co-op members)\n|soulbound = Co-op\n';
+        if (itemData.soulbound.toLowerCase() === 'coop')
+            infobox += '|tradeable = {{No|text=y}}\n(Except to Co-op members)\n|soulbound = Co-op\n';
         else infobox += '|tradeable = no\n|soulbound = Player\n';
     } else infobox += '|tradeable = unknown\n';
 
@@ -867,7 +960,8 @@ function createArmorEssenceTable(armorData) {
             } else if (cost === itemData.upgrade_costs[itemData.upgrade_costs.length - 1]) essenceTable += '|essence = none\n';
         }
 
-        if ('dungeon_item_conversion_cost' in itemData) essenceTable += `|convert = ${itemData.dungeon_item_conversion_cost.amount} Essence\n`;
+        if ('dungeon_item_conversion_cost' in itemData)
+            essenceTable += `|convert = ${itemData.dungeon_item_conversion_cost.amount} Essence\n`;
 
         for (const costs of itemData.upgrade_costs) {
             const costsCopy = costs;
@@ -920,7 +1014,8 @@ function createArmorEssenceTable(armorData) {
             const itemData = armorData[piece];
             const prefix = piece[0];
 
-            if ('dungeon_item_conversion_cost' in itemData) essenceTable += `|${prefix}_convert = ${itemData.dungeon_item_conversion_cost.amount} Essence\n`;
+            if ('dungeon_item_conversion_cost' in itemData)
+                essenceTable += `|${prefix}_convert = ${itemData.dungeon_item_conversion_cost.amount} Essence\n`;
 
             let i = 1;
             for (const costs of itemData.upgrade_costs) {

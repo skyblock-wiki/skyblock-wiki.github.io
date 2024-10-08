@@ -93,7 +93,9 @@ async function onRender() {
             headsFolder.file(filename, parsedContent[i].head.split('base64,')[1], { base64: true });
         }
         if (parsedContent[i].sprite) {
-            const filename = (parsedContent[i].name && parsedContent[i].name.match('^(.*).png$')[1] + ' Sprite.png') || parsedContent[i].id + ' Sprite Render.png';
+            const filename =
+                (parsedContent[i].name && parsedContent[i].name.match('^(.*).png$')[1] + ' Sprite.png') ||
+                parsedContent[i].id + ' Sprite Render.png';
             spritesFolder.file(filename, parsedContent[i].sprite.split('base64,')[1], { base64: true });
         }
     }
@@ -225,5 +227,6 @@ function checkWebGL() {
 }
 if (!checkWebGL()) {
     warning.style.display = 'inline';
-    warning.innerText = 'WebGL is not supported on this browser. To make sure there is no unexpected error, please enable WebGL before using this tool.';
+    warning.innerText =
+        'WebGL is not supported on this browser. To make sure there is no unexpected error, please enable WebGL before using this tool.';
 }

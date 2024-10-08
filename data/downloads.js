@@ -2,7 +2,8 @@ export default [
     {
         name: 'Wikitools Mod',
         thumbnail: 'wikitools',
-        description: 'A mod that lets you render any entity (mob, player, NPC, item, anything) with a single click of a button. Requires Forge for Minecraft 1.8.x.',
+        description:
+            'A mod that lets you render any entity (mob, player, NPC, item, anything) with a single click of a button. Requires Forge for Minecraft 1.8.x.',
         links: [
             { type: 'download', link: 'wikitools-2.6.6.jar' },
             { type: 'github', link: 'https://github.com/Charzard4261/wikitools' },

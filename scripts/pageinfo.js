@@ -4,7 +4,9 @@ import tools from '../data/tools.js';
 /* Add Contributors */
 const thisToolName = window.location.pathname.replace(/\/tools\/|\/|index\.html|^\./g, '');
 if (thisToolName in contributors) {
-    const contributorsList = Object.keys(contributors[thisToolName]).map((name) => createContributor(name, contributors[thisToolName][name]));
+    const contributorsList = Object.keys(contributors[thisToolName]).map((name) =>
+        createContributor(name, contributors[thisToolName][name]),
+    );
 
     document.getElementById('contrib-list').innerHTML = contributorsList.join('');
 

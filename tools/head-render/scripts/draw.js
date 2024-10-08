@@ -90,7 +90,14 @@ function renderHead(image) {
     // Initialize camera
     const viewSize = 253;
     const aspectRatio = width / height;
-    const camera = new THREE.OrthographicCamera((-aspectRatio * viewSize) / 2, (aspectRatio * viewSize) / 2, viewSize / 2, -viewSize / 2, -1000, 1000);
+    const camera = new THREE.OrthographicCamera(
+        (-aspectRatio * viewSize) / 2,
+        (aspectRatio * viewSize) / 2,
+        viewSize / 2,
+        -viewSize / 2,
+        -1000,
+        1000,
+    );
 
     camera.position.set(viewSize, viewSize * 0.8168, viewSize); // Isometric position
     camera.lookAt(scene.position);
