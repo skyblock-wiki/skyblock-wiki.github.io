@@ -10,6 +10,10 @@ main section:nth-of-type(1) {
     height: 7.5rem;
 }
 
+#render-res {
+    width: 6em;
+}
+
 /*  
 ========================
 		Aside Col
