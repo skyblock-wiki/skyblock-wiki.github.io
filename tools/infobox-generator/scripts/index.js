@@ -490,9 +490,17 @@ function createInfobox(itemData) {
         infobox += '|tradeable = unknown\n';
     }
 
-    if ('museum' in itemData) {
-        if (itemData.museum) infobox += '|museum = yes\n';
+    if ('museum_data' in itemData) {
+        if (itemData.museum_data) infobox += '|museum = yes\n';
         else infobox += '|museum = no\n';
+
+        if('donation_xp' in itemData.museum_data) {
+            infobox += '|museum_xp = ' + itemData.museum_data.donation_xp + '\n';
+        }
+
+        if('type' in itemData.museum_data) {
+            infobox += '|museum_category = ' + itemData.museum_data.type.toLowerCase() + '\n';
+        }
     } else {
         infobox += '|museum = unknown\n';
     }
