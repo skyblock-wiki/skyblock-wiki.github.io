@@ -496,6 +496,11 @@ function createInfobox(itemData) {
 
         if('donation_xp' in itemData.museum_data) {
             infobox += '|museum_xp = ' + itemData.museum_data.donation_xp + '\n';
+        } else if ('armor_set_donation_xp' in itemData.museum_data) {
+            let museum_keys = Object.keys(itemData.museum_data.armor_set_donation_xp);
+            if (museum_keys.length == 1) {
+                infobox += '|museum_xp = ' + itemData.museum_data.armor_set_donation_xp[museum_keys[0]] + '\n';
+            }
         }
 
         if('type' in itemData.museum_data) {
