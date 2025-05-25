@@ -5,7 +5,7 @@
         "@eejit/prettier-config": "^3.4.0",
         "eslint": "^9.27.0",
         "eslint-plugin-jsdoc": "^50.6.17",
-        "globals": "^16.1.0",
+        "globals": "^16.2.0",
         "stylelint": "^16.19.1",
         "stylelint-config-standard": "^38.0.0"
     },
