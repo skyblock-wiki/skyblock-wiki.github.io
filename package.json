@@ -3,8 +3,8 @@
     "prettier": "@eejit/prettier-config",
     "devDependencies": {
         "@eejit/prettier-config": "^3.4.0",
-        "eslint": "^9.28.0",
-        "eslint-plugin-jsdoc": "^50.7.1",
+        "eslint": "^9.29.0",
+        "eslint-plugin-jsdoc": "^51.0.1",
         "globals": "^16.2.0",
         "stylelint": "^16.20.0",
         "stylelint-config-standard": "^38.0.0"
