@@ -494,7 +494,7 @@ function createInfobox(itemData) {
         if (itemData.museum_data) infobox += '|museum = yes\n';
         else infobox += '|museum = no\n';
 
-        if('donation_xp' in itemData.museum_data) {
+        if ('donation_xp' in itemData.museum_data) {
             infobox += '|museum_xp = ' + itemData.museum_data.donation_xp + '\n';
         } else if ('armor_set_donation_xp' in itemData.museum_data) {
             let museum_keys = Object.keys(itemData.museum_data.armor_set_donation_xp);
@@ -503,7 +503,7 @@ function createInfobox(itemData) {
             }
         }
 
-        if('type' in itemData.museum_data) {
+        if ('type' in itemData.museum_data) {
             infobox += '|museum_category = ' + itemData.museum_data.type.toLowerCase() + '\n';
         }
     } else {

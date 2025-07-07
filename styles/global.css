@@ -144,7 +144,8 @@ textarea {
     font-family: "Fira Mono", monospace;
 }
 
-input[type="text"], input[type="number"] {
+input[type="text"],
+input[type="number"] {
     transition: box-shadow 0.1s ease;
     margin: 0.5rem 0;
     border: 1px solid var(--col-acc);
