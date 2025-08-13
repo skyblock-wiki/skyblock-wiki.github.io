@@ -285,12 +285,46 @@ function renderSprite(image) {
     const canvas = document.createElement('canvas');
     canvas.id = 'drawjs-canvas-sprite';
     const context = canvas.getContext('2d');
-    canvas.width = 64;
-    canvas.height = 64;
+
+    const sourceSize = 8;
+
+    // In java edition, outer layer is rendered 0.5 pixels larger than head layer (according to Minecraft wiki)
+    // And the 0.5 pixels are added to all sides (according to observation)
+    const headLayerSize = 64;
+    const outerLayerSize = headLayerSize * ((sourceSize + 0.5 * 2) / sourceSize);
+    const finalLayerSize = Math.max(headLayerSize, outerLayerSize);
+    const headLayerOffset = (outerLayerSize - headLayerSize) / 2;
+    const outerLayerOffset = 0;
+
+    // Ensure that all numbers are integers
+    if (
+        !Number.isInteger(headLayerSize) ||
+        !Number.isInteger(outerLayerSize) ||
+        !Number.isInteger(finalLayerSize) ||
+        !Number.isInteger(headLayerOffset) ||
+        !Number.isInteger(outerLayerOffset)
+    ) {
+        throw new Error(
+            'Non-integer pixel values cannot be used: headLayerSize=' +
+                headLayerSize +
+                ', outerLayerSize=' +
+                outerLayerSize +
+                ', finalLayerSize=' +
+                finalLayerSize +
+                ', headLayerOffset=' +
+                headLayerOffset +
+                ', outerLayerOffset=' +
+                outerLayerOffset,
+        );
+    }
+
+    canvas.width = finalLayerSize;
+    canvas.height = finalLayerSize;
 
     context.imageSmoothingEnabled = false;
     context.clearRect(0, 0, canvas.width, canvas.height);
-    context.drawImage(image, 8, 8, 8, 8, 0, 0, canvas.width, canvas.height);
+    context.drawImage(image, 8, 8, sourceSize, sourceSize, headLayerOffset, headLayerOffset, headLayerSize, headLayerSize);
+    context.drawImage(image, 40, 8, sourceSize, sourceSize, outerLayerOffset, outerLayerOffset, outerLayerSize, outerLayerSize);
 
     return canvas.toDataURL('image/png');
 }

@@ -18,6 +18,10 @@ main section:last-of-type textarea {
     max-height: none;
 }
 
+#render-res {
+	width: 6em;
+}
+
 /*  
 =============================
 		Aside
