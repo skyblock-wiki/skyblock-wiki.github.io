@@ -9,5 +9,5 @@
         "stylelint": "^16.26.1",
         "stylelint-config-standard": "^39.0.1"
     },
-    "packageManager": "pnpm@10.25.0"
+    "packageManager": "pnpm@10.26.1"
 }
