@@ -41,10 +41,10 @@ label {
 textarea#infobox,
 textarea#essence-table {
     display: block;
-    margin-block: 5px;
     width: 25rem;
     max-width: 90%;
     max-height: 15rem;
+    margin-block: 5px;
     resize: none;
 }
 

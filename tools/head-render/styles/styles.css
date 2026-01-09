@@ -42,16 +42,16 @@ aside .nbt-info td div {
 }
 
 aside .nbt-info input {
-    transition: all 0.2s ease;
-    cursor: pointer;
-    border: 1px solid var(--col-acc);
-    border-radius: 4px;
-    background-color: var(--col-bg2);
-    padding: 0.2rem 0.3rem;
     width: 15rem;
+    padding: 0.2rem 0.3rem;
     color: #aaa;
     font-size: 0.75rem;
     font-family: "Fira Code", monospace;
+    background-color: var(--col-bg2);
+    border: 1px solid var(--col-acc);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    cursor: pointer;
 }
 
 aside section > *:not(a) {
@@ -59,16 +59,16 @@ aside section > *:not(a) {
 }
 
 aside .head-box {
-    margin-bottom: 1rem;
-    border-bottom: 1px solid var(--col-bg3);
-    padding-bottom: 1rem;
     height: fit-content;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--col-bg3);
 }
 
 aside .title-box {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 }
 
 aside .title-box h3 {
@@ -77,11 +77,11 @@ aside .title-box h3 {
 
 aside #loading {
     display: none;
-    align-self: center;
-    margin: 3rem;
-    border: none;
     width: 95px;
     height: 20px;
+    margin: 3rem;
+    align-self: center;
+    border: none;
 }
 
 aside #drawn-link,
@@ -91,11 +91,11 @@ aside #sprite-link {
 
 aside img#drawn,
 aside img#sprite {
-    cursor: pointer;
     margin: 0.5rem 0 0;
+    background-color: var(--col-bg2);
     border: 1px solid var(--col-acc);
     border-radius: 4px;
-    background-color: var(--col-bg2);
+    cursor: pointer;
 }
 
 aside img#drawn {
@@ -128,9 +128,9 @@ a:not(#return-main, .link):hover {
 }
 
 a:not(#return-main, .link):active {
-    box-shadow: var(--link-shadow);
-    border-radius: 3px;
     background: var(--link-bgcolor);
+    border-radius: 3px;
+    box-shadow: var(--link-shadow);
 }
 
 @media screen and (width <= 380px) {

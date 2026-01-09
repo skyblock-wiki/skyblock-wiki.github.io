@@ -40,12 +40,12 @@ html {
 
 body {
     display: flex;
-    flex-direction: column;
-    background: var(--col-bg);
     width: 100%;
     min-height: 100vh;
+    flex-direction: column;
     color: white;
     font-family: Montserrat, sans-serif;
+    background: var(--col-bg);
 }
 
 .hidden {
@@ -68,11 +68,11 @@ body {
 }
 
 .code {
-    border: 1px solid var(--col-acc);
-    border-radius: 4px;
-    background: rgb(0 0 0 / 20%);
     padding: 0 0.3rem;
     font-family: "Fira Mono", Consolas, monospace;
+    background: rgb(0 0 0 / 20%);
+    border: 1px solid var(--col-acc);
+    border-radius: 4px;
 }
 
 abbr {
@@ -110,52 +110,52 @@ abbr {
 /* Inputs */
 button,
 input[type="submit"] {
-    transition: all 0.2s ease;
-    cursor: pointer;
-    border: 1px solid var(--col-acc);
-    border-radius: 4px;
-    background-color: var(--col-bg2);
-    padding: 0.2rem 0.3rem;
     width: max-content;
     height: max-content;
+    padding: 0.2rem 0.3rem;
     color: white;
+    background-color: var(--col-bg2);
+    border: 1px solid var(--col-acc);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    cursor: pointer;
 }
 
 button:disabled,
 input[type="submit"]:disabled {
+    color: #aaa;
     opacity: 0.5;
     cursor: default;
-    color: #aaa;
 }
 
 textarea {
-    transition: box-shadow 0.1s ease;
-    margin: 0.5rem 0;
-    border: 1px solid var(--col-acc);
-    border-radius: 4px;
-    background-color: var(--col-bg2);
-    padding: 0.2rem;
     width: 100%;
     height: 5rem;
     min-height: 4rem;
     max-height: 16rem;
-    resize: none;
+    margin: 0.5rem 0;
+    padding: 0.2rem;
     color: #aaa;
     font-family: "Fira Mono", monospace;
+    background-color: var(--col-bg2);
+    border: 1px solid var(--col-acc);
+    border-radius: 4px;
+    transition: box-shadow 0.1s ease;
+    resize: none;
 }
 
 input[type="text"],
 input[type="number"] {
-    transition: box-shadow 0.1s ease;
-    margin: 0.5rem 0;
-    border: 1px solid var(--col-acc);
-    border-radius: 4px;
-    background-color: var(--col-bg2);
-    padding: 0.2rem;
     width: 16rem;
-    resize: none;
+    margin: 0.5rem 0;
+    padding: 0.2rem;
     color: #aaa;
     font-family: "Fira Mono", monospace;
+    background-color: var(--col-bg2);
+    border: 1px solid var(--col-acc);
+    border-radius: 4px;
+    transition: box-shadow 0.1s ease;
+    resize: none;
 }
 
 input:focus,
@@ -166,33 +166,33 @@ textarea:focus {
 
 /* Contributors */
 .page-contributors {
-    display: flex;
     position: fixed;
     right: 0;
     bottom: 0;
-    flex-direction: column;
+    display: flex;
     margin: 5px 10px;
+    flex-direction: column;
 }
 
 .page-contributors button {
-    transition: none;
-    border: none;
-    background: none;
     font-weight: 300;
     font-size: 20px;
     font-family: Montserrat, sans-serif;
+    background: none;
+    border: none;
+    transition: none;
 }
 
 .page-contributors .list {
+    background: var(--col-bg2) none repeat scroll 0% 0%;
     border: 1px solid var(--col-acc2);
     border-radius: 4px;
-    background: var(--col-bg2) none repeat scroll 0% 0%;
 }
 
 .page-contributors button i {
+    margin-left: 5px;
     transform: rotate(-90deg);
     transition: transform 0.4s ease;
-    margin-left: 5px;
 }
 
 .page-contributors .list:not(.hidden) ~ h3 i {
@@ -215,46 +215,46 @@ textarea:focus {
 /* Footer */
 footer {
     display: flex;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.4rem 2rem;
     justify-content: center;
     justify-self: flex-end;
-    margin-top: 1rem;
     background: var(--col-bg3);
-    padding: 0.4rem 2rem;
-    width: 100%;
 }
 
 .github-button-wrapper a {
     display: inline-block;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    margin: 0 5px;
-    outline: none;
-    box-shadow: 0 3px 5px black;
-    border-radius: 50px;
-    background: var(--col-bg);
     width: 40px;
     height: 40px;
-    overflow: hidden;
+    margin: 0 5px;
     color: white;
     text-decoration: none;
+    background: var(--col-bg);
+    border-radius: 50px;
+    outline: none;
+    box-shadow: 0 3px 5px black;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
 }
 
 .github-button-wrapper a:hover,
 .github-button-wrapper a:focus,
 .github-button-wrapper a:active {
-    background: var(--col-bg3);
     width: 200px;
+    background: var(--col-bg3);
 }
 
 .github-button-wrapper a .icon {
     display: inline-block;
-    transition: all 0.2s ease;
     box-sizing: border-box;
-    border-radius: 50px;
     width: 40px;
     height: 40px;
-    line-height: 40px;
     text-align: center;
+    line-height: 40px;
+    border-radius: 50px;
+    transition: all 0.2s ease;
 }
 
 .github-button-wrapper a .icon i {
@@ -270,31 +270,29 @@ footer {
 /* Tooltips */
 
 .tooltip {
-    display: inline-block;
     position: relative;
-    border-bottom: 1px dotted white;
+    display: inline-block;
     font-weight: 200;
     font-family: Montserrat, sans-serif;
+    border-bottom: 1px dotted white;
 }
 
 .tooltip .tooltip-text {
     position: absolute;
     right: 110%;
     bottom: -5px;
-    visibility: hidden;
-    opacity: 0;
     z-index: 1;
-
-    /* fade animation */
-    transition: all 0.2s ease;
-    border: 1px solid var(--col-acc2);
-    border-radius: 6px;
-    background-color: var(--col-bg3);
-    padding: 5px 5px 5px 25px;
     width: max-content;
     max-width: 300px;
+    padding: 5px 5px 5px 25px;
     color: white;
     text-align: left;
+    background-color: var(--col-bg3);
+    border: 1px solid var(--col-acc2);
+    border-radius: 6px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
 }
 
 .tooltip > span:nth-child(1) {
@@ -314,8 +312,8 @@ footer {
 
 .tooltip:hover .tooltip-text,
 .tooltip:active .tooltip-text {
-    visibility: visible;
     opacity: 1;
+    visibility: visible;
 }
 
 .tooltip .tooltip-text ul {

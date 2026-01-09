@@ -4,13 +4,13 @@
 ======================
 */
 header {
-    display: flex;
     position: static;
-    align-items: center;
-    background: var(--col-bg3);
-    padding: 0.3rem 0;
+    display: flex;
     width: 100%;
     height: 5.5rem;
+    padding: 0.3rem 0;
+    align-items: center;
+    background: var(--col-bg3);
 }
 
 header > span {
@@ -18,8 +18,8 @@ header > span {
 }
 
 header img {
-    margin-right: 1.5rem;
     width: 4rem;
+    margin-right: 1.5rem;
 }
 
 header .switch-mode {
@@ -38,8 +38,8 @@ header .name {
 }
 
 header .version {
-    align-self: flex-end;
     margin-left: 0.5rem;
+    align-self: flex-end;
     color: #ffffffa0;
     font-weight: 300;
     font-size: 1rem;
@@ -47,22 +47,22 @@ header .version {
 
 #return-main {
     display: flex;
+    margin: auto 0.5rem;
+    padding: 0.6rem 1rem;
     align-items: center;
+    border-right: 3px solid #666;
     transition: all 0.2s ease;
     cursor: pointer;
-    margin: auto 0.5rem;
-    border-right: 3px solid #666;
-    padding: 0.6rem 1rem;
 }
 
 #return-main img {
-    vertical-align: middle;
     margin-right: 0;
+    vertical-align: middle;
 }
 
 #return-main:hover {
-    box-shadow: 0 0 10px 0 #fff1;
     background: #fff1;
+    box-shadow: 0 0 10px 0 #fff1;
 }
 
 /*  
@@ -71,17 +71,17 @@ header .version {
 =======================
 */
 #wrapper {
-    display: flex;
-    flex-grow: 1;
     clear: both;
-    margin-top: 1rem;
+    display: flex;
     width: 100%;
+    margin-top: 1rem;
+    flex-grow: 1;
 }
 
 main,
 aside {
-    padding: 2rem;
     width: 50%;
+    padding: 2rem;
 }
 
 /*  
@@ -132,8 +132,8 @@ p {
 */
 aside {
     display: flex;
-    flex-direction: column;
     padding-bottom: 0.5rem;
+    flex-direction: column;
 }
 
 /*  
@@ -153,8 +153,8 @@ aside {
 
     main,
     aside {
-        border: none;
         width: 100%;
+        border: none;
     }
 
     aside {

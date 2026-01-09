@@ -4,35 +4,35 @@
 ======================
 */
 .toast {
-    display: flex;
     position: fixed;
     top: 0;
     right: 0;
     left: 0;
+    display: flex;
+    max-width: 400px;
+    min-height: 1.5rem;
+    margin: auto;
+    padding: 6px;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    visibility: hidden;
+    justify-content: space-between;
+    color: black;
+    font-family: sans-serif;
+    text-align: center;
+    border-left: 6px solid currentcolor;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 75%);
     opacity: 0;
+    visibility: hidden;
     transition:
         opacity 0.2s,
         top 0.2s,
         visibility 0.2s;
-    margin: auto;
-    box-shadow: 0 0 10px rgb(0 0 0 / 75%);
-    border-left: 6px solid currentcolor;
-    border-radius: 4px;
-    padding: 6px;
-    max-width: 400px;
-    min-height: 1.5rem;
-    color: black;
-    font-family: sans-serif;
-    text-align: center;
 }
 
 .toast-message {
-    flex-grow: 1;
     padding: 0 1rem;
+    flex-grow: 1;
     text-align: justify;
 }
 
@@ -42,41 +42,41 @@
 }
 
 .toast-close {
-    align-self: flex-start;
-    opacity: 0.5;
-    cursor: pointer;
     min-width: 16px;
     height: 100%;
+    align-self: flex-start;
     color: currentcolor;
+    opacity: 0.5;
+    cursor: pointer;
 }
 
 .toast-visible {
     top: 20px;
-    visibility: visible;
     opacity: 1;
+    visibility: visible;
 }
 
 .toast-success {
-    border-color: #54a330;
-    background: #bdeca8;
     color: #42742b;
+    background: #bdeca8;
+    border-color: #54a330;
 }
 
 .toast-info {
-    border-color: #4d7fa3;
-    background: #cce8f4;
     color: #4d7fa3;
+    background: #cce8f4;
+    border-color: #4d7fa3;
 }
 
 .toast-disallow,
 .toast-error {
-    border-color: #aa3132;
-    background: #ebc8c2;
     color: #aa3132;
+    background: #ebc8c2;
+    border-color: #aa3132;
 }
 
 .toast-warn {
-    border-color: #927947;
-    background: #f8f3d6;
     color: #927947;
+    background: #f8f3d6;
+    border-color: #927947;
 }
