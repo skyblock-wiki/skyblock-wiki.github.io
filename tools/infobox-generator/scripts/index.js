@@ -256,10 +256,10 @@ const categories = {
     COSMETIC: 'Item',
     TRAVEL_SCROLL: 'Item',
     ACCESSORY: 'Accessory',
-    HELMET: 'Armor',
-    CHESTPLATE: 'Armor',
-    LEGGINGS: 'Armor',
-    BOOTS: 'Armor',
+    HELMET: 'Armor piece',
+    CHESTPLATE: 'Armor piece',
+    LEGGINGS: 'Armor piece',
+    BOOTS: 'Armor piece',
     PET_ITEM: 'Item',
     ARROW_POISON: 'Item',
     GAUNTLET: 'Item',
@@ -625,7 +625,7 @@ function createEssenceTable(itemData) {
  * @param {object} armorData the armor data
  */
 function createArmorInfobox(armorData) {
-    let infobox = '{{Infobox armor\n';
+    let infobox = '{{Infobox/Armor\n';
 
     for (const piece in armorData) {
         if (armorData[piece].id.match('STARRED_')) {
