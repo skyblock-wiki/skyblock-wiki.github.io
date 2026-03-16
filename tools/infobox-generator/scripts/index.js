@@ -248,35 +248,35 @@ function allAreEqual(array) {
 }
 
 const categories = {
-    SWORD: 'weapon',
-    WAND: 'weapon',
-    BOW: 'weapon',
-    LONGSWORD: 'weapon',
-    DEPLOYABLE: 'item',
-    COSMETIC: 'item',
-    TRAVEL_SCROLL: 'item',
-    ACCESSORY: 'accessory',
-    HELMET: 'armor',
-    CHESTPLATE: 'armor',
-    LEGGINGS: 'armor',
-    BOOTS: 'boots',
-    PET_ITEM: 'item',
-    ARROW_POISON: 'item',
-    GAUNTLET: 'item',
-    BELT: 'item',
-    BRACELET: 'item',
-    CLOAK: 'item',
-    GLOVES: 'item',
-    NECKLACE: 'item',
-    DUNGEON_PASS: 'item',
-    REFORGE_STONE: 'reforge stone',
-    BAIT: 'item',
-    AXE: 'item',
-    HOE: 'item',
-    SPADE: 'item',
-    SHEARS: 'item',
-    PICKAXE: 'item',
-    FISHING_ROD: 'fishing rod',
+    SWORD: 'Weapon',
+    WAND: 'Weapon',
+    BOW: 'Weapon',
+    LONGSWORD: 'Weapon',
+    DEPLOYABLE: 'Item',
+    COSMETIC: 'Item',
+    TRAVEL_SCROLL: 'Item',
+    ACCESSORY: 'Accessory',
+    HELMET: 'Armor',
+    CHESTPLATE: 'Armor',
+    LEGGINGS: 'Armor',
+    BOOTS: 'Armor',
+    PET_ITEM: 'Item',
+    ARROW_POISON: 'Item',
+    GAUNTLET: 'Item',
+    BELT: 'Item',
+    BRACELET: 'Item',
+    CLOAK: 'Item',
+    GLOVES: 'Item',
+    NECKLACE: 'Item',
+    DUNGEON_PASS: 'Item',
+    REFORGE_STONE: 'Reforge stone',
+    BAIT: 'Item',
+    AXE: 'Item',
+    HOE: 'Item',
+    SPADE: 'Item',
+    SHEARS: 'Item',
+    PICKAXE: 'Item',
+    FISHING_ROD: 'Fishing rod',
 };
 const replace = { CRITICAL_CHANCE: 'crit_chance', CRITICAL_DAMAGE: 'crit_damage', WALK_SPEED: 'speed' };
 
@@ -285,7 +285,7 @@ const replace = { CRITICAL_CHANCE: 'crit_chance', CRITICAL_DAMAGE: 'crit_damage'
  * @param {object} itemData the item data
  */
 function createInfobox(itemData) {
-    let infobox = '{{Infobox ';
+    let infobox = '{{Infobox/';
 
     if (itemData.category) infobox += categories[itemData.category] || 'item';
     else infobox += 'item';
