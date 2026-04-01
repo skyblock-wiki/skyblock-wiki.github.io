@@ -104,7 +104,6 @@ const renderAreaMc = document.getElementById('render-area');
 const renderAreaUni = document.getElementById('render-area2');
 
 const optionsForm = document.getElementById('options-form');
-const optionsForm2 = document.getElementById('options-form-2');
 
 const symbolForm = document.getElementById('symbol-form');
 const symbolFormSubmit = symbolForm.querySelector('input[type="submit"]');
@@ -114,8 +113,14 @@ const codeFormSubmit = codeForm.querySelector('input[type="submit"]');
 
 let isRendering = false;
 
+/**
+ * Toggles or sets the rendering state and optionally shows an error toast.
+ * @param {object} params - Rendering state options.
+ * @param {boolean} [params.renderState] - Explicit rendering state; if omitted, the current state is toggled.
+ * @param {string} [params.error] - Optional error message to display.
+ */
 function toggleRenderingState({ renderState, error }) {
-    if (typeof renderState == 'boolean') isRendering = renderState;
+    if (typeof renderState === 'boolean') isRendering = renderState;
     else isRendering = !isRendering;
     symbolFormSubmit.disabled = codeFormSubmit.disabled = isRendering;
     if (isRendering) new Toast({ message: 'Rendering...', type: 'info', time: 1000 }).show();
@@ -123,6 +128,9 @@ function toggleRenderingState({ renderState, error }) {
 }
 
 // Initialize Program
+/**
+ * Initializes the tool by setting up color options and form submit handlers.
+ */
 function programReady() {
     // Options Form for Colors
     let selectedColorModel = loadFromLocalStorage('mc-font-color');
@@ -130,8 +138,8 @@ function programReady() {
         selectedColorModel = 'f';
         saveToLocalStorage('mc-font-color', 'f');
     }
-    for (let info of colorCodeInfo) {
-        let inputEl = document.createElement('input');
+    for (const info of colorCodeInfo) {
+        const inputEl = document.createElement('input');
         inputEl.type = 'radio';
         inputEl.name = 'color-option';
         inputEl.id = `code-${info.code}`;
@@ -140,11 +148,11 @@ function programReady() {
             saveToLocalStorage('mc-font-color', info.code);
         });
         inputEl.checked = info.code === selectedColorModel;
-        let labelEl = document.createElement('label');
+        const labelEl = document.createElement('label');
         labelEl.innerText = ` §${info.code} `;
         labelEl.style = `color: ${info.foreground}`;
         labelEl.htmlFor = `code-${info.code}`;
-        let div = document.createElement('div');
+        const div = document.createElement('div');
         div.append(inputEl, labelEl);
         optionsForm.append(div);
     }
@@ -166,7 +174,7 @@ function programReady() {
         try {
             symbol = String.fromCodePoint(parseInt(formdata.get('code-input').trim(), 16));
         } catch (error) {
-            console.warn(error);
+            console.warn(error); // eslint-disable-line no-console
             toggleRenderingState({ renderState: false, error: 'Invalid code point' });
             return;
         }
@@ -180,19 +188,33 @@ function programReady() {
 programReady();
 
 // Rendering
+/**
+ * Dispatches rendering to both Minecraft and Unifont output canvases.
+ * @param {string} symbol - The character to render.
+ */
 function renderingDispatcher(symbol) {
-    let colorcode = loadFromLocalStorage('mc-font-color');
+    const colorcode = loadFromLocalStorage('mc-font-color');
     if (!colorcode) {
         toggleRenderingState({ renderState: false, error: 'Please select color' });
     }
     renderWithFont(renderAreaMc, 'minecraft', symbol, colorCodeInfo[parseInt(colorcode, 16)], true, 16);
     renderWithFont(renderAreaUni, 'unifont', symbol, colorCodeInfo[parseInt(colorcode, 16)], false, 0);
 }
+
+/**
+ * Renders a symbol to a canvas using the specified font and color settings.
+ * @param {HTMLElement} renderArea - Container element holding canvas/image/link elements.
+ * @param {string} fontname - Font family name to use when rendering.
+ * @param {string} symbol - The character to render.
+ * @param {{foreground: string, background: string}} colorinfo - Foreground/background colors.
+ * @param {boolean} hasshadow - Whether to render a drop shadow.
+ * @param {number} yshift - Extra height to account for shadow offset.
+ */
 function renderWithFont(renderArea, fontname, symbol, colorinfo, hasshadow, yshift) {
-    let canvas = renderArea.querySelector('.drawn-cvs');
-    let drawnImage = renderArea.querySelector('.drawn-img');
-    let drawnLink = renderArea.querySelector('.drawn-lnk');
-    let ctx = canvas.getContext('2d');
+    const canvas = renderArea.querySelector('.drawn-cvs');
+    const drawnImage = renderArea.querySelector('.drawn-img');
+    const drawnLink = renderArea.querySelector('.drawn-lnk');
+    const ctx = canvas.getContext('2d');
 
     // Set canvas width and height
     canvas.width = 300;

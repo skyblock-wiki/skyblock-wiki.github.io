@@ -6,13 +6,9 @@
  * @returns {Array} RGB color `[red, green, blue]`
  */
 function hexToRgb(hex) {
-    let r = 0,
-        g = 0,
-        b = 0;
-
-    r = `0x${hex[1]}${hex[2]}`;
-    g = `0x${hex[3]}${hex[4]}`;
-    b = `0x${hex[5]}${hex[6]}`;
+    const r = `0x${hex[1]}${hex[2]}`;
+    const g = `0x${hex[3]}${hex[4]}`;
+    const b = `0x${hex[5]}${hex[6]}`;
 
     return [+r, +g, +b];
 }
@@ -32,9 +28,8 @@ function rgbToHsl(r, g, b) {
     const cMin = Math.min(r, g, b),
         cMax = Math.max(r, g, b),
         delta = cMax - cMin;
-    let h = 0,
-        s = 0,
-        l = 0;
+
+    let h, s, l;
 
     if (delta === 0) h = 0;
     else if (cMax === r) h = ((g - b) / delta) % 6;

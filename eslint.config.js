@@ -5,6 +5,7 @@ import globals from 'globals';
 export default [
     jsdoc.configs['flat/recommended'],
     eslint.configs.recommended,
+    { ignores: ['scripts/*.min.js'] },
     {
         plugins: { jsdoc },
         languageOptions: {

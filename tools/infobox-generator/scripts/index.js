@@ -161,7 +161,7 @@ function copyText(id) {
     try {
         window.navigator.clipboard.writeText(document.getElementById(id).value);
         new Toast({ message: 'Copied!', type: 'success', time: 2000 }).show();
-    } catch (error) {
+    } catch {
         new Toast({ message: 'Unable to copy!', type: 'disallow', time: 4000 }).show();
     }
 }
@@ -497,9 +497,9 @@ function createInfobox(itemData) {
         if ('donation_xp' in itemData.museum_data) {
             infobox += '|museum_xp = ' + itemData.museum_data.donation_xp + '\n';
         } else if ('armor_set_donation_xp' in itemData.museum_data) {
-            let museum_keys = Object.keys(itemData.museum_data.armor_set_donation_xp);
-            if (museum_keys.length == 1) {
-                infobox += '|museum_xp = ' + itemData.museum_data.armor_set_donation_xp[museum_keys[0]] + '\n';
+            const museumKeys = Object.keys(itemData.museum_data.armor_set_donation_xp);
+            if (museumKeys.length === 1) {
+                infobox += '|museum_xp = ' + itemData.museum_data.armor_set_donation_xp[museumKeys[0]] + '\n';
             }
         }
 

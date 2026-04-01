@@ -85,7 +85,7 @@ document.getElementById('tid-clear').addEventListener('click', () => {
 
 /**
  * Renders both head and sprite with a corresponding renderFunction
- * @param {Function} renderFunction the function to render the head and sprite
+ * @param {(obj: object, name: string) => Promise<string>} renderFunction the function to render the head and sprite
  * @param {object} obj the object to pass to the render function
  */
 function renderDispatcher(renderFunction, obj) {
@@ -151,7 +151,7 @@ function updateTextureIdOutputs(id) {
  * Render with ID
  * @param {'url'|'textureId'} textureId texture URL or texture ID
  * @param {'nbt'|'val'|'tid'} element the element
- * @param {string} [fileName=null] the name of the file
+ * @param {string} [fileName] the name of the file
  */
 function renderWithId(textureId, element, fileName = null) {
     if (textureId.match('//textures.minecraft.net')) textureId = textureId.split('/texture/')[1];
@@ -171,7 +171,7 @@ function renderWithId(textureId, element, fileName = null) {
  * Parse value, then render with ID
  * @param {string} textureData the texture data
  * @param {'nbt'|'val'|'tid'} element the element
- * @param {string} [fileName=null] the file name
+ * @param {string} [fileName] the file name
  * @returns {void}
  */
 function renderWithValue(textureData, element, fileName = null) {
@@ -184,7 +184,7 @@ function renderWithValue(textureData, element, fileName = null) {
 
     try {
         textureData = JSON.parse(textureData);
-    } catch (error) {
+    } catch {
         return showError('Error parsing texture data', element);
     }
 
@@ -305,7 +305,7 @@ function parseNBT(nbt) {
             .replace(/": ?0b/g, '": false');
 
         return JSON.parse(nbt);
-    } catch (error) {
+    } catch {
         return null;
     }
 }
@@ -326,7 +326,7 @@ function checkWebGL() {
     try {
         const canvas = document.createElement('canvas');
         return !!window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'));
-    } catch (e) {
+    } catch {
         return false;
     }
 }

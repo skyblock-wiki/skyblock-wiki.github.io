@@ -22,6 +22,8 @@ export function draw() {
  * @param {HTMLCanvasElement} canvas the canvas
  * @param {CanvasRenderingContext2D} ctx the canvas context
  * @param {string} name the name of the armor piece
+ * @param {object} assets the asset files
+ * @param {boolean} isLatest whether to draw the latest texture version
  * @param {string} color the color to set the armor piece
  */
 function drawPiece(canvas, ctx, name, assets, isLatest, color) {
