@@ -1,6 +1,6 @@
 # Hypixel SkyBlock Wiki Tools
 
-A site to provide tools for [Hypixel SkyBlock Wiki](https://hypixel-skyblock.fandom.com/) users.
+A site to provide tools for [Hypixel SkyBlock Wiki](https://hypixelskyblock.minecraft.wiki/) users.
 
 ## Contributing
 

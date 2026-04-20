@@ -28,7 +28,7 @@ const allCOntributorElements = [];
 function makeLink(type, value) {
     if (type === 'discord') return makeDiscordElement(value);
 
-    if (type === 'wiki') value = `https://hypixel-skyblock.fandom.com/wiki/User:${value}`;
+    if (type === 'wiki') value = `https://hypixelskyblock.minecraft.wiki/w/User:${value}`;
     else if (type === 'github') value = `https://github.com/${value}`;
     else if (type === 'curseForge') value = `https://www.curseforge.com/members/${value}`;
 
@@ -62,7 +62,7 @@ contributors.forEach((contributor) => {
     });
     const element = [
         '<li>', //
-        `<a href="https://hypixel-skyblock.fandom.com/wiki/User:${contributor.links.wiki}">`,
+        `<a href="https://hypixelskyblock.minecraft.wiki/w/User:${contributor.links.wiki}">`,
         `<img src="/files/images/user-icons/${contributor.thumbnail || 'default_icon'}.png" alt="${contributor.name} logo">`,
         '</a>',
         '<hr>',

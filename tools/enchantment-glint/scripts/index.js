@@ -99,7 +99,7 @@ function programReady() {
             .replace(/^file:/i, '');
         const basefilename = filename.replace(/\.[a-z]{2,4}$/, '').trim();
 
-        const url = `http://hypixel-skyblock.fandom.com/api.php?${new URLSearchParams({
+        const url = `https://hypixelskyblock.minecraft.wiki/api.php?${new URLSearchParams({
             action: 'query',
             format: 'json',
             prop: 'imageinfo',
