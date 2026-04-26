@@ -1,19 +1,5 @@
 export default [
     {
-        id: 'head-render',
-        name: 'Head Render Thingy',
-        version: 'v4.0',
-        description: 'Render custom player heads and NPC sprites from various different data models.',
-        isSiteTool: true,
-    },
-    {
-        id: 'head-render-multi',
-        name: 'Head Render Multi',
-        version: 'v4.0',
-        description: 'Render multiple heads or sprites from Texture IDs.',
-        isSiteTool: true,
-    },
-    {
         id: 'leather-armor',
         name: 'Leather Armor Generator',
         version: 'v3.1',
@@ -39,6 +25,20 @@ export default [
         name: 'Minecraft Icon Image Maker',
         version: 'v1.0',
         description: 'Render 1.8 Minecraft icon images.',
+        isSiteTool: true,
+    },
+    {
+        id: 'head-render',
+        name: 'Head Render Thingy',
+        version: 'v4.0',
+        description: 'DEPRECTATED: Render custom player heads and NPC sprites from various different data models.',
+        isSiteTool: true,
+    },
+    {
+        id: 'head-render-multi',
+        name: 'Head Render Multi',
+        version: 'v4.0',
+        description: 'DEPRECATED: Render multiple heads or sprites from Texture IDs.',
         isSiteTool: true,
     },
     {
