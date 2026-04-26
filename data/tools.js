@@ -31,7 +31,7 @@ export default [
         id: 'head-render',
         name: 'Head Render Thingy',
         version: 'v4.0',
-        description: 'DEPRECTATED: Render custom player heads and NPC sprites from various different data models.',
+        description: 'DEPRECATED: Render custom player heads and NPC sprites from various different data models.',
         isSiteTool: true,
     },
     {
