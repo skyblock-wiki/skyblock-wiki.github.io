@@ -177,8 +177,8 @@ section.contributors {
     align-self: center;
     font-size: 0.9rem;
     text-decoration: none;
-    background-color: rgba(181, 181, 53, 0.6);
-    border: 1px solid rgba(181, 181, 53, 1);
+    background-color: var(--warn-bg);
+    border: 1px solid var(--warn-border);
     border-radius: 4px;
     transition: background-color 0.2s ease;
 }

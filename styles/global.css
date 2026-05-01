@@ -23,6 +23,8 @@
     --imports-selected: white;
     --link-shadow: 0 0 10px 0 #fff1;
     --link-bgcolor: #fff1;
+    --warn-bg: rgba(181, 181, 53, 0.6);
+    --warn-border: rgba(181, 181, 53, 1);
 }
 
 /* Normalize margins and paddings */

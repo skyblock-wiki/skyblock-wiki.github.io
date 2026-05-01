@@ -8,7 +8,7 @@ const allElements = tools.map((tool) => {
         `<img src="/files/images/tool-icons/${tool.id || tool.thumbnail}.png" alt="tool logo">`,
         '</a>',
         '<hr>',
-        `<h4>${tool.deprecated ? '<span class="deprecationwarning">Deprecated</span>' : ''}${tool.name}</h4>`,
+        `<h4>${tool.deprecated ? '<span class="deprecationwarning"><abbr title="This tool is no longer used in wiki processes.">Deprecated</abbr></span>&nbsp;' : ''}${tool.name}</h4>`,
         `<span class="version">${tool.version ? tool.version : '&nbsp;'}</span>`,
         `<p>${tool.description}</p>`,
         '<div class="links">',

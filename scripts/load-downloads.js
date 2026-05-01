@@ -26,7 +26,7 @@ downloads.forEach((download) => {
         `<img src="/files/images/download-thumbnails/${download.thumbnail}.png" alt="${download.name} logo">`,
         '</a>',
         '<hr>',
-        `<h4>${download.name}</h4>`,
+        `<h4>${download.deprecated ? '<span class="deprecationwarning"><abbr title="This tool is no longer used in wiki processes.">Deprecated</abbr></span>&nbsp;' : ''}${download.name}</h4>`,
         `<p>${download.description}</p>`,
         '<div class="links">',
         links.join(''),
