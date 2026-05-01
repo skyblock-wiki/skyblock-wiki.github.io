@@ -27,7 +27,7 @@ export function draw() {
  * @param {string} color the color to set the armor piece
  */
 function drawPiece(canvas, ctx, name, assets, isLatest, color) {
-    const { file, x, y, scale } = { file: assets.files[`${name[0]}${isLatest ? '_latest' : ''}`], x: 0, y: 0, scale: itemScale };
+    const { file, x, y, scale } = { file: assets.files[`${name[0]}${isLatest ? 'Latest' : ''}`], x: 0, y: 0, scale: itemScale };
     const { asset, width, height } = file;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -58,7 +58,7 @@ function drawPiece(canvas, ctx, name, assets, isLatest, color) {
         x2: 0,
         y2: 0,
         scale2: itemScale,
-        file2: assets.files[`${name[0]}${isLatest ? '_latest' : ''}_overlay`],
+        file2: assets.files[`${name[0]}${isLatest ? 'Latest' : ''}Overlay`],
     };
     const { asset: asset2, width: width2, height: height2 } = file2;
 
