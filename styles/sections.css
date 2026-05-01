@@ -171,18 +171,6 @@ section.contributors {
     content: "★ Site Tool";
 }
 
-.deprecationwarning {
-    padding: 0.15rem 0.3rem;
-    align-content: center;
-    align-self: center;
-    font-size: 0.9rem;
-    text-decoration: none;
-    background-color: var(--warn-bg);
-    border: 1px solid var(--warn-border);
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
-}
-
 /*  
 ============================
 		Contributors
