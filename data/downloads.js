@@ -20,6 +20,7 @@ export default [
     {
         name: 'WikiTools Renders 1.8.9',
         thumbnail: 'wikitools',
+        deprecated: true,
         description:
             'A mod that lets you render any entity (mob, player, NPC, item, anything) with a single click of a button. Requires Forge for Minecraft 1.8.x.',
         links: [
@@ -30,6 +31,7 @@ export default [
     {
         name: 'WikiTools Mod 1.8.9',
         thumbnail: 'wikitools',
+        deprecated: true,
         description:
             'A mod that lets you copy item and entity info (NBT, formatted text, UIs). Requires Forge for Minecraft 1.8.x.',
         links: [
@@ -40,6 +42,7 @@ export default [
     {
         name: 'Mineshot Mod',
         thumbnail: 'mineshot',
+        deprecated: true,
         description: 'A mod that lets you take isometric screenshots.',
         largeThumbnail: true,
         links: [
@@ -63,6 +66,7 @@ export default [
     {
         name: 'Enchanted Item Toolkit (PS)',
         thumbnail: 'enchanted-items-ps',
+        deprecated: true,
         description: 'A set of <span class="code">.psd</span> templates used to make images for enchanted items and blocks.',
         links: [
             { type: 'download', link: 'Enchantment_Glint_ps.zip' },
@@ -72,6 +76,7 @@ export default [
     {
         name: 'Enchanted Item Toolkit (GIMP)',
         thumbnail: 'enchanted-items-gimp',
+        deprecated: true,
         description: 'A set of <span class="code">.xcf</span> templates used to make images for enchanted items and blocks.',
         links: [
             { type: 'download', link: 'Enchantment_Glint_gimp.zip' },
@@ -81,6 +86,7 @@ export default [
     {
         name: 'BlockRenderer Mod',
         thumbnail: 'blockrenderer',
+        deprecated: true,
         description: 'A mod that allows quick rendering of any item, block and head.',
         links: [
             { type: 'download', link: 'BlockRenderer-0.3.3.jar' },
