@@ -1,30 +1,25 @@
 export default [
     {
         name: 'WikiRenderer',
-        thumbnail: 'wikitools',
+        thumbnail: 'wikirenderer',
         description:
             'A mod that allows you to create renders of game objects like parts of world, blocks, items and entities. Requires Fabric.',
-        links: [
-            { type: 'github', link: 'https://github.com/skyblock-wiki/WikiRenderer' },
-        ],
+        links: [{ type: 'github', link: 'https://github.com/skyblock-wiki/WikiRenderer' }],
     },
     {
         name: 'WikiTools',
         thumbnail: 'wikitools',
-        description:
-            'A mod that performs tasks to support the workflow of the wiki, focusing on non-rendering tasks. Requires Fabric.',
-        links: [
-            { type: 'github', link: 'https://github.com/skyblock-wiki/wikitools' },
-        ],
+        description: 'A mod that performs tasks to support the workflow of the wiki, focusing on non-rendering tasks. Requires Fabric.',
+        links: [{ type: 'github', link: 'https://github.com/skyblock-wiki/wikitools' }],
     },
     {
         name: 'WikiTools Renders 1.8.9',
-        thumbnail: 'wikitools',
+        thumbnail: 'wikitools-renders',
         deprecated: true,
         description:
             'A mod that lets you render any entity (mob, player, NPC, item, anything) with a single click of a button. Requires Forge for Minecraft 1.8.x.',
         links: [
-            //{ type: 'download', link: 'wikitools-2.6.6.jar' },
+            // { type: 'download', link: 'wikitools-2.6.6.jar' },
             { type: 'github', link: 'https://github.com/skyblock-wiki/wikitools-renders-1.8.9' },
         ],
     },
@@ -32,10 +27,9 @@ export default [
         name: 'WikiTools Mod 1.8.9',
         thumbnail: 'wikitools',
         deprecated: true,
-        description:
-            'A mod that lets you copy item and entity info (NBT, formatted text, UIs). Requires Forge for Minecraft 1.8.x.',
+        description: 'A mod that lets you copy item and entity info (NBT, formatted text, UIs). Requires Forge for Minecraft 1.8.x.',
         links: [
-            //{ type: 'download', link: 'wikitools-2.6.6.jar' },
+            // { type: 'download', link: 'wikitools-2.6.6.jar' },
             { type: 'github', link: 'https://github.com/skyblock-wiki/WikiTools-1.8.9' },
         ],
     },
