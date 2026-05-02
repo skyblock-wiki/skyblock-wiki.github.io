@@ -16,7 +16,7 @@ downloads.forEach((download) => {
                 link.type === 'download' ? ' download' : ''
             }>${content}</a>`,
         );
-        if (index === 0) links.push('<span class="line"></span>');
+        if (index === 0 && download.links.length > 1) links.push('<span class="line"></span>');
     });
     const element = [
         '<li>', //
