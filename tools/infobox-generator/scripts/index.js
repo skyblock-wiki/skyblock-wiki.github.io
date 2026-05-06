@@ -503,9 +503,11 @@ function createInfobox(itemData) {
             }
         }
 
-        if ('type' in itemData.museum_data) {
-            infobox += '|museum_category = ' + itemData.museum_data.type.toLowerCase() + '\n';
+        if ('category' in itemData.museum_data) {
+            infobox += '|museum_category = ' + itemData.museum_data.category.toLowerCase() + '\n';
         }
+    } else if ('museum' in itemData && itemData.museum) {
+        infobox += '|museum = yes\n';
     } else {
         infobox += '|museum = unknown\n';
     }
