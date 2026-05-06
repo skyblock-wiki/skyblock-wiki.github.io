@@ -545,7 +545,9 @@ function createInfobox(itemData) {
     copyInfoboxButton.disabled = false;
     infoboxElement.parentElement.classList.remove('unselectable');
     infoboxElement.value = infobox;
-    infoboxElement.style.height = infoboxElement.scrollHeight + 3 + 'px';
+    if (infoboxElement.scrollHeight > infoboxElement.clientHeight) {
+        infoboxElement.style.height = infoboxElement.scrollHeight + 3 + 'px';
+    }
 
     if (itemData.upgrade_costs) createEssenceTable(itemData);
     else essenceTableElement.value = '';
@@ -619,7 +621,9 @@ function createEssenceTable(itemData) {
     copyEssenceTableButton.disabled = false;
     essenceTableElement.parentElement.classList.remove('unselectable');
     essenceTableElement.value = essenceTable;
-    essenceTableElement.style.height = essenceTableElement.scrollHeight + 3 + 'px';
+    if (essenceTableElement.scrollHeight > essenceTableElement.clientHeight) {
+        essenceTableElement.style.height = essenceTableElement.scrollHeight + 3 + 'px';
+    }
 }
 
 /**
