@@ -287,8 +287,8 @@ const replace = { CRITICAL_CHANCE: 'crit_chance', CRITICAL_DAMAGE: 'crit_damage'
 function createInfobox(itemData) {
     let infobox = '{{Infobox/';
 
-    if (itemData.category) infobox += categories[itemData.category] || 'item';
-    else infobox += 'item';
+    if (itemData.category) infobox += categories[itemData.category] || 'Item';
+    else infobox += 'Item';
 
     infobox += '\n';
 
@@ -317,7 +317,7 @@ function createInfobox(itemData) {
     if (itemData.tier) {
         if (!starredItem) infobox += `|rarity = ${itemData.tier.toLowerCase().replace('_', ' ')}\n`;
         else if (starredItem.tier !== itemData.tier)
-            infobox += `|rarity = {{r|${itemData.tier.toLowerCase()}}} ({{r|${starredItem.tier.toLowerCase()}}} with frags)\n`;
+            infobox += `|rarity = {{Rarity|${itemData.tier.toLowerCase()}}} ({{Rarity|${starredItem.tier.toLowerCase()}}} with frags)\n`;
         else infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
     } else {
         itemData.tier = 'COMMON';
@@ -325,7 +325,7 @@ function createInfobox(itemData) {
     }
 
     infobox += `|id = ${itemData.id}`;
-    if (starredItem) infobox += `<br>${starredItem.id}`;
+    if (starredItem) infobox += `, ${starredItem.id}`;
     infobox += '\n';
     const percentages = { attack_speed: true, critical_chance: true, critical_damage: true, sea_creature_chance: true }; // eslint-disable-line camelcase
 
@@ -416,10 +416,10 @@ function createInfobox(itemData) {
         if (requirementTypes.includes('skill')) {
             const skillRequirement = requirements.find((element) => element.type.toLowerCase() === 'skill');
             if (skillRequirement.skill.toLowerCase() === 'combat') {
-                infobox += '|combat_level_requirement = {{Skl|combat|' + skillRequirement.level + '}}\n';
+                infobox += '|combat_level_requirement = {{Skill|combat|' + skillRequirement.level + '}}\n';
             } else {
                 infobox +=
-                    '|other_level_requirement = {{Skl|' + skillRequirement.skill.toLowerCase() + '|' + skillRequirement.level + '}}\n';
+                    '|other_level_requirement = {{Skill|' + skillRequirement.skill.toLowerCase() + '|' + skillRequirement.level + '}}\n';
             }
         }
 
@@ -436,7 +436,7 @@ function createInfobox(itemData) {
         if (requirementTypes.includes('dungeon_skill')) {
             const dungeonRequirement = requirements.find((element) => element.type.toLowerCase() === 'dungeon_skill');
             infobox +=
-                '|dungeon_level_requirement = {{Skl|' +
+                '|dungeon_level_requirement = {{Skill|' +
                 dungeonRequirement.dungeon_type.toLowerCase() +
                 '|' +
                 dungeonRequirement.level +
@@ -663,7 +663,7 @@ function createArmorInfobox(armorData) {
 
     for (const piece in armorData) {
         infobox += `|${piece}_id = ${armorData[piece].id}`;
-        if (armorData[piece].starredItem) infobox += `<br>${armorData[piece].starredItem.id}`;
+        if (armorData[piece].starredItem) infobox += `, ${armorData[piece].starredItem.id}`;
         infobox += '\n';
     }
 
@@ -675,7 +675,7 @@ function createArmorInfobox(armorData) {
     if (allAreEqual(rarities)) {
         if (!itemData.starredItem) infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
         else if (itemData.starredItem.tier !== itemData.tier)
-            infobox += `|rarity = {{r|${itemData.tier.toLowerCase()}}} ({{r|${itemData.starredItem.tier.toLowerCase()}}} with frags)\n`;
+            infobox += `|rarity = {{Rarity|${itemData.tier.toLowerCase()}}} ({{Rarity|${itemData.starredItem.tier.toLowerCase()}}} with frags)\n`;
         else infobox += `|rarity = ${itemData.tier.toLowerCase()}\n`;
     } else infobox += '|rarity = Various\n';
 
@@ -829,10 +829,10 @@ function createArmorInfobox(armorData) {
         if (requirementTypes.includes('skill')) {
             const skillRequirement = requirements.find((element) => element.type.toLowerCase() === 'skill');
             if (skillRequirement.skill.toLowerCase() === 'combat') {
-                infobox += '|combat_level_requirement = {{Skl|combat|' + skillRequirement.level + '}}\n';
+                infobox += '|combat_level_requirement = {{Skill|combat|' + skillRequirement.level + '}}\n';
             } else {
                 infobox +=
-                    '|other_level_requirement = {{Skl|' + skillRequirement.skill.toLowerCase() + '|' + skillRequirement.level + '}}\n';
+                    '|other_level_requirement = {{Skill|' + skillRequirement.skill.toLowerCase() + '|' + skillRequirement.level + '}}\n';
             }
         }
 
@@ -849,7 +849,7 @@ function createArmorInfobox(armorData) {
         if (requirementTypes.includes('dungeon_skill')) {
             const dungeonRequirement = requirements.find((element) => element.type.toLowerCase() === 'dungeon_skill');
             infobox +=
-                '|dungeon_level_requirement = {{Skl|' +
+                '|dungeon_level_requirement = {{Skill|' +
                 dungeonRequirement.dungeon_type.toLowerCase() +
                 '|' +
                 dungeonRequirement.level +
