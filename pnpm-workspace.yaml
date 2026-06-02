@@ -1,0 +1,6 @@
+minimumReleaseAgeStrict: true
+minimumReleaseAgeExclude:
+    - '@eejit/prettier-config'
+publicHoistPattern:
+    - '*eslint*'
+    - '*prettier*'
