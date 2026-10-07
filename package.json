@@ -3,12 +3,12 @@
     "type": "module",
     "prettier": "@eejit/prettier-config",
     "devDependencies": {
-        "@eejit/prettier-config": "^3.6.2",
+        "@eejit/prettier-config": "^3.7.0",
         "@eslint/js": "^10.0.1",
-        "eslint": "^10.4.1",
-        "eslint-plugin-jsdoc": "^63.0.1",
-        "globals": "^17.6.0",
-        "stylelint": "^17.12.0",
+        "eslint": "^10.12.0",
+        "eslint-plugin-jsdoc": "^65.1.0",
+        "globals": "^17.13.0",
+        "stylelint": "^17.16.0",
         "stylelint-config-standard": "^40.0.0"
     },
     "packageManager": "pnpm@11.5.1"
